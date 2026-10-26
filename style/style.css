@@ -8949,4 +8949,394 @@ textarea:focus-visible {
   color: var(--color-primary);
 }
 
+/* ==========================================================================
+   Curated Talent Spotlight Section & Cards (.spotlight-talent-card)
+   Clean, Visual-First & Premium Design Architecture
+   ========================================================================== */
+.spotlight-carousel-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.spotlight-carousel-tracker {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background-color: #FFFFFF;
+  border: 1px solid rgba(27, 26, 23, 0.1);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: var(--color-secondary);
+  box-shadow: 0 1px 3px rgba(27, 26, 23, 0.03);
+}
+
+.tracker-slash {
+  color: rgba(27, 26, 23, 0.3);
+  font-weight: 400;
+  margin: 0 2px;
+}
+
+/* Spotlight Talent Card (Clean & Visual-First) */
+.spotlight-talent-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(27, 26, 23, 0.08);
+  border-radius: 20px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 6px rgba(27, 26, 23, 0.03), 0 10px 24px -4px rgba(27, 26, 23, 0.05);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s ease;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+}
+
+.spotlight-talent-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 48px -10px rgba(18, 58, 44, 0.12), 0 0 0 1px rgba(214, 68, 30, 0.25);
+  border-color: rgba(214, 68, 30, 0.3);
+}
+
+/* Flagship Media Cover */
+.spotlight-media-cover {
+  position: relative;
+  height: 190px;
+  border-radius: 14px;
+  overflow: hidden;
+  background-color: var(--color-secondary);
+}
+
+.spotlight-media-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.spotlight-talent-card:hover .spotlight-media-cover img {
+  transform: scale(1.06);
+}
+
+.spotlight-cover-top {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+}
+
+.spotlight-category-chip {
+  background: rgba(27, 26, 23, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #FFFFFF;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.02em;
+}
+
+.spotlight-cover-top .bookmark-heart-btn,
+.card-preview-top .bookmark-heart-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  color: var(--color-secondary);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+  transition: all 0.2s ease;
+}
+
+.spotlight-cover-top .bookmark-heart-btn:hover,
+.card-preview-top .bookmark-heart-btn:hover {
+  background: #FFFFFF;
+  transform: scale(1.08);
+}
+
+.spotlight-cover-top .bookmark-heart-btn.active,
+.card-preview-top .bookmark-heart-btn.active {
+  color: var(--color-primary);
+}
+
+.spotlight-cover-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24px 12px 10px;
+  background: linear-gradient(0deg, rgba(18, 58, 44, 0.92) 0%, rgba(18, 58, 44, 0.4) 60%, transparent 100%);
+  z-index: 2;
+}
+
+.spotlight-project-title {
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 1.25;
+  margin: 0;
+}
+
+/* Creator Row */
+.spotlight-creator-row,
+.card-creator-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.spotlight-avatar-wrap,
+.card-creator-row .avatar-round-frame {
+  position: relative;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 3px rgba(18, 58, 44, 0.12);
+  border: none;
+}
+
+.spotlight-avatar-wrap img,
+.card-creator-row .avatar-round-frame img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.spotlight-avatar-wrap .online-indicator-dot,
+.card-creator-row .avatar-round-frame .online-indicator-dot {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  background-color: #10B981;
+  border: 2px solid #FFFFFF;
+  border-radius: 50%;
+}
+
+.spotlight-creator-info,
+.card-creator-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+
+.spotlight-creator-name,
+.card-creator-info .card-worker-name {
+  font-family: var(--font-display);
+  font-size: 1.12rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 0;
+}
+
+.spotlight-creator-craft,
+.card-creator-info .card-worker-craft {
+  font-size: 0.76rem;
+  font-weight: 500;
+  color: var(--color-secondary-muted);
+  margin-top: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.spotlight-rating-badge,
+.card-rating-badge {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  background: #FAF7F2;
+  border: 1px solid rgba(27, 26, 23, 0.08);
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.spotlight-rating-badge .star-gold,
+.card-rating-badge .star-gold {
+  color: #F59E0B;
+  font-size: 0.8rem;
+}
+
+/* Skills */
+.spotlight-skills-list,
+.freelancer-grid-card .card-skills-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  margin-bottom: 0;
+  justify-content: flex-start;
+}
+
+.spotlight-skill-pill,
+.freelancer-grid-card .skill-chip {
+  background: #FAF7F2;
+  border: 1px solid rgba(27, 26, 23, 0.06);
+  color: var(--color-secondary);
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 6px;
+  transition: all var(--transition-fast);
+}
+
+.spotlight-talent-card:hover .spotlight-skill-pill,
+.freelancer-grid-card:hover .skill-chip {
+  border-color: rgba(214, 68, 30, 0.25);
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+/* Card Footer */
+.spotlight-card-footer,
+.freelancer-grid-card .card-bottom-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(27, 26, 23, 0.06);
+}
+
+.spotlight-rate-block,
+.card-rate-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 1px;
+}
+
+.spotlight-rate-val,
+.card-rate-wrap .card-rate-val {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-secondary);
+  line-height: 1;
+}
+
+.spotlight-rate-unit,
+.card-rate-wrap .rate-per-hr {
+  font-size: 0.76rem;
+  font-weight: 500;
+  color: var(--color-secondary-muted);
+  font-family: var(--font-sans);
+}
+
+.spotlight-cta-btn,
+.freelancer-grid-card .card-profile-btn {
+  padding: 8px 16px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  border-radius: var(--radius-full);
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.25s ease;
+}
+
+.spotlight-cta-btn:hover,
+.freelancer-grid-card .card-profile-btn:hover {
+  background: #BA3616;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(214, 68, 30, 0.3);
+}
+
+.spotlight-cta-btn .arrow-up-right,
+.freelancer-grid-card .arrow-up-right {
+  transition: transform 0.2s ease;
+  font-size: 0.9rem;
+}
+
+.spotlight-talent-card:hover .spotlight-cta-btn .arrow-up-right,
+.freelancer-grid-card:hover .card-profile-btn .arrow-up-right {
+  transform: translateX(3px);
+}
+
+/* Card Project Preview in Grid Card */
+.freelancer-grid-card {
+  padding: 16px;
+  border-radius: 20px;
+  box-shadow: 0 2px 6px rgba(27, 26, 23, 0.03), 0 10px 24px -4px rgba(27, 26, 23, 0.05);
+}
+
+.freelancer-grid-card .card-project-preview {
+  position: relative;
+  height: 190px;
+  border-radius: 14px;
+  overflow: hidden;
+  background-color: var(--color-secondary);
+}
+
+.freelancer-grid-card .card-project-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.freelancer-grid-card:hover .card-project-preview img {
+  transform: scale(1.06);
+}
+
+.card-preview-top {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+}
+
+.card-cat-badge {
+  background: rgba(27, 26, 23, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #FFFFFF;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.02em;
+}
+
 

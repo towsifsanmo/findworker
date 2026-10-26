@@ -582,7 +582,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Carousel sliding offsets
   let topCarouselOffset = 0;
-  let specCarouselOffset = 0;
+  let specCarouselOffset = 4;
 
   // =========================================================================
   // DOM References
@@ -760,99 +760,157 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // =========================================================================
-  // Render Top Freelancers & Open Opportunities Grids (Home View)
+  // Render Top Freelancers & Curated Talent Spotlight Grids (Home View)
   // =========================================================================
   function renderHomeCarousels() {
-    // Top Freelancers (4 items)
+    // Top Freelancers (4 items starting at topCarouselOffset)
     if (topFreelancersContainer) {
-      const topWorkers = workersData.slice(topCarouselOffset, topCarouselOffset + 4);
+      const topWorkers = [];
+      for (let i = 0; i < 4; i++) {
+        topWorkers.push(workersData[(topCarouselOffset + i) % workersData.length]);
+      }
       topFreelancersContainer.innerHTML = topWorkers.map(w => renderGridCardHtml(w)).join('');
     }
 
-    // Specializations / Highest Rated (4 items shifted)
+    // Curated Talent Spotlight (#specializations - 4 items starting at specCarouselOffset)
     if (specializationsContainer) {
-      const specWorkers = workersData.slice(specCarouselOffset, specCarouselOffset + 4);
-      specializationsContainer.innerHTML = specWorkers.map(w => renderGridCardHtml(w)).join('');
+      const specWorkers = [];
+      for (let i = 0; i < 4; i++) {
+        specWorkers.push(workersData[(specCarouselOffset + i) % workersData.length]);
+      }
+      specializationsContainer.innerHTML = specWorkers.map(w => renderSpotlightCardHtml(w)).join('');
+
+      // Update Cohort Tracker
+      const trackerCurrent = document.getElementById('spec-tracker-current');
+      const trackerTotal = document.getElementById('spec-tracker-total');
+      if (trackerCurrent && trackerTotal) {
+        const totalCohorts = Math.ceil(workersData.length / 4);
+        const currentCohort = Math.floor(specCarouselOffset / 4) + 1;
+        trackerCurrent.textContent = String(currentCohort).padStart(2, '0');
+        trackerTotal.textContent = String(totalCohorts).padStart(2, '0');
+      }
     }
 
     attachCardEventListeners();
   }
 
+  // Curated Talent Spotlight Card Design (Clean, Visual-First & Premium)
+  function renderSpotlightCardHtml(w) {
+    const isSaved = savedWorkerIds.includes(w.id);
+    const featuredProject = w.portfolio && w.portfolio[0] ? w.portfolio[0] : {
+      title: 'Flagship Digital Architecture',
+      category: w.trade,
+      image: w.image
+    };
+
+    return `
+      <article class="spotlight-talent-card" data-id="${w.id}">
+        <!-- Flagship Work Preview -->
+        <div class="spotlight-media-cover">
+          <img src="${featuredProject.image}" alt="${featuredProject.title}" loading="lazy">
+          <div class="spotlight-cover-top">
+            <span class="spotlight-category-chip">${featuredProject.category || w.trade}</span>
+            <button class="bookmark-heart-btn ${isSaved ? 'active' : ''}" data-id="${w.id}" title="${isSaved ? 'Remove from shortlist' : 'Save to shortlist'}" aria-label="Save ${w.name}">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="${isSaved ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2.2">
+                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+              </svg>
+            </button>
+          </div>
+          <div class="spotlight-cover-bottom">
+            
+          </div>
+        </div>
+
+        <!-- Creator Identity & Rating -->
+        <div class="spotlight-creator-row">
+          <div class="spotlight-avatar-wrap">
+            <img src="${w.image}" alt="${w.name}" loading="lazy">
+            <span class="online-indicator-dot" title="Available"></span>
+          </div>
+          <div class="spotlight-creator-info">
+            <h3 class="spotlight-creator-name">${w.name}</h3>
+            <span class="spotlight-creator-craft">${w.craftTitle || w.trade}</span>
+          </div>
+          <div class="spotlight-rating-badge">
+            <span class="star-gold">★</span>
+            <span class="rating-num">${w.rating}</span>
+          </div>
+        </div>
+
+        <!-- Core Skill Chips -->
+        <div class="spotlight-skills-list">
+          ${w.skills.slice(0, 2).map(s => `<span class="spotlight-skill-pill">${s}</span>`).join('')}
+        </div>
+
+        <!-- Rate & Action Footer -->
+        <div class="spotlight-card-footer">
+          <div class="spotlight-rate-block">
+            <span class="spotlight-rate-val">$${w.hourlyRate}</span>
+            <span class="spotlight-rate-unit">/hr</span>
+          </div>
+          <button class="btn btn-primary btn-sm card-profile-btn spotlight-cta-btn" data-id="${w.id}">
+            <span>View Profile</span>
+            <span class="arrow-up-right">→</span>
+          </button>
+        </div>
+      </article>
+    `;
+  }
+
+  // Top Freelancers Card Design (Clean, Visual-First & Premium)
   function renderGridCardHtml(w) {
     const isSaved = savedWorkerIds.includes(w.id);
-    let badgeHtml = '';
-    if (w.badge === 'PRO') {
-      badgeHtml = `<span class="badge-tier-pro">✦ Top Rated Pro</span>`;
-    } else if (w.badge === 'L3') {
-      badgeHtml = `<span class="badge-tier-l3">✦ Level 3 Specialist</span>`;
-    } else if (w.badge === 'L2') {
-      badgeHtml = `<span class="badge-tier-l2">✦ Verified Talent</span>`;
-    } else {
-      badgeHtml = `<span class="badge-tier-l2">Independent</span>`;
-    }
-
-    const projectsCount = w.portfolio ? w.portfolio.length : 3;
-    const craftSubtitle = w.craftTitle || w.trade;
+    const featuredProject = w.portfolio && w.portfolio[0] ? w.portfolio[0] : {
+      title: 'Selected Project',
+      category: w.trade,
+      image: w.image
+    };
 
     return `
       <div class="freelancer-grid-card" data-id="${w.id}">
-        <div class="card-top-action-bar">
-          ${badgeHtml}
-          <button class="bookmark-heart-btn ${isSaved ? 'active' : ''}" data-id="${w.id}" title="${isSaved ? 'Saved to shortlist' : 'Save freelancer'}" aria-label="Save ${w.name}">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="${isSaved ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2.2">
-              <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
-            </svg>
-          </button>
-        </div>
-
+        <!-- Work Thumbnail -->
         <div class="card-project-preview">
-          <img src="${w.portfolio && w.portfolio[0] ? w.portfolio[0].image : w.image}" alt="${w.portfolio && w.portfolio[0] ? w.portfolio[0].title : `${w.name} portfolio preview`}" loading="lazy">
-          <span>${w.portfolio && w.portfolio[0] ? w.portfolio[0].category : 'Selected work'}</span>
+          <img src="${featuredProject.image}" alt="${featuredProject.title}" loading="lazy">
+          <div class="card-preview-top">
+            <span class="card-cat-badge">${featuredProject.category || w.trade}</span>
+            <button class="bookmark-heart-btn ${isSaved ? 'active' : ''}" data-id="${w.id}" title="${isSaved ? 'Saved to shortlist' : 'Save freelancer'}" aria-label="Save ${w.name}">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="${isSaved ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2.2">
+                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+              </svg>
+            </button>
+          </div>
         </div>
 
-        <div class="card-avatar-center">
+        <!-- Creator Row -->
+        <div class="card-creator-row">
           <div class="avatar-round-frame">
             <img src="${w.image}" alt="${w.name}" loading="lazy">
-            <span class="online-indicator-dot" title="Available for direct contact"></span>
+            <span class="online-indicator-dot" title="Available"></span>
           </div>
-        </div>
-
-        <div class="card-center-details">
-          <h4 class="card-worker-name">${w.name}</h4>
-          <span class="card-worker-craft">${craftSubtitle}</span>
-          <div class="card-rating-line">
+          <div class="card-creator-info">
+            <h4 class="card-worker-name">${w.name}</h4>
+            <span class="card-worker-craft">${w.craftTitle || w.trade}</span>
+          </div>
+          <div class="card-rating-badge">
             <span class="star-gold">★</span>
             <span class="rating-num">${w.rating}</span>
-            <span class="rating-sep">•</span>
-            <span class="review-count">(${w.reviewsCount} reviews)</span>
           </div>
         </div>
 
-        <div class="card-highlights-row">
-          <span class="portfolio-count-pill">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-              <circle cx="8.5" cy="8.5" r="1.5"></circle>
-              <polyline points="21 15 16 10 5 21"></polyline>
-            </svg>
-            ${projectsCount} Portfolio Case Studies
-          </span>
-          <span class="exp-badge">${w.experienceYears}y exp</span>
-        </div>
-
+        <!-- Skills -->
         <div class="card-skills-row">
-          ${w.skills.slice(0, 3).map(s => `<span class="skill-chip">${s}</span>`).join('')}
+          ${w.skills.slice(0, 2).map(s => `<span class="skill-chip">${s}</span>`).join('')}
         </div>
 
+        <!-- Rate & Action Footer -->
         <div class="card-bottom-footer">
-          <div>
-            <div class="card-rate-label">Direct Hourly Rate</div>
-            <div class="card-rate-val">$${w.hourlyRate}<span class="rate-per-hr">/hr</span></div>
-            <div class="card-rate-sub">0% platform fee</div>
+          <div class="card-rate-wrap">
+            <span class="card-rate-val">$${w.hourlyRate}</span>
+            <span class="rate-per-hr">/hr</span>
           </div>
           <button class="btn btn-primary btn-sm card-profile-btn" data-id="${w.id}">
-            <span>View Profile &amp; Work</span>
-            <span class="arrow-up-right">↗</span>
+            <span>View Profile</span>
+            <span class="arrow-up-right">→</span>
           </button>
         </div>
       </div>
@@ -862,25 +920,33 @@ document.addEventListener('DOMContentLoaded', () => {
   // Carousel Next / Prev Click Handlers
   if (topCarouselNext) {
     topCarouselNext.addEventListener('click', () => {
-      topCarouselOffset = (topCarouselOffset + 2) % Math.max(1, workersData.length - 2);
+      topCarouselOffset = (topCarouselOffset + 2) % workersData.length;
       renderHomeCarousels();
     });
   }
   if (topCarouselPrev) {
     topCarouselPrev.addEventListener('click', () => {
-      topCarouselOffset = Math.max(0, topCarouselOffset - 2);
+      topCarouselOffset = (topCarouselOffset - 2 + workersData.length) % workersData.length;
       renderHomeCarousels();
     });
   }
   if (specCarouselNext) {
     specCarouselNext.addEventListener('click', () => {
-      specCarouselOffset = (specCarouselOffset + 2) % Math.max(1, workersData.length - 2);
+      specCarouselOffset = (specCarouselOffset + 4) % workersData.length;
+      if (specializationsContainer) {
+        specializationsContainer.classList.add('carousel-sliding');
+        setTimeout(() => specializationsContainer.classList.remove('carousel-sliding'), 380);
+      }
       renderHomeCarousels();
     });
   }
   if (specCarouselPrev) {
     specCarouselPrev.addEventListener('click', () => {
-      specCarouselOffset = Math.max(0, specCarouselOffset - 2);
+      specCarouselOffset = (specCarouselOffset - 4 + workersData.length) % workersData.length;
+      if (specializationsContainer) {
+        specializationsContainer.classList.add('carousel-sliding');
+        setTimeout(() => specializationsContainer.classList.remove('carousel-sliding'), 380);
+      }
       renderHomeCarousels();
     });
   }
@@ -1145,6 +1211,21 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.onclick = (e) => {
         e.stopPropagation();
         openBookingModal(btn.dataset.id);
+      };
+    });
+
+    // Card whole-card click trigger for instant profile discovery
+    document.querySelectorAll('.spotlight-talent-card, .freelancer-grid-card').forEach(card => {
+      card.onclick = (e) => {
+        if (e.target.closest('.bookmark-heart-btn')) return;
+        openBookingModal(card.dataset.id);
+      };
+      card.onkeydown = (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          if (e.target.closest('.bookmark-heart-btn')) return;
+          e.preventDefault();
+          openBookingModal(card.dataset.id);
+        }
       };
     });
   }

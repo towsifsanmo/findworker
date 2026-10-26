@@ -3055,7 +3055,7 @@ img {
 .footer-bottom {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   padding-top: 36px;
   font-size: 0.85rem;
   color: rgba(244, 239, 230, 0.55);
@@ -5691,7 +5691,7 @@ h6,
 .freelancer-name,
 .profile-name,
 .cta-title {
-  color: var(--color-foreground);
+  /* color: var(--color-foreground); */
   font-family: var(--font-display);
 }
 
@@ -8685,10 +8685,268 @@ textarea:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   .live-pulse-emerald,
   .talent-pulse-dot,
-  .talent-card-img {
+  .talent-card-img,
+  .reveal-on-scroll {
     transition: none !important;
     animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
+}
+
+/* ==========================================================================
+   Full Website Animation Engine & Synthesis Design Styles
+   ========================================================================== */
+
+/* 1. Scroll-Triggered Reveal Animations */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-on-scroll.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Header Elevation on Scroll */
+.site-header.header-scrolled,
+.site-header.scrolled {
+  background-color: rgba(244, 239, 230, 0.96);
+  box-shadow: 0 6px 24px rgba(27, 26, 23, 0.08);
+  border-bottom-color: rgba(27, 26, 23, 0.14);
+}
+
+.site-header.header-scrolled .header-inner,
+.site-header.scrolled .header-inner {
+  height: 68px;
+}
+
+/* 2. 8-Discipline Category Grid (#roles) */
+.categories-8col-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 1024px) {
+  .categories-8col-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .categories-8col-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+.categories-8col-grid .role-category-box {
+  background-color: var(--color-background-pure);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: var(--shadow-xs);
+  position: relative;
+  overflow: hidden;
+}
+
+.categories-8col-grid .role-category-box::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-foreground));
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.categories-8col-grid .role-category-box:hover {
+  transform: translateY(-6px);
+  border-color: var(--color-primary-border);
+  box-shadow: 0 16px 36px rgba(27, 26, 23, 0.08);
+}
+
+.categories-8col-grid .role-category-box:hover::after {
+  opacity: 1;
+}
+
+.categories-8col-grid .role-icon-circle {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background-color: var(--color-background-soft);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+  border: 1px solid var(--color-border);
+}
+
+.categories-8col-grid .role-icon-circle svg {
+  width: 22px;
+  height: 22px;
+  stroke: currentColor;
+  transition: transform var(--transition-fast);
+}
+
+.categories-8col-grid .role-category-box:hover .role-icon-circle {
+  background-color: var(--color-primary);
+  color: #FFFFFF;
+  border-color: var(--color-primary);
+  transform: scale(1.1) rotate(4deg);
+}
+
+.categories-8col-grid .role-category-box:hover .role-icon-circle svg {
+  transform: scale(1.05);
+}
+
+.categories-8col-grid .role-title {
+  font-family: var(--font-sans);
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+}
+
+.categories-8col-grid .role-count-pill {
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--color-secondary-muted);
+  background-color: var(--color-background-soft);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+}
+
+/* 3. Bento Fee Comparison Bar (#why-outlier) */
+.bento-comparison-bar {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px 20px;
+  background-color: var(--color-background-soft);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+}
+
+.bento-compare-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.85rem;
+  color: var(--color-secondary);
+  line-height: 1.45;
+}
+
+.compare-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.compare-dot.red {
+  background-color: #EF4444;
+  box-shadow: 0 0 6px rgba(239, 68, 68, 0.45);
+}
+
+.compare-dot.green {
+  background-color: #10B981;
+  box-shadow: 0 0 6px rgba(16, 185, 129, 0.45);
+}
+
+/* 4. Grid Card Enhancements */
+.card-rate-sub {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #10B981;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-top: 3px;
+}
+
+.freelancer-grid-card {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.freelancer-grid-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 20px 44px rgba(27, 26, 23, 0.10);
+  border-color: var(--color-primary-border);
+}
+
+.card-project-preview {
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  position: relative;
+  margin-bottom: -32px;
+  height: 140px;
+}
+
+.card-project-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.freelancer-grid-card:hover .card-project-preview img {
+  transform: scale(1.06);
+}
+
+
+/* 5. Micro-Animations */
+@keyframes radarPulse {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+.online-indicator-dot,
+.online-dot-badge {
+  animation: radarPulse 2.4s infinite !important;
+}
+
+@keyframes heartPop {
+  0% { transform: scale(1); }
+  45% { transform: scale(1.35); }
+  100% { transform: scale(1); }
+}
+
+.bookmark-heart-btn.animating {
+  animation: heartPop 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Smooth Accordion Icon Rotation */
+.faq-icon-rotator {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.faq-item.active .faq-icon-rotator {
+  transform: rotate(180deg);
+  color: var(--color-primary);
 }
 
 

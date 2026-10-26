@@ -782,16 +782,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const isSaved = savedWorkerIds.includes(w.id);
     let badgeHtml = '';
     if (w.badge === 'PRO') {
-      badgeHtml = `<span class="badge-tier-pro">✦ Independent</span>`;
+      badgeHtml = `<span class="badge-tier-pro">✦ Top Rated Pro</span>`;
     } else if (w.badge === 'L3') {
-      badgeHtml = `<span class="badge-tier-l3">✦ Featured</span>`;
+      badgeHtml = `<span class="badge-tier-l3">✦ Level 3 Specialist</span>`;
     } else if (w.badge === 'L2') {
-      badgeHtml = `<span class="badge-tier-l2">✦ Profile</span>`;
+      badgeHtml = `<span class="badge-tier-l2">✦ Verified Talent</span>`;
     } else {
       badgeHtml = `<span class="badge-tier-l2">Independent</span>`;
     }
 
     const projectsCount = w.portfolio ? w.portfolio.length : 3;
+    const craftSubtitle = w.craftTitle || w.trade;
 
     return `
       <div class="freelancer-grid-card" data-id="${w.id}">
@@ -812,15 +813,18 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="card-avatar-center">
           <div class="avatar-round-frame">
             <img src="${w.image}" alt="${w.name}" loading="lazy">
-            <span class="online-indicator-dot" title="Available now"></span>
+            <span class="online-indicator-dot" title="Available for direct contact"></span>
           </div>
         </div>
 
         <div class="card-center-details">
           <h4 class="card-worker-name">${w.name}</h4>
-          <span class="card-worker-craft">${w.trade}</span>
+          <span class="card-worker-craft">${craftSubtitle}</span>
           <div class="card-rating-line">
-            <span class="review-count">${w.location}</span>
+            <span class="star-gold">★</span>
+            <span class="rating-num">${w.rating}</span>
+            <span class="rating-sep">•</span>
+            <span class="review-count">(${w.reviewsCount} reviews)</span>
           </div>
         </div>
 
@@ -831,7 +835,7 @@ document.addEventListener('DOMContentLoaded', () => {
               <circle cx="8.5" cy="8.5" r="1.5"></circle>
               <polyline points="21 15 16 10 5 21"></polyline>
             </svg>
-            ${projectsCount} Portfolio Projects
+            ${projectsCount} Portfolio Case Studies
           </span>
           <span class="exp-badge">${w.experienceYears}y exp</span>
         </div>
@@ -842,8 +846,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         <div class="card-bottom-footer">
           <div>
-            <div class="card-rate-label">Independent profile</div>
-            <div class="card-rate-val">${w.experienceYears}<span class="rate-per-hr"> yrs</span></div>
+            <div class="card-rate-label">Direct Hourly Rate</div>
+            <div class="card-rate-val">$${w.hourlyRate}<span class="rate-per-hr">/hr</span></div>
+            <div class="card-rate-sub">0% platform fee</div>
           </div>
           <button class="btn btn-primary btn-sm card-profile-btn" data-id="${w.id}">
             <span>View Profile &amp; Work</span>
@@ -1896,9 +1901,48 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // =========================================================================
+  // Full Website Scroll Reveal & Elevation Engine
+  // =========================================================================
+  function initScrollReveal() {
+    if (!('IntersectionObserver' in window)) {
+      document.querySelectorAll('.reveal-on-scroll').forEach(el => el.classList.add('is-revealed'));
+      return;
+    }
+
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-revealed');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, {
+      root: null,
+      rootMargin: '0px 0px -40px 0px',
+      threshold: 0.1
+    });
+
+    document.querySelectorAll('.reveal-on-scroll').forEach(el => {
+      observer.observe(el);
+    });
+  }
+
+  // Header Elevation on Scroll
+  window.addEventListener('scroll', () => {
+    if (siteHeader) {
+      if (window.scrollY > 25) {
+        siteHeader.classList.add('header-scrolled');
+      } else {
+        siteHeader.classList.remove('header-scrolled');
+      }
+    }
+  }, { passive: true });
+
+  // =========================================================================
   // Initial Boot
   // =========================================================================
   updateShortlistUI();
   renderHomeCarousels();
   handleHashRoute();
+  initScrollReveal();
 });

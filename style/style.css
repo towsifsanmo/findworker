@@ -8020,7 +8020,12 @@ textarea:focus-visible {
   position: relative;
   background: radial-gradient(ellipse 95% 75% at 50% -10%, #0D3528 0%, #071E17 55%, #051611 100%);
   color: #FFFFFF;
-  padding: 64px 0 0;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 96px 0;
+  box-sizing: border-box;
   overflow: hidden;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
@@ -8048,28 +8053,31 @@ textarea:focus-visible {
 .fiverr-hero-container {
   position: relative;
   z-index: 1;
-  max-width: 1280px;
+  width: 100%;
+  max-width: 1248px;
   margin: 0 auto;
   padding: 0 24px;
+  display: flex;
+  justify-content: center;
 }
 
-/* .fiverr-hero-grid {
-  display: grid;
-  grid-template-columns: 1.18fr 0.82fr;
-  gap: clamp(36px, 5vw, 68px);
-  align-items: center;
-  padding-bottom: 58px;
-} */
+.fiverr-hero-grid {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
 
-/* --- Left Column: Copy & Search Console --- */
+/* --- Content: Copy & Search Console (1200px Max Responsive) --- */
 .fiverr-hero-copy {
   display: flex;
   flex-direction: column;
-  max-width: 900px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .fiverr-badge-row {
-  margin-bottom: 18px;
+  margin-bottom: 22px;
 }
 
 .fiverr-status-pill {
@@ -8099,12 +8107,13 @@ textarea:focus-visible {
 
 .fiverr-hero-title {
   font-family: var(--font-display);
-  font-size: clamp(2.35rem, 4.2vw, 3.75rem);
+  font-size: clamp(2.4rem, 4.2vw, 3.85rem);
   font-weight: 600;
-  line-height: 1.14;
+  line-height: 1.16;
   color: #FFFFFF;
   letter-spacing: -0.025em;
-  margin-bottom: 16px;
+  margin-bottom: 24px;
+  max-width: 1100px;
 }
 
 .fiverr-title-accent {
@@ -8116,17 +8125,17 @@ textarea:focus-visible {
 }
 
 .fiverr-hero-desc {
-  font-size: clamp(0.98rem, 1.25vw, 1.12rem);
-  line-height: 1.55;
-  color: rgba(255, 255, 255, 0.82);
-  max-width: 580px;
-  margin-bottom: 30px;
+  font-size: clamp(1rem, 1.25vw, 1.16rem);
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.84);
+  max-width: 860px;
+  margin-bottom: 42px;
 }
 
 /* --- The Search Console (Fiverr-Style Unified Pill) --- */
 .fiverr-search-console {
   width: 100%;
-  max-width: 660px;
+  max-width: 880px;
 }
 
 .fiverr-search-bar {
@@ -8227,8 +8236,8 @@ textarea:focus-visible {
 .fiverr-popular-tags {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-top: 16px;
+  gap: 10px;
+  margin-top: 24px;
   flex-wrap: wrap;
 }
 
@@ -8635,7 +8644,8 @@ textarea:focus-visible {
 
 @media (max-width: 680px) {
   .fiverr-hero-layout {
-    padding-top: 48px;
+    min-height: 80vh;
+    padding: 48px 0;
   }
 
   .fiverr-hero-title {

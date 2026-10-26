@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FindWorker — Train, Discover &amp; Hire Verified Freelancers &amp; Specialists</title>
-  <meta name="description" content="Discover, hire, and collaborate with verified master craftspeople, technical experts, and independent specialists. Guaranteed milestone escrow and transparent pricing.">
-  <meta name="keywords" content="FindWorker, freelance specialists, master carpenters, electricians, plumbers, masons, painters, landscape, verified talent">
+  <title>FindWorker — A portfolio-first directory for independent talent</title>
+  <meta name="description" content="Discover independent digital talent by the work they make. Explore thoughtful portfolios from designers, developers, writers, and strategists, then connect directly.">
+  <meta name="keywords" content="FindWorker, freelance designers, web developers, digital marketers, content writers, creative portfolio directory, independent talent">
 
   <!-- Google Fonts: Instrument Sans & Fraunces -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600;1,9..144,700&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
   <!-- Application Stylesheet -->
   <link rel="stylesheet" href="style/style.css">
@@ -30,41 +30,65 @@
         </div>
         <div class="brand-text-block">
           <div class="brand-title">Find<span>Worker</span></div>
-          <div class="brand-tagline">Craft &amp; Guild Directory</div>
+          <div class="brand-tagline">Independent talent index</div>
         </div>
       </a>
 
-      <!-- Navigation Links (matching findworders.netlify.app) -->
+      <!-- Desktop Navigation Links -->
       <nav class="main-nav" aria-label="Main Navigation">
         <a href="#freelancers" class="nav-link" id="nav-link-freelancers">Freelancers</a>
         <a href="#blog" class="nav-link" id="nav-link-blog">Blog</a>
         <a href="#how-it-works" class="nav-link" id="nav-link-how">How It Works</a>
-        <a href="#roles" class="nav-link" id="nav-link-roles">Roles</a>
-        <a href="#why-outlier" class="nav-link" id="nav-link-why">Why FindWorker</a>
-        <a href="#testimonials" class="nav-link" id="nav-link-stories">Stories</a>
+        <a href="#roles" class="nav-link" id="nav-link-roles">Disciplines</a>
+        <a href="#why-outlier" class="nav-link" id="nav-link-why">About</a>
+        <a href="#testimonials" class="nav-link" id="nav-link-stories">Voices</a>
       </nav>
 
       <!-- Action Buttons -->
       <div class="header-actions">
-        <!-- <button class="shortlist-trigger" id="shortlist-trigger" aria-label="View Saved Shortlist">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Shortlist Trigger Button -->
+        <button class="shortlist-trigger" id="shortlist-trigger" aria-label="View Saved Shortlist">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
           </svg>
-          <span>Shortlist</span>
+          <span class="shortlist-label">Shortlist</span>
           <span class="shortlist-count" id="shortlist-count">0</span>
-        </button> -->
+        </button>
 
         <button class="btn btn-outline btn-sm" id="header-login-btn">
           Log In
         </button>
 
         <button class="btn btn-primary btn-sm" id="header-signup-btn">
-          <span>Client Sign Up</span>
+          <span>Join / Create Profile</span>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <line x1="5" y1="12" x2="19" y2="12"></line>
             <polyline points="12 5 19 12 12 19"></polyline>
           </svg>
         </button>
+
+        <!-- Mobile Hamburger Toggle -->
+        <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Slide-Down Navigation Drawer -->
+    <div class="mobile-nav-drawer" id="mobile-nav-drawer">
+      <div class="mobile-nav-inner">
+        <a href="#freelancers" class="mobile-nav-link">Freelancers Directory</a>
+        <a href="#roles" class="mobile-nav-link">Categories &amp; Roles</a>
+        <a href="#why-outlier" class="mobile-nav-link">Why FindWorker</a>
+        <a href="#how-it-works" class="mobile-nav-link">How It Works</a>
+        <a href="#testimonials" class="mobile-nav-link">Community voices</a>
+        <a href="#blog" class="mobile-nav-link">Field notes</a>
+        <div class="mobile-nav-actions">
+          <button class="btn btn-outline" style="width: 100%;" onclick="document.getElementById('header-login-btn').click()">Log In to Workspace</button>
+          <button class="btn btn-primary" style="width: 100%;" onclick="document.getElementById('header-signup-btn').click()">Create Freelancer Profile ↗</button>
+        </div>
       </div>
     </div>
   </header>
@@ -75,116 +99,186 @@
          ======================================================================= -->
     <div id="home-view" class="view-panel">
       <!-- 1. Hero Section -->
-      <section class="hero-section" id="hero">
-        <div class="container hero-center-box">
-          <div class="hero-status-pill">
-            <span class="pulse-dot-green"></span>
-            <strong>Live Contributor &amp; Worker Openings</strong>
-            <span style="color: var(--color-border-dark);">•</span>
-            <span style="color: var(--color-secondary-muted);">100+ categories &amp; districts accepted</span>
-          </div>
+      <!-- 1. Hero Section: The Curator's Studio Console & Interactive Workstation -->
+      <section class="hero-section fiverr-hero-layout" id="hero">
+        <!-- Deep rich ambient atmospheric lighting -->
+        <div class="fiverr-hero-backdrop" aria-hidden="true"></div>
+        <div class="fiverr-hero-mesh" aria-hidden="true"></div>
 
-          <h1 class="hero-title">
-            Train, Discover &amp; Hire <em>Master Freelance Talent</em>
-          </h1>
-
-          <p class="hero-description">
-            Join a premier network of verified craft masters, licensed electrical engineers, and skilled specialists. Set your own hours, work with verified clients, and get paid weekly with guaranteed 100% milestone escrow.
-          </p>
-
-          <div class="hero-ctas-row">
-            <button class="btn btn-primary" id="hero-apply-btn">
-              <span>Apply as a Specialist</span>
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
-            </button>
-            <a href="#freelancers" class="btn btn-white" id="hero-explore-roles-btn">
-              Explore 50+ Specialized Roles →
-            </a>
-          </div>
-
-          <!-- Hero Search & Filter Matrix -->
-          <div class="hero-matrix-wrapper">
-            <div class="search-matrix-card">
-              <div class="matrix-inputs-row">
-                <div class="input-group">
-                  <span class="input-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-                      <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-                    </svg>
-                  </span>
-                  <div class="input-field-wrapper">
-                    <label for="hero-trade-select">Specialty / Role</label>
-                    <select id="hero-trade-select">
-                      <option value="all">All Skilled Disciplines</option>
-                      <option value="Carpentry">Master Carpentry &amp; Wood</option>
-                      <option value="Electrical">Electrical &amp; Smart Systems</option>
-                      <option value="Plumbing">Precision Plumbing &amp; Radiant</option>
-                      <option value="Masonry">Heritage Masonry &amp; Stone</option>
-                      <option value="Painting">Architectural Painting</option>
-                      <option value="Landscaping">Ecological Landscaping</option>
-                      <option value="Metalwork">Custom Iron &amp; Metalcraft</option>
-                      <option value="HVAC">Clean HVAC &amp; Climate</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="input-group">
-                  <span class="input-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                      <circle cx="12" cy="10" r="3"></circle>
-                    </svg>
-                  </span>
-                  <div class="input-field-wrapper">
-                    <label for="hero-location-input">Location or Zip</label>
-                    <input type="text" id="hero-location-input" placeholder="e.g. Central, West End, 94102">
-                  </div>
-                </div>
-
-                <div class="input-group">
-                  <span class="input-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <circle cx="12" cy="12" r="10"></circle>
-                      <polyline points="12 6 12 12 16 14"></polyline>
-                    </svg>
-                  </span>
-                  <div class="input-field-wrapper">
-                    <label for="hero-availability">When Needed</label>
-                    <select id="hero-availability">
-                      <option value="any">Any Availability</option>
-                      <option value="today">Available Today</option>
-                      <option value="week">Within This Week</option>
-                      <option value="weekend">Weekend Slots</option>
-                    </select>
-                  </div>
-                </div>
-
-                <button class="btn btn-primary matrix-search-btn" id="hero-search-btn">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                  </svg>
-                  Search
-                </button>
+        <div class="container fiverr-hero-container">
+          <div class="fiverr-hero-grid">
+            <!-- Left Column: Short, meaningful copy & prominent search -->
+            <div class="fiverr-hero-copy">
+              <!-- Status Pill -->
+              <div class="fiverr-badge-row">
+                <span class="fiverr-status-pill">
+                  <span class="live-pulse-emerald"></span>
+                  <span class="fiverr-pill-main">DIRECT DISCOVERY // 2026 INDEX</span>
+                  <span class="fiverr-pill-sep">•</span>
+                  <span class="fiverr-pill-sub">Zero Platform Cut · Direct Inquiries</span>
+                </span>
               </div>
 
-              <!-- Trending Pills -->
-              <div class="trending-pills">
-                <span class="trending-label">Popular Searches:</span>
-                <button class="pill-item" data-filter-trade="Carpentry">🪚 Custom Cabinetry</button>
-                <button class="pill-item" data-filter-trade="Electrical">⚡ 200A Panel Upgrade</button>
-                <button class="pill-item" data-filter-trade="Plumbing">🔧 Copper Pipework</button>
-                <button class="pill-item" data-filter-trade="Masonry">🧱 Brick Tuckpointing</button>
-                <button class="pill-item" data-filter-trade="Painting">🎨 Venetian Plaster</button>
+              <!-- Big, confident, short headline -->
+              <h1 class="fiverr-hero-title">
+                Find the right independent talent, <span class="fiverr-title-accent">right away.</span>
+              </h1>
+
+              <!-- 1 Short, meaningful sentence -->
+              <p class="fiverr-hero-desc">
+                Discover verified portfolios, inspect real case studies, and connect directly with independent creators—no middleman fees, 0% platform cut.
+              </p>
+
+              <!-- Prominent Unified Search Console (Fiverr-Style) -->
+              <div class="fiverr-search-console">
+                <div class="fiverr-search-bar">
+                  <!-- Text Search Input with cycling placeholder -->
+                  <div class="fiverr-input-group fiverr-text-group">
+                    <span class="fiverr-input-icon">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                      </svg>
+                    </span>
+                    <input type="text" id="hero-location-input" class="fiverr-search-input" placeholder="Search any skill or role, e.g. Web Development…" autocomplete="off">
+                  </div>
+
+                  <!-- Discipline Select -->
+                  <div class="fiverr-input-group fiverr-select-group">
+                    <span class="fiverr-input-icon">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                      </svg>
+                    </span>
+                    <select id="hero-trade-select" class="fiverr-select" aria-label="Creative Discipline">
+                      <option value="all">All Disciplines</option>
+                      <option value="Web Development">Web Development</option>
+                      <option value="UI/UX Design">Product UI/UX</option>
+                      <option value="Graphic Design">Visual Identity</option>
+                      <option value="Digital Marketing">Growth Strategy</option>
+                      <option value="Content Writing">Writing &amp; Brand Voice</option>
+                      <option value="Motion Design">Motion &amp; 3D</option>
+                      <option value="Photography">Photography</option>
+                      <option value="Brand Strategy">Brand Strategy</option>
+                    </select>
+                  </div>
+
+                  <!-- Availability Select -->
+                  <div class="fiverr-input-group fiverr-availability-group">
+                    <select id="hero-availability" class="fiverr-select" aria-label="Availability">
+                      <option value="any">Any Availability</option>
+                      <option value="today">Available Today</option>
+                      <option value="week">This Week</option>
+                      <option value="weekend">Flexible</option>
+                    </select>
+                  </div>
+
+                  <!-- Primary Search Action Button -->
+                  <button class="btn btn-primary fiverr-search-btn" id="hero-search-btn" aria-label="Search Independent Talent">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                      <circle cx="11" cy="11" r="8"></circle>
+                      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <span>Search</span>
+                  </button>
+                </div>
+
+                <!-- Popular Services Filter Chips (Directly under search) -->
+                <div class="fiverr-popular-tags">
+                  <span class="popular-tag-label">Popular:</span>
+                  <button class="pill-item" data-filter-trade="Web Development">Website Development</button>
+                  <button class="pill-item" data-filter-trade="UI/UX Design">Product UI/UX</button>
+                  <button class="pill-item" data-filter-trade="Motion Design">3D &amp; Motion</button>
+                  <button class="pill-item" data-filter-trade="Graphic Design">Brand Systems</button>
+                  <button class="pill-item" data-filter-trade="Digital Marketing">Growth Strategy</button>
+                </div>
+              </div>
+
+              <!-- Quick CTAs & Trust Badges -->
+              <div class="fiverr-actions-row">
+                <a href="#freelancers" class="btn btn-outline fiverr-browse-btn" id="hero-explore-roles-btn">
+                  <span>Browse Directory</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
+                <button class="btn btn-secondary fiverr-apply-btn" id="hero-apply-btn">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><line x1="19" y1="8" x2="19" y2="14"></line><line x1="22" y1="11" x2="16" y2="11"></line></svg>
+                  <span>Publish Your Portfolio</span>
+                </button>
+                <div class="fiverr-stars-trust">
+                  <span class="trust-stars">★★★★★</span>
+                  <span><strong>4.98</strong> Avg Specialist Rating</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Column: Single Authentic Featured Specialist (Fiverr Pro style) -->
+            <div class="fiverr-hero-visual">
+              <div class="fiverr-talent-card" data-worker-id="worker-1" role="button" tabindex="0">
+                <div class="talent-card-media">
+                  <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="Jordan Lee, Full-Stack Web Architect" class="talent-card-img" fetchpriority="high">
+                  <div class="talent-card-gradient"></div>
+                  <div class="talent-card-badge">
+                    <span class="talent-pulse-dot"></span>
+                    <span>FEATURED SPECIALIST</span>
+                  </div>
+                </div>
+
+                <!-- Frosted Floating Bottom Capsule -->
+                <div class="talent-card-caption">
+                  <div class="talent-caption-header">
+                    <div class="talent-caption-avatar">
+                      <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&amp;fit=crop&amp;w=120&amp;q=80" alt="Jordan Lee">
+                      <span class="talent-status-ring" title="Available for Inquiries"></span>
+                    </div>
+                    <div class="talent-caption-info">
+                      <div class="talent-name-line">
+                        <strong class="talent-name">Jordan Lee</strong>
+                        <span class="talent-verified-tag">✓ Verified</span>
+                        <span class="talent-chip-rating">★ 4.98</span>
+                      </div>
+                      <div class="talent-sub-line">Full-Stack Web Architect · Stockholm, Sweden</div>
+                    </div>
+                  </div>
+
+                  <div class="talent-direct-strip">
+                    <span class="talent-fee-pill">0% Platform Cut</span>
+                    <span class="talent-direct-sep">•</span>
+                    <a href="mailto:jordan.lee@craftweb.io" class="talent-direct-email">jordan.lee@craftweb.io</a>
+                  </div>
+
+                  <button class="talent-view-profile-btn" data-worker-id="worker-1">
+                    <span>View Profile &amp; Contact</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Trust / Social Proof Banner (Fiverr style) -->
+        <div class="fiverr-trust-bar">
+          <div class="container trust-bar-inner">
+            <span class="trust-bar-heading">Guaranteed Direct Platform:</span>
+            <div class="trust-items-strip">
+              <div class="trust-pill-item">
+                <span class="trust-check">✓</span>
+                <span><strong>0% Platform Cut</strong> — Specialists keep 100% of fees</span>
+              </div>
+              <div class="trust-pill-item">
+                <span class="trust-check">✓</span>
+                <span><strong>Direct Inquiries</strong> — Email, phone, or portfolio links</span>
+              </div>
+              <div class="trust-pill-item">
+                <span class="trust-check">✓</span>
+                <span><strong>Verified Portfolios</strong> — Hand-reviewed independent creators</span>
               </div>
             </div>
           </div>
         </div>
       </section>
+
 
       <!-- 2. Animated Marquee Showcase (Cards + Stats) -->
       <section class="marquee-wrapper" aria-label="Talent Highlights">
@@ -193,85 +287,85 @@
         <div class="marquee-infinite-track">
           <!-- Stat Card 1 -->
           <div class="marquee-card marquee-stat-card">
-            <div class="stat-card-number">50+</div>
-            <div class="stat-card-label">Specialized Guilds &amp; Countries</div>
+            <div class="stat-card-number">01—08</div>
+            <div class="stat-card-label">Independent minds, one shared space</div>
           </div>
 
           <!-- Person Card 1 -->
           <div class="marquee-card marquee-person-card">
-            <img src="assets/images/hero_craftsman.jpg" alt="Julian Vance" class="marquee-person-img">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&amp;fit=crop&amp;w=600&amp;q=85" alt="Jordan Lee" class="marquee-person-img">
             <div class="marquee-person-overlay">
-              <div class="marquee-person-name">Julian V.</div>
-              <div class="marquee-person-role">Master Joiner, Central</div>
+              <div class="marquee-person-name">Jordan L.</div>
+              <div class="marquee-person-role">Independent digital creator</div>
             </div>
           </div>
 
           <!-- Stat Card 2 -->
           <div class="marquee-card marquee-stat-card stat-terracotta">
-            <div class="stat-card-number">4.96/5</div>
-            <div class="stat-card-label">Rated by 14k+ clients on Trustpilot</div>
+            <div class="stat-card-number">Make</div>
+            <div class="stat-card-label">A little room for good ideas</div>
           </div>
 
           <!-- Person Card 2 -->
           <div class="marquee-card marquee-person-card">
-            <img src="assets/images/worker_electrician.jpg" alt="Elena Ramos" class="marquee-person-img">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&amp;fit=crop&amp;w=600&amp;q=85" alt="Maya Chen" class="marquee-person-img">
             <div class="marquee-person-overlay">
-              <div class="marquee-person-name">Elena R.</div>
-              <div class="marquee-person-role">Master Electrician, West End</div>
+              <div class="marquee-person-name">Maya C.</div>
+              <div class="marquee-person-role">Independent digital creator</div>
             </div>
           </div>
 
           <!-- Stat Card 3 -->
           <div class="marquee-card marquee-stat-card stat-forest">
-            <div class="stat-card-number">$2M+</div>
-            <div class="stat-card-label">Escrow &amp; Insurance Protection</div>
+            <div class="stat-card-number">No middle</div>
+            <div class="stat-card-label">Just people, work, and direct contact</div>
           </div>
 
           <!-- Person Card 3 -->
           <div class="marquee-card marquee-person-card">
-            <img src="assets/images/worker_plumber.jpg" alt="Arthur Berits" class="marquee-person-img">
+            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&amp;fit=crop&amp;w=600&amp;q=85" alt="Theo Martin" class="marquee-person-img">
             <div class="marquee-person-overlay">
-              <div class="marquee-person-name">Arthur B.</div>
-              <div class="marquee-person-role">Copper &amp; Radiant Specialist</div>
+              <div class="marquee-person-name">Theo M.</div>
+              <div class="marquee-person-role">Independent digital creator</div>
             </div>
           </div>
 
           <!-- Stat Card 4 -->
           <div class="marquee-card marquee-stat-card">
-            <div class="stat-card-number">99.4%</div>
-            <div class="stat-card-label">On-Time Milestone Delivery</div>
+            <div class="stat-card-number">Open</div>
+            <div class="stat-card-label">A directory built around discovery</div>
           </div>
 
           <!-- Person Card 4 -->
           <div class="marquee-card marquee-person-card">
-            <img src="https://images.unsplash.com/photo-1541888946425-d0fbb186c5f7?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Marcus Thorne" class="marquee-person-img">
+            <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&amp;fit=crop&amp;w=600&amp;q=85" alt="Amara Okafor" class="marquee-person-img">
             <div class="marquee-person-overlay">
-              <div class="marquee-person-name">Marcus T.</div>
-              <div class="marquee-person-role">Heritage Stone Mason</div>
+              <div class="marquee-person-name">Amara O.</div>
+              <div class="marquee-person-role">Independent digital creator</div>
             </div>
           </div>
 
           <!-- Duplicate Set for Seamless Loop -->
           <div class="marquee-card marquee-stat-card">
-            <div class="stat-card-number">50+</div>
-            <div class="stat-card-label">Specialized Guilds &amp; Countries</div>
+            <div class="stat-card-number">01—08</div>
+            <div class="stat-card-label">Independent minds, one shared space</div>
           </div>
           <div class="marquee-card marquee-person-card">
-            <img src="assets/images/hero_craftsman.jpg" alt="Julian Vance" class="marquee-person-img">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&amp;fit=crop&amp;w=600&amp;q=85" alt="Jordan Lee" class="marquee-person-img">
             <div class="marquee-person-overlay">
-              <div class="marquee-person-name">Julian V.</div>
-              <div class="marquee-person-role">Master Joiner, Central</div>
+              <div class="marquee-person-name">Jordan L.</div>
+              <div class="marquee-person-role">Product engineer</div>
             </div>
           </div>
           <div class="marquee-card marquee-stat-card stat-terracotta">
-            <div class="stat-card-number">4.96/5</div>
-            <div class="stat-card-label">Rated by 14k+ clients on Trustpilot</div>
+            <div class="stat-card-number">Make</div>
+            <div class="stat-card-label">A little room for good ideas</div>
           </div>
           <div class="marquee-card marquee-person-card">
-            <img src="assets/images/worker_electrician.jpg" alt="Elena Ramos" class="marquee-person-img">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&amp;fit=crop&amp;w=600&amp;q=85" alt="Maya Chen" class="marquee-person-img">
             <div class="marquee-person-overlay">
-              <div class="marquee-person-name">Elena R.</div>
-              <div class="marquee-person-role">Master Electrician, West End</div>
+              <div class="marquee-person-name">Maya C.</div>
+              <div class="marquee-person-role">Independent digital creator</div>
             </div>
           </div>
         </div>
@@ -282,57 +376,58 @@
         <div class="container">
           <div class="section-header">
             <div class="section-header-left">
-              <h2 style="font-size: 2.2rem;">Browse talent by category</h2>
-              <p class="section-subtitle">Get inspired by 1,800+ vetted skills and guild disciplines.</p>
+              <span class="badge badge-primary" style="margin-bottom: 6px;">A WORLD OF GOOD WORK</span>
+              <h2 style="font-size: 2.2rem;">Find your kind of creative</h2>
+              <p class="section-subtitle">A few disciplines. A lot of different ways to think.</p>
             </div>
             <div>
               <a href="#freelancers" class="btn btn-outline btn-sm go-to-directory-link">
-                All Categories →
+                Meet everyone →
               </a>
             </div>
           </div>
 
           <div class="categories-7col-grid">
-            <div class="role-category-box" data-trade="Carpentry">
-              <div class="role-icon-circle">🪚</div>
-              <div class="role-title">Carpentry &amp; Wood</div>
-              <div class="role-count-pill">142 pros</div>
+            <div class="role-category-box" data-trade="Web Development">
+              <div class="role-icon-circle">&lt;/&gt;</div>
+              <div class="role-title">Web development</div>
+              <div class="role-count-pill">Build for the web</div>
             </div>
 
-            <div class="role-category-box" data-trade="Electrical">
-              <div class="role-icon-circle">⚡</div>
-              <div class="role-title">Electrical &amp; EV</div>
-              <div class="role-count-pill">115 pros</div>
+            <div class="role-category-box" data-trade="UI/UX Design">
+              <div class="role-icon-circle">◉</div>
+              <div class="role-title">Product &amp; UX</div>
+              <div class="role-count-pill">Make it intuitive</div>
             </div>
 
-            <div class="role-category-box" data-trade="Plumbing">
-              <div class="role-icon-circle">🔧</div>
-              <div class="role-title">Copper &amp; Radiant</div>
-              <div class="role-count-pill">98 pros</div>
+            <div class="role-category-box" data-trade="Graphic Design">
+              <div class="role-icon-circle">✳</div>
+              <div class="role-title">Graphic design</div>
+              <div class="role-count-pill">Give ideas a shape</div>
             </div>
 
-            <div class="role-category-box" data-trade="Masonry">
-              <div class="role-icon-circle">🧱</div>
-              <div class="role-title">Heritage Stone</div>
-              <div class="role-count-pill">64 pros</div>
+            <div class="role-category-box" data-trade="Digital Marketing">
+              <div class="role-icon-circle">↗</div>
+              <div class="role-title">Digital marketing</div>
+              <div class="role-count-pill">Find your people</div>
             </div>
 
-            <div class="role-category-box" data-trade="Painting">
-              <div class="role-icon-circle">🎨</div>
-              <div class="role-title">Fine Plaster &amp; Paint</div>
-              <div class="role-count-pill">87 pros</div>
+            <div class="role-category-box" data-trade="Content Writing">
+              <div class="role-icon-circle">“</div>
+              <div class="role-title">Writing &amp; content</div>
+              <div class="role-count-pill">Find the right words</div>
             </div>
 
-            <div class="role-category-box" data-trade="Landscaping">
-              <div class="role-icon-circle">🌿</div>
-              <div class="role-title">Eco Landscaping</div>
-              <div class="role-count-pill">76 pros</div>
+            <div class="role-category-box" data-trade="Motion Design">
+              <div class="role-icon-circle">▶</div>
+              <div class="role-title">Motion design</div>
+              <div class="role-count-pill">Bring it to life</div>
             </div>
 
-            <div class="role-category-box" data-trade="Metalwork">
-              <div class="role-icon-circle">⚒️</div>
-              <div class="role-title">Forged Iron &amp; Steel</div>
-              <div class="role-count-pill">41 pros</div>
+            <div class="role-category-box" data-trade="Brand Strategy">
+              <div class="role-icon-circle">✦</div>
+              <div class="role-title">Brand strategy</div>
+              <div class="role-count-pill">Find your why</div>
             </div>
           </div>
         </div>
@@ -343,9 +438,9 @@
         <div class="container">
           <div class="section-header">
             <div class="section-header-left">
-              <span class="badge badge-forest" style="margin-bottom: 6px;">TOP FREELANCER</span>
-              <h2>Top Freelancers</h2>
-              <p class="section-subtitle">Discover our highest rated professionals and world-class domain talent.</p>
+              <span class="badge badge-forest" style="margin-bottom: 6px;">A FEW PEOPLE TO KNOW</span>
+              <h2>Meet the independents.</h2>
+              <p class="section-subtitle">Distinct points of view, ready to be discovered.</p>
             </div>
             <div style="display: flex; align-items: center; gap: 14px;">
               <div class="carousel-nav-arrows">
@@ -368,11 +463,11 @@
       <section class="section-padding bento-section" id="why-outlier">
         <div class="container">
           <div class="section-header" style="text-align: center; justify-content: center; margin-bottom: 48px;">
-            <div style="max-width: 700px; margin: 0 auto;">
-              <span class="badge badge-forest">THE FINDWORKER ADVANTAGE</span>
-              <h2 style="margin-top: 10px;">Built for Knowledge Experts &amp; Freelancers</h2>
+            <div style="max-width: 720px; margin: 0 auto;">
+              <span class="badge badge-forest">A DIFFERENT KIND OF DIRECTORY</span>
+              <h2 style="margin-top: 10px;">A place for the work to speak.</h2>
               <p class="section-subtitle">
-                The platform is designed from the ground up to respect your time, reward your deep expertise, and provide a frictionless freelance experience.
+                No pitches. No bidding. Just thoughtful profiles, considered portfolios, and a direct line to the person who made it.
               </p>
             </div>
           </div>
@@ -384,16 +479,15 @@
                 <div class="bento-icon-tag-row">
                   <div class="bento-icon-box">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <circle cx="12" cy="12" r="10"></circle>
-                      <polyline points="12 6 12 12 16 14"></polyline>
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
                     </svg>
                   </div>
-                  <span class="bento-meta-tag">100% Asynchronous &amp; Direct</span>
+                  <span class="bento-meta-tag">People, not platforms</span>
                 </div>
-                <div class="bento-subheading">Set your own hours</div>
-                <h3 class="bento-title">Complete Schedule Autonomy</h3>
+                <div class="bento-subheading">01 / A human connection</div>
+                <h3 class="bento-title">A profile is just the beginning.</h3>
                 <p class="bento-desc">
-                  Log in whenever you want, agree on your terms, and work directly with clients. There are no mandatory standups, agency markups, or artificial quotas. Freelance around your life, studies, or full-time career.
+                  Get to know the person behind the pixels, explore their process, then reach out directly. FindWorker is a place to discover, not a place to book.
                 </p>
               </div>
             </div>
@@ -404,16 +498,17 @@
                 <div class="bento-icon-tag-row">
                   <div class="bento-icon-box">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <line x1="12" y1="1" x2="12" y2="23"></line>
-                      <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                      <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                      <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                      <polyline points="21 15 16 10 5 21"></polyline>
                     </svg>
                   </div>
-                  <span class="bento-meta-tag">Every Tuesday</span>
+                  <span class="bento-meta-tag">02 / The work</span>
                 </div>
-                <div class="bento-subheading">Zero payment delays</div>
-                <h3 class="bento-title">Reliable Weekly Payouts</h3>
+                <div class="bento-subheading">A point of view, in pixels</div>
+                <h3 class="bento-title">Work takes the lead.</h3>
                 <p class="bento-desc">
-                  Your earnings are protected via guaranteed escrow and deposited every week via Direct Deposit or PayPal. No waiting 30 days for invoices to clear.
+                  Portfolios bring the projects forward, with the details and context that make every creative practice its own.
                 </p>
               </div>
             </div>
@@ -427,12 +522,12 @@
                       <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                     </svg>
                   </div>
-                  <span class="bento-meta-tag">Guild Certified</span>
+                  <span class="bento-meta-tag">03 / Made by you</span>
                 </div>
-                <div class="bento-subheading">Vetted Credentials</div>
-                <h3 class="bento-title">Master Guild Auditing</h3>
+                <div class="bento-subheading">An independent profile</div>
+                <h3 class="bento-title">Make it feel like you.</h3>
                 <p class="bento-desc">
-                  Every specialist undergoes comprehensive identity verification, license validation, and proof of commercial liability insurance.
+                  Your experience, specialties, and story come together in one considered place you can share with anyone.
                 </p>
               </div>
             </div>
@@ -446,12 +541,12 @@
                       <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
                     </svg>
                   </div>
-                  <span class="bento-meta-tag">Higher Earnings</span>
+                  <span class="bento-meta-tag">04 / Your own terms</span>
                 </div>
-                <div class="bento-subheading">Merit-based advancement</div>
-                <h3 class="bento-title">Quality-Based Tier Progression (PRO, L3, L2)</h3>
+                <div class="bento-subheading">Open by design</div>
+                <h3 class="bento-title">No gatekeeping. No middle layer.</h3>
                 <p class="bento-desc">
-                  High-accuracy, verified performers unlock senior guild tiers, specialized high-rate projects ($65-$95+/hr), and priority client dispatch.
+                  Browse freely, keep a shortlist, and take the conversation wherever you like. The connection is yours to make.
                 </p>
               </div>
             </div>
@@ -464,9 +559,9 @@
         <div class="container">
           <div class="section-header">
             <div class="section-header-left">
-              <span class="badge badge-primary" style="margin-bottom: 6px;">OPEN OPPORTUNITIES</span>
-              <h2>Highest Rated Freelancers</h2>
-              <p class="section-subtitle">Verified craft masters and domain talent available for immediate booking.</p>
+              <span class="badge badge-primary" style="margin-bottom: 6px;">MORE TO EXPLORE</span>
+              <h2>Another point of view.</h2>
+              <p class="section-subtitle">Independent people making thoughtful things for the digital world.</p>
             </div>
             <div style="display: flex; align-items: center; gap: 14px;">
               <div class="carousel-nav-arrows">
@@ -491,10 +586,8 @@
           <div class="section-header" style="text-align: center; justify-content: center; margin-bottom: 48px;">
             <div style="max-width: 680px; margin: 0 auto;">
               <span class="badge badge-forest">HOW IT WORKS</span>
-              <h2 style="margin-top: 10px;">From Application to Your First Payout</h2>
-              <p class="section-subtitle">
-                Getting started on FindWorker is straightforward, transparent, and structured around your verified capabilities.
-              </p>
+              <h2 style="margin-top: 10px;">A little less searching. A little more finding.</h2>
+              <p class="section-subtitle">Three simple steps. No marketplace maze.</p>
             </div>
           </div>
 
@@ -502,20 +595,20 @@
             <div class="step-card">
               <div class="step-top-line">
                 <span class="step-number">01</span>
-                <span class="step-time-badge">15–30 minutes</span>
+                <span class="step-time-badge">For creatives</span>
               </div>
-              <h3 style="font-size: 1.3rem;">Apply &amp; Complete Skill Screening</h3>
+              <h3 style="font-size: 1.3rem;">Put your work out there.</h3>
               <p style="font-size: 0.92rem; color: var(--color-secondary-muted); line-height: 1.6;">
-                Fill out our sign-up form, confirm your identity and license credentials, and showcase past work to demonstrate mastery.
+                Create a home for your practice, your projects, and the details that matter.
               </p>
               <ul class="step-bullet-list">
                 <li>
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  <span>No prior platform fees required</span>
+                  <span>Show the work you want to be known for</span>
                 </li>
                 <li>
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  <span>Transparent assessment scoring</span>
+                  <span>Add your skills and professional story</span>
                 </li>
               </ul>
             </div>
@@ -523,20 +616,20 @@
             <div class="step-card">
               <div class="step-top-line">
                 <span class="step-number">02</span>
-                <span class="step-time-badge">Within 24–48 hours</span>
+                <span class="step-time-badge">For everyone</span>
               </div>
-              <h3 style="font-size: 1.3rem;">Get Matched to Active Projects</h3>
+              <h3 style="font-size: 1.3rem;">Follow what catches your eye.</h3>
               <p style="font-size: 0.92rem; color: var(--color-secondary-muted); line-height: 1.6;">
-                Once verified, access active client requests matching your exact domain. Review guidelines, agree on scope, and fund escrow.
+                Browse by discipline, search a skill, or let a portfolio lead somewhere unexpected.
               </p>
               <ul class="step-bullet-list">
                 <li>
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  <span>Direct client chat with zero middlemen</span>
+                  <span>Find people by discipline and skill</span>
                 </li>
                 <li>
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  <span>Funds safely held in escrow</span>
+                  <span>Explore the work behind each profile</span>
                 </li>
               </ul>
             </div>
@@ -544,20 +637,20 @@
             <div class="step-card">
               <div class="step-top-line">
                 <span class="step-number">03</span>
-                <span class="step-time-badge">On your schedule</span>
+                <span class="step-time-badge">Your next step</span>
               </div>
-              <h3 style="font-size: 1.3rem;">Deliver Craft &amp; Get Paid Weekly</h3>
+              <h3 style="font-size: 1.3rem;">Make the introduction.</h3>
               <p style="font-size: 0.92rem; color: var(--color-secondary-muted); line-height: 1.6;">
-                Complete high-quality deliverables. Once the client approves the completed work, funds are instantly released to your account.
+                When someone's work feels right, connect with them directly. No booking flow, no gatekeepers.
               </p>
               <ul class="step-bullet-list">
                 <li>
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  <span>Weekly payouts via Direct Deposit or PayPal</span>
+                  <span>Direct contact, on your terms</span>
                 </li>
                 <li>
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  <span>Backed by $2,000,000 liability policy</span>
+                  <span>A conversation between people</span>
                 </li>
               </ul>
             </div>
@@ -570,9 +663,9 @@
         <div class="container">
           <div class="section-header">
             <div class="section-header-left">
-              <span class="badge badge-forest" style="margin-bottom: 6px;">CONTRIBUTOR VOICES</span>
-              <h2>Hear From Our Global Community</h2>
-              <p class="section-subtitle">Thousands of craftspeople, engineers, and homeowners connect on FindWorker.</p>
+              <span class="badge badge-forest" style="margin-bottom: 6px;">NOTES FROM THE COMMUNITY</span>
+              <h2>Good work travels by word of mouth.</h2>
+              <p class="section-subtitle">A few notes from people who found their place here.</p>
             </div>
           </div>
 
@@ -580,16 +673,16 @@
             <div class="story-card">
               <div class="story-header-meta">
                 <span class="story-stars">★★★★★</span>
-                <span class="story-rate-pill">$75/hr • 24 hrs/wk</span>
+                <span class="story-rate-pill">Web development</span>
               </div>
               <p class="story-quote">
-                "FindWorker allowed me to build custom oak cabinetry for discerning architectural clients without paying 20% contractor commissions. Escrow makes payments completely stress-free."
+                "It finally feels like my work is the first thing people see. The profile gives me room to show how I think, not just what I charge."
               </p>
               <div class="story-author">
-                <div class="author-avatar">JV</div>
+                <div class="author-avatar">JL</div>
                 <div>
-                  <div style="font-weight: 700; font-size: 0.94rem;">Julian Vance</div>
-                  <div style="font-size: 0.78rem; color: var(--color-secondary-muted);">Master Joiner • Central District</div>
+                  <div style="font-weight: 700; font-size: 0.94rem;">Jordan Lee</div>
+                  <div style="font-size: 0.78rem; color: var(--color-secondary-muted);">Product engineer • Brooklyn</div>
                 </div>
               </div>
             </div>
@@ -597,16 +690,16 @@
             <div class="story-card">
               <div class="story-header-meta">
                 <span class="story-stars">★★★★★</span>
-                <span class="story-rate-pill">$85/hr • 30 hrs/wk</span>
+                <span class="story-rate-pill">Product design</span>
               </div>
               <p class="story-quote">
-                "The autonomy is remarkable. I manage high-end EV wallbox and panel conversions across the city with clients who understand true certified quality."
+                "A portfolio should feel like you. This is the first place that lets me show the thinking behind the finished screens."
               </p>
               <div class="story-author">
-                <div class="author-avatar">ER</div>
+                <div class="author-avatar">MC</div>
                 <div>
-                  <div style="font-weight: 700; font-size: 0.94rem;">Elena Ramos</div>
-                  <div style="font-size: 0.78rem; color: var(--color-secondary-muted);">Licensed Master Electrician • West End</div>
+                  <div style="font-weight: 700; font-size: 0.94rem;">Maya Chen</div>
+                  <div style="font-size: 0.78rem; color: var(--color-secondary-muted);">Product designer • Toronto</div>
                 </div>
               </div>
             </div>
@@ -614,16 +707,16 @@
             <div class="story-card">
               <div class="story-header-meta">
                 <span class="story-stars">★★★★★</span>
-                <span class="story-rate-pill">$80/hr • 18 hrs/wk</span>
+                <span class="story-rate-pill">Writing &amp; content</span>
               </div>
               <p class="story-quote">
-                "Direct client communication means zero misunderstandings on complex radiant heating and copper brazing projects. Payouts arrive every Tuesday like clockwork."
+                "People arrive having already spent time with the work. The first message is better because of it."
               </p>
               <div class="story-author">
-                <div class="author-avatar">AB</div>
+                <div class="author-avatar">CM</div>
                 <div>
-                  <div style="font-weight: 700; font-size: 0.94rem;">Arthur Berits</div>
-                  <div style="font-size: 0.78rem; color: var(--color-secondary-muted);">Hydronic Copper Specialist • Southside</div>
+                  <div style="font-weight: 700; font-size: 0.94rem;">Clara Moreau</div>
+                  <div style="font-size: 0.78rem; color: var(--color-secondary-muted);">Writer &amp; editor • Montreal</div>
                 </div>
               </div>
             </div>
@@ -636,9 +729,9 @@
         <div class="container">
           <div class="section-header">
             <div class="section-header-left">
-              <span class="badge badge-primary" style="margin-bottom: 6px;">INSIGHTS &amp; GUIDES</span>
-              <h2>Recent News &amp; Articles</h2>
-              <p class="section-subtitle">Explore the latest articles, craft standards, and stories from our community.</p>
+              <span class="badge badge-primary" style="margin-bottom: 6px;">FIELD NOTES</span>
+              <h2>Ideas from the independent web.</h2>
+              <p class="section-subtitle">Small observations on making good digital work.</p>
             </div>
             <div>
               <a href="#freelancers" class="btn btn-outline btn-sm go-to-directory-link">
@@ -650,43 +743,43 @@
           <div class="blog-grid">
             <article class="blog-card">
               <div class="blog-img-box">
-                <img src="assets/images/hero_craftsman.jpg" alt="Artisan Joinery Guide">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="Digital product design on a laptop">
               </div>
               <div class="blog-body">
                 <div class="blog-meta-line">
-                  <span class="badge badge-primary" style="font-size: 0.7rem; padding: 2px 8px;">CRAFT GUIDES</span>
+                  <span class="badge badge-primary" style="font-size: 0.7rem; padding: 2px 8px;">DESIGN</span>
                   <span>• 5 min read</span>
                 </div>
-                <h3 class="blog-title">The Revival of Solid Wood Joinery in Modern Architecture</h3>
-                <p class="blog-snippet">Why contemporary homeowners are shifting from flat-pack furniture to heirloom mortise-and-tenon craft.</p>
+                <h3 class="blog-title">A portfolio is more than a grid of finished work</h3>
+                <p class="blog-snippet">Show the decisions, experiments, and small details that made the final thing matter.</p>
               </div>
             </article>
 
             <article class="blog-card">
               <div class="blog-img-box">
-                <img src="assets/images/worker_electrician.jpg" alt="EV Infrastructure">
+                <img src="https://images.unsplash.com/photo-1559028006-448665bd7c7f?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="A digital product interface in progress">
               </div>
               <div class="blog-body">
                 <div class="blog-meta-line">
-                  <span class="badge badge-forest" style="font-size: 0.7rem; padding: 2px 8px;">ELECTRICAL</span>
+                  <span class="badge badge-forest" style="font-size: 0.7rem; padding: 2px 8px;">PRACTICE</span>
                   <span>• 6 min read</span>
                 </div>
-                <h3 class="blog-title">Upgrading Residential 200A Panels for Home EV Charging</h3>
-                <p class="blog-snippet">A licensed electrician's guide to load calculation, permit compliance, and smart energy monitors.</p>
+                <h3 class="blog-title">The quiet confidence of a clear point of view</h3>
+                <p class="blog-snippet">How independent creatives make their practice recognizable without shouting.</p>
               </div>
             </article>
 
             <article class="blog-card">
               <div class="blog-img-box">
-                <img src="assets/images/worker_plumber.jpg" alt="Radiant Heating">
+                <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="Notes for a digital writing project">
               </div>
               <div class="blog-body">
                 <div class="blog-meta-line">
-                  <span class="badge badge-primary" style="font-size: 0.7rem; padding: 2px 8px;">PLUMBING</span>
+                  <span class="badge badge-primary" style="font-size: 0.7rem; padding: 2px 8px;">INDEPENDENCE</span>
                   <span>• 4 min read</span>
                 </div>
-                <h3 class="blog-title">Why Hydronic Radiant Heat is the Gold Standard for Comfort</h3>
-                <p class="blog-snippet">Understanding thermal mass, manifolds, and how oxygen-barrier tubing delivers whisper-quiet warmth.</p>
+                <h3 class="blog-title">Finding the right people, not just the right keywords</h3>
+                <p class="blog-snippet">A little patience and a good portfolio can make discovery feel more human.</p>
               </div>
             </article>
           </div>
@@ -701,7 +794,7 @@
               <span class="badge badge-forest">COMMON QUESTIONS</span>
               <h2 style="margin-top: 10px;">Frequently Asked Questions</h2>
               <p class="section-subtitle">
-                Everything you need to know about freelancing and hiring on FindWorker.
+                A few useful notes on sharing your work and finding independent digital talent.
               </p>
             </div>
           </div>
@@ -709,61 +802,61 @@
           <div class="faq-list">
             <div class="faq-item active">
               <button class="faq-trigger" type="button" aria-expanded="true">
-                <span>What is FindWorker and how does it relate to independent trade guilds?</span>
+                <span>What is FindWorker?</span>
                 <div class="faq-icon-rotator">↓</div>
               </button>
               <div class="faq-answer">
-                FindWorker is a premier platform connecting vetted independent craftspeople—including carpenters, electricians, plumbers, and masons—directly with homeowners and architects, providing 100% milestone escrow protection and transparent hourly pricing.
+                A portfolio-first directory for independent digital professionals. Explore profiles, save the ones that stand out, and contact freelancers directly.
               </div>
             </div>
 
             <div class="faq-item">
               <button class="faq-trigger" type="button" aria-expanded="false">
-                <span>What are the qualifications to join as a freelance specialist?</span>
+                <span>Can I book or hire through FindWorker?</span>
                 <div class="faq-icon-rotator">↓</div>
               </button>
               <div class="faq-answer">
-                Specialists must possess valid trade credentials or demonstrated artisanal expertise, submit proof of commercial liability insurance, and pass our identity and background screening.
+                No. FindWorker is for discovery only. If you want to work together, use the contact details on a freelancer's profile to reach out directly.
               </div>
             </div>
 
             <div class="faq-item">
               <button class="faq-trigger" type="button" aria-expanded="false">
-                <span>How and when do I get paid?</span>
+                <span>How do I create a profile?</span>
                 <div class="faq-icon-rotator">↓</div>
               </button>
               <div class="faq-answer">
-                Payments are deposited automatically every Tuesday via Direct Deposit or PayPal. Funds are protected in milestone escrow from project start until completion.
+                Choose “Join / Create Profile,” select the freelancer option, and add your discipline, skills, and professional background. Your profile will be added to the directory.
               </div>
             </div>
 
             <div class="faq-item">
               <button class="faq-trigger" type="button" aria-expanded="false">
-                <span>How many hours per week do I need to commit?</span>
+                <span>Who is this directory for?</span>
                 <div class="faq-icon-rotator">↓</div>
               </button>
               <div class="faq-answer">
-                There are no minimum hourly quotas. You have 100% schedule autonomy to take on as many or as few projects as fits your personal timetable.
+                Independent digital professionals: designers, developers, writers, marketers, strategists, and more. Your work and experience tell your story.
               </div>
             </div>
 
             <div class="faq-item">
               <button class="faq-trigger" type="button" aria-expanded="false">
-                <span>What is the milestone escrow guarantee?</span>
+                <span>How do I contact a freelancer?</span>
                 <div class="faq-icon-rotator">↓</div>
               </button>
               <div class="faq-answer">
-                Client deposits are held in our secure escrow vault. Funds are only transferred to the specialist once the client inspects and approves the finished craft milestone, supported by our $2M insurance policy.
+                Open a profile and visit “Direct Contact” to find their email, website, or other contact details.
               </div>
             </div>
 
             <div class="faq-item">
               <button class="faq-trigger" type="button" aria-expanded="false">
-                <span>Can I book emergency or same-day appointments?</span>
+                <span>Can I save profiles for later?</span>
                 <div class="faq-icon-rotator">↓</div>
               </button>
               <div class="faq-answer">
-                Yes! Filter by "Available Today" in the Freelancers Directory to connect with specialists on standby for rapid dispatch.
+                Yes. Use the bookmark on any card to add a profile to your shortlist, then revisit it from the header.
               </div>
             </div>
           </div>
@@ -773,14 +866,14 @@
       <!-- 11. Big Call-To-Action Banner -->
       <section class="container" style="padding-bottom: clamp(64px, 8vw, 100px);">
         <div class="big-cta-box">
-          <span class="badge badge-primary" style="margin-bottom: 16px;">START TODAY • 100% REMOTE &amp; LOCAL</span>
-          <h2 class="cta-title">Ready to Shape the Next Generation of Craft?</h2>
+          <span class="badge badge-primary" style="margin-bottom: 16px;">YOUR WORK BELONGS OUT THERE</span>
+          <h2 class="cta-title">Make a little space for your work.</h2>
           <p class="cta-subtitle">
-            Join thousands of master artisans, researchers, and specialists who earn and build on their own terms.
+            Create a profile, share your point of view, and let the right people find you.
           </p>
           <div class="cta-buttons-row">
             <button class="btn btn-primary" id="cta-apply-btn">
-              <span>Apply as a Contributor</span>
+              <span>Create Freelancer Profile</span>
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                 <line x1="5" y1="12" x2="19" y2="12"></line>
                 <polyline points="12 5 19 12 12 19"></polyline>
@@ -791,9 +884,9 @@
             </button>
           </div>
           <div class="cta-guarantee-line">
-            <span>✓ Takes less than 5 minutes to start</span>
-            <span>✓ Weekly direct deposits</span>
-            <span>✓ 100% Milestone escrow protected</span>
+            <span>Independent by design</span>
+            <span>Portfolio-first profiles</span>
+            <span>Direct connections</span>
           </div>
         </div>
       </section>
@@ -801,25 +894,24 @@
 
     <!-- =======================================================================
          VIEW 2: DEDICATED FREELANCERS DIRECTORY VIEW (#freelancers-view)
-         Matching exact /freelancers layout from findworders.netlify.app
          ======================================================================= -->
     <div id="freelancers-view" class="view-panel view-hidden">
       <div class="container">
         <!-- Top Illustrated Banner -->
         <div class="freelancers-banner-box">
           <div>
-            <span class="badge badge-forest" style="margin-bottom: 12px;">✨ VERIFIED FREELANCE TALENT DIRECTORY</span>
-            <h1 style="font-size: clamp(2.2rem, 3.8vw, 3.2rem); margin-bottom: 8px;">Freelancers List</h1>
+            <span class="badge badge-forest" style="margin-bottom: 12px;">THE INDEPENDENT TALENT INDEX</span>
+            <h1 style="font-size: clamp(2.2rem, 3.8vw, 3.2rem); margin-bottom: 8px;">People behind<br>the pixels.</h1>
             <p style="font-size: 0.95rem; color: var(--color-secondary-muted); max-width: 520px; line-height: 1.6; margin-bottom: 24px;">
-              Connect with pre-screened technical experts, master joiners, and licensed specialists. Secure contracts with guaranteed 100% milestone escrow.
+              A small, considered directory of independent digital talent. Start with the work; make the connection yourself.
             </p>
 
-            <div style="background: #FFFFFF; padding: 6px 8px; border-radius: var(--radius-lg); border: 1px solid var(--color-border); display: flex; align-items: center; gap: 8px; max-width: 540px; box-shadow: var(--shadow-sm);">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left: 10px; color: var(--color-secondary-muted);">
+            <div class="directory-search-bar-wrap">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="search-input-icon">
                 <circle cx="11" cy="11" r="8"></circle>
                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
               </svg>
-              <input type="text" id="directory-search-input" placeholder="Search by specialist name, title, or keywords..." style="border: none; background: transparent; outline: none; font-size: 0.92rem; flex: 1; padding: 6px;">
+              <input type="text" id="directory-search-input" placeholder="Name, discipline, skill, or project…" class="directory-search-field">
               <button class="btn btn-primary btn-sm" id="directory-search-btn">
                 <span>Search</span>
                 <span>↗</span>
@@ -828,8 +920,8 @@
           </div>
 
           <!-- Editorial Banner Illustration -->
-          <div style="display: flex; justify-content: flex-end; align-items: center;">
-            <svg class="drop-shadow-sm" style="max-width: 380px; width: 100%; height: auto;" viewBox="0 0 460 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <div class="directory-banner-illustration-wrap">
+            <svg class="drop-shadow-sm banner-svg-art" viewBox="0 0 460 280" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect x="20" y="240" width="420" height="12" rx="6" fill="#1B1A17" opacity="0.85"></rect>
               <rect x="60" y="140" width="160" height="95" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="3"></rect>
               <rect x="70" y="150" width="140" height="75" rx="6" fill="#1B1A17"></rect>
@@ -863,51 +955,63 @@
 
             <!-- Category Filter Group -->
             <div class="filter-group">
-              <div class="filter-group-title">
-                <span>Category</span>
-              </div>
+              <div class="filter-group-title"><span>Discipline</span></div>
               <div class="filter-options-list">
                 <label class="checkbox-label">
                   <div class="checkbox-left">
-                    <input type="checkbox" class="sidebar-checkbox" data-filter-group="category" value="Carpentry">
-                    <span>Carpentry &amp; Wood</span>
+                    <input type="checkbox" class="sidebar-checkbox" data-filter-group="category" value="Web Development">
+                    <span>Web development</span>
                   </div>
-                  <span class="filter-count-badge">142</span>
+                  <span class="filter-count-badge">01</span>
                 </label>
                 <label class="checkbox-label">
                   <div class="checkbox-left">
-                    <input type="checkbox" class="sidebar-checkbox" data-filter-group="category" value="Electrical">
-                    <span>Electrical &amp; EV</span>
+                    <input type="checkbox" class="sidebar-checkbox" data-filter-group="category" value="UI/UX Design">
+                    <span>Product &amp; UX</span>
                   </div>
-                  <span class="filter-count-badge">115</span>
+                  <span class="filter-count-badge">01</span>
                 </label>
                 <label class="checkbox-label">
                   <div class="checkbox-left">
-                    <input type="checkbox" class="sidebar-checkbox" data-filter-group="category" value="Plumbing">
-                    <span>Plumbing &amp; Radiant</span>
+                    <input type="checkbox" class="sidebar-checkbox" data-filter-group="category" value="Graphic Design">
+                    <span>Graphic design</span>
                   </div>
-                  <span class="filter-count-badge">98</span>
+                  <span class="filter-count-badge">01</span>
                 </label>
                 <label class="checkbox-label">
                   <div class="checkbox-left">
-                    <input type="checkbox" class="sidebar-checkbox" data-filter-group="category" value="Masonry">
-                    <span>Masonry &amp; Stone</span>
+                    <input type="checkbox" class="sidebar-checkbox" data-filter-group="category" value="Digital Marketing">
+                    <span>Digital marketing</span>
                   </div>
-                  <span class="filter-count-badge">64</span>
+                  <span class="filter-count-badge">01</span>
                 </label>
                 <label class="checkbox-label">
                   <div class="checkbox-left">
-                    <input type="checkbox" class="sidebar-checkbox" data-filter-group="category" value="Painting">
-                    <span>Fine Plaster &amp; Paint</span>
+                    <input type="checkbox" class="sidebar-checkbox" data-filter-group="category" value="Content Writing">
+                    <span>Writing &amp; content</span>
                   </div>
-                  <span class="filter-count-badge">87</span>
+                  <span class="filter-count-badge">01</span>
                 </label>
                 <label class="checkbox-label">
                   <div class="checkbox-left">
-                    <input type="checkbox" class="sidebar-checkbox" data-filter-group="category" value="Landscaping">
-                    <span>Eco Landscaping</span>
+                    <input type="checkbox" class="sidebar-checkbox" data-filter-group="category" value="Motion Design">
+                    <span>Motion design</span>
                   </div>
-                  <span class="filter-count-badge">76</span>
+                  <span class="filter-count-badge">01</span>
+                </label>
+                <label class="checkbox-label">
+                  <div class="checkbox-left">
+                    <input type="checkbox" class="sidebar-checkbox" data-filter-group="category" value="Photography">
+                    <span>Photography</span>
+                  </div>
+                  <span class="filter-count-badge">01</span>
+                </label>
+                <label class="checkbox-label">
+                  <div class="checkbox-left">
+                    <input type="checkbox" class="sidebar-checkbox" data-filter-group="category" value="Brand Strategy">
+                    <span>Brand strategy</span>
+                  </div>
+                  <span class="filter-count-badge">01</span>
                 </label>
               </div>
             </div>
@@ -915,27 +1019,27 @@
             <!-- Seller Label & Badge Filter -->
             <div class="filter-group">
               <div class="filter-group-title">
-                <span>Seller Label &amp; Badge</span>
+                <span>Profile highlights</span>
               </div>
               <div class="filter-options-list">
                 <label class="checkbox-label">
                   <div class="checkbox-left">
                     <input type="checkbox" class="sidebar-checkbox" data-filter-group="badge" value="PRO">
-                    <span>★ Pro Seller</span>
+                    <span>Featured profile</span>
                   </div>
                   <span class="badge-tier-pro">PRO</span>
                 </label>
                 <label class="checkbox-label">
                   <div class="checkbox-left">
                     <input type="checkbox" class="sidebar-checkbox" data-filter-group="badge" value="L3">
-                    <span>Level 3 Seller</span>
+                    <span>Established practice</span>
                   </div>
                   <span class="filter-count-badge">L3</span>
                 </label>
                 <label class="checkbox-label">
                   <div class="checkbox-left">
                     <input type="checkbox" class="sidebar-checkbox" data-filter-group="badge" value="L2">
-                    <span>Level 2 Seller</span>
+                    <span>Independent profile</span>
                   </div>
                   <span class="filter-count-badge">L2</span>
                 </label>
@@ -952,8 +1056,8 @@
             <!-- Max Hourly Rate Slider -->
             <div class="filter-group">
               <div class="filter-group-title">
-                <span>Max Hourly Rate</span>
-                <span id="rate-range-display" style="color: var(--color-primary);">$120/hr</span>
+                <span>Max hourly rate</span>
+                <span id="rate-range-display" style="color: var(--color-primary); font-weight: 700;">$120/hr</span>
               </div>
               <div class="price-slider-wrap">
                 <input type="range" id="rate-range-input" min="40" max="120" step="5" value="120">
@@ -972,26 +1076,26 @@
               <div class="filter-options-list">
                 <label class="checkbox-label">
                   <div class="checkbox-left">
-                    <input type="checkbox" class="sidebar-checkbox" data-filter-group="skill" value="Custom Cabinetry">
-                    <span>Custom Cabinetry</span>
+                    <input type="checkbox" class="sidebar-checkbox" data-filter-group="skill" value="Figma">
+                    <span>Figma</span>
                   </div>
                 </label>
                 <label class="checkbox-label">
                   <div class="checkbox-left">
-                    <input type="checkbox" class="sidebar-checkbox" data-filter-group="skill" value="Panel Upgrades">
-                    <span>200A Panel Upgrades</span>
+                    <input type="checkbox" class="sidebar-checkbox" data-filter-group="skill" value="React">
+                    <span>React</span>
                   </div>
                 </label>
                 <label class="checkbox-label">
                   <div class="checkbox-left">
-                    <input type="checkbox" class="sidebar-checkbox" data-filter-group="skill" value="Copper Pipework">
-                    <span>Copper Pipework</span>
+                    <input type="checkbox" class="sidebar-checkbox" data-filter-group="skill" value="Brand Identity">
+                    <span>Brand identity</span>
                   </div>
                 </label>
                 <label class="checkbox-label">
                   <div class="checkbox-left">
-                    <input type="checkbox" class="sidebar-checkbox" data-filter-group="skill" value="Venetian Plaster">
-                    <span>Venetian Plaster</span>
+                    <input type="checkbox" class="sidebar-checkbox" data-filter-group="skill" value="Content Strategy">
+                    <span>Content strategy</span>
                   </div>
                 </label>
 
@@ -999,26 +1103,26 @@
                 <div id="extra-skills-box" style="display: none; flex-direction: column; gap: 9px;">
                   <label class="checkbox-label">
                     <div class="checkbox-left">
-                      <input type="checkbox" class="sidebar-checkbox" data-filter-group="skill" value="Tuckpointing">
-                      <span>Lime Tuckpointing</span>
+                      <input type="checkbox" class="sidebar-checkbox" data-filter-group="skill" value="UX Research">
+                      <span>UX research</span>
                     </div>
                   </label>
                   <label class="checkbox-label">
                     <div class="checkbox-left">
-                      <input type="checkbox" class="sidebar-checkbox" data-filter-group="skill" value="Hydronic Radiant">
-                      <span>Radiant Heating</span>
+                      <input type="checkbox" class="sidebar-checkbox" data-filter-group="skill" value="SEO">
+                      <span>SEO</span>
                     </div>
                   </label>
                   <label class="checkbox-label">
                     <div class="checkbox-left">
-                      <input type="checkbox" class="sidebar-checkbox" data-filter-group="skill" value="Native Planting">
-                      <span>Native Landscaping</span>
+                      <input type="checkbox" class="sidebar-checkbox" data-filter-group="skill" value="Motion Design">
+                      <span>Motion design</span>
                     </div>
                   </label>
                   <label class="checkbox-label">
                     <div class="checkbox-left">
-                      <input type="checkbox" class="sidebar-checkbox" data-filter-group="skill" value="TIG Welding">
-                      <span>TIG Welding &amp; Steel</span>
+                      <input type="checkbox" class="sidebar-checkbox" data-filter-group="skill" value="Art Direction">
+                      <span>Art direction</span>
                     </div>
                   </label>
                 </div>
@@ -1064,7 +1168,7 @@
 
               <div style="display: flex; align-items: center; gap: 8px;">
                 <label for="directory-sort-select" style="font-size: 0.88rem; font-weight: 600;">Sort By:</label>
-                <select id="directory-sort-select" style="background: var(--color-background-pure); border: 1px solid var(--color-border); padding: 6px 12px; border-radius: var(--radius-sm); font-size: 0.88rem;">
+                <select id="directory-sort-select" class="directory-sort-dropdown">
                   <option value="rating-desc">Highest Rated ★</option>
                   <option value="experience-desc">Most Experienced</option>
                   <option value="rate-asc">Rate: Low to High</option>
@@ -1087,7 +1191,7 @@
   </main>
 
   <!-- =========================================================================
-       Site Footer (matching findworders.netlify.app column layout)
+       Site Footer
        ========================================================================= -->
   <footer class="site-footer">
     <div class="container">
@@ -1101,15 +1205,15 @@
             </div>
             <div class="brand-text-block">
               <div class="brand-title" style="color: #fff;">Find<span>Worker</span></div>
-              <div class="brand-tagline" style="color: var(--color-primary);">Craft &amp; Guild Directory</div>
+              <div class="brand-tagline" style="color: var(--color-primary);">Independent talent index</div>
             </div>
           </div>
           <p>
-            FindWorker is a premier freelance platform that recruits and connects subject matter experts, master craftsmen, and engineers to build the physical and digital world.
+            FindWorker is a portfolio-first directory for independent digital talent. Explore the work, meet the person, and connect directly.
           </p>
           <div style="display: flex; gap: 10px; margin-top: 4px;">
-            <button class="btn btn-primary btn-sm" id="footer-signup-btn">Client Sign Up</button>
-            <button class="btn btn-outline btn-sm" id="footer-login-btn" style="color: #fff; border-color: rgba(255,255,255,0.2);">Client Sign In</button>
+            <button class="btn btn-primary btn-sm" id="footer-signup-btn">Create Profile</button>
+            <button class="btn btn-outline btn-sm" id="footer-login-btn" style="color: #fff; border-color: rgba(255,255,255,0.2);">Sign In</button>
           </div>
         </div>
 
@@ -1118,46 +1222,46 @@
           <h5>Platform</h5>
           <ul class="footer-links">
             <li><a href="#how-it-works">How It Works</a></li>
-            <li><a href="#roles">Explore Roles</a></li>
-            <li><a href="#blog">Insights &amp; Blog</a></li>
-            <li><a href="#hero" style="display: flex; align-items: center; gap: 6px;"><span style="width: 7px; height: 7px; border-radius: 50%; background: #10B981;"></span> System Status: All Systems Operational</a></li>
+            <li><a href="#roles">Explore Disciplines</a></li>
+            <li><a href="#blog">Field notes</a></li>
+            <li><a href="#hero" style="display: flex; align-items: center; gap: 6px;"><span style="width: 7px; height: 7px; border-radius: 50%; background: #10B981;"></span> Independent by design</a></li>
           </ul>
         </div>
 
         <!-- Column 2: Specializations -->
         <div class="footer-col">
-          <h5>Specializations</h5>
+          <h5>Disciplines</h5>
           <ul class="footer-links">
-            <li><a href="#freelancers" class="go-to-directory-link">Master Joinery &amp; Woodcraft</a></li>
-            <li><a href="#freelancers" class="go-to-directory-link">Electrical Engineering &amp; EV</a></li>
-            <li><a href="#freelancers" class="go-to-directory-link">Copper &amp; Radiant Heating</a></li>
-            <li><a href="#freelancers" class="go-to-directory-link">Heritage Stone Masonry</a></li>
-            <li><a href="#freelancers" class="go-to-directory-link">Architectural Plaster &amp; Paint</a></li>
-            <li><a href="#freelancers" class="go-to-directory-link">Ecological Landscaping</a></li>
+            <li><a href="#freelancers" class="go-to-directory-link">Web development</a></li>
+            <li><a href="#freelancers" class="go-to-directory-link">Product &amp; UX design</a></li>
+            <li><a href="#freelancers" class="go-to-directory-link">Graphic design</a></li>
+            <li><a href="#freelancers" class="go-to-directory-link">Digital marketing</a></li>
+            <li><a href="#freelancers" class="go-to-directory-link">Writing &amp; content</a></li>
+            <li><a href="#freelancers" class="go-to-directory-link">Motion &amp; brand</a></li>
           </ul>
         </div>
 
         <!-- Column 3: Trust & Legal -->
         <div class="footer-col">
-          <h5>Trust &amp; Legal</h5>
+          <h5>Trust &amp; Community</h5>
           <ul class="footer-links">
-            <li><a href="#why-outlier">Terms of Use</a></li>
-            <li><a href="#why-outlier">Privacy Policy</a></li>
-            <li><a href="#why-outlier">Community Guild Guidelines</a></li>
-            <li><a href="#faq">Escrow Protection Charter</a></li>
-            <li><a href="#faq">Help Center / FAQ</a></li>
+            <li><a href="#why-outlier">Direct Contact Charter</a></li>
+            <li><a href="#why-outlier">Privacy &amp; Data Ethics</a></li>
+            <li><a href="#why-outlier">Independent by design</a></li>
+            <li><a href="#faq">How discovery works</a></li>
+            <li><a href="#faq">Help Center &amp; Support</a></li>
           </ul>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <div>&copy; 2026 FindWorker Inc. An independent guild service. All rights reserved.</div>
+        <div>&copy; 2026 FindWorker. An independent digital talent index.</div>
         <div class="palette-swatches">
-          <span class="swatch" style="background-color: #D6441E;" title="Primary: #D6441E"></span>
-          <span class="swatch" style="background-color: #1B1A17;" title="Secondary: #1B1A17"></span>
-          <span class="swatch" style="background-color: #123A2C;" title="Foreground: #123A2C"></span>
-          <span class="swatch" style="background-color: #F4EFE6;" title="Background: #F4EFE6"></span>
-          <span>Crafted with Instrument Sans &amp; Fraunces</span>
+          <span class="swatch" style="background-color: #D6441E;" title="Vermilion"></span>
+          <span class="swatch" style="background-color: #1B1A17;" title="Ink"></span>
+          <span class="swatch" style="background-color: #123A2C;" title="Forest"></span>
+          <span class="swatch" style="background-color: #F4EFE6;" title="Warm paper"></span>
+          <span>Independent by nature</span>
         </div>
       </div>
     </div>
@@ -1165,94 +1269,257 @@
 
   <!-- =========================================================================
        MODALS:
-       1. Specialist Profile & Direct Escrow Booking Modal
+       1. Specialist Profile & Portfolio Showcase Modal
        2. Log In Modal
-       3. Sign Up Modal
+       3. Sign Up & Freelancer Profile Creator Modal
        4. Shortlist Drawer
        ========================================================================= -->
 
-  <!-- 1. Specialist Profile & Booking Modal -->
+  <!-- 1. Specialist Profile & Portfolio Showcase Modal -->
   <div class="modal-overlay" id="booking-modal" role="dialog" aria-modal="true" aria-labelledby="booking-worker-name">
-    <div class="modal-window">
+    <div class="modal-window profile-modal-window">
       <button class="modal-close-btn" id="booking-modal-close" aria-label="Close dialog">&times;</button>
       <div class="modal-content-wrap">
-        <div class="booking-header">
-          <img src="assets/images/hero_craftsman.jpg" alt="Specialist" id="booking-avatar" class="booking-worker-avatar">
-          <div style="flex-grow: 1;">
-            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
-              <span class="badge badge-primary" style="font-size: 0.72rem; padding: 2px 8px;">VERIFIED PRO</span>
+        <!-- Profile Header Hero -->
+        <div class="booking-header profile-hero-header">
+          <div class="profile-hero-avatar-wrap">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&amp;fit=crop&amp;w=600&amp;q=85" alt="Freelancer" id="booking-avatar" class="booking-worker-avatar">
+            <span class="online-indicator-dot large" title="Available for direct contact"></span>
+          </div>
+          <div class="profile-hero-meta">
+            <div class="profile-badge-row">
+              <span class="badge badge-primary">INDEPENDENT</span>
               <span id="booking-modal-badge" class="badge-tier-pro">PRO</span>
+              <span class="profile-experience-chip" id="profile-experience-pill">16 Years Experience</span>
             </div>
-            <h3 id="booking-worker-name" style="font-size: 1.55rem; margin-bottom: 2px;">Worker Name</h3>
-            <div id="booking-worker-trade" style="font-size: 0.88rem; color: var(--color-primary); font-weight: 600;">Trade Title</div>
-            <div id="booking-worker-rate" style="font-size: 0.82rem; color: var(--color-secondary-muted); margin-top: 2px;">$0/hour</div>
+            <h2 id="booking-worker-name" class="profile-name">Julian Vance</h2>
+            <div id="booking-worker-trade" class="profile-trade-line">Independent Digital Professional</div>
+            <div class="profile-quick-stats">
+              <div class="profile-stat-item">
+                <span class="stat-label">Direct Rate:</span>
+                <span id="booking-worker-rate" class="stat-value">$75/hour</span>
+              </div>
+              <span class="stat-sep">•</span>
+              <div class="profile-stat-item">
+                <span class="stat-label">Location:</span>
+                <span id="profile-location-pill" class="stat-value">Central &amp; North District</span>
+              </div>
+              <span class="stat-sep">•</span>
+              <div class="profile-stat-item">
+                <span class="stat-label">Platform Fee:</span>
+                <span class="stat-value text-green">0% (Direct Freelance)</span>
+              </div>
+            </div>
+          </div>
+          <div class="profile-hero-cta">
+            <button type="button" class="btn btn-primary jump-to-contact-btn">
+              <span>Contact Directly</span>
+              <span>↓</span>
+            </button>
           </div>
         </div>
 
-        <form id="booking-form">
-          <div class="form-row-grid">
-            <div class="form-group">
-              <label class="form-label" for="client-name">Your Full Name</label>
-              <input type="text" id="client-name" class="form-input" placeholder="e.g. Margaret Sterling" required>
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="client-phone">Phone or Email</label>
-              <input type="text" id="client-phone" class="form-input" placeholder="e.g. margaret@example.com" required>
-            </div>
-          </div>
-
-          <div class="form-row-grid">
-            <div class="form-group">
-              <label class="form-label" for="booking-date">Preferred Start Date</label>
-              <input type="date" id="booking-date" class="form-input" required>
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="booking-hours">Estimated Hours</label>
-              <select id="booking-hours" class="form-select">
-                <option value="2">2 Hours (Diagnostic / Quick Task)</option>
-                <option value="4" selected>4 Hours (Half Day Craft Session)</option>
-                <option value="8">8 Hours (Full Day Dedicated Project)</option>
-                <option value="16">16 Hours (Multi-Day Milestone)</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label" for="booking-details">Job Description &amp; Scope</label>
-            <textarea id="booking-details" class="form-textarea" placeholder="Detail the work requirements, site conditions, or special materials..." required></textarea>
-          </div>
-
-          <!-- Price Calculator -->
-          <div class="price-calculator-box">
-            <div class="calculator-row">
-              <span>Hourly Rate:</span>
-              <strong id="calc-rate-per-hour">$75</strong>
-            </div>
-            <div class="calculator-row">
-              <span>Duration:</span>
-              <span id="calc-hours-count">4 hours</span>
-            </div>
-            <div class="calculator-row">
-              <span>Labor Subtotal:</span>
-              <span id="calc-subtotal">$300</span>
-            </div>
-            <div class="calculator-row">
-              <span>Milestone Escrow Fee:</span>
-              <span>$15</span>
-            </div>
-            <div class="calculator-row calculator-total">
-              <span>Total Protected Escrow:</span>
-              <span id="calc-total" style="color: var(--color-primary);">$315 USD</span>
-            </div>
-            <div style="font-size: 0.76rem; color: var(--color-foreground); margin-top: 6px; display: flex; align-items: center; gap: 4px;">
-              <span>✓ Funds held securely until you inspect and approve the completed work.</span>
-            </div>
-          </div>
-
-          <button type="submit" class="btn btn-primary" style="width: 100%;">
-            Confirm &amp; Place Escrow Request ↗
+        <!-- Profile Navigation Tabs -->
+        <div class="profile-tabs-nav" role="tablist">
+          <button type="button" class="profile-tab-btn active" data-tab="portfolio" role="tab">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+              <circle cx="8.5" cy="8.5" r="1.5"></circle>
+              <polyline points="21 15 16 10 5 21"></polyline>
+            </svg>
+            <span>Portfolio Projects</span>
           </button>
-        </form>
+          <button type="button" class="profile-tab-btn" data-tab="about" role="tab">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <span>About &amp; Credentials</span>
+          </button>
+          <button type="button" class="profile-tab-btn" data-tab="skills" role="tab">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+            <span>Skills &amp; Expertise</span>
+          </button>
+          <button type="button" class="profile-tab-btn" data-tab="contact" role="tab">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+            <span>Direct Contact &amp; Inquiry</span>
+          </button>
+        </div>
+
+        <!-- Tab 1: Portfolio Projects -->
+        <div class="profile-tab-panel active" data-panel="portfolio">
+          <div class="tab-header-row">
+            <div>
+              <h3 class="tab-panel-title">Showcase of Completed Work</h3>
+              <p class="tab-panel-subtitle">A selection of projects, experiments, and things made along the way.</p>
+            </div>
+          </div>
+          <div class="portfolio-grid" id="profile-portfolio-grid">
+            <!-- Dynamically populated by script.js -->
+          </div>
+        </div>
+
+        <!-- Tab 2: About & Credentials -->
+        <div class="profile-tab-panel" data-panel="about">
+          <div class="about-grid-layout">
+            <div class="about-main-text">
+              <h3 class="tab-panel-title">Professional Background</h3>
+              <p id="profile-about-text" class="about-paragraph"></p>
+              
+              <div class="about-guarantee-card">
+                <div class="guarantee-icon">🛡️</div>
+                <div>
+                  <h4 class="guarantee-title">Working practice</h4>
+                  <p id="profile-guarantee-text" class="guarantee-desc"></p>
+                </div>
+              </div>
+            </div>
+            <div class="about-side-box">
+              <h4 class="side-box-title">Verified Certifications</h4>
+              <ul class="certifications-list" id="profile-certifications-list">
+                <!-- Dynamically populated -->
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 3: Skills & Expertise -->
+        <div class="profile-tab-panel" data-panel="skills">
+          <h3 class="tab-panel-title">Primary Disciplines &amp; Technical Capabilities</h3>
+          <p class="tab-panel-subtitle">Tools, skills, and areas of expertise.</p>
+          <div class="skills-showcase-box" id="profile-skills-tags">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- Tab 4: Direct Contact & Inquiry -->
+        <div class="profile-tab-panel" data-panel="contact">
+          <div class="contact-tab-grid">
+            <!-- Left: Direct Contact Information -->
+            <div class="direct-contact-sidebar">
+              <span class="badge badge-forest" style="margin-bottom: 8px;">DIRECT COMMUNICATION</span>
+              <h3 style="font-size: 1.35rem; margin-bottom: 6px;">Contact Freelancer Directly</h3>
+              <p style="font-size: 0.88rem; color: var(--color-secondary-muted); margin-bottom: 20px;">
+                FindWorker does not take commissions or restrict direct communication. Reach out directly using any channel below:
+              </p>
+
+              <div class="contact-methods-list">
+                <!-- Phone Card -->
+                <div class="contact-method-card">
+                  <div class="method-icon-circle">📞</div>
+                  <div class="method-info">
+                    <span class="method-label">Direct Phone / WhatsApp</span>
+                    <a href="tel:+15553829104" id="profile-worker-phone" class="method-val">+1 (555) 382-9104</a>
+                  </div>
+                  <button type="button" class="btn btn-outline btn-sm copy-btn" id="copy-phone-btn" title="Copy phone number">Copy</button>
+                </div>
+
+                <!-- Email Card -->
+                <div class="contact-method-card">
+                  <div class="method-icon-circle">✉️</div>
+                  <div class="method-info">
+                    <span class="method-label">Direct Email</span>
+                    <a href="mailto:hello@findworker.directory" id="profile-worker-email" class="method-val">hello@findworker.directory</a>
+                  </div>
+                  <button type="button" class="btn btn-outline btn-sm copy-btn" id="copy-email-btn" title="Copy email address">Copy</button>
+                </div>
+
+                <!-- Portfolio Website Card -->
+                <div class="contact-method-card">
+                  <div class="method-icon-circle">🌐</div>
+                  <div class="method-info">
+                    <span class="method-label">Personal Portfolio Website</span>
+                    <a href="#" target="_blank" rel="noopener noreferrer" id="profile-worker-website" class="method-val">your-portfolio.com</a>
+                  </div>
+                  <span class="method-ext-arrow">↗</span>
+                </div>
+              </div>
+
+              <div class="direct-contact-guarantee">
+                <span class="sparkle-badge">✦</span>
+                <span>No booking flow • Connect directly, on your own terms</span>
+              </div>
+            </div>
+
+            <!-- Right: Direct Project Inquiry Form (Keeping all existing form IDs!) -->
+            <div class="direct-message-form-wrap">
+              <h3 style="font-size: 1.35rem; margin-bottom: 6px;">Send a Direct Project Message</h3>
+              <p style="font-size: 0.88rem; color: var(--color-secondary-muted); margin-bottom: 20px;">
+                Introduce yourself and share a little about what you have in mind.
+              </p>
+
+              <form id="booking-form">
+                <div class="form-row-grid">
+                  <div class="form-group">
+                    <label class="form-label" for="client-name">Your Full Name</label>
+                    <input type="text" id="client-name" class="form-input" placeholder="e.g. Margaret Sterling" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="client-phone">Your Email or Phone</label>
+                    <input type="text" id="client-phone" class="form-input" placeholder="e.g. margaret@example.com" required>
+                  </div>
+                </div>
+
+                <div class="form-row-grid">
+                  <div class="form-group">
+                    <label class="form-label" for="booking-date">Target Start Date (Optional)</label>
+                    <input type="date" id="booking-date" class="form-input">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="booking-hours">Estimated Scope / Hours</label>
+                    <select id="booking-hours" class="form-select">
+                      <option value="2">2 Hours (Quick Consultation / Small Task)</option>
+                      <option value="4" selected>4 Hours (Half Day Dedicated Project)</option>
+                      <option value="8">8 Hours (Full Day Deep Focus)</option>
+                      <option value="16">16+ Hours (Multi-Day Commission)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="booking-details">Project Description &amp; Scope</label>
+                  <textarea id="booking-details" class="form-textarea" placeholder="Detail your project requirements, space dimensions, materials desired, or special requests..." required></textarea>
+                </div>
+
+                <!-- Transparent Estimate Calculator (Keeps all original IDs intact!) -->
+                <div class="price-calculator-box">
+                  <div class="calculator-row">
+                    <span>Specialist Hourly Rate:</span>
+                    <strong id="calc-rate-per-hour">$75</strong>
+                  </div>
+                  <div class="calculator-row">
+                    <span>Estimated Duration:</span>
+                    <span id="calc-hours-count">4 hours</span>
+                  </div>
+                  <div class="calculator-row">
+                    <span>Labor Estimate:</span>
+                    <span id="calc-subtotal">$300</span>
+                  </div>
+                  <div class="calculator-row">
+                    <span>Platform Commission:</span>
+                    <span style="color: #10B981; font-weight: 700;">$0 (Free Direct Connection)</span>
+                  </div>
+                  <div class="calculator-row calculator-total">
+                    <span>Estimated Project Investment:</span>
+                    <span id="calc-total" style="color: var(--color-primary);">$300 USD</span>
+                  </div>
+                  <div style="font-size: 0.76rem; color: var(--color-secondary-muted); margin-top: 6px; display: flex; align-items: center; gap: 4px;">
+                    <span>✓ Direct negotiation. Final scope and terms agreed upon directly with the freelancer.</span>
+                  </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%;">
+                  <span>Send Direct Inquiry to Specialist</span>
+                  <span class="arrow-up-right">↗</span>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1265,7 +1532,7 @@
         <span class="badge badge-primary" style="margin-bottom: 8px;">WELCOME BACK</span>
         <h3 style="font-size: 1.6rem; margin-bottom: 6px;">Log in to FindWorker</h3>
         <p style="font-size: 0.88rem; color: var(--color-secondary-muted); margin-bottom: 24px;">
-          Access your active contracts, timesheets, and verified escrow milestones.
+          Access your specialist profile, portfolio galleries, and direct client inquiries.
         </p>
 
         <form id="login-form">
@@ -1285,39 +1552,93 @@
     </div>
   </div>
 
-  <!-- 3. Client Sign Up Modal -->
+  <!-- 3. Sign Up & Freelancer Profile Creation Modal -->
   <div class="modal-overlay" id="signup-modal" role="dialog" aria-modal="true">
-    <div class="modal-window" style="max-width: 520px;">
+    <div class="modal-window" style="max-width: 580px;">
       <button class="modal-close-btn" id="signup-modal-close" aria-label="Close dialog">&times;</button>
       <div class="modal-content-wrap">
-        <span class="badge badge-forest" style="margin-bottom: 8px;">VERIFIED ONBOARDING</span>
-        <h3 style="font-size: 1.6rem; margin-bottom: 6px;">Create your Account</h3>
-        <p style="font-size: 0.88rem; color: var(--color-secondary-muted); margin-bottom: 24px;">
-          Join over 250,000+ clients and specialists hiring on their own terms.
+        <span class="badge badge-forest" style="margin-bottom: 8px;">YOUR WORK, IN GOOD COMPANY</span>
+        <h3 style="font-size: 1.65rem; margin-bottom: 6px;">Create your profile</h3>
+        <p style="font-size: 0.88rem; color: var(--color-secondary-muted); margin-bottom: 22px;">
+          Tell people what you do, show them what you make, and let them find you.
         </p>
 
         <form id="signup-form">
           <div class="form-group">
             <label class="form-label" for="signup-role">I want to:</label>
             <select id="signup-role" class="form-select">
-              <option value="client">Hire Specialists &amp; Post Tasks (Client)</option>
-              <option value="worker">Join as a Verified Freelancer / Craftsman</option>
+              <option value="client">Explore independent talent</option>
+              <option value="worker">Create a freelancer profile</option>
             </select>
           </div>
-          <div class="form-group">
-            <label class="form-label" for="signup-name">Full Name</label>
-            <input type="text" id="signup-name" class="form-input" placeholder="e.g. Clara Oswald" required>
+
+          <div class="form-row-grid">
+            <div class="form-group">
+              <label class="form-label" for="signup-name">Full Name</label>
+              <input type="text" id="signup-name" class="form-input" placeholder="e.g. Clara Oswald" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="signup-email">Email Address</label>
+              <input type="email" id="signup-email" class="form-input" placeholder="clara@example.com" required>
+            </div>
           </div>
-          <div class="form-group">
-            <label class="form-label" for="signup-email">Email Address</label>
-            <input type="email" id="signup-email" class="form-input" placeholder="clara@example.com" required>
-          </div>
+
           <div class="form-group">
             <label class="form-label" for="signup-password">Password</label>
-            <input type="password" id="signup-password" class="form-input" placeholder="Create strong password" required>
+            <input type="password" id="signup-password" class="form-input" placeholder="Create a strong password" required>
           </div>
-          <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 8px;">
-            Complete Free Registration ↗
+
+          <!-- Extra Profile Fields for Freelancers (Revealed dynamically!) -->
+          <div id="worker-profile-fields" style="display: none; padding-top: 14px; border-top: 1px dashed var(--color-border); margin-top: 14px;">
+            <div class="form-row-grid">
+              <div class="form-group">
+                <label class="form-label" for="signup-trade">Primary discipline</label>
+                <select id="signup-trade" class="form-select">
+                  <option value="Web Development">Web development</option>
+                  <option value="UI/UX Design">Product &amp; UX design</option>
+                  <option value="Graphic Design">Graphic design</option>
+                  <option value="Digital Marketing">Digital marketing</option>
+                  <option value="Content Writing">Writing &amp; content</option>
+                  <option value="Motion Design">Motion design</option>
+                  <option value="Photography">Photography</option>
+                  <option value="Brand Strategy">Brand strategy</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="signup-rate">Hourly Rate ($ USD)</label>
+                <input type="number" id="signup-rate" class="form-input" placeholder="e.g. 75" min="20" max="250" value="75">
+              </div>
+            </div>
+
+            <div class="form-row-grid">
+              <div class="form-group">
+                <label class="form-label" for="signup-title">Professional Title</label>
+                <input type="text" id="signup-title" class="form-input" placeholder="e.g. Independent product designer">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="signup-experience">Years of Experience</label>
+                <input type="number" id="signup-experience" class="form-input" placeholder="e.g. 10" min="1" max="50" value="8">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="signup-skills">Key Skills (comma separated)</label>
+              <input type="text" id="signup-skills" class="form-input" placeholder="e.g. Figma, art direction, design systems">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="signup-location">Service Location / City</label>
+              <input type="text" id="signup-location" class="form-input" placeholder="e.g. Central &amp; Metro Area">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="signup-bio">A little about your practice</label>
+              <textarea id="signup-bio" class="form-textarea" placeholder="What do you make? What kind of work do you love?"></textarea>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 12px;">
+            <span>Complete Registration &amp; Publish Profile ↗</span>
           </button>
         </form>
       </div>
@@ -1330,7 +1651,7 @@
       <div class="drawer-header">
         <div>
           <h3 style="font-size: 1.25rem; font-weight: 700;">Saved Shortlist</h3>
-          <p style="font-size: 0.8rem; color: var(--color-secondary-muted);">Compare specialists &amp; book</p>
+          <p style="font-size: 0.8rem; color: var(--color-secondary-muted);">Save the profiles that stay with you</p>
         </div>
         <button class="modal-close-btn" id="close-drawer-btn" style="position: static;" aria-label="Close shortlist">&times;</button>
       </div>
@@ -1346,6 +1667,13 @@
       </div>
     </div>
   </div>
+
+  <!-- Floating Back to Top Button -->
+  <button class="back-to-top-btn" id="back-to-top-btn" aria-label="Scroll back to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
 
   <!-- Toast Notification Container -->
   <div class="toast-container" id="toast-container" aria-live="polite"></div>

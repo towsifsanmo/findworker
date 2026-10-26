@@ -415,6 +415,258 @@ document.addEventListener('DOMContentLoaded', () => {
           tags: ['Geothermal', 'Closed Loop', 'High COP']
         }
       ]
+    },
+    {
+      id: 'worker-9',
+      name: 'Kieran Vance',
+      trade: 'AI Development',
+      craftTitle: 'Principal AI Architect & LLM Engineer',
+      image: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=400&q=85',
+      badge: 'PRO',
+      badgeLabel: 'Top 1% Pro',
+      rating: 4.99,
+      reviewsCount: 284,
+      hourlyRate: 110,
+      location: 'San Francisco, CA',
+      experienceYears: 11,
+      availability: 'Available Next Week',
+      instantBooking: true,
+      language: 'English',
+      email: 'kieran@vance-ai.io',
+      phone: '+1 (555) 714-9921',
+      website: 'vance-ai.io',
+      bio: 'Enterprise agentic workflows, fine-tuned domain models, and high-throughput LLM architectures.',
+      about: 'Kieran designs resilient AI infrastructure and autonomous agentic pipelines for high-growth tech companies and research labs.',
+      skills: ['PyTorch', 'LLM Fine-Tuning', 'LangChain', 'RAG Architecture', 'Vector Databases', 'Python'],
+      certifications: ['DeepLearning.AI Fellow', 'AWS Certified Machine Learning Specialty', 'NVIDIA DLI Ambassador'],
+      guarantee: 'Deterministic Evaluation • High-Throughput SLA',
+      portfolio: [
+        { title: 'Autonomous Multi-Agent Enterprise Pipeline', category: 'AI Architecture', year: '2025', image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=900&q=85', description: 'Distributed multi-agent pipeline processing 2M financial documents daily with RAG verification.', tags: ['RAG', 'LangChain', 'Python'] }
+      ]
+    },
+    {
+      id: 'worker-10',
+      name: 'Aria Lindqvist',
+      trade: '3D & WebGL',
+      craftTitle: 'Creative Technologist & Interactive 3D Director',
+      image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=85',
+      badge: 'PRO',
+      badgeLabel: 'Top 1% Pro',
+      rating: 4.97,
+      reviewsCount: 196,
+      hourlyRate: 95,
+      location: 'Stockholm, SE',
+      experienceYears: 9,
+      availability: 'Available Today',
+      instantBooking: true,
+      language: 'Swedish & English',
+      email: 'aria@lindqvist-spatial.studio',
+      phone: '+46 (8) 492-810',
+      website: 'lindqvist-spatial.studio',
+      bio: 'Crafting performant WebGL visual experiences, kinetic spatial worlds, and custom GLSL shaders.',
+      about: 'Aria blends cinematic 3D direction with browser performance engineering to create visceral web experiences.',
+      skills: ['Three.js', 'WebGL', 'GLSL Shaders', 'Blender', 'WebGPU', 'Creative Coding'],
+      certifications: ['Awwwards Site of the Year Winner', 'FWA of the Day Judge', 'Three.js Journey Fellow'],
+      guarantee: '60fps GPU Performance • Cross-Device Support',
+      portfolio: [
+        { title: 'Kinetic Spatial Exhibition', category: 'Interactive 3D', year: '2025', image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&w=900&q=85', description: 'Browser-based 3D digital museum environment optimized for desktop and mobile Safari.', tags: ['Three.js', 'GLSL', 'Blender'] }
+      ]
+    },
+    {
+      id: 'worker-11',
+      name: 'Marcus Sterling',
+      trade: 'Fractional Leadership',
+      craftTitle: 'Fractional Chief Technology Officer (CTO)',
+      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&q=85',
+      badge: 'L3',
+      badgeLabel: 'Executive Advisor',
+      rating: 4.98,
+      reviewsCount: 162,
+      hourlyRate: 130,
+      location: 'London, UK',
+      experienceYears: 18,
+      availability: 'Available This Month',
+      instantBooking: false,
+      language: 'English',
+      email: 'marcus@sterlingadvisory.co.uk',
+      phone: '+44 20 7946 0912',
+      website: 'sterlingadvisory.co.uk',
+      bio: 'Guiding Series A-C founders on architecture, technical roadmap, security audits, and team scaling.',
+      about: 'Former Tier-1 VP of Engineering helping funded startups avoid tech debt, scale infrastructure, and pass enterprise SOC-2 audits.',
+      skills: ['Cloud Architecture', 'SOC-2 Compliance', 'DevOps Scaling', 'Engineering Leadership', 'Security', 'Kubernetes'],
+      certifications: ['AWS Solutions Architect Professional', 'CISSP Security Professional', 'Google Cloud Fellow'],
+      guarantee: 'Executive Roadmap Delivery • Direct Founder Advisory',
+      portfolio: [
+        { title: 'Global Banking Core Cloud Migration', category: 'Systems Architecture', year: '2025', image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=85', description: 'Zero-downtime microservices re-architecture servicing 14M daily transactions.', tags: ['Kubernetes', 'Cloud', 'Fintech'] }
+      ]
+    },
+    {
+      id: 'worker-12',
+      name: 'Zahra Morales',
+      trade: 'Brand Strategy',
+      craftTitle: 'Luxury Creative Director & Identity Strategist',
+      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=85',
+      badge: 'PRO',
+      badgeLabel: 'Top 1% Pro',
+      rating: 4.96,
+      reviewsCount: 215,
+      hourlyRate: 105,
+      location: 'Zurich, CH & Milan',
+      experienceYears: 14,
+      availability: 'Available Tomorrow',
+      instantBooking: true,
+      language: 'English & Italian',
+      email: 'zahra@moralesatelier.ch',
+      phone: '+41 44 219 8830',
+      website: 'moralesatelier.ch',
+      bio: 'Bespoke identity systems, editorial typography, and creative direction for high-craft luxury brands.',
+      about: 'Zahra brings Swiss typographic rigor and Italian aesthetic warmth to architectural and luxury branding.',
+      skills: ['Brand Identity', 'Art Direction', 'Typography', 'Luxury Packaging', 'Campaigns', 'Print Production'],
+      certifications: ['D&AD Yellow Pencil Winner', 'Art Directors Club Gold', 'Swiss Design Award Fellow'],
+      guarantee: 'Comprehensive Brand Architecture & Production Handoff',
+      portfolio: [
+        { title: 'Haute Horlogerie Heritage Identity', category: 'Luxury Identity', year: '2025', image: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=900&q=85', description: 'Complete brand positioning, bespoke typeface, and tactile packaging for an independent Swiss watchmaker.', tags: ['Identity', 'Typography', 'Luxury'] }
+      ]
+    },
+    {
+      id: 'worker-13',
+      name: 'Liam O\'Connor',
+      trade: 'Web Development',
+      craftTitle: 'Fullstack Rust & Next.js Performance Architect',
+      image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&q=85',
+      badge: 'PRO',
+      badgeLabel: 'Top 1% Pro',
+      rating: 4.95,
+      reviewsCount: 188,
+      hourlyRate: 90,
+      location: 'Dublin, IE & Remote',
+      experienceYears: 8,
+      availability: 'Available Today',
+      instantBooking: true,
+      language: 'English',
+      email: 'liam@oconnorengineering.dev',
+      phone: '+353 1 496 0234',
+      website: 'oconnorengineering.dev',
+      bio: 'High-throughput web applications with sub-millisecond API response times and flawless TypeScript safety.',
+      about: 'Liam specializes in web performance engineering, compiling Rust to WebAssembly for heavy client-side computations.',
+      skills: ['Rust', 'TypeScript', 'Next.js', 'WebAssembly', 'PostgreSQL', 'Tailwind'],
+      certifications: ['Rust Foundation Certified Developer', 'Vercel Certified Partner', 'Performance Web Guild Fellow'],
+      guarantee: '100 Core Web Vitals • Zero-Leak Memory Safety',
+      portfolio: [
+        { title: 'Sub-Millisecond Financial Execution Terminal', category: 'Web Performance', year: '2025', image: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=900&q=85', description: 'Next.js 15 interface coupled with WebAssembly Rust engine rendering 100k data points at 60fps.', tags: ['Rust', 'Next.js', 'Wasm'] }
+      ]
+    },
+    {
+      id: 'worker-14',
+      name: 'Camille Dupont',
+      trade: 'UI/UX Design',
+      craftTitle: 'Design Systems Architect & Principal Interaction Designer',
+      image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=85',
+      badge: 'PRO',
+      badgeLabel: 'Top 1% Pro',
+      rating: 4.98,
+      reviewsCount: 240,
+      hourlyRate: 95,
+      location: 'Paris, FR',
+      experienceYears: 10,
+      availability: 'Available Today',
+      instantBooking: true,
+      language: 'French & English',
+      email: 'camille@dupontsystems.fr',
+      phone: '+33 1 42 68 55 10',
+      website: 'dupontsystems.fr',
+      bio: 'Scalable multi-brand Figma tokens, accessible components, and micro-interaction specifications.',
+      about: 'Camille has built design systems powering products used by over 40 million global users with strict WCAG AAA compliance.',
+      skills: ['Figma Variables', 'Design Tokens', 'Micro-Interactions', 'WCAG AAA', 'User Testing', 'Prototyping'],
+      certifications: ['Certified Design Systems Leader', 'NN/g Master UX Certification', 'W3C Accessibility Specialist'],
+      guarantee: 'Production-Ready Figma Variables & Token JSON Sync',
+      portfolio: [
+        { title: 'Enterprise Global Design System', category: 'Design Systems', year: '2025', image: 'https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&w=900&q=85', description: 'Unified component library with semantic color modes, automatic dark mode, and React code sync.', tags: ['Design Tokens', 'Figma', 'System'] }
+      ]
+    },
+    {
+      id: 'worker-15',
+      name: 'Devon Brooks',
+      trade: 'Cybersecurity',
+      craftTitle: 'Smart Contract Security Auditor & Web3 Engineer',
+      image: 'https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?auto=format&fit=crop&w=400&q=85',
+      badge: 'PRO',
+      badgeLabel: 'Top 1% Pro',
+      rating: 4.99,
+      reviewsCount: 147,
+      hourlyRate: 120,
+      location: 'Austin, TX',
+      experienceYears: 12,
+      availability: 'Available Next Week',
+      instantBooking: false,
+      language: 'English',
+      email: 'devon@brooks-security.io',
+      phone: '+1 (555) 839-2041',
+      website: 'brooks-security.io',
+      bio: 'Protocol security audits, invariant fuzzing, EVM formal verification, and penetration testing.',
+      about: 'Devon has audited over $800M in on-chain assets with zero post-audit security incidents.',
+      skills: ['Solidity', 'Foundry', 'Fuzz Testing', 'Security Audits', 'EVM Mechanics', 'Zero-Knowledge'],
+      certifications: ['Certified Smart Contract Auditor', 'OSCP Penetration Tester', 'Stanford Cryptography Alum'],
+      guarantee: 'Comprehensive Vulnerability Report & Mitigation Signoff',
+      portfolio: [
+        { title: 'Decentralized Lending Protocol Security Audit', category: 'Security & Web3', year: '2025', image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=900&q=85', description: 'End-to-end formal verification and fuzzing suite identifying 4 critical economic reentrancy vectors.', tags: ['Solidity', 'Foundry', 'Audit'] }
+      ]
+    },
+    {
+      id: 'worker-16',
+      name: 'Hina Takahashi',
+      trade: 'Motion Design',
+      craftTitle: 'Sound & Sonic Brand Architect',
+      image: 'https://images.unsplash.com/photo-1525130413817-d45c1d127c42?auto=format&fit=crop&w=400&q=85',
+      badge: 'PRO',
+      badgeLabel: 'Top 1% Pro',
+      rating: 4.94,
+      reviewsCount: 172,
+      hourlyRate: 85,
+      location: 'Tokyo, JP & Remote',
+      experienceYears: 7,
+      availability: 'Available Tomorrow',
+      instantBooking: true,
+      language: 'Japanese & English',
+      email: 'hina@takahashi-sound.jp',
+      phone: '+81 3 5555 0142',
+      website: 'takahashi-sound.jp',
+      bio: 'Bespoke product sound design, interface earcons, spatial audio identity, and audio branding.',
+      about: 'Hina creates emotional sound identities that make digital interactions satisfying, intuitive, and unforgettable.',
+      skills: ['Spatial Audio', 'Dolby Atmos', 'Sonic Branding', 'Interface UI Sounds', 'Logic Pro', 'FMOD'],
+      certifications: ['AES Professional Member', 'Berklee Sound Design Specialist', 'Tokyo Audio Guild Fellow'],
+      guarantee: 'Universal Format Audio Suite & Spatial Stems',
+      portfolio: [
+        { title: 'Autonomous EV Cockpit Sonic Architecture', category: 'Sonic Identity', year: '2025', image: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=900&q=85', description: 'Complete auditory suite for electric vehicle HMI, including subtle feedback earcons and drive chimes.', tags: ['Sonic Brand', 'Spatial', 'Audio'] }
+      ]
+    },
+    {
+      id: 'worker-17',
+      name: 'Soren Lindemann',
+      trade: 'Industrial Design',
+      craftTitle: 'Hardware & Ergonomic Product Designer',
+      image: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=400&q=85',
+      badge: 'PRO',
+      badgeLabel: 'Top 1% Pro',
+      rating: 4.96,
+      reviewsCount: 154,
+      hourlyRate: 90,
+      location: 'Copenhagen, DK',
+      experienceYears: 13,
+      availability: 'Available Today',
+      instantBooking: true,
+      language: 'Danish & English',
+      email: 'soren@lindemann-design.dk',
+      phone: '+45 32 88 19 00',
+      website: 'lindemann-design.dk',
+      bio: 'Tactile physical computing, precision CNC consumer electronics, and sustainable material studies.',
+      about: 'Soren combines Nordic minimalism with DFM (Design for Manufacturing) expertise to ship physical hardware people love holding.',
+      skills: ['CNC Aluminum', 'Industrial Design', 'SolidWorks', 'Ergonomics', 'DFM', 'Prototyping'],
+      certifications: ['Red Dot Best of the Best', 'iF Gold Design Award', 'Danish Design Council Fellow'],
+      guarantee: 'DFM-Verified STEP Files & Factory Tooling Ready',
+      portfolio: [
+        { title: 'Minimalist CNC Aluminum Computing Terminal', category: 'Product Design', year: '2025', image: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=900&q=85', description: 'Monolithic bead-blasted 6063 aluminum desktop mechanical interface with gasket acoustic mount.', tags: ['CNC', 'Hardware', 'Industrial'] }
+      ]
     }
   ];
 
@@ -557,7 +809,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   ];
 
-  defaultWorkersData.forEach((worker, index) => Object.assign(worker, digitalWorkerProfiles[index]));
+  defaultWorkersData.forEach((worker, index) => {
+    if (digitalWorkerProfiles[index]) Object.assign(worker, digitalWorkerProfiles[index]);
+  });
 
   // Load any user-created profiles from localStorage
   const savedCustomProfiles = JSON.parse(localStorage.getItem('findworker_custom_profiles') || '[]');
@@ -763,19 +1017,30 @@ document.addEventListener('DOMContentLoaded', () => {
   // Render Top Freelancers & Curated Talent Spotlight Grids (Home View)
   // =========================================================================
   function renderHomeCarousels() {
-    // Top Freelancers (4 items starting at topCarouselOffset)
+    // Top Elite Freelancers (Curated Top 1% by rating, 4 items starting at topCarouselOffset)
     if (topFreelancersContainer) {
+      const topTierWorkers = [...workersData].sort((a, b) => b.rating - a.rating);
       const topWorkers = [];
       for (let i = 0; i < 4; i++) {
-        topWorkers.push(workersData[(topCarouselOffset + i) % workersData.length]);
+        topWorkers.push(topTierWorkers[(topCarouselOffset + i) % topTierWorkers.length]);
       }
-      topFreelancersContainer.innerHTML = topWorkers.map(w => renderGridCardHtml(w)).join('');
+      topFreelancersContainer.innerHTML = topWorkers.map((w, idx) => renderGridCardHtml(w, (topCarouselOffset + idx) % topTierWorkers.length + 1)).join('');
+
+      // Update Top Cohort Tracker
+      const topTrackerCurrent = document.getElementById('top-tracker-current');
+      const topTrackerTotal = document.getElementById('top-tracker-total');
+      if (topTrackerCurrent && topTrackerTotal) {
+        const totalCohorts = Math.ceil(topTierWorkers.length / 4);
+        const currentCohort = Math.floor(topCarouselOffset / 4) + 1;
+        topTrackerCurrent.textContent = String(currentCohort).padStart(2, '0');
+        topTrackerTotal.textContent = String(totalCohorts).padStart(2, '0');
+      }
     }
 
-    // Curated Talent Spotlight (#specializations - 4 items starting at specCarouselOffset)
+    // Curated Talent Spotlight (#specializations - 8 items starting at specCarouselOffset)
     if (specializationsContainer) {
       const specWorkers = [];
-      for (let i = 0; i < 4; i++) {
+      for (let i = 0; i < 8; i++) {
         specWorkers.push(workersData[(specCarouselOffset + i) % workersData.length]);
       }
       specializationsContainer.innerHTML = specWorkers.map(w => renderSpotlightCardHtml(w)).join('');
@@ -784,8 +1049,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const trackerCurrent = document.getElementById('spec-tracker-current');
       const trackerTotal = document.getElementById('spec-tracker-total');
       if (trackerCurrent && trackerTotal) {
-        const totalCohorts = Math.ceil(workersData.length / 4);
-        const currentCohort = Math.floor(specCarouselOffset / 4) + 1;
+        const totalCohorts = Math.ceil(workersData.length / 8);
+        const currentCohort = Math.floor(specCarouselOffset / 8) + 1;
         trackerCurrent.textContent = String(currentCohort).padStart(2, '0');
         trackerTotal.textContent = String(totalCohorts).padStart(2, '0');
       }
@@ -815,9 +1080,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
               </svg>
             </button>
-          </div>
-          <div class="spotlight-cover-bottom">
-            
           </div>
         </div>
 
@@ -857,82 +1119,114 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
   }
 
-  // Top Freelancers Card Design (Clean, Visual-First & Premium)
-  function renderGridCardHtml(w) {
+  // Top Freelancers Card Design (Meet the Independents - Standout VIP Elite Showcase)
+  function renderGridCardHtml(w, rank) {
     const isSaved = savedWorkerIds.includes(w.id);
     const featuredProject = w.portfolio && w.portfolio[0] ? w.portfolio[0] : {
-      title: 'Selected Project',
+      title: 'Flagship Digital Architecture',
       category: w.trade,
       image: w.image
     };
+    
 
     return `
-      <div class="freelancer-grid-card" data-id="${w.id}">
-        <!-- Work Thumbnail -->
-        <div class="card-project-preview">
-          <img src="${featuredProject.image}" alt="${featuredProject.title}" loading="lazy">
-          <div class="card-preview-top">
-            <span class="card-cat-badge">${featuredProject.category || w.trade}</span>
-            <button class="bookmark-heart-btn ${isSaved ? 'active' : ''}" data-id="${w.id}" title="${isSaved ? 'Saved to shortlist' : 'Save freelancer'}" aria-label="Save ${w.name}">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="${isSaved ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2.2">
-                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
-              </svg>
-            </button>
+      <article class="vip-independents-card" data-id="${w.id}">
+        <!-- Top Prismatic Foil Accent -->
+        
+
+        <!-- Media Stage / Project Preview Aperture -->
+        <div class="vip-card-media-stage">
+          <img src="${featuredProject.image}" alt="${featuredProject.title}" class="vip-card-image" loading="lazy">
+          <div class="vip-card-media-scrim" aria-hidden="true"></div>
+
+          <!-- Top Floating Crests -->
+          <div class="vip-card-badge-row">
+            <div class="vip-card-crests-group">
+              
+              <span class="vip-card-hallmark">★ TOP RATED</span>
+              
+            </div>
+        
+          </div>
+
+         
+        </div>
+
+        <!-- Creator Profile Deck -->
+        <div class="vip-card-profile-deck">
+          <div class="vip-card-avatar-stage">
+            <img src="${w.image}" alt="${w.name}" class="vip-card-avatar-img" loading="lazy">
+            <span class="vip-card-live-dot" title="Available for direct engagement"></span>
+          </div>
+          <div class="vip-card-identity-block">
+            <div class="vip-card-name-line">
+              <h3 class="vip-card-name">${w.name}</h3>
+              <span class="vip-card-verified-icon" title="Verified Independent Pro">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="#10B981">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+              </span>
+            </div>
+            <span class="vip-card-role-title">${w.craftTitle || w.trade}</span>
+          </div>
+          <div class="vip-card-rating-capsule">
+            <span class="star-icon">★</span>
+            <span class="rating-val">${w.rating}</span>
           </div>
         </div>
 
-        <!-- Creator Row -->
-        <div class="card-creator-row">
-          <div class="avatar-round-frame">
-            <img src="${w.image}" alt="${w.name}" loading="lazy">
-            <span class="online-indicator-dot" title="Available"></span>
+        <!-- Signature Skills & Performance Ribbon -->
+        <div class="vip-card-spec-highlight">
+          <div class="vip-card-skills-row">
+            ${w.skills.slice(0, 2).map(s => `<span class="vip-card-skill-tag">${s}</span>`).join('')}
           </div>
-          <div class="card-creator-info">
-            <h4 class="card-worker-name">${w.name}</h4>
-            <span class="card-worker-craft">${w.craftTitle || w.trade}</span>
-          </div>
-          <div class="card-rating-badge">
-            <span class="star-gold">★</span>
-            <span class="rating-num">${w.rating}</span>
-          </div>
+          <span class="vip-card-status-badge">
+            <span class="badge-bolt">⚡</span> 100% Success
+          </span>
         </div>
 
-        <!-- Skills -->
-        <div class="card-skills-row">
-          ${w.skills.slice(0, 2).map(s => `<span class="skill-chip">${s}</span>`).join('')}
-        </div>
-
-        <!-- Rate & Action Footer -->
-        <div class="card-bottom-footer">
-          <div class="card-rate-wrap">
-            <span class="card-rate-val">$${w.hourlyRate}</span>
-            <span class="rate-per-hr">/hr</span>
+        <!-- Action & Rate Bottom Dock -->
+        <div class="vip-card-bottom-dock">
+          <div class="vip-card-rate-group">
+            <div class="vip-card-rate-main">
+              <span class="vip-card-rate-amount">$${w.hourlyRate}</span>
+              <span class="vip-card-rate-period">/hr</span>
+            </div>
+            <span class="vip-card-rate-note">Direct • 0% Cut</span>
           </div>
-          <button class="btn btn-primary btn-sm card-profile-btn" data-id="${w.id}">
+          <button class="btn btn-primary btn-sm vip-card-action-btn card-profile-btn" data-id="${w.id}">
             <span>View Profile</span>
-            <span class="arrow-up-right">→</span>
+            <span class="vip-btn-arrow">→</span>
           </button>
         </div>
-      </div>
+      </article>
     `;
   }
 
   // Carousel Next / Prev Click Handlers
   if (topCarouselNext) {
     topCarouselNext.addEventListener('click', () => {
-      topCarouselOffset = (topCarouselOffset + 2) % workersData.length;
+      topCarouselOffset = (topCarouselOffset + 4) % workersData.length;
+      if (topFreelancersContainer) {
+        topFreelancersContainer.classList.add('carousel-sliding');
+        setTimeout(() => topFreelancersContainer.classList.remove('carousel-sliding'), 380);
+      }
       renderHomeCarousels();
     });
   }
   if (topCarouselPrev) {
     topCarouselPrev.addEventListener('click', () => {
-      topCarouselOffset = (topCarouselOffset - 2 + workersData.length) % workersData.length;
+      topCarouselOffset = (topCarouselOffset - 4 + workersData.length) % workersData.length;
+      if (topFreelancersContainer) {
+        topFreelancersContainer.classList.add('carousel-sliding');
+        setTimeout(() => topFreelancersContainer.classList.remove('carousel-sliding'), 380);
+      }
       renderHomeCarousels();
     });
   }
   if (specCarouselNext) {
     specCarouselNext.addEventListener('click', () => {
-      specCarouselOffset = (specCarouselOffset + 4) % workersData.length;
+      specCarouselOffset = (specCarouselOffset + 8) % workersData.length;
       if (specializationsContainer) {
         specializationsContainer.classList.add('carousel-sliding');
         setTimeout(() => specializationsContainer.classList.remove('carousel-sliding'), 380);
@@ -942,7 +1236,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   if (specCarouselPrev) {
     specCarouselPrev.addEventListener('click', () => {
-      specCarouselOffset = (specCarouselOffset - 4 + workersData.length) % workersData.length;
+      specCarouselOffset = (specCarouselOffset - 8 + workersData.length) % workersData.length;
       if (specializationsContainer) {
         specializationsContainer.classList.add('carousel-sliding');
         setTimeout(() => specializationsContainer.classList.remove('carousel-sliding'), 380);
@@ -1215,7 +1509,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Card whole-card click trigger for instant profile discovery
-    document.querySelectorAll('.spotlight-talent-card, .freelancer-grid-card').forEach(card => {
+    document.querySelectorAll('.spotlight-talent-card, .freelancer-grid-card, .vip-independents-card').forEach(card => {
       card.onclick = (e) => {
         if (e.target.closest('.bookmark-heart-btn')) return;
         openBookingModal(card.dataset.id);

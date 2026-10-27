@@ -1990,6 +1990,10 @@ document.addEventListener('DOMContentLoaded', () => {
       cb.checked = false;
     });
 
+    document.querySelectorAll('.minimal-tag-pill').forEach(pill => {
+      pill.classList.toggle('active', pill.dataset.filter === 'all');
+    });
+
     renderDirectory();
     showToast('Filters cleared');
   }
@@ -2121,6 +2125,46 @@ document.addEventListener('DOMContentLoaded', () => {
         showToast(`Filtered by ${trade}`);
       }
     });
+  });
+
+  // =========================================================================
+  // Freelancers Directory Minimal Hero Handlers
+  // =========================================================================
+  // Quick Discipline Tag Pills
+  document.querySelectorAll('.minimal-tag-pill').forEach(pill => {
+    pill.addEventListener('click', () => {
+      document.querySelectorAll('.minimal-tag-pill').forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+
+      const filterVal = pill.dataset.filter;
+      if (filterVal === 'all') {
+        selectedCategories = [];
+        document.querySelectorAll('input[data-filter-group="category"]').forEach(cb => {
+          cb.checked = false;
+        });
+      } else {
+        selectedCategories = [filterVal];
+        document.querySelectorAll('input[data-filter-group="category"]').forEach(cb => {
+          cb.checked = (cb.value === filterVal);
+        });
+      }
+      currentPage = 1;
+      renderDirectory();
+    });
+  });
+
+  // Omnibar keyboard shortcut: press "/" anywhere to focus search
+  document.addEventListener('keydown', (e) => {
+    if (e.key === '/' && !['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) {
+      if (currentView === 'freelancers' || window.location.hash === '#freelancers') {
+        const searchInput = document.getElementById('directory-search-input');
+        if (searchInput) {
+          e.preventDefault();
+          searchInput.focus();
+          searchInput.select();
+        }
+      }
+    }
   });
 
   // =========================================================================

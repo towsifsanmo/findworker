@@ -1369,12 +1369,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       return `
         <article class="freelancer-row-card" data-id="${w.id}">
-          <button class="bookmark-heart-btn ${isSaved ? 'active' : ''}" data-id="${w.id}" title="${isSaved ? 'Saved to shortlist' : 'Save freelancer'}" aria-label="Save ${w.name}">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="${isSaved ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2.2">
-              <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
-            </svg>
-          </button>
-
           <div class="freelancer-project-thumb">
             <img src="${w.portfolio && w.portfolio[0] ? w.portfolio[0].image : w.image}" alt="${w.portfolio && w.portfolio[0] ? w.portfolio[0].title : `${w.name} selected work`}" loading="lazy">
           </div>
@@ -1418,9 +1412,17 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
 
           <div class="freelancer-action-col">
-            <div class="freelancer-hourly-rate">
-              <div class="rate-number">$${w.hourlyRate}</div>
-              <div class="rate-label">USD / hour</div>
+            <div class="freelancer-action-top">
+              <div class="freelancer-hourly-rate">
+                <div class="rate-number">$${w.hourlyRate}</div>
+                <div class="rate-label">USD / hour</div>
+              </div>
+
+              <button class="bookmark-heart-btn ${isSaved ? 'active' : ''}" data-id="${w.id}" title="${isSaved ? 'Saved to shortlist' : 'Save freelancer'}" aria-label="Save ${w.name}">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="${isSaved ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2.2">
+                  <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                </svg>
+              </button>
             </div>
 
             <button class="btn btn-primary btn-sm card-profile-btn" data-id="${w.id}">

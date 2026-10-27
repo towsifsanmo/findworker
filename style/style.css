@@ -2017,7 +2017,7 @@ img {
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 8px;
-  padding-right: 40px;
+  padding-right: 0;
 }
 
 .freelancer-name-title {
@@ -2099,53 +2099,85 @@ img {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: flex-end;
-  min-width: 160px;
+  align-items: stretch;
+  min-width: 195px;
   border-left: 1px solid var(--color-border);
   padding-left: 20px;
+  gap: 14px;
+}
+
+.freelancer-action-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+}
+
+.freelancer-hourly-rate {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
 }
 
 .rate-number {
   font-family: var(--font-display);
-  font-size: 1.65rem;
+  font-size: 1.6rem;
   font-weight: 800;
-  color: var(--color-secondary);
+  color: var(--color-primary);
   line-height: 1;
+  letter-spacing: -0.02em;
 }
 
 .rate-label {
-  font-size: 0.74rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   color: var(--color-secondary-muted);
+  margin-top: 4px;
+  line-height: 1;
 }
 
 .bookmark-heart-btn {
-  position: absolute;
-  top: 18px;
-  right: 18px;
   width: 36px;
   height: 36px;
   border-radius: 50%;
   border: 1px solid var(--color-border);
   background-color: var(--color-background-pure);
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   color: var(--color-secondary-muted);
   cursor: pointer;
   transition: all var(--transition-fast);
   box-shadow: var(--shadow-xs);
+  flex-shrink: 0;
 }
 
 .bookmark-heart-btn:hover {
   color: var(--color-primary);
   border-color: var(--color-primary);
-  transform: scale(1.1);
+  background-color: rgba(214, 68, 30, 0.06);
+  transform: scale(1.08);
+  box-shadow: 0 4px 12px rgba(214, 68, 30, 0.15);
 }
 
 .bookmark-heart-btn.active {
   background-color: var(--color-primary);
   color: #FFFFFF;
   border-color: var(--color-primary);
+  box-shadow: 0 4px 12px rgba(214, 68, 30, 0.25);
+}
+
+.freelancer-row-card .card-profile-btn {
+  width: 100%;
+  justify-content: center;
+  padding: 10px 14px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
 }
 
 /* Empty State Box */
@@ -3169,6 +3201,14 @@ img {
     width: 100%;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .freelancer-action-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-width: 0;
   }
   .categories-7col-grid {
     grid-template-columns: 1fr;
@@ -5123,17 +5163,42 @@ h6,
 }
 
 .freelancer-action-col {
-  min-width: 126px;
-  padding-left: 14px;
+  min-width: 195px;
+  padding-left: 18px;
+  gap: 14px;
 }
 
-.freelancer-action-col .btn {
-  padding: 8px 10px;
-  font-size: 0.74rem;
+.freelancer-action-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+}
+
+.freelancer-hourly-rate {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
 }
 
 .rate-number {
-  font-size: 1.35rem;
+  font-size: 1.55rem;
+  line-height: 1;
+}
+
+.rate-label {
+  font-size: 0.72rem;
+  margin-top: 4px;
+}
+
+.freelancer-action-col .card-profile-btn {
+  padding: 9px 12px;
+  font-size: 0.78rem;
+  width: 100%;
+  justify-content: center;
+  white-space: nowrap;
 }
 
 .modal-overlay {
@@ -5532,18 +5597,29 @@ textarea:focus-visible {
 
   .freelancer-action-col {
     grid-column: 1 / -1;
-    width: auto;
+    width: 100%;
     min-width: 0;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
     gap: 12px;
     border-top: 1px solid var(--color-border);
     border-left: 0;
     padding: 12px 0 0;
   }
 
+  .freelancer-action-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+  }
+
   .freelancer-action-col .btn {
     margin-left: auto;
+    width: auto;
+    padding: 8px 12px;
+    font-size: 0.75rem;
   }
 
   .profile-hero-header {
@@ -8018,7 +8094,9 @@ textarea:focus-visible {
    -------------------------------------------------------------------------- */
 .fiverr-hero-layout {
   position: relative;
-  background: radial-gradient(ellipse 95% 75% at 50% -10%, #0D3528 0%, #071E17 55%, #051611 100%);
+  /* background: radial-gradient(ellipse 95% 75% at 50% -10%, #0D3528 0%, #071E17 55%, #051611 100%); */
+  /* background:#047857; */
+  background: #123A2C;
   color: #FFFFFF;
   min-height: 80vh;
   display: flex;

@@ -620,9 +620,10 @@
           </div>
 
           <div class="blog-grid">
-            <article class="blog-card">
+            <article class="blog-card" data-article-id="article-1" role="button" tabindex="0" aria-label="Read story: A portfolio is more than a grid of finished work">
               <div class="blog-img-box">
                 <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="Digital product design on a laptop">
+                <span class="blog-img-overlay-badge">Read Story ↗</span>
               </div>
               <div class="blog-body">
                 <div class="blog-meta-line">
@@ -631,12 +632,16 @@
                 </div>
                 <h3 class="blog-title">A portfolio is more than a grid of finished work</h3>
                 <p class="blog-snippet">Show the decisions, experiments, and architectural details that made the final build matter.</p>
+                <div class="blog-card-footer">
+                  <span class="blog-card-read-link">Read Story <span class="card-arrow">→</span></span>
+                </div>
               </div>
             </article>
 
-            <article class="blog-card">
+            <article class="blog-card" data-article-id="article-2" role="button" tabindex="0" aria-label="Read story: The quiet confidence of a clear point of view">
               <div class="blog-img-box">
                 <img src="https://images.unsplash.com/photo-1559028006-448665bd7c7f?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="A digital product interface in progress">
+                <span class="blog-img-overlay-badge">Read Story ↗</span>
               </div>
               <div class="blog-body">
                 <div class="blog-meta-line">
@@ -645,12 +650,16 @@
                 </div>
                 <h3 class="blog-title">The quiet confidence of a clear point of view</h3>
                 <p class="blog-snippet">How independent creators make their practice recognizable without shouting or discounting.</p>
+                <div class="blog-card-footer">
+                  <span class="blog-card-read-link">Read Story <span class="card-arrow">→</span></span>
+                </div>
               </div>
             </article>
 
-            <article class="blog-card">
+            <article class="blog-card" data-article-id="article-3" role="button" tabindex="0" aria-label="Read story: Finding the right people, not just the right keywords">
               <div class="blog-img-box">
                 <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="Notes for a digital writing project">
+                <span class="blog-img-overlay-badge">Read Story ↗</span>
               </div>
               <div class="blog-body">
                 <div class="blog-meta-line">
@@ -659,6 +668,9 @@
                 </div>
                 <h3 class="blog-title">Finding the right people, not just the right keywords</h3>
                 <p class="blog-snippet">Why a portfolio-first directory makes client-talent discovery more human and trustworthy.</p>
+                <div class="blog-card-footer">
+                  <span class="blog-card-read-link">Read Story <span class="card-arrow">→</span></span>
+                </div>
               </div>
             </article>
           </div>
@@ -1028,6 +1040,303 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <!-- =========================================================================
+         VIEW 3: DEDICATED DYNAMIC BLOG ARTICLE DETAILS VIEW (#blog-details-view)
+         ========================================================================= -->
+    <div id="blog-details-view" class="view-panel view-hidden">
+      <!-- Top Reading Progress Indicator -->
+      <div class="reading-progress-track" aria-hidden="true">
+        <div id="reading-progress-bar" class="reading-progress-fill"></div>
+      </div>
+
+      <!-- Sticky Top Reader Toolbar -->
+      <header class="reader-floating-toolbar" id="reader-toolbar">
+        <div class="container reader-toolbar-inner">
+          <div class="reader-toolbar-left">
+            <button type="button" class="editorial-back-btn" id="article-back-nav" aria-label="Back to all articles">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+              </svg>
+              <span>Back to Stories</span>
+            </button>
+            <div class="toolbar-divider"></div>
+            <span class="toolbar-pill-category" id="toolbar-category-label">DESIGN</span>
+            <span class="toolbar-read-estimate" id="toolbar-read-time">5 min read</span>
+          </div>
+
+          <div class="reader-toolbar-right">
+            <!-- Font Size Adjuster -->
+            <div class="reader-tool-group font-sizer-dropdown">
+              <button type="button" class="reader-icon-btn" id="article-font-toggle" title="Cycle font size (Default / Large / Compact)" aria-label="Toggle reader font size">
+                <span class="font-icon-label">Aa</span>
+              </button>
+            </div>
+
+            <!-- Bookmark Button -->
+            <button type="button" class="reader-icon-btn" id="article-bookmark-btn" title="Save to Reading List" aria-label="Save to reading list">
+              <svg class="bookmark-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+              </svg>
+            </button>
+
+            <!-- Share Button -->
+            <button type="button" class="reader-icon-btn" id="article-share-btn" title="Copy story link" aria-label="Share article">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="18" cy="5" r="3"></circle>
+                <circle cx="6" cy="12" r="3"></circle>
+                <circle cx="18" cy="19" r="3"></circle>
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+              </svg>
+            </button>
+
+            <!-- Clap Counter Micro-Action -->
+            <button type="button" class="reader-clap-pill" id="article-clap-btn" title="Applaud this article" aria-label="Clap for article">
+              <span class="clap-icon-wrap">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M7 11v 8a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1v-7a1 1 0 0 1 1 -1h3a4 4 0 0 0 4 -4v-1a2 2 0 0 1 4 0v5h3a2 2 0 0 1 2 2l-1 5a2 3 0 0 1 -2 2h-7a3 3 0 0 1 -3 -3"></path>
+                </svg>
+              </span>
+              <span class="clap-count" id="article-clap-count">142</span>
+              <span class="clap-particle" id="clap-particle">+1</span>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Article Editorial Container -->
+      <article class="editorial-article-container" id="editorial-article-root">
+        <!-- Hero Header -->
+        <header class="editorial-header">
+          <div class="container container-reading-header">
+            <div class="editorial-breadcrumbs">
+              <a href="#home" class="editorial-crumb-link">Home</a>
+              <span class="editorial-crumb-sep">/</span>
+              <a href="#blog" class="editorial-crumb-link">Field Notes</a>
+              <span class="editorial-crumb-sep">/</span>
+              <span class="editorial-crumb-current" id="article-crumb-title">Article</span>
+            </div>
+
+            <div class="editorial-meta-top">
+              <span class="editorial-category-badge" id="article-category-badge">DESIGN</span>
+              <span class="editorial-date-pill" id="article-date">October 24, 2026</span>
+              <span class="editorial-read-pill" id="article-read-pill">5 min read</span>
+            </div>
+
+            <h1 class="editorial-display-title" id="article-main-title">
+              A portfolio is more than a grid of finished work
+            </h1>
+
+            <p class="editorial-standfirst" id="article-standfirst">
+              Show the decisions, experiments, and architectural trade-offs that made the final build matter. How senior independent makers turn static case studies into irresistible client conversations.
+            </p>
+
+            <!-- Author Byline Bar with Direct Hire Action -->
+            <div class="editorial-byline-card">
+              <div class="byline-author-info">
+                <div class="byline-avatar-wrap">
+                  <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&amp;fit=crop&amp;w=400&amp;q=85" alt="Author avatar" id="article-author-avatar" class="byline-avatar">
+                  <span class="byline-verified-badge" title="Verified Independent Creator">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                  </span>
+                </div>
+                <div class="byline-text">
+                  <div class="byline-name-row">
+                    <span class="byline-author-name" id="article-author-name">Maya Chen</span>
+                    <span class="byline-author-rate" id="article-author-rate">$110/hr</span>
+                  </div>
+                  <div class="byline-meta-row">
+                    <span class="byline-author-role" id="article-author-role">Product Designer &amp; Design Systems</span>
+                    <span class="byline-dot">•</span>
+                    <span class="byline-author-location" id="article-author-location">San Francisco, CA</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="byline-action-wrap">
+                <button type="button" class="btn btn-primary btn-sm byline-hire-btn" id="article-author-hire-btn">
+                  <span id="article-author-hire-btn-text">Work with Maya</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <!-- Featured Media Hero with Caption -->
+        <div class="container container-reading-media">
+          <figure class="editorial-featured-media">
+            <div class="featured-img-frame">
+              <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&amp;fit=crop&amp;w=1400&amp;q=85" alt="Featured Article Hero" id="article-featured-image">
+            </div>
+            <figcaption class="featured-img-caption" id="article-media-caption">
+              Exploratory design tokens and typography hierarchy during the redesign of an enterprise design system.
+            </figcaption>
+          </figure>
+        </div>
+
+        <!-- Two Column Editorial Layout (Sticky TOC + Prose Column) -->
+        <div class="container container-reading-body">
+          <div class="editorial-reader-grid">
+            <!-- Sidebar: Sticky Table of Contents & Quick Facts -->
+            <aside class="editorial-sidebar">
+              <div class="sticky-sidebar-wrapper">
+                <div class="toc-card">
+                  <div class="toc-header">
+                    <span class="toc-icon">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="8" y1="6" x2="21" y2="6"></line>
+                        <line x1="8" y1="12" x2="21" y2="12"></line>
+                        <line x1="8" y1="18" x2="21" y2="18"></line>
+                        <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                        <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                        <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                      </svg>
+                    </span>
+                    <span class="toc-title">Table of Contents</span>
+                  </div>
+                  <nav class="toc-list" id="article-toc" aria-label="Table of contents">
+                    <!-- Populated dynamically -->
+                  </nav>
+                </div>
+
+                <div class="story-stats-card">
+                  <div class="story-stat-item">
+                    <span class="stat-label">Published In</span>
+                    <span class="stat-val" id="stat-category">Field Notes</span>
+                  </div>
+                  <div class="story-stat-item">
+                    <span class="stat-label">Reading Time</span>
+                    <span class="stat-val" id="stat-read-time">5 minutes</span>
+                  </div>
+                  <div class="story-stat-item">
+                    <span class="stat-label">Talent Index</span>
+                    <span class="stat-val">Verified Creator</span>
+                  </div>
+                  <div class="story-stat-item">
+                    <span class="stat-label">Direct Commission</span>
+                    <span class="stat-val" style="color: var(--color-forest);">0% Platform Fee</span>
+                  </div>
+                </div>
+
+                <!-- Quick Share Links -->
+                <div class="sidebar-share-card">
+                  <span class="share-card-title">Share Article</span>
+                  <div class="sidebar-share-buttons">
+                    <button type="button" class="sidebar-share-pill" id="share-copy-link-btn" title="Copy Link">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                      <span>Copy link</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </aside>
+
+            <!-- Main Prose Reading Column -->
+            <main class="editorial-prose-column" id="editorial-prose-container">
+              <div class="editorial-prose" id="article-prose-content">
+                <!-- Rich prose populated dynamically -->
+              </div>
+
+              <!-- Tags Cloud -->
+              <div class="editorial-tags-section">
+                <span class="tags-label">Topics:</span>
+                <div class="tags-cloud" id="article-tags-cloud">
+                  <!-- Injected dynamically -->
+                </div>
+              </div>
+
+              <!-- Bottom Interactive Reaction & Clap Area -->
+              <div class="editorial-applaud-banner">
+                <div class="applaud-left">
+                  <h4 class="applaud-heading">Enjoyed this field note?</h4>
+                  <p class="applaud-sub">Clap for the author or share it with your creative team.</p>
+                </div>
+                <div class="applaud-right">
+                  <button type="button" class="applaud-big-btn" id="article-bottom-clap-btn">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M7 11v 8a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1v-7a1 1 0 0 1 1 -1h3a4 4 0 0 0 4 -4v-1a2 2 0 0 1 4 0v5h3a2 2 0 0 1 2 2l-1 5a2 3 0 0 1 -2 2h-7a3 3 0 0 1 -3 -3"></path>
+                    </svg>
+                    <span class="applaud-btn-text">Clap</span>
+                    <span class="applaud-btn-count" id="article-bottom-clap-count">142</span>
+                  </button>
+                  <button type="button" class="btn btn-outline btn-sm" id="article-bottom-share-btn">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+                    <span>Share</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Author Spotlight Bio Card -->
+              <section class="editorial-author-bio-card" id="article-author-bio-card">
+                <div class="author-bio-avatar-col">
+                  <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&amp;fit=crop&amp;w=400&amp;q=85" alt="Maya Chen" class="author-bio-avatar" id="author-bio-avatar">
+                </div>
+                <div class="author-bio-content-col">
+                  <div class="author-bio-header">
+                    <div>
+                      <span class="author-bio-kicker">WRITTEN BY INDEPENDENT CREATOR</span>
+                      <h3 class="author-bio-name" id="author-bio-name">Maya Chen</h3>
+                      <div class="author-bio-role" id="author-bio-role">Staff Product Designer &amp; Design Systems</div>
+                    </div>
+                    <div class="author-bio-rate-badge">
+                      <span class="rate-amount" id="author-bio-rate">$110</span>
+                      <span class="rate-unit">/hr</span>
+                    </div>
+                  </div>
+                  <p class="author-bio-desc" id="author-bio-desc">
+                    Maya is a senior product designer with over 9 years designing enterprise SaaS, design tokens, and high-frequency workflow interfaces.
+                  </p>
+                  <div class="author-bio-meta-row">
+                    <span class="bio-pill-stat" id="author-bio-location">📍 San Francisco, CA</span>
+                    <span class="bio-pill-stat" id="author-bio-rating">★ 4.98 (184 reviews)</span>
+                    <span class="bio-pill-stat" id="author-bio-guarantee">✓ Verified Independent</span>
+                  </div>
+                  <div class="author-bio-actions">
+                    <button type="button" class="btn btn-primary btn-sm" id="author-bio-hire-btn">
+                      <span id="author-bio-hire-btn-text">View Full Profile &amp; Hire</span>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </button>
+                    <a href="#freelancers" class="btn btn-outline btn-sm go-to-directory-link">Browse All Talent</a>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Previous / Next Story Navigation -->
+              <nav class="editorial-story-nav" id="article-story-nav" aria-label="Story navigation">
+                <!-- Injected dynamically -->
+              </nav>
+            </main>
+          </div>
+        </div>
+
+        <!-- Related Stories Strip: "More from Field Notes" -->
+        <section class="editorial-related-section">
+          <div class="container">
+            <div class="related-section-header">
+              <div>
+                <span class="badge badge-primary" style="font-size: 0.72rem; padding: 2px 8px;">CONTINUE EXPLORING</span>
+                <h2 class="related-section-title">More perspectives from Field Notes</h2>
+              </div>
+              <a href="#blog" class="btn btn-outline btn-sm" id="related-view-all-btn">
+                All Stories →
+              </a>
+            </div>
+
+            <div class="related-articles-grid" id="related-articles-grid">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+        </section>
+      </article>
     </div>
   </main>
 

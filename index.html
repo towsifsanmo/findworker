@@ -65,8 +65,9 @@
          
 
         
+
           <!-- Jewel-Cut Master Profile CTA -->
-          <button type="button" class="btn btn-primary btn-sm nav-signup-btn" id="header-signup-btn">
+          <button type="button" class="btn btn-primary btn-sm nav-signup-btn" id="header-login-btn">
             <span>Sign In</span>
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <line x1="7" y1="17" x2="17" y2="7"></line>
@@ -102,8 +103,8 @@
         <a href="#blog" class="mobile-nav-link">Field Notes &amp; Journal</a>
         <a href="#why-outlier" class="mobile-nav-link">Why FindWorker</a>
         <div class="mobile-nav-actions">
-          <button type="button" class="btn btn-outline" style="width: 100%;" onclick="document.getElementById('header-login-btn').click()">Sign In to Workspace</button>
-          <button type="button" class="btn btn-primary" style="width: 100%;" onclick="document.getElementById('header-signup-btn').click()">Apply as Independent Master ↗</button>
+          <button type="button" class="btn btn-outline" id="mobile-login-btn" style="width: 100%;">Sign In to Workspace</button>
+          <button type="button" class="btn btn-primary" id="mobile-signup-btn" style="width: 100%;">Create Account &amp; Sign Up ↗</button>
         </div>
       </div>
     </div>
@@ -1315,6 +1316,205 @@
         </section>
       </article>
     </div>
+
+    <!-- =========================================================================
+         VIEW 4: DEDICATED SIGN IN VIEW (#signin-view)
+         Full-page authentication portal with direct link to sign up
+         ========================================================================= -->
+    <div id="signin-view" class="view-panel view-hidden">
+      <section class="auth-page-section">
+        <div class="auth-page-backdrop" aria-hidden="true">
+          <div class="auth-ambient-orb"></div>
+          <div class="auth-grid-mesh"></div>
+        </div>
+
+        <div class="container auth-page-container">
+          <!-- Top Return Breadcrumb -->
+          <div class="auth-breadcrumb-bar">
+            <a href="#home" class="auth-back-link" id="signin-back-home-link">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+              <span>Return to Directory</span>
+            </a>
+            <span class="auth-ledger-code">SECURE ACCESS // PORTAL 01</span>
+          </div>
+
+          <!-- Sculptural Auth Monolith Card -->
+          <div class="auth-card-monolith">
+            <div class="auth-card-header">
+              <div class="auth-emblem-badge">
+                <span class="hero-pulse-dot"></span>
+                <span class="auth-emblem-text">FREELANCER ACCESS</span>
+              </div>
+              <h1 class="auth-monument-title">
+                Freelancer <span class="auth-title-accent">Sign In.</span>
+              </h1>
+              <p class="auth-subtitle">
+                Access your artisan portfolio dossier, direct commission inquiries, and verified workspace.
+              </p>
+            </div>
+
+            <!-- Sign In Form -->
+            <form id="dedicated-signin-form" class="auth-form-engine">
+              <div class="form-group">
+                <label class="form-label" for="dedicated-signin-email">
+                  <span>Freelancer Workstation Email</span>
+                </label>
+                <div class="auth-input-wrapper">
+                  <input type="email" id="dedicated-signin-email" class="form-input auth-styled-input" placeholder="specialist@domain.com" required autocomplete="email">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="auth-label-flex">
+                  <label class="form-label" for="dedicated-signin-password">Password</label>
+                  <a href="#forgot" class="auth-forgot-link" id="auth-forgot-trigger">Forgot code?</a>
+                </div>
+                <div class="auth-input-wrapper">
+                  <input type="password" id="dedicated-signin-password" class="form-input auth-styled-input" placeholder="••••••••••••" required autocomplete="current-password">
+                </div>
+              </div>
+
+              <div class="auth-meta-row">
+                <label class="auth-checkbox-label">
+                  <input type="checkbox" id="signin-remember" checked>
+                  <span class="auth-checkbox-custom"></span>
+                  <span class="auth-checkbox-text">Keep this workstation session verified</span>
+                </label>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-lg auth-submit-btn" id="dedicated-signin-submit">
+                <span>Sign In as Freelancer</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </button>
+            </form>
+
+            <!-- Bottom Link to Sign Up Page (As specifically required by user) -->
+            <div class="auth-card-footer-strip">
+              <div class="auth-switch-prompt">
+                <span class="prompt-text">Don't have a freelancer profile yet?</span>
+                <a href="#signup" class="auth-switch-action" id="go-to-signup-link">
+                  <span>Join as Freelancer &amp; Sign Up</span>
+                  <span class="action-arrow">→</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Bottom Security Guarantee -->
+          <div class="auth-footer-ledger">
+            <span class="ledger-pill">✦ 0% INTERMEDIARY COMMISSION</span>
+            <span class="ledger-pill">DIRECT CLIENT COMMISSIONS</span>
+            <span class="ledger-pill">END-TO-END VERIFIED</span>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- =========================================================================
+         VIEW 5: DEDICATED SIGN UP VIEW (#signup-view)
+         Exclusively for Freelancers to create their account and profile
+         ========================================================================= -->
+    <div id="signup-view" class="view-panel view-hidden">
+      <section class="auth-page-section">
+        <div class="auth-page-backdrop" aria-hidden="true">
+          <div class="auth-ambient-orb auth-orb-signup"></div>
+          <div class="auth-grid-mesh"></div>
+        </div>
+
+        <div class="container auth-page-container">
+          <!-- Top Return Breadcrumb -->
+          <div class="auth-breadcrumb-bar">
+            <a href="#signin" class="auth-back-link" id="signup-back-signin-link">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+              <span>Back to Sign In</span>
+            </a>
+            <span class="auth-ledger-code">REGISTRATION // GUILD ENROLLMENT</span>
+          </div>
+
+          <!-- Sculptural Auth Monolith Card -->
+          <div class="auth-card-monolith auth-signup-monolith">
+            <div class="auth-card-header">
+              <div class="auth-emblem-badge">
+                <span class="hero-pulse-dot"></span>
+                <span class="auth-emblem-text">FREELANCER ONBOARDING</span>
+              </div>
+              <h1 class="auth-monument-title">
+                Create your <span class="auth-title-accent">Freelancer Profile.</span>
+              </h1>
+              <p class="auth-subtitle">
+                Fill out the registration form below to publish your portfolio dossier, showcase your craft discipline, and join the verified talent index.
+              </p>
+            </div>
+
+            <!-- Sign Up Form (Exclusively for Freelancers - no hiring form) -->
+            <form id="dedicated-signup-form" class="auth-form-engine">
+              
+              <!-- Name & Email Row -->
+              <div class="form-row-grid">
+                <div class="form-group">
+                  <label class="form-label" for="dedicated-signup-name">Full Name</label>
+                  <div class="auth-input-wrapper">
+                    <input type="text" id="dedicated-signup-name" class="form-input auth-styled-input" placeholder="e.g. Adrian Brody" required autocomplete="name">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="dedicated-signup-email">Work Email Address</label>
+                  <div class="auth-input-wrapper">
+                    <input type="email" id="dedicated-signup-email" class="form-input auth-styled-input" placeholder="adrian@domain.com" required autocomplete="email">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Password Row -->
+              <div class="form-row-grid">
+                <div class="form-group">
+                  <label class="form-label" for="dedicated-signup-password">Create Password</label>
+                  <div class="auth-input-wrapper">
+                    <input type="password" id="dedicated-signup-password" class="form-input auth-styled-input" placeholder="At least 6 characters" required minlength="6" autocomplete="new-password">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="dedicated-signup-password-confirm">Confirm Password</label>
+                  <div class="auth-input-wrapper">
+                    <input type="password" id="dedicated-signup-password-confirm" class="form-input auth-styled-input" placeholder="Re-enter password" required minlength="6" autocomplete="new-password">
+                  </div>
+                </div>
+              </div>
+
+            
+
+              <!-- Terms Checkbox -->
+              <div class="auth-meta-row">
+                <label class="auth-checkbox-label">
+                  <input type="checkbox" id="signup-agree-terms" required checked>
+                  <span class="auth-checkbox-custom"></span>
+                  <span class="auth-checkbox-text">I agree to the independent freelancer charter and 0% intermediary commission standard.</span>
+                </label>
+              </div>
+
+              <!-- Submit Button -->
+              <button type="submit" class="btn btn-primary btn-lg auth-submit-btn" id="dedicated-signup-submit">
+                <span>Create Freelancer Profile &amp; Join Directory</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </button>
+            </form>
+
+            <!-- Bottom Link Back to Sign In Page -->
+            <div class="auth-card-footer-strip">
+              <div class="auth-switch-prompt">
+                <span class="prompt-text">Already registered as a freelancer?</span>
+                <a href="#signin" class="auth-switch-action" id="go-to-signin-link">
+                  <span>Sign In to your workspace</span>
+                  <span class="action-arrow">→</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+    </div>
   </main>
 
   <!-- =========================================================================
@@ -1691,13 +1891,7 @@
         </p>
 
         <form id="signup-form">
-          <div class="form-group">
-            <label class="form-label" for="signup-role">I want to:</label>
-            <select id="signup-role" class="form-select">
-              <option value="client">Explore independent talent</option>
-              <option value="worker">Create a freelancer profile</option>
-            </select>
-          </div>
+          <input type="hidden" id="signup-role" value="worker">
 
           <div class="form-row-grid">
             <div class="form-group">
@@ -1715,8 +1909,8 @@
             <input type="password" id="signup-password" class="form-input" placeholder="Create a strong password" required>
           </div>
 
-          <!-- Extra Profile Fields for Freelancers (Revealed dynamically!) -->
-          <div id="worker-profile-fields" style="display: none; padding-top: 14px; border-top: 1px dashed var(--color-border); margin-top: 14px;">
+          <!-- Extra Profile Fields for Freelancers -->
+          <div id="worker-profile-fields" style="display: block; padding-top: 14px; border-top: 1px dashed var(--color-border); margin-top: 14px;">
             <div class="form-row-grid">
               <div class="form-group">
                 <label class="form-label" for="signup-trade">Primary discipline</label>

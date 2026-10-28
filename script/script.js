@@ -845,6 +845,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const homeView = document.getElementById('home-view');
   const freelancersView = document.getElementById('freelancers-view');
   const blogDetailsView = document.getElementById('blog-details-view');
+  const signinView = document.getElementById('signin-view');
+  const signupView = document.getElementById('signup-view');
   const navLinkFreelancers = document.getElementById('nav-link-freelancers');
   const brandLogoLink = document.getElementById('brand-logo-link');
 
@@ -934,36 +936,60 @@ document.addEventListener('DOMContentLoaded', () => {
   const backToTopBtn = document.getElementById('back-to-top-btn');
 
   // =========================================================================
-  // View Router (Switch between Home View & Dedicated /freelancers View)
+  // View Router (Switch between Home, Freelancers, Blog, Sign In & Sign Up)
   // =========================================================================
   function switchView(viewName) {
     currentView = viewName;
 
+    // Hide all views first
+    if (homeView) homeView.classList.add('view-hidden');
+    if (freelancersView) freelancersView.classList.add('view-hidden');
+    if (blogDetailsView) blogDetailsView.classList.add('view-hidden');
+    if (signinView) signinView.classList.add('view-hidden');
+    if (signupView) signupView.classList.add('view-hidden');
+
+    if (navLinkFreelancers) navLinkFreelancers.classList.remove('active');
+
+    // Close mobile nav drawer if open
+    if (mobileNavDrawer && mobileNavDrawer.classList.contains('active')) {
+      mobileNavDrawer.classList.remove('active');
+      if (mobileMenuToggle) {
+        mobileMenuToggle.classList.remove('active');
+        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+      }
+    }
+
     if (viewName === 'freelancers') {
-      homeView.classList.add('view-hidden');
-      if (blogDetailsView) blogDetailsView.classList.add('view-hidden');
-      freelancersView.classList.remove('view-hidden');
+      if (freelancersView) freelancersView.classList.remove('view-hidden');
       if (navLinkFreelancers) navLinkFreelancers.classList.add('active');
       window.scrollTo({ top: 0, behavior: 'smooth' });
       renderDirectory();
     } else if (viewName === 'blog-details') {
-      homeView.classList.add('view-hidden');
-      freelancersView.classList.add('view-hidden');
       if (blogDetailsView) blogDetailsView.classList.remove('view-hidden');
-      if (navLinkFreelancers) navLinkFreelancers.classList.remove('active');
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (viewName === 'signin') {
+      if (signinView) signinView.classList.remove('view-hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      const emailInput = document.getElementById('dedicated-signin-email');
+      if (emailInput) setTimeout(() => emailInput.focus(), 150);
+    } else if (viewName === 'signup') {
+      if (signupView) signupView.classList.remove('view-hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      const nameInput = document.getElementById('dedicated-signup-name');
+      if (nameInput) setTimeout(() => nameInput.focus(), 150);
     } else {
-      freelancersView.classList.add('view-hidden');
-      if (blogDetailsView) blogDetailsView.classList.add('view-hidden');
-      homeView.classList.remove('view-hidden');
-      if (navLinkFreelancers) navLinkFreelancers.classList.remove('active');
+      if (homeView) homeView.classList.remove('view-hidden');
     }
   }
 
   // Handle URL hash changes
   function handleHashRoute() {
     const hash = window.location.hash;
-    if (hash === '#freelancers' || hash.startsWith('#freelancers')) {
+    if (hash === '#signin' || hash.startsWith('#signin')) {
+      switchView('signin');
+    } else if (hash === '#signup' || hash.startsWith('#signup')) {
+      switchView('signup');
+    } else if (hash === '#freelancers' || hash.startsWith('#freelancers')) {
       switchView('freelancers');
     } else if (hash.startsWith('#blog-post') || hash.startsWith('#article') || hash.startsWith('#blog-details')) {
       let articleId = 'article-1';
@@ -1882,8 +1908,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  document.querySelectorAll('#header-login-btn, #footer-login-btn, #cta-login-btn').forEach(b => {
-    b.addEventListener('click', openLoginModal);
+  // Dedicated View Navigation
+  function openDedicatedSignIn(e) {
+    if (e && e.preventDefault) e.preventDefault();
+    closeLoginModal();
+    closeSignupModal();
+    window.location.hash = '#signin';
+    switchView('signin');
+  }
+
+  function openDedicatedSignUp(e) {
+    if (e && e.preventDefault) e.preventDefault();
+    closeLoginModal();
+    closeSignupModal();
+    window.location.hash = '#signup';
+    switchView('signup');
+  }
+
+  document.querySelectorAll('#header-login-btn, #footer-login-btn, #mobile-login-btn, a[href="#signin"]').forEach(b => {
+    b.addEventListener('click', openDedicatedSignIn);
   });
   if (loginModalClose) loginModalClose.addEventListener('click', closeLoginModal);
   if (loginModal) {
@@ -1913,8 +1956,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  document.querySelectorAll('#header-signup-btn, #footer-signup-btn, #hero-apply-btn, #cta-apply-btn').forEach(b => {
-    b.addEventListener('click', openSignupModal);
+  document.querySelectorAll('#header-signup-btn, #footer-signup-btn, #mobile-signup-btn, #hero-apply-btn, #cta-apply-btn, a[href="#signup"]').forEach(b => {
+    b.addEventListener('click', openDedicatedSignUp);
   });
   if (signupModalClose) signupModalClose.addEventListener('click', closeSignupModal);
   if (signupModal) {
@@ -1926,80 +1969,225 @@ document.addEventListener('DOMContentLoaded', () => {
   if (signupForm) {
     signupForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      const role = signupRole ? signupRole.value : 'client';
       const name = document.getElementById('signup-name') ? document.getElementById('signup-name').value : 'Contributor';
       const email = document.getElementById('signup-email') ? document.getElementById('signup-email').value : '';
+      const trade = document.getElementById('signup-trade') ? document.getElementById('signup-trade').value : 'Web Development';
+      const title = document.getElementById('signup-title') && document.getElementById('signup-title').value
+        ? document.getElementById('signup-title').value
+        : `Independent ${trade} professional`;
+      const rate = document.getElementById('signup-rate') ? parseInt(document.getElementById('signup-rate').value, 10) || 75 : 75;
+      const exp = document.getElementById('signup-experience') ? parseInt(document.getElementById('signup-experience').value, 10) || 5 : 5;
+      const skillsRaw = document.getElementById('signup-skills') ? document.getElementById('signup-skills').value : '';
+      const skills = skillsRaw ? skillsRaw.split(',').map(s => s.trim()).filter(Boolean) : [trade, 'Creative direction', 'Digital strategy'];
+      const bio = document.getElementById('signup-bio') && document.getElementById('signup-bio').value
+        ? document.getElementById('signup-bio').value
+        : `Independent ${trade.toLowerCase()} professional sharing thoughtful digital work.`;
+      const loc = document.getElementById('signup-location') && document.getElementById('signup-location').value
+        ? document.getElementById('signup-location').value
+        : 'Remote · Worldwide';
 
-      if (role === 'worker') {
-        const trade = document.getElementById('signup-trade') ? document.getElementById('signup-trade').value : 'Web Development';
-        const title = document.getElementById('signup-title') && document.getElementById('signup-title').value
-          ? document.getElementById('signup-title').value
-          : `Independent ${trade} professional`;
-        const rate = document.getElementById('signup-rate') ? parseInt(document.getElementById('signup-rate').value, 10) || 75 : 75;
-        const exp = document.getElementById('signup-experience') ? parseInt(document.getElementById('signup-experience').value, 10) || 5 : 5;
-        const skillsRaw = document.getElementById('signup-skills') ? document.getElementById('signup-skills').value : '';
-        const skills = skillsRaw ? skillsRaw.split(',').map(s => s.trim()).filter(Boolean) : [trade, 'Creative direction', 'Digital strategy'];
-        const bio = document.getElementById('signup-bio') && document.getElementById('signup-bio').value
-          ? document.getElementById('signup-bio').value
-          : `Independent ${trade.toLowerCase()} professional sharing thoughtful digital work.`;
-        const loc = document.getElementById('signup-location') && document.getElementById('signup-location').value
-          ? document.getElementById('signup-location').value
-          : 'Remote · Worldwide';
+      const newWorker = {
+        id: `custom-worker-${Date.now()}`,
+        name: name,
+        trade: trade,
+        craftTitle: title,
+        image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=85',
+        badge: 'PRO',
+        badgeLabel: 'Independent Professional',
+        rating: 5.0,
+        reviewsCount: 1,
+        hourlyRate: rate,
+        location: loc,
+        experienceYears: exp,
+        availability: 'Available Today',
+        instantBooking: true,
+        language: 'English',
+        email: email,
+        phone: '+1 (555) 720-4190',
+        website: `${name.toLowerCase().replace(/\s+/g, '')}.studio`,
+        bio: bio,
+        about: bio,
+        skills: skills,
+        certifications: ['Independent FindWorker Profile', 'Portfolio available on request'],
+        guarantee: 'Direct contact, independent practice.',
+        portfolio: [
+          {
+            title: `${title} Portfolio Highlight`,
+            category: trade,
+            year: '2025',
+            image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=85',
+            description: `A selected ${trade.toLowerCase()} project showing an independent creative process and finished digital work.`,
+            tags: skills.slice(0, 3)
+          }
+        ]
+      };
 
-        const newWorker = {
-          id: `custom-worker-${Date.now()}`,
-          name: name,
-          trade: trade,
-          craftTitle: title,
-          image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=85',
-          badge: 'PRO',
-          badgeLabel: 'Independent Professional',
-          rating: 5.0,
-          reviewsCount: 1,
-          hourlyRate: rate,
-          location: loc,
-          experienceYears: exp,
-          availability: 'Available Today',
-          instantBooking: true,
-          language: 'English',
-          email: email,
-          phone: '+1 (555) 720-4190',
-          website: `${name.toLowerCase().replace(/\s+/g, '')}.studio`,
-          bio: bio,
-          about: bio,
-          skills: skills,
-          certifications: ['Independent FindWorker Profile', 'Portfolio available on request'],
-          guarantee: 'Direct contact, independent practice.',
-          portfolio: [
-            {
-              title: `${title} Portfolio Highlight`,
-              category: trade,
-              year: '2025',
-              image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=85',
-              description: `A selected ${trade.toLowerCase()} project showing an independent creative process and finished digital work.`,
-              tags: skills.slice(0, 3)
-            }
-          ]
-        };
+      // Add to active dataset and localStorage
+      workersData.unshift(newWorker);
+      const currentCustom = JSON.parse(localStorage.getItem('findworker_custom_profiles') || '[]');
+      currentCustom.unshift(newWorker);
+      localStorage.setItem('findworker_custom_profiles', JSON.stringify(currentCustom));
 
-        // Add to active dataset and localStorage
-        workersData.unshift(newWorker);
-        const currentCustom = JSON.parse(localStorage.getItem('findworker_custom_profiles') || '[]');
-        currentCustom.unshift(newWorker);
-        localStorage.setItem('findworker_custom_profiles', JSON.stringify(currentCustom));
-
-        closeSignupModal();
-        renderHomeCarousels();
-        renderDirectory();
-        switchView('freelancers');
-        showToast(`🎉 Welcome ${name}! Your freelancer profile is published and ready to be discovered.`);
-      } else {
-        closeSignupModal();
-        showToast('✓ Registration complete! Welcome to the FindWorker directory network.');
-      }
+      closeSignupModal();
+      renderHomeCarousels();
+      renderDirectory();
+      switchView('freelancers');
+      showToast(`🎉 Welcome ${name}! Your freelancer profile is published and ready to be discovered.`);
 
       signupForm.reset();
-      if (workerProfileFields) workerProfileFields.style.display = 'none';
+    });
+  }
+
+  // =========================================================================
+  // Dedicated Full-Page Sign In & Sign Up Form Engine
+  // =========================================================================
+  
+  // Return / Switcher Navigation Links
+  const signinBackHomeLink = document.getElementById('signin-back-home-link');
+  if (signinBackHomeLink) {
+    signinBackHomeLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.location.hash = '#home';
+      switchView('home');
+    });
+  }
+
+  const signupBackSigninLink = document.getElementById('signup-back-signin-link');
+  if (signupBackSigninLink) {
+    signupBackSigninLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.location.hash = '#signin';
+      switchView('signin');
+    });
+  }
+
+  const goToSignupLink = document.getElementById('go-to-signup-link');
+  if (goToSignupLink) {
+    goToSignupLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.location.hash = '#signup';
+      switchView('signup');
+    });
+  }
+
+  const goToSigninLink = document.getElementById('go-to-signin-link');
+  if (goToSigninLink) {
+    goToSigninLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.location.hash = '#signin';
+      switchView('signin');
+    });
+  }
+
+  const authForgotTrigger = document.getElementById('auth-forgot-trigger');
+  if (authForgotTrigger) {
+    authForgotTrigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      showToast('✉️ Workstation code dispatched to your registered email address.');
+    });
+  }
+
+  // Dedicated Sign In Form Submission
+  const dedicatedSigninForm = document.getElementById('dedicated-signin-form');
+  if (dedicatedSigninForm) {
+    dedicatedSigninForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const emailInput = document.getElementById('dedicated-signin-email');
+      const emailVal = emailInput ? emailInput.value.trim() : '';
+      let userName = 'Specialist';
+      if (emailVal && emailVal.includes('@')) {
+        const handle = emailVal.split('@')[0];
+        userName = handle.charAt(0).toUpperCase() + handle.slice(1);
+      }
+      showToast(`✓ Welcome back, ${userName}! Successfully signed in to FindWorker Workspace.`);
+      dedicatedSigninForm.reset();
+      window.location.hash = '#home';
+      switchView('home');
+    });
+  }
+
+  // Dedicated Sign Up Form Submission (Exclusively for Freelancer Profiles)
+  const dedicatedSignupForm = document.getElementById('dedicated-signup-form');
+  if (dedicatedSignupForm) {
+    dedicatedSignupForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const pass = document.getElementById('dedicated-signup-password')?.value || '';
+      const passConfirm = document.getElementById('dedicated-signup-password-confirm')?.value || '';
+
+      if (pass !== passConfirm) {
+        showToast('⚠️ Passwords do not match. Please verify your password.');
+        const confirmInput = document.getElementById('dedicated-signup-password-confirm');
+        if (confirmInput) confirmInput.focus();
+        return;
+      }
+
+      const name = document.getElementById('dedicated-signup-name')?.value.trim() || 'Independent Contributor';
+      const email = document.getElementById('dedicated-signup-email')?.value.trim() || '';
+      const trade = document.getElementById('dedicated-signup-trade')?.value || 'Web Development';
+      const rate = parseInt(document.getElementById('dedicated-signup-rate')?.value, 10) || 85;
+      const craftTitle = document.getElementById('dedicated-signup-craft-title')?.value.trim() || `Senior ${trade} Architect`;
+      const loc = document.getElementById('dedicated-signup-location')?.value.trim() || 'Remote Available';
+
+      // High quality curated avatars for new freelancers
+      const avatarPool = [
+        'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=85',
+        'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=85',
+        'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=85',
+        'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=85'
+      ];
+      const randomAvatar = avatarPool[Math.floor(Math.random() * avatarPool.length)];
+
+      const newWorker = {
+        id: `custom-worker-${Date.now()}`,
+        name: name,
+        trade: trade,
+        craftTitle: craftTitle,
+        image: randomAvatar,
+        badge: 'PRO',
+        badgeLabel: 'Independent Professional',
+        rating: 5.0,
+        reviewsCount: 1,
+        hourlyRate: rate,
+        location: loc,
+        experienceYears: 6,
+        availability: 'Available Today',
+        instantBooking: true,
+        language: 'English',
+        email: email,
+        phone: '+1 (555) 720-4190',
+        website: `${name.toLowerCase().replace(/[^a-z0-9]/g, '')}.studio`,
+        bio: `Independent ${trade.toLowerCase()} specialist and verified craft member on FindWorker.`,
+        about: `Independent ${trade.toLowerCase()} specialist focused on high-craft execution, transparent pricing, and direct commissions with 0% intermediary markups.`,
+        skills: [trade, 'Creative Direction', 'System Architecture', 'Design Systems', 'Client Collaboration'],
+        certifications: ['Verified Independent Specialist', '0% Intermediary Charter Signatory'],
+        guarantee: 'Direct contact, 0% platform intermediary commission.',
+        portfolio: [
+          {
+            title: `${craftTitle} Showcase`,
+            category: trade,
+            year: '2025',
+            image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=85',
+            description: `Signature engagement exhibiting end-to-end craft rigor, bespoke execution, and verified impact.`,
+            tags: [trade, 'Direct Practice', 'Commission']
+          }
+        ]
+      };
+
+      // Add to active dataset and localStorage
+      workersData.unshift(newWorker);
+      const currentCustom = JSON.parse(localStorage.getItem('findworker_custom_profiles') || '[]');
+      currentCustom.unshift(newWorker);
+      localStorage.setItem('findworker_custom_profiles', JSON.stringify(currentCustom));
+
+      // Re-render carousel and directory
+      renderHomeCarousels();
+      renderDirectory();
+
+      showToast(`🎉 Welcome, ${name}! Your freelancer profile is published and ready to be discovered.`);
+      dedicatedSignupForm.reset();
+      window.location.hash = '#freelancers';
+      switchView('freelancers');
     });
   }
 

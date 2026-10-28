@@ -1058,8 +1058,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Category boxes in home view click -> filter in directory
-  document.querySelectorAll('.role-category-box').forEach(box => {
+  // Category boxes & hero discipline pills click -> filter in directory
+  document.querySelectorAll('.role-category-box, .discipline-pill').forEach(box => {
     box.addEventListener('click', () => {
       const trade = box.dataset.trade;
       if (trade) {
@@ -2122,12 +2122,12 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      const name = document.getElementById('dedicated-signup-name')?.value.trim() || 'Independent Contributor';
-      const email = document.getElementById('dedicated-signup-email')?.value.trim() || '';
+      const name = document.getElementById('dedicated-signup-name')?.value?.trim() || 'Independent Contributor';
+      const email = document.getElementById('dedicated-signup-email')?.value?.trim() || '';
       const trade = document.getElementById('dedicated-signup-trade')?.value || 'Web Development';
       const rate = parseInt(document.getElementById('dedicated-signup-rate')?.value, 10) || 85;
-      const craftTitle = document.getElementById('dedicated-signup-craft-title')?.value.trim() || `Senior ${trade} Architect`;
-      const loc = document.getElementById('dedicated-signup-location')?.value.trim() || 'Remote Available';
+      const craftTitle = document.getElementById('dedicated-signup-craft-title')?.value?.trim() || `Senior ${trade} Architect`;
+      const loc = document.getElementById('dedicated-signup-location')?.value?.trim() || 'Remote Available';
 
       // High quality curated avatars for new freelancers
       const avatarPool = [
@@ -2410,10 +2410,40 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // =========================================================================
-  // The Panoramic Artisan Horizon Slider Engine (Homepage Hero)
-  // Showcasing all 17 Freelancer Profiles with Full-Width Kinetic Glide
+  // Homepage Hero Ambient Canvas & Discovery Interactivity
   // =========================================================================
   const heroSection = document.getElementById('hero');
+  const heroAmbientOrb = document.querySelector('.hero-ambient-orb');
+  const heroBrowseCraftsLink = document.getElementById('hero-browse-crafts-link');
+
+  if (heroSection) {
+    // Ambient Lighting Orb Glides with Cursor
+    heroSection.addEventListener('mousemove', (e) => {
+      if (!heroAmbientOrb) return;
+      const rect = heroSection.getBoundingClientRect();
+      const normX = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+      const normY = ((e.clientY - rect.top) / rect.height) * 2 - 1;
+      heroAmbientOrb.style.transform = `translate(calc(-50% + ${(normX * 85).toFixed(1)}px), calc(-50% + ${(normY * 65).toFixed(1)}px))`;
+    });
+
+    heroSection.addEventListener('mouseleave', () => {
+      if (heroAmbientOrb) {
+        heroAmbientOrb.style.transform = 'translate(-50%, -50%)';
+      }
+    });
+
+    // Smooth scroll for Browse Disciplines link
+    if (heroBrowseCraftsLink) {
+      heroBrowseCraftsLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        const rolesSection = document.getElementById('roles');
+        if (rolesSection) {
+          rolesSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    }
+  }
+
   const heroSlider = document.getElementById('hero-panorama-slider');
   const heroTrack = document.getElementById('hero-panorama-track');
   const heroPrevBtn = document.getElementById('hero-slider-prev');
@@ -2421,8 +2451,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const heroPauseBtn = document.getElementById('hero-slider-pause');
   const heroPauseIcon = document.getElementById('hero-slider-pause-icon');
   const heroCounter = document.getElementById('hero-slider-counter');
-  const heroAmbientOrb = document.getElementById('hero-ambient-orb');
-  const heroBrowseCraftsLink = document.getElementById('hero-browse-crafts-link');
   const heroSpotlightDetails = document.getElementById('hero-spotlight-details');
 
   if (heroSection && heroSlider && heroTrack && Array.isArray(defaultWorkersData)) {
@@ -2453,10 +2481,10 @@ document.addEventListener('DOMContentLoaded', () => {
       card.innerHTML = `
         <div class="capsule-glass-panel">
           <div class="capsule-top-bar">
-            
-            <span class="capsule-statu">
-              <span class="capsule-beaco"></span>
-              <span class="capsule-status-text"></span>
+            <span class="capsule-index">№ ${specimenNumber}</span>
+            <span class="capsule-status">
+              <span class="capsule-beacon"></span>
+              <span>Available</span>
             </span>
           </div>
 

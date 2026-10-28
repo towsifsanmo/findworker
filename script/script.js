@@ -2188,78 +2188,333 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Omnibar keyboard shortcut: press "/" anywhere to focus search
-  document.addEventListener('keydown', (e) => {
-    if (e.key === '/' && !['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) {
-      if (currentView === 'freelancers' || window.location.hash === '#freelancers') {
+  // Omnibar quick search button in the floating island header
+  const headerOmniSearchBtn = document.getElementById('header-omni-search');
+  if (headerOmniSearchBtn) {
+    headerOmniSearchBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.location.hash = '#freelancers';
+      setTimeout(() => {
         const searchInput = document.getElementById('directory-search-input');
         if (searchInput) {
-          e.preventDefault();
           searchInput.focus();
           searchInput.select();
         }
-      }
-    }
-  });
-
-  // =========================================================================
-  // Fiverr-Inspired Search Placeholder Rotator & Featured Talent Trigger
-  // =========================================================================
-  const heroSearchInput = document.getElementById('hero-location-input');
-  if (heroSearchInput) {
-    const searchSuggestions = [
-      'Search any skill or role, e.g. Web Development…',
-      'Try "Product & UI/UX Designer"…',
-      'Try "Full-Stack Web Architect"…',
-      'Try "Motion & 3D Visual Artist"…',
-      'Try "Brand Systems & Identity"…',
-      'Try "Growth & Digital Marketing"…',
-      'Try "Remote Specialist in Europe"…'
-    ];
-    let suggestionIdx = 0;
-    let placeholderInterval = null;
-
-    function cyclePlaceholder() {
-      // Don't cycle if the user is currently typing or focused
-      if (document.activeElement === heroSearchInput || heroSearchInput.value.trim() !== '') {
-        return;
-      }
-      suggestionIdx = (suggestionIdx + 1) % searchSuggestions.length;
-      heroSearchInput.placeholder = searchSuggestions[suggestionIdx];
-    }
-
-    placeholderInterval = setInterval(cyclePlaceholder, 3200);
-
-    // Stop rotation when user focuses input
-    heroSearchInput.addEventListener('focus', () => {
-      heroSearchInput.placeholder = 'Search by skill, trade, name, or location…';
-    });
-
-    heroSearchInput.addEventListener('blur', () => {
-      if (heroSearchInput.value.trim() === '') {
-        heroSearchInput.placeholder = searchSuggestions[suggestionIdx];
-      }
-    });
-
-    // Enter key triggers search
-    heroSearchInput.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') {
-        const searchBtn = document.getElementById('hero-search-btn');
-        if (searchBtn) searchBtn.click();
-      }
+      }, 150);
     });
   }
 
-  // Featured Talent Card Profile Triggers
-  document.querySelectorAll('.fiverr-talent-card, .talent-view-profile-btn').forEach(trigger => {
-    trigger.addEventListener('click', (e) => {
-      if (e.target.closest('a')) return; // Allow native mailto link
-      const workerId = trigger.dataset.workerId || 'worker-1';
-      if (typeof openBookingModal === 'function') {
-        openBookingModal(workerId);
+  // Omnibar keyboard shortcut: press "/" anywhere to focus search
+  document.addEventListener('keydown', (e) => {
+    if (e.key === '/' && !['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) {
+      e.preventDefault();
+      if (currentView !== 'freelancers' && window.location.hash !== '#freelancers') {
+        window.location.hash = '#freelancers';
+      }
+      setTimeout(() => {
+        const searchInput = document.getElementById('directory-search-input');
+        if (searchInput) {
+          searchInput.focus();
+          searchInput.select();
+        }
+      }, 120);
+    }
+  });
+
+  // =========================================================================
+  // The Panoramic Artisan Horizon Slider Engine (Homepage Hero)
+  // Showcasing all 17 Freelancer Profiles with Full-Width Kinetic Glide
+  // =========================================================================
+  const heroSection = document.getElementById('hero');
+  const heroSlider = document.getElementById('hero-panorama-slider');
+  const heroTrack = document.getElementById('hero-panorama-track');
+  const heroPrevBtn = document.getElementById('hero-slider-prev');
+  const heroNextBtn = document.getElementById('hero-slider-next');
+  const heroPauseBtn = document.getElementById('hero-slider-pause');
+  const heroPauseIcon = document.getElementById('hero-slider-pause-icon');
+  const heroCounter = document.getElementById('hero-slider-counter');
+  const heroAmbientOrb = document.getElementById('hero-ambient-orb');
+  const heroBrowseCraftsLink = document.getElementById('hero-browse-crafts-link');
+  const heroSpotlightDetails = document.getElementById('hero-spotlight-details');
+
+  if (heroSection && heroSlider && heroTrack && Array.isArray(defaultWorkersData)) {
+    // 1. Populate all 17 Freelancers (and duplicate set for seamless infinite wrap)
+    const workersList = [...defaultWorkersData];
+    heroTrack.innerHTML = '';
+
+    if (heroCounter) {
+      heroCounter.textContent = `${workersList.length} Master Specialists`;
+    }
+
+    // Render cards into track with 3 duplicate sets for seamless infinite bidirectional scrolling
+    const loopData = [...workersList, ...workersList, ...workersList];
+
+    loopData.forEach((worker, idx) => {
+      const card = document.createElement('article');
+      const isElevated = idx % 2 === 0;
+      card.className = `artisan-specimen-capsule ${isElevated ? 'capsule-elevated' : 'capsule-lowered'}`;
+      card.dataset.workerId = worker.id;
+      card.tabIndex = 0;
+      card.setAttribute('role', 'button');
+      card.setAttribute('aria-label', `View ${worker.name} portfolio and dossier`);
+
+      const specimenNumber = String((idx % workersList.length) + 1).padStart(2, '0');
+      const craftRole = worker.craftTitle || worker.trade;
+
+      // Essential details only: Specimen #, Status beacon, Radiant Portrait Halo, Name, Craft Role, Rate Badge & Action Trigger
+      card.innerHTML = `
+        <div class="capsule-glass-panel">
+          <div class="capsule-top-bar">
+            
+            <span class="capsule-statu">
+              <span class="capsule-beaco"></span>
+              <span class="capsule-status-text"></span>
+            </span>
+          </div>
+
+          <div class="capsule-halo-stage">
+            <div class="capsule-avatar-ring">
+              <img src="${worker.image}" alt="${worker.name}" class="capsule-avatar-img" loading="lazy">
+            </div>
+          </div>
+
+          <div class="capsule-dossier-core">
+            <h3 class="capsule-artisan-name">${worker.name}</h3>
+            <p class="capsule-craft-role">${craftRole}</p>
+          </div>
+
+          <div class="capsule-footer-bar">
+            <span class="capsule-rate-badge">$${worker.hourlyRate}<small>/hr</small></span>
+            <span class="capsule-action-trigger">Dossier ↗</span>
+          </div>
+        </div>
+      `;
+
+      // Live Spotlight Ticker feedback on hover (if element present)
+      card.addEventListener('mouseenter', () => {
+        if (heroSpotlightDetails) {
+          heroSpotlightDetails.innerHTML = `<strong>№ ${specimenNumber} ${worker.name}</strong> • ${craftRole} • <span style="color:#FBBF24; font-weight:700;">$${worker.hourlyRate}/hr</span> • Click to inspect dossier &amp; book`;
+        }
+      });
+
+      card.addEventListener('mouseleave', () => {
+        if (heroSpotlightDetails) {
+          heroSpotlightDetails.textContent = 'Hover any specialist to preview dossier • Click to inspect & book';
+        }
+      });
+
+      // Click launches the verified booking / portfolio modal
+      card.addEventListener('click', () => {
+        if (typeof openBookingModal === 'function') {
+          openBookingModal(worker.id);
+        }
+      });
+
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          if (typeof openBookingModal === 'function') {
+            openBookingModal(worker.id);
+          }
+        }
+      });
+
+      heroTrack.appendChild(card);
+    });
+
+    // 2. Infinite Bidirectional Scroll Architecture
+    let isAutoScrolling = true;
+    let isPausedByHover = false;
+    let isDragging = false;
+    let isManualStep = false;
+    let startX = 0;
+    let scrollLeftStart = 0;
+    const SCROLL_SPEED = 0.65; // ~60fps smooth continuous glide
+    let resumeAutoTimer = null;
+    let stepAnimationId = null;
+
+    function getSingleSetWidth() {
+      return (heroTrack.scrollWidth / 3) || 1;
+    }
+
+    // Keep scroll position seamlessly within the middle set
+    function checkInfiniteWrap() {
+      const singleSetWidth = getSingleSetWidth();
+      if (singleSetWidth <= 10) return;
+
+      if (heroSlider.scrollLeft >= singleSetWidth * 2) {
+        heroSlider.scrollLeft -= singleSetWidth;
+      } else if (heroSlider.scrollLeft <= singleSetWidth * 0.1) {
+        heroSlider.scrollLeft += singleSetWidth;
+      }
+    }
+
+    // Initialize in the center set so backward and forward scrolling are immediately seamless
+    setTimeout(() => {
+      const singleSetWidth = getSingleSetWidth();
+      if (singleSetWidth > 10) {
+        heroSlider.scrollLeft = singleSetWidth;
+      }
+    }, 80);
+
+    // Pause auto scroll temporarily after user interaction
+    function pauseAutoFor(ms = 2200) {
+      isManualStep = true;
+      clearTimeout(resumeAutoTimer);
+      resumeAutoTimer = setTimeout(() => {
+        isManualStep = false;
+      }, ms);
+    }
+
+    // High performance continuous auto scroll engine
+    function autoScrollEngine() {
+      if (isAutoScrolling && !isPausedByHover && !isDragging && !isManualStep && heroSlider) {
+        heroSlider.scrollLeft += SCROLL_SPEED;
+        checkInfiniteWrap();
+      }
+      requestAnimationFrame(autoScrollEngine);
+    }
+    requestAnimationFrame(autoScrollEngine);
+
+    // 3. Hover Pause
+    heroSlider.addEventListener('mouseenter', () => {
+      isPausedByHover = true;
+    });
+
+    heroSlider.addEventListener('mouseleave', () => {
+      isPausedByHover = false;
+    });
+
+    // 4. Manual Mouse Drag
+    heroSlider.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      pauseAutoFor(2000);
+      if (stepAnimationId) cancelAnimationFrame(stepAnimationId);
+      startX = e.pageX - heroSlider.offsetLeft;
+      scrollLeftStart = heroSlider.scrollLeft;
+    });
+
+    window.addEventListener('mouseup', () => {
+      if (isDragging) {
+        isDragging = false;
+        pauseAutoFor(1500);
       }
     });
-  });
+
+    heroSlider.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      e.preventDefault();
+      const x = e.pageX - heroSlider.offsetLeft;
+      const walk = (x - startX) * 1.4;
+      heroSlider.scrollLeft = scrollLeftStart - walk;
+      checkInfiniteWrap();
+    });
+
+    // Mobile touch interaction handling
+    heroSlider.addEventListener('touchstart', () => {
+      pauseAutoFor(2500);
+      if (stepAnimationId) cancelAnimationFrame(stepAnimationId);
+    }, { passive: true });
+
+    heroSlider.addEventListener('touchend', () => {
+      pauseAutoFor(2000);
+      checkInfiniteWrap();
+    }, { passive: true });
+
+    // 5. High-Precision Eased Step Scroll (Left / Right Arrow Buttons)
+    // Card width (235px) + gap (20px) = 255px per step
+    const STEP_DISTANCE = 255;
+
+    function smoothStep(direction) {
+      // direction: -1 for left (prev), +1 for right (next)
+      pauseAutoFor(2500);
+
+      if (stepAnimationId) {
+        cancelAnimationFrame(stepAnimationId);
+      }
+
+      checkInfiniteWrap();
+
+      const startScroll = heroSlider.scrollLeft;
+      const delta = direction * STEP_DISTANCE;
+      const duration = 420; // ms
+      const startTime = performance.now();
+
+      function easeOutCubic(t) {
+        return 1 - Math.pow(1 - t, 3);
+      }
+
+      function stepFrame(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = easeOutCubic(progress);
+
+        heroSlider.scrollLeft = startScroll + delta * eased;
+        checkInfiniteWrap();
+
+        if (progress < 1) {
+          stepAnimationId = requestAnimationFrame(stepFrame);
+        } else {
+          stepAnimationId = null;
+        }
+      }
+
+      stepAnimationId = requestAnimationFrame(stepFrame);
+    }
+
+    if (heroPrevBtn) {
+      heroPrevBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        smoothStep(-1);
+      });
+    }
+
+    if (heroNextBtn) {
+      heroNextBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        smoothStep(1);
+      });
+    }
+
+    // 6. Pause / Resume Toggle
+    if (heroPauseBtn) {
+      heroPauseBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        isAutoScrolling = !isAutoScrolling;
+        if (heroPauseIcon) {
+          heroPauseIcon.textContent = isAutoScrolling ? '❚❚' : '▶';
+        }
+        heroPauseBtn.setAttribute('title', isAutoScrolling ? 'Pause auto-scroll' : 'Resume auto-scroll');
+      });
+    }
+
+    // 7. Ambient Lighting Orb Glides with Cursor
+    heroSection.addEventListener('mousemove', (e) => {
+      if (!heroAmbientOrb) return;
+      const rect = heroSection.getBoundingClientRect();
+      const normX = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+      const normY = ((e.clientY - rect.top) / rect.height) * 2 - 1;
+      heroAmbientOrb.style.transform = `translate(calc(-50% + ${(normX * 85).toFixed(1)}px), calc(-50% + ${(normY * 65).toFixed(1)}px))`;
+    });
+
+    heroSection.addEventListener('mouseleave', () => {
+      if (heroAmbientOrb) {
+        heroAmbientOrb.style.transform = 'translate(-50%, -50%)';
+      }
+    });
+
+    // 8. Smooth scroll for Browse Disciplines link
+    if (heroBrowseCraftsLink) {
+      heroBrowseCraftsLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        const rolesSection = document.getElementById('roles');
+        if (rolesSection) {
+          rolesSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    }
+
+  }
 
   // =========================================================================
   // Mobile Navigation Drawer

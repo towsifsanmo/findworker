@@ -1060,11 +1060,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Category boxes & hero discipline pills click -> filter in directory
-  document.querySelectorAll('.role-category-box, .discipline-pill').forEach(box => {
-    box.addEventListener('click', () => {
+  // Category boxes, hero discipline pills, hero service pills, arch links & discipline tags click -> filter in directory
+  document.querySelectorAll('.role-category-box, .discipline-pill, .hero-service-btn, .arch-discipline-link, .discipline-tag').forEach(box => {
+    box.addEventListener('click', (e) => {
       const trade = box.dataset.trade;
       if (trade) {
+        e.preventDefault();
         selectedCategories = [trade];
         document.querySelectorAll('input[data-filter-group="category"]').forEach(cb => {
           cb.checked = cb.value === trade;

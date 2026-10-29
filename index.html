@@ -1309,50 +1309,37 @@
     <div id="signin-view" class="view-panel view-hidden">
       <section class="auth-page-section">
         <div class="auth-page-backdrop" aria-hidden="true">
-          <div class="auth-ambient-orb"></div>
-          <div class="auth-grid-mesh"></div>
+          <div class="hero-ambient-orb" aria-hidden="true"></div>
+          <div class="hero-grid-mesh" aria-hidden="true"></div>
         </div>
 
         <div class="container auth-page-container">
-          <!-- Top Return Breadcrumb -->
-          <div class="auth-breadcrumb-bar">
-            <a href="#home" class="auth-back-link" id="signin-back-home-link">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-              <span>Return to Directory</span>
-            </a>
-            <span class="auth-ledger-code">SECURE ACCESS // PORTAL 01</span>
-          </div>
+        
 
-          <!-- Sculptural Auth Monolith Card -->
+          <!-- Minimalist Auth Card -->
           <div class="auth-card-monolith">
             <div class="auth-card-header">
-              <div class="auth-emblem-badge">
-                <span class="hero-pulse-dot"></span>
-                <span class="auth-emblem-text">FREELANCER ACCESS</span>
-              </div>
               <h1 class="auth-monument-title">
-                Freelancer <span class="auth-title-accent">Sign In.</span>
+                Sign In.
               </h1>
               <p class="auth-subtitle">
-                Access your artisan portfolio dossier, direct commission inquiries, and verified workspace.
+                Access your freelancer workspace, active inquiries, and client projects.
               </p>
             </div>
 
             <!-- Sign In Form -->
             <form id="dedicated-signin-form" class="auth-form-engine">
               <div class="form-group">
-                <label class="form-label" for="dedicated-signin-email">
-                  <span>Freelancer Workstation Email</span>
-                </label>
+                <label class="form-label" for="dedicated-signin-email">Email Address</label>
                 <div class="auth-input-wrapper">
-                  <input type="email" id="dedicated-signin-email" class="form-input auth-styled-input" placeholder="specialist@domain.com" required autocomplete="email">
+                  <input type="email" id="dedicated-signin-email" class="form-input auth-styled-input" placeholder="you@domain.com" required autocomplete="email">
                 </div>
               </div>
 
               <div class="form-group">
                 <div class="auth-label-flex">
                   <label class="form-label" for="dedicated-signin-password">Password</label>
-                  <a href="#forgot" class="auth-forgot-link" id="auth-forgot-trigger">Forgot code?</a>
+                  <a href="#forgot" class="auth-forgot-link" id="auth-forgot-trigger">Forgot password?</a>
                 </div>
                 <div class="auth-input-wrapper">
                   <input type="password" id="dedicated-signin-password" class="form-input auth-styled-input" placeholder="••••••••••••" required autocomplete="current-password">
@@ -1362,35 +1349,27 @@
               <div class="auth-meta-row">
                 <label class="auth-checkbox-label">
                   <input type="checkbox" id="signin-remember" checked>
-                  <span class="auth-checkbox-custom"></span>
-                  <span class="auth-checkbox-text">Keep this workstation session verified</span>
+                  <span class="auth-checkbox-text">Remember this device</span>
                 </label>
               </div>
 
               <button type="submit" class="btn btn-primary btn-lg auth-submit-btn" id="dedicated-signin-submit">
-                <span>Sign In as Freelancer</span>
+                <span>Sign In</span>
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
               </button>
             </form>
 
-            <!-- Bottom Link to Sign Up Page (As specifically required by user) -->
+            <!-- Bottom Link to Sign Up Page -->
             <div class="auth-card-footer-strip">
               <div class="auth-switch-prompt">
-                <span class="prompt-text">Don't have a freelancer profile yet?</span>
+                <span class="prompt-text">Don't have an account?</span>
                 <a href="#signup" class="auth-switch-action" id="go-to-signup-link">
-                  <span>Join as Freelancer &amp; Sign Up</span>
+                  <span>Create Account</span>
                   <span class="action-arrow">→</span>
                 </a>
               </div>
             </div>
 
-          </div>
-
-          <!-- Bottom Security Guarantee -->
-          <div class="auth-footer-ledger">
-            <span class="ledger-pill">✦ 0% INTERMEDIARY COMMISSION</span>
-            <span class="ledger-pill">DIRECT CLIENT COMMISSIONS</span>
-            <span class="ledger-pill">END-TO-END VERIFIED</span>
           </div>
         </div>
       </section>
@@ -1403,36 +1382,25 @@
     <div id="signup-view" class="view-panel view-hidden">
       <section class="auth-page-section">
         <div class="auth-page-backdrop" aria-hidden="true">
-          <div class="auth-ambient-orb auth-orb-signup"></div>
-          <div class="auth-grid-mesh"></div>
+          <div class="hero-ambient-orb" aria-hidden="true"></div>
+          <div class="hero-grid-mesh" aria-hidden="true"></div>
         </div>
 
         <div class="container auth-page-container">
-          <!-- Top Return Breadcrumb -->
-          <div class="auth-breadcrumb-bar">
-            <a href="#signin" class="auth-back-link" id="signup-back-signin-link">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-              <span>Back to Sign In</span>
-            </a>
-            <span class="auth-ledger-code">REGISTRATION // GUILD ENROLLMENT</span>
-          </div>
+    
 
-          <!-- Sculptural Auth Monolith Card -->
+          <!-- Minimalist Auth Card -->
           <div class="auth-card-monolith auth-signup-monolith">
             <div class="auth-card-header">
-              <div class="auth-emblem-badge">
-                <span class="hero-pulse-dot"></span>
-                <span class="auth-emblem-text">FREELANCER ONBOARDING</span>
-              </div>
               <h1 class="auth-monument-title">
-                Create your <span class="auth-title-accent">Freelancer Profile.</span>
+                Create Account.
               </h1>
               <p class="auth-subtitle">
-                Fill out the registration form below to publish your portfolio dossier, showcase your craft discipline, and join the verified talent index.
+                Join FindWorker as an independent specialist. Direct client commissions with zero platform markups.
               </p>
             </div>
 
-            <!-- Sign Up Form (Exclusively for Freelancers - no hiring form) -->
+            <!-- Sign Up Form (Exclusively for Freelancers) -->
             <form id="dedicated-signup-form" class="auth-form-engine">
               
               <!-- Name & Email Row -->
@@ -1444,7 +1412,7 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="form-label" for="dedicated-signup-email">Work Email Address</label>
+                  <label class="form-label" for="dedicated-signup-email">Work Email</label>
                   <div class="auth-input-wrapper">
                     <input type="email" id="dedicated-signup-email" class="form-input auth-styled-input" placeholder="adrian@domain.com" required autocomplete="email">
                   </div>
@@ -1454,7 +1422,7 @@
               <!-- Password Row -->
               <div class="form-row-grid">
                 <div class="form-group">
-                  <label class="form-label" for="dedicated-signup-password">Create Password</label>
+                  <label class="form-label" for="dedicated-signup-password">Password</label>
                   <div class="auth-input-wrapper">
                     <input type="password" id="dedicated-signup-password" class="form-input auth-styled-input" placeholder="At least 6 characters" required minlength="6" autocomplete="new-password">
                   </div>
@@ -1467,20 +1435,17 @@
                 </div>
               </div>
 
-            
-
               <!-- Terms Checkbox -->
               <div class="auth-meta-row">
                 <label class="auth-checkbox-label">
                   <input type="checkbox" id="signup-agree-terms" required checked>
-                  <span class="auth-checkbox-custom"></span>
-                  <span class="auth-checkbox-text">I agree to the independent freelancer charter and 0% intermediary commission standard.</span>
+                  <span class="auth-checkbox-text">I agree to the terms of service and 0% commission standard</span>
                 </label>
               </div>
 
               <!-- Submit Button -->
               <button type="submit" class="btn btn-primary btn-lg auth-submit-btn" id="dedicated-signup-submit">
-                <span>Create Freelancer Profile &amp; Join Directory</span>
+                <span>Create Freelancer Account</span>
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
               </button>
             </form>
@@ -1488,9 +1453,9 @@
             <!-- Bottom Link Back to Sign In Page -->
             <div class="auth-card-footer-strip">
               <div class="auth-switch-prompt">
-                <span class="prompt-text">Already registered as a freelancer?</span>
+                <span class="prompt-text">Already registered?</span>
                 <a href="#signin" class="auth-switch-action" id="go-to-signin-link">
-                  <span>Sign In to your workspace</span>
+                  <span>Sign In</span>
                   <span class="action-arrow">→</span>
                 </a>
               </div>

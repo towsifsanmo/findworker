@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Freelancer Profile — FindWorker</title>
+  <meta name="description" content="Explore verified portfolio case studies, where this specialist works on Upwork, Fiverr, GitHub, and client reviews on FindWorker.">
+  
+  <!-- Google Fonts: Fraunces & Instrument Sans (Exact same as Home Page) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600;1,9..144,700&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  
+  <!-- Application Core Stylesheet (Exact same tokens as Home Page) -->
+  <link rel="stylesheet" href="style/style.css">
+  <!-- Dedicated Unique Profile Stylesheet -->
+  <link rel="stylesheet" href="style/profile.css">
+</head>
+<body class="profile-page-body">
+
+  <!-- =========================================================================
+       1. Site Header (EXACT Same Navbar as Home Page)
+       ========================================================================= -->
+  <header class="site-header" id="site-header">
+    <div class="header-floating-island">
+      <div class="container header-inner">
+
+        <!-- 1. Left: Brand Identity -->
+        <a href="index.html#home" class="brand-logo" id="brand-logo-link" aria-label="FindWorker Home">
+          <div class="brand-text-block">
+            <div class="brand-title">Find<span class="brand-title-accent">Worker</span></div>
+          </div>
+        </a>
+
+        <!-- 2. Center: Frosted Capsule Navigation Trench (Exact Same Nav Items) -->
+        <nav class="main-nav" aria-label="Main Navigation">
+          <div class="nav-capsule-trench">
+            <a href="index.html#freelancers" class="nav-link" id="nav-link-freelancers">
+              <span>Freelancers</span>
+            </a>
+            <a href="index.html#roles" class="nav-link" id="nav-link-roles">
+              <span>Disciplines</span>
+            </a>
+            <a href="index.html#how-it-works" class="nav-link" id="nav-link-how">
+              <span>How It Works</span>
+            </a>
+            <a href="index.html#testimonials" class="nav-link" id="nav-link-stories">
+              <span>Voices</span>
+            </a>
+            <a href="index.html#blog" class="nav-link" id="nav-link-blog">
+              <span>Field Notes</span>
+            </a>
+          </div>
+        </nav>
+
+        <!-- 3. Right: Header Action Suite -->
+        <div class="header-actions">
+          <a href="index.html#signin" class="btn btn-primary btn-sm nav-signup-btn" id="header-login-btn">
+            <span>Sign In</span>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </a>
+
+          <!-- Mobile Hamburger Toggle -->
+          <button type="button" class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Mobile Slide-Down Navigation Drawer (Exact Same as Home Page) -->
+    <div class="mobile-nav-drawer" id="mobile-nav-drawer">
+      <div class="mobile-nav-inner">
+        <div class="mobile-drawer-header">
+          <span class="mobile-drawer-badge">THE INDEPENDENT DIRECTORY</span>
+          <span class="mobile-drawer-status"><span class="hero-pulse-dot"></span> 17 SPECIALISTS ONLINE</span>
+        </div>
+        <a href="index.html#freelancers" class="mobile-nav-link">
+          <span>Freelancers Directory</span>
+          <span class="mobile-link-badge">17</span>
+        </a>
+        <a href="index.html#roles" class="mobile-nav-link">Categories &amp; Roles</a>
+        <a href="index.html#how-it-works" class="mobile-nav-link">How It Works</a>
+        <a href="index.html#testimonials" class="mobile-nav-link">Community Voices</a>
+        <a href="index.html#blog" class="mobile-nav-link">Field Notes &amp; Journal</a>
+        <a href="index.html#why-outlier" class="mobile-nav-link">Why FindWorker</a>
+        <div class="mobile-nav-actions">
+          <a href="index.html#signin" class="btn btn-outline" style="width: 100%; text-align: center;">Sign In to Workspace</a>
+          <a href="index.html#signup" class="btn btn-primary" style="width: 100%; text-align: center;">Create Account &amp; Sign Up ↗</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       Main Profile Experience
+       ========================================================================= -->
+  <main id="profile-main" class="profile-main-layout">
+
+    <!-- Loading State Screen -->
+    <div id="profile-loading" class="profile-state-screen">
+      <div class="state-spinner"></div>
+      <p class="state-text">Loading verified specialist dossier…</p>
+    </div>
+
+    <!-- Error / Profile Not Found Screen -->
+    <div id="profile-error" class="profile-state-screen" style="display: none;">
+      <div class="error-emblem">✦</div>
+      <h2 class="error-heading">Specialist Profile Not Found</h2>
+      <p class="error-desc">The requested freelancer profile does not exist or may have been updated.</p>
+      <a href="index.html#freelancers" class="btn btn-primary" style="margin-top: 16px;">
+        <span>Return to Freelancers Directory →</span>
+      </a>
+    </div>
+
+    <!-- Active Profile Content Container -->
+    <div id="profile-content" class="profile-content-container" style="display: none;">
+
+      <!-- Return & Breadcrumb Bar -->
+      <div class="profile-nav-strip">
+        <div class="container">
+          <div class="profile-nav-inner">
+            <a href="index.html#freelancers" class="profile-back-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+              </svg>
+              <span>Back to Directory</span>
+            </a>
+            <div class="profile-breadcrumbs">
+              <span>FindWorker</span>
+              <span class="sep">/</span>
+              <span id="breadcrumb-trade">Discipline</span>
+              <span class="sep">/</span>
+              <strong id="breadcrumb-name">Freelancer</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- =====================================================================
+           UNIQUE EDITORIAL PROFILE HERO
+           ===================================================================== -->
+      <section class="profile-editorial-hero">
+        <div class="container">
+          <div class="editorial-hero-card">
+            
+            <div class="editorial-hero-grid">
+              
+              <!-- Avatar Column with Live Presence Aura -->
+              <div class="editorial-avatar-column">
+                <div class="editorial-avatar-frame">
+                  <img id="profile-avatar" src="" alt="Freelancer portrait" class="editorial-avatar-img">
+                  <span class="editorial-presence-dot" title="Available for direct engagement"></span>
+                </div>
+              </div>
+
+              <!-- Identity & Summary Column -->
+              <div class="editorial-identity-column">
+                
+                <div class="editorial-meta-pills">
+                  <span id="profile-badge" class="badge-tier-pro">✦ PRO INDEPENDENT</span>
+                  <span id="profile-experience-pill" class="editorial-pill">16y Experience</span>
+                  <span id="profile-location-pill" class="editorial-pill">📍 Central District</span>
+                  <span class="editorial-pill editorial-pill-live">● Available for Work</span>
+                </div>
+
+                <h1 id="profile-name" class="editorial-freelancer-name">Julian Vance</h1>
+                <p id="profile-craft-title" class="editorial-craft-title">Master Joiner &amp; Architectural Woodcraft</p>
+
+                <!-- Professional Summary -->
+                <p id="profile-about-text" class="editorial-summary-bio"></p>
+
+                <!-- Key Facts Strip -->
+                <div class="editorial-metrics-ribbon">
+                  <div class="metric-item">
+                    <span class="metric-label">Direct Rate</span>
+                    <strong id="profile-rate-val" class="metric-val text-primary">$75/hr</strong>
+                  </div>
+                  <span class="metric-sep"></span>
+                  <div class="metric-item">
+                    <span class="metric-label">Client Score</span>
+                    <div class="metric-rating-wrap">
+                      <span class="star-gold">★</span>
+                      <strong id="profile-rating-val" class="metric-val">4.98</strong>
+                      <span id="profile-reviews-count-chip" class="metric-sub">(312 reviews)</span>
+                    </div>
+                  </div>
+                  <span class="metric-sep"></span>
+                  <div class="metric-item">
+                    <span class="metric-label">Platform Fee</span>
+                    <strong class="metric-val text-green">0% (Direct)</strong>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           PAGE CONTENT: 2-COLUMN FOCUS LAYOUT
+           Left (68%): Freelance Work Platforms, Projects, Skills & Experience
+           Right (32%): Quick Dossier + Side Reviews System
+           ===================================================================== -->
+      <div class="container profile-workspace-container">
+        <div class="profile-workspace-grid">
+
+          <!-- =================================================================
+               LEFT FOCUS COLUMN: Work, Projects, Platforms & Skills
+               ================================================================= -->
+          <div class="profile-focus-column">
+
+            <!-- 1. HIGHLIGHT: "WHERE I WORK" FREELANCE PLATFORMS -->
+            <section class="profile-module-card module-platforms-highlight" id="section-platforms">
+              <div class="module-header-row">
+                <div class="module-title-wrap">
+                  <div class="module-icon-emblem">💼</div>
+                  <div>
+                    <h2 class="module-title">Where I Work</h2>
+                    <p class="module-subtitle">Direct links to verified freelance profiles &amp; active marketplaces</p>
+                  </div>
+                </div>
+                <span class="verified-hub-pill">✓ Verified Profiles</span>
+              </div>
+
+              <!-- Prominent Interactive Platform Cards Grid -->
+              <div class="highlight-platforms-grid" id="profile-platforms-grid">
+                <!-- Dynamically populated: Upwork, Fiverr, GitHub, LinkedIn, Behance, Dribbble, Website -->
+              </div>
+            </section>
+
+            <!-- 2. SELECTED PROJECTS & PORTFOLIO WORK -->
+            <section class="profile-module-card module-projects" id="section-portfolio">
+              <div class="module-header-row">
+                <div class="module-title-wrap">
+                  <div class="module-icon-emblem">🎨</div>
+                  <div>
+                    <h2 class="module-title">Featured Projects &amp; Work</h2>
+                    <p class="module-subtitle">Production work, client commissions, and technical case studies</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="unique-projects-gallery" id="profile-portfolio-grid">
+                <!-- Dynamically populated with rich portfolio cards -->
+              </div>
+            </section>
+
+            <!-- 3. SKILLS & TECHNICAL MASTERY -->
+            <section class="profile-module-card module-skills" id="section-skills">
+              <div class="module-header-row">
+                <div class="module-title-wrap">
+                  <div class="module-icon-emblem">⚡</div>
+                  <div>
+                    <h2 class="module-title">Skills &amp; Capabilities</h2>
+                    <p class="module-subtitle">Primary disciplines, tooling, and specialized methods</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="unique-skills-mosaic" id="profile-skills-cloud">
+                <!-- Dynamically populated with skill tags -->
+              </div>
+            </section>
+
+            <!-- 4. WORK EXPERIENCE & BACKGROUND -->
+            <section class="profile-module-card module-experience" id="section-experience">
+              <div class="module-header-row">
+                <div class="module-title-wrap">
+                  <div class="module-icon-emblem">📋</div>
+                  <div>
+                    <h2 class="module-title">Work Experience</h2>
+                    <p class="module-subtitle">Professional history, previous agencies, and practice background</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="unique-experience-flow" id="profile-experience-timeline">
+                <!-- Dynamically populated timeline cards -->
+              </div>
+            </section>
+
+          </div><!-- /profile-focus-column -->
+
+          <!-- =================================================================
+               RIGHT COLUMN: Quick Dossier & Side Reviews System
+               ================================================================= -->
+          <aside class="profile-side-column">
+
+            <!-- 1. Quick Facts Dossier Card -->
+            <div class="side-panel-card dossier-summary-card">
+              <h3 class="side-panel-title">Overview</h3>
+              
+              <div class="side-dossier-list">
+                <div class="side-dossier-row">
+                  <span class="dossier-k">Direct Rate:</span>
+                  <span id="sidebar-rate" class="dossier-v font-bold text-primary">$75 / hr</span>
+                </div>
+                <div class="side-dossier-row">
+                  <span class="dossier-k">Location:</span>
+                  <span id="sidebar-location" class="dossier-v">Central District</span>
+                </div>
+                <div class="side-dossier-row">
+                  <span class="dossier-k">Experience:</span>
+                  <span id="sidebar-experience" class="dossier-v">16 Years</span>
+                </div>
+                <div class="side-dossier-row">
+                  <span class="dossier-k">Languages:</span>
+                  <span id="sidebar-language" class="dossier-v">English</span>
+                </div>
+                <div class="side-dossier-row">
+                  <span class="dossier-k">Commission:</span>
+                  <span class="dossier-v text-green font-bold">0% Direct</span>
+                </div>
+              </div>
+
+              <!-- Profile Quick Share Tool -->
+              <button type="button" class="btn btn-outline btn-sm side-share-btn" id="sidebar-share-btn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="18" cy="5" r="3"></circle>
+                  <circle cx="6" cy="12" r="3"></circle>
+                  <circle cx="18" cy="19" r="3"></circle>
+                  <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                  <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                </svg>
+                <span>Share Profile Link</span>
+              </button>
+            </div>
+
+            <!-- 2. REVIEWS & RATINGS SIDE HUB (Compact side placement) -->
+            <div class="side-panel-card side-reviews-card" id="section-reviews">
+              
+              <div class="side-reviews-header">
+                <div class="side-reviews-title-wrap">
+                  <h3 class="side-panel-title" style="margin: 0; padding: 0; border: none;">Client Reviews</h3>
+                  <span class="side-reviews-count-badge" id="side-reviews-count">0</span>
+                </div>
+                <div class="side-rating-pill">
+                  <span class="star-gold">★</span>
+                  <span id="side-rating-score" class="side-score-bold">4.98</span>
+                </div>
+              </div>
+
+              <!-- Compact Reviews List Feed -->
+              <div class="side-reviews-feed" id="reviews-feed-list">
+                <!-- Dynamically populated review cards -->
+              </div>
+
+              <!-- Streamlined Client Review Form (Rating + Review Message + Name Only) -->
+              <div class="side-review-form-wrap" id="review-compose-container">
+                
+                <!-- State 1: Active Submission Form -->
+                <div id="review-form-state" class="compact-review-form-box">
+                  <div class="compact-form-top">
+                    <h4 class="compact-form-title">Leave a Review</h4>
+                    <span class="compact-device-badge" title="Device integrity check">🔒 1 Review/Device</span>
+                  </div>
+
+                  <form id="public-review-form" class="compact-review-form" novalidate>
+                    <!-- Anti-Bot Honeypot -->
+                    <input type="text" id="hp_anti_bot_check" style="display:none !important;" tabindex="-1" autocomplete="off">
+
+                    <!-- 1. Star Rating Picker -->
+                    <div class="compact-form-group">
+                      <label class="compact-form-label">Rating</label>
+                      <div class="compact-star-picker" id="star-picker-group" role="radiogroup" aria-label="Select star rating">
+                        <button type="button" class="compact-star-btn" data-val="1">★</button>
+                        <button type="button" class="compact-star-btn" data-val="2">★</button>
+                        <button type="button" class="compact-star-btn" data-val="3">★</button>
+                        <button type="button" class="compact-star-btn" data-val="4">★</button>
+                        <button type="button" class="compact-star-btn active" data-val="5">★</button>
+                        <span id="star-picker-label" class="compact-star-text">5★ Exceptional</span>
+                      </div>
+                    </div>
+
+                    <!-- 2. Client Name -->
+                    <div class="compact-form-group">
+                      <label class="compact-form-label" for="review-author-name">Your Name</label>
+                      <input type="text" id="review-author-name" class="compact-form-input" placeholder="e.g. Sarah Miller" required maxlength="60">
+                    </div>
+
+                    <!-- 3. Review Message -->
+                    <div class="compact-form-group">
+                      <label class="compact-form-label" for="review-post-comment">Review Message</label>
+                      <textarea id="review-post-comment" class="compact-form-textarea" rows="3" placeholder="Share your experience working with this freelancer..." required minlength="20" maxlength="800"></textarea>
+                    </div>
+
+                    <div id="review-validation-alert" class="compact-review-error" style="display: none;"></div>
+
+                    <button type="submit" class="btn btn-primary btn-sm compact-submit-btn" id="submit-review-btn">
+                      <span>Post Review</span>
+                      <span class="arrow-up-right">→</span>
+                    </button>
+                  </form>
+                </div>
+
+                <!-- State 2: Already Reviewed Device Alert State -->
+                <div id="already-reviewed-state" class="compact-already-reviewed-box" style="display: none;">
+                  <div class="compact-reviewed-badge">✓ You Reviewed This Freelancer</div>
+                  <p class="compact-reviewed-note">
+                    Only one review per device is allowed to protect rating integrity.
+                  </p>
+                  <div id="user-existing-review-display" class="compact-submitted-review"></div>
+                </div>
+
+              </div>
+
+            </div>
+
+          </aside>
+
+        </div>
+      </div>
+
+    </div><!-- /profile-content-container -->
+
+  </main>
+
+  <!-- =========================================================================
+       Site Footer (EXACT Same Footer as Home Page)
+       ========================================================================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand-wrap">
+          <div class="brand-logo">
+            <div class="brand-symbol">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+              </svg>
+            </div>
+            <div class="brand-text-block">
+              <div class="brand-title" style="color: #fff;">Find<span>Worker</span></div>
+              <div class="brand-tagline" style="color: var(--color-primary);">Independent talent index</div>
+            </div>
+          </div>
+          <p>
+            FindWorker is a portfolio-first directory for independent digital talent. Explore the work, meet the person, and connect directly.
+          </p>
+          <div style="display: flex; gap: 10px; margin-top: 4px;">
+            <a href="index.html#signup" class="btn btn-primary btn-sm" id="footer-signup-btn">Create Profile</a>
+            <a href="index.html#signin" class="btn btn-outline btn-sm" id="footer-login-btn" style="color: #fff; border-color: rgba(255,255,255,0.2);">Sign In</a>
+          </div>
+        </div>
+
+        <!-- Column 1: Platform -->
+        <div class="footer-col">
+          <h5>Platform</h5>
+          <ul class="footer-links">
+            <li><a href="index.html#how-it-works">How It Works</a></li>
+            <li><a href="index.html#roles">Explore Disciplines</a></li>
+            <li><a href="index.html#blog">Field notes</a></li>
+            <li><a href="index.html#home" style="display: flex; align-items: center; gap: 6px;"><span style="width: 7px; height: 7px; border-radius: 50%; background: #10B981;"></span> Independent by design</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 2: Specializations -->
+        <div class="footer-col">
+          <h5>Disciplines</h5>
+          <ul class="footer-links">
+            <li><a href="index.html#freelancers" class="go-to-directory-link">Web development</a></li>
+            <li><a href="index.html#freelancers" class="go-to-directory-link">Product &amp; UX design</a></li>
+            <li><a href="index.html#freelancers" class="go-to-directory-link">Graphic design</a></li>
+            <li><a href="index.html#freelancers" class="go-to-directory-link">Digital marketing</a></li>
+            <li><a href="index.html#freelancers" class="go-to-directory-link">Writing &amp; content</a></li>
+            <li><a href="index.html#freelancers" class="go-to-directory-link">Motion &amp; brand</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Trust & Legal -->
+        <div class="footer-col">
+          <h5>Trust &amp; Community</h5>
+          <ul class="footer-links">
+            <li><a href="index.html#why-outlier">Direct Contact Charter</a></li>
+            <li><a href="index.html#why-outlier">Privacy &amp; Data Ethics</a></li>
+            <li><a href="index.html#why-outlier">Independent by design</a></li>
+            <li><a href="index.html#faq">How discovery works</a></li>
+            <li><a href="index.html#faq">Help Center &amp; Support</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 FindWorker. An independent digital talent index.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <!-- Scripts -->
+  <script src="script/workers-data.js"></script>
+  <script src="script/profile.js"></script>
+</body>
+</html>

@@ -813,9 +813,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (digitalWorkerProfiles[index]) Object.assign(worker, digitalWorkerProfiles[index]);
   });
 
-  // Load any user-created profiles from localStorage
+  // Load master dataset + any user-created profiles from localStorage
   const savedCustomProfiles = JSON.parse(localStorage.getItem('findworker_custom_profiles') || '[]');
-  let workersData = [...savedCustomProfiles, ...defaultWorkersData];
+  let workersData = (typeof FINDWORKER_DATA !== 'undefined')
+    ? FINDWORKER_DATA.getAllWorkers()
+    : [...savedCustomProfiles, ...defaultWorkersData];
 
   // =========================================================================
   // State
@@ -1563,25 +1565,34 @@ document.addEventListener('DOMContentLoaded', () => {
       };
     });
 
-    // Profile buttons
+    // Profile buttons — opens full profile on dedicated page
     document.querySelectorAll('.card-profile-btn').forEach(btn => {
       btn.onclick = (e) => {
         e.stopPropagation();
-        openBookingModal(btn.dataset.id);
+        const workerId = btn.dataset.id;
+        if (workerId) {
+          window.location.href = `profile.html?id=${encodeURIComponent(workerId)}`;
+        }
       };
     });
 
     // Card whole-card click trigger for instant profile discovery
-    document.querySelectorAll('.spotlight-talent-card, .freelancer-grid-card, .vip-independents-card').forEach(card => {
+    document.querySelectorAll('.spotlight-talent-card, .freelancer-grid-card, .vip-independents-card, .freelancer-row-card').forEach(card => {
       card.onclick = (e) => {
         if (e.target.closest('.bookmark-heart-btn')) return;
-        openBookingModal(card.dataset.id);
+        const workerId = card.dataset.id;
+        if (workerId) {
+          window.location.href = `profile.html?id=${encodeURIComponent(workerId)}`;
+        }
       };
       card.onkeydown = (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           if (e.target.closest('.bookmark-heart-btn')) return;
           e.preventDefault();
-          openBookingModal(card.dataset.id);
+          const workerId = card.dataset.id;
+          if (workerId) {
+            window.location.href = `profile.html?id=${encodeURIComponent(workerId)}`;
+          }
         }
       };
     });
@@ -1643,7 +1654,7 @@ document.addEventListener('DOMContentLoaded', () => {
       drawerList.querySelectorAll('.drawer-book-btn').forEach(b => {
         b.addEventListener('click', () => {
           closeShortlistDrawer();
-          openBookingModal(b.dataset.id);
+          window.location.href = `profile.html?id=${encodeURIComponent(b.dataset.id)}`;
         });
       });
 
@@ -1686,6 +1697,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // Comprehensive Freelancer Profile & Portfolio Showcase Modal
   // =========================================================================
   function openBookingModal(workerId) {
+    if (workerId) {
+      window.location.href = `profile.html?id=${encodeURIComponent(workerId)}`;
+      return;
+    }
     const worker = workersData.find(w => w.id === workerId);
     if (!worker) return;
     activeBookingWorker = worker;
@@ -2186,8 +2201,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       showToast(`🎉 Welcome, ${name}! Your freelancer profile is published and ready to be discovered.`);
       dedicatedSignupForm.reset();
-      window.location.hash = '#freelancers';
-      switchView('freelancers');
+      window.location.href = `profile.html?id=${encodeURIComponent(newWorker.id)}`;
     });
   }
 

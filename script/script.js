@@ -2792,6 +2792,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  const footerBackToTop = document.getElementById('footer-back-to-top');
+  if (footerBackToTop) {
+    footerBackToTop.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
   // =========================================================================
   // FAQ Accordion
   // =========================================================================
@@ -3258,22 +3266,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const relatedArticlesGrid = document.getElementById('related-articles-grid');
   const relatedViewAllBtn = document.getElementById('related-view-all-btn');
 
-  // Open & Render Dynamic Article
-  function openBlogArticle(articleId, updateHash = true) {
-    const article = blogArticlesData.find(a => a.id === articleId) || blogArticlesData[0];
-    currentArticleId = article.id;
-
-    if (updateHash) {
-      window.location.hash = `#blog-post?id=${article.id}`;
-    }
-
-    renderBlogArticleDetails(article);
-    switchView('blog-details');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-
-    if (readingProgressBar) {
-      readingProgressBar.style.width = '0%';
-    }
+  // Open & Render Dynamic Article on Dedicated Page
+  function openBlogArticle(articleId) {
+    const id = articleId || 'article-1';
+    window.location.href = `blog.html?id=${encodeURIComponent(id)}`;
   }
 
   function renderBlogArticleDetails(article) {

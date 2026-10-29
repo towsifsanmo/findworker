@@ -627,6 +627,14 @@
       }
       ta.remove();
     }
+
+    const footerBackToTop = document.getElementById('footer-back-to-top');
+    if (footerBackToTop) {
+      footerBackToTop.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
   }
 
   // ── Bootstrap on DOM Ready ────────────────────────────────────────────────

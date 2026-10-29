@@ -156,7 +156,7 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, var(--color-primary, #D6441E) 0%, #D97706 50%, #10B981 100%);
+  background: var(--color-primary, #D6441E);
 }
 
 .editorial-hero-grid {
@@ -385,7 +385,7 @@
    ========================================================================== */
 .module-platforms-highlight {
   border: 1.5px solid rgba(214, 68, 30, 0.22);
-  background: linear-gradient(180deg, #FFFFFF 0%, #FAF7F2 100%);
+  background: #FFFFFF;
   box-shadow: 0 4px 18px rgba(214, 68, 30, 0.06);
 }
 

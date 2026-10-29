@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Field Notes — FindWorker</title>
+  <meta name="description" content="In-depth technical essays, design systems methodology, and independent engineering field notes from top verified specialists.">
+
+  <!-- Google Fonts: Fraunces & Instrument Sans (Strictly Existing Brand Fonts) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600;1,9..144,700&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+  <!-- Core & Dedicated Editorial Stylesheets (Strictly Existing Colors & Zero Gradients) -->
+  <link rel="stylesheet" href="style/style.css">
+  <link rel="stylesheet" href="style/blog.css">
+</head>
+<body class="editorial-article-page">
+
+  <!-- Top Reading Progress Indicator -->
+  <div class="reading-progress-track" aria-hidden="true">
+    <div id="reading-progress-bar" class="reading-progress-bar"></div>
+  </div>
+
+  <!-- =========================================================================
+       1. Site Header (Non-sticky, Non-rounded Architectural Navbar)
+       ========================================================================= -->
+  <header class="site-header" id="site-header">
+    <div class="header-floating-island">
+      <div class="container header-inner">
+
+        <!-- 1. Left: Brand Identity -->
+        <a href="index.html#home" class="brand-logo" id="brand-logo-link" aria-label="FindWorker Home">
+          <div class="brand-text-block">
+            <div class="brand-title">Find<span class="brand-title-accent">Worker</span></div>
+          </div>
+        </a>
+
+        <!-- 2. Center: Flat Architectural Navigation -->
+        <nav class="main-nav" aria-label="Main Navigation">
+          <div class="nav-capsule-trench">
+            <a href="index.html#freelancers" class="nav-link" id="nav-link-freelancers">
+              <span>Freelancers</span>
+            </a>
+            <a href="index.html#roles" class="nav-link" id="nav-link-roles">
+              <span>Disciplines</span>
+            </a>
+            <a href="index.html#how-it-works" class="nav-link" id="nav-link-how">
+              <span>How It Works</span>
+            </a>
+            <a href="index.html#testimonials" class="nav-link" id="nav-link-stories">
+              <span>Voices</span>
+            </a>
+            <a href="index.html#blog" class="nav-link active" id="nav-link-blog">
+              <span>Field Notes</span>
+            </a>
+          </div>
+        </nav>
+
+        <!-- 3. Right: Header Action Suite -->
+        <div class="header-actions">
+          <a href="index.html#signin" class="btn btn-primary btn-sm nav-signup-btn" id="header-login-btn">
+            <span>Sign In</span>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </a>
+
+          <!-- Mobile Hamburger Toggle -->
+          <button type="button" class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Mobile Slide-Down Navigation Drawer -->
+    <div class="mobile-nav-drawer" id="mobile-nav-drawer">
+      <div class="mobile-nav-inner">
+        <div class="mobile-drawer-header">
+          <span class="mobile-drawer-badge">THE INDEPENDENT DIRECTORY</span>
+          <span class="mobile-drawer-status"><span class="hero-pulse-dot"></span> 17 SPECIALISTS ONLINE</span>
+        </div>
+        <a href="index.html#freelancers" class="mobile-nav-link">
+          <span>Freelancers Directory</span>
+          <span class="mobile-link-badge">17</span>
+        </a>
+        <a href="index.html#roles" class="mobile-nav-link">Categories &amp; Roles</a>
+        <a href="index.html#how-it-works" class="mobile-nav-link">How It Works</a>
+        <a href="index.html#testimonials" class="mobile-nav-link">Community Voices</a>
+        <a href="index.html#blog" class="mobile-nav-link active">Field Notes</a>
+        <div class="mobile-drawer-actions">
+          <a href="index.html#signin" class="btn btn-primary btn-block">Sign In to FindWorker</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       2. Editorial Navigation Strip (Breadcrumb & Dispatch Kicker)
+       ========================================================================= -->
+  <div class="editorial-nav-strip">
+    <div class="container editorial-nav-inner">
+      <a href="index.html#blog" class="editorial-back-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span>Back to Field Notes</span>
+      </a>
+      <div class="editorial-kicker-tag">
+        <span>Field Notes Dispatch</span>
+        <span>/</span>
+        <span class="kicker-cat" id="article-kicker-cat">Design Systems</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       3. Editorial Masthead
+       ========================================================================= -->
+  <section class="editorial-masthead-section">
+    <div class="container editorial-masthead-inner">
+      <div class="article-category-badge" id="article-category-badge">DESIGN SYSTEMS</div>
+      <h1 class="article-title-main" id="article-title">A portfolio is more than a grid of finished work</h1>
+      <p class="article-standfirst" id="article-standfirst">Show the decisions, experiments, and architectural trade-offs that made the final build matter.</p>
+
+      <!-- Byline Dossier Strip -->
+      <div class="editorial-byline-strip">
+        <div class="byline-author-cluster">
+          <div class="byline-avatar-frame">
+            <img src="" alt="" id="byline-avatar" class="byline-avatar-img">
+            <span class="byline-verified-icon">✓</span>
+          </div>
+          <div class="byline-text-meta">
+            <div class="byline-name-row">
+              <span class="byline-author-name" id="byline-author-name">Maya Chen</span>
+              <span class="byline-rate-pill" id="byline-author-rate">$110/hr</span>
+            </div>
+            <div class="byline-role-row" id="byline-author-role">Staff Product Designer &amp; Systems Lead</div>
+          </div>
+        </div>
+
+        <div class="byline-details-cluster">
+          <div class="byline-stat-item">
+            <strong>Published:</strong> <span id="byline-date">October 24, 2026</span>
+          </div>
+          <div class="byline-stat-item">
+            <strong>Read:</strong> <span id="byline-read-time">5 min read</span>
+          </div>
+          <a href="#" class="byline-view-profile-btn" id="byline-profile-btn">
+            <span>View Profile &amp; Platforms</span>
+            <span>→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       4. Featured Hero Media
+       ========================================================================= -->
+  <section class="editorial-hero-media-wrap">
+    <div class="editorial-media-container">
+      <div class="editorial-img-frame">
+        <img src="" alt="" id="article-hero-img">
+      </div>
+      <div class="editorial-media-caption" id="article-hero-caption">
+        Exploratory design tokens and typography hierarchy during the redesign of an enterprise design system.
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       5. Main Reader Grid (Sticky Sidebar + Prose Reading Column)
+       ========================================================================= -->
+  <section class="editorial-reader-section">
+    <div class="editorial-reader-container">
+      <div class="editorial-reader-grid">
+
+        <!-- Left Column: Sticky Editorial Sidebar -->
+        <aside class="editorial-sticky-sidebar">
+
+          <!-- Table of Contents Card -->
+          <div class="sidebar-box">
+            <div class="sidebar-box-header">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="8" y1="6" x2="21" y2="6"></line>
+                <line x1="8" y1="12" x2="21" y2="12"></line>
+                <line x1="8" y1="18" x2="21" y2="18"></line>
+                <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                <line x1="3" y1="18" x2="3.01" y2="18"></line>
+              </svg>
+              <span>Table of Contents</span>
+            </div>
+            <nav class="toc-nav-list" id="sidebar-toc-nav" aria-label="Table of contents">
+              <!-- Dynamically populated from article.toc -->
+            </nav>
+          </div>
+
+          <!-- Quick Dispatch Ledger -->
+          <div class="sidebar-box">
+            <div class="sidebar-box-header">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+              <span>Dispatch Ledger</span>
+            </div>
+            <div class="facts-list">
+              <div class="fact-row">
+                <span class="fact-label">Category</span>
+                <span class="fact-value" id="stat-category">Design</span>
+              </div>
+              <div class="fact-row">
+                <span class="fact-label">Reading Time</span>
+                <span class="fact-value" id="stat-read-time">5 min</span>
+              </div>
+              <div class="fact-row">
+                <span class="fact-label">Talent Fee</span>
+                <span class="fact-value" style="color: #123A2C;">0% Platform Take</span>
+              </div>
+              <div class="fact-row">
+                <span class="fact-label">Commission</span>
+                <span class="fact-value">Direct To Worker</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sidebar Actions: Clap & Share -->
+          <div class="sidebar-actions-row">
+            <button type="button" class="clap-widget-btn" id="sidebar-clap-btn" title="Applaud essay">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M7 11v 8a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1v-7a1 1 0 0 1 1 -1h3a4 4 0 0 0 4 -4v-1a2 2 0 0 1 4 0v5h3a2 2 0 0 1 2 2l-1 5a2 3 0 0 1 -2 2h-7a3 3 0 0 1 -3 -3"></path>
+              </svg>
+              <span>Clap (<span id="sidebar-clap-count">0</span>)</span>
+            </button>
+            <button type="button" class="share-copy-btn" id="share-copy-btn" title="Copy article URL">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="18" cy="5" r="3"></circle>
+                <circle cx="6" cy="12" r="3"></circle>
+                <circle cx="18" cy="19" r="3"></circle>
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+              </svg>
+              <span>Share</span>
+            </button>
+          </div>
+
+        </aside>
+
+        <!-- Right Column: Main Editorial Prose -->
+        <main class="editorial-prose-wrap">
+
+          <!-- Prose Content populated dynamically -->
+          <article class="editorial-prose" id="article-prose"></article>
+
+          <!-- Topics / Tags Cloud -->
+          <div class="editorial-tags-bar">
+            <span class="tags-kicker">Topics:</span>
+            <div class="tags-cloud" id="article-tags-cloud"></div>
+          </div>
+
+          <!-- Bottom Applaud Card -->
+          <div class="bottom-applaud-card">
+            <div class="applaud-copy-wrap">
+              <h4>Applaud this perspective</h4>
+              <p>Give recognition to independent specialists sharing open engineering and craft knowledge.</p>
+            </div>
+            <div class="applaud-action-wrap">
+              <button type="button" class="clap-widget-btn" id="bottom-clap-btn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M7 11v 8a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1v-7a1 1 0 0 1 1 -1h3a4 4 0 0 0 4 -4v-1a2 2 0 0 1 4 0v5h3a2 2 0 0 1 2 2l-1 5a2 3 0 0 1 -2 2h-7a3 3 0 0 1 -3 -3"></path>
+                </svg>
+                <span>Clap (<span id="bottom-clap-count">0</span>)</span>
+              </button>
+              <button type="button" class="share-copy-btn" id="bottom-share-btn">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="18" cy="5" r="3"></circle>
+                  <circle cx="6" cy="12" r="3"></circle>
+                  <circle cx="18" cy="19" r="3"></circle>
+                  <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                  <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                </svg>
+                <span>Share Article</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Author Spotlight Dossier -->
+          <div class="editorial-author-spotlight">
+            <img src="" alt="" id="author-spotlight-avatar" class="author-spotlight-avatar">
+            <div class="author-spotlight-content">
+              <div class="spotlight-kicker">Author Dossier • Verified Specialist</div>
+              <div class="spotlight-header-row">
+                <h3 class="spotlight-name" id="author-spotlight-name">Maya Chen</h3>
+                <span class="spotlight-rate-tag" id="author-spotlight-rate">$110/hr</span>
+              </div>
+              <div class="spotlight-craft" id="author-spotlight-craft">Staff Product Designer • San Francisco, CA</div>
+              <p class="spotlight-bio" id="author-spotlight-bio"></p>
+              <div class="spotlight-actions-row">
+                <a href="#" class="spotlight-primary-cta" id="author-spotlight-profile-btn">
+                  <span>View Full Profile &amp; Platforms</span>
+                  <span>→</span>
+                </a>
+                <a href="index.html#freelancers" class="spotlight-secondary-cta">Browse All Talent</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Previous / Next Story Pagination -->
+          <nav class="editorial-story-pagination" id="story-pagination-nav" aria-label="Story pagination"></nav>
+
+        </main>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       6. Related Dispatches Strip ("More from Field Notes")
+       ========================================================================= -->
+  <section class="editorial-related-strip">
+    <div class="container">
+      <div class="related-strip-header">
+        <div>
+          <span class="spotlight-kicker">CONTINUE EXPLORING</span>
+          <h2 class="related-heading">More from Field Notes</h2>
+        </div>
+        <a href="index.html#blog" class="spotlight-secondary-cta">All Dispatches →</a>
+      </div>
+      <div class="related-grid" id="related-stories-grid">
+        <!-- Dynamically rendered by blog.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       7. Site Footer (Architectural Solid Ink #1B1A17 — Strictly Zero Gradients)
+       ========================================================================= -->
+  <footer class="site-footer">
+    <div class="container">
+
+      <!-- 1. Top Architectural Monument Strip -->
+      <div class="footer-top-monument">
+        <div class="footer-monument-left">
+          <a href="index.html#home" class="footer-monument-brand" aria-label="FindWorker Home">
+            <span class="footer-brand-title">Find<span class="brand-accent">Worker</span><span class="brand-period">.</span></span>
+          </a>
+          <span class="footer-kicker-statement">THE INDEPENDENT COMMERCE DIRECTORY // ZERO PLATFORM COMMISSIONS</span>
+        </div>
+
+        <div class="footer-monument-right">
+          <div class="footer-live-badge">
+            <span class="footer-pulse-dot"></span>
+            <span class="footer-live-text">17 SPECIALISTS ONLINE</span>
+          </div>
+          <div class="footer-take-badge">
+            <span class="take-number">0.00%</span>
+            <span class="take-label">TAKE RATE</span>
+          </div>
+          <a href="#" class="footer-return-top-btn" id="footer-back-to-top" aria-label="Return to top of page">
+            <span>Back to top</span>
+            <span class="arrow-up">↑</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- 2. Unique 3-Card Trust Ledger Strip (Structured Architectural Grid) -->
+      <div class="footer-trust-grid">
+        <div class="footer-trust-card">
+          <div class="trust-card-header">
+            <span class="trust-stat">0%</span>
+            <span class="trust-pill">CHARTER</span>
+          </div>
+          <h4 class="trust-title">Zero Take-Rate Protocol</h4>
+          <p class="trust-desc">Specialists and clients trade directly. No 20% platform deductions, no pay-to-pitch credits, and no hidden billing surcharge.</p>
+        </div>
+
+        <div class="footer-trust-card">
+          <div class="trust-card-header">
+            <span class="trust-stat">100%</span>
+            <span class="trust-pill">DIRECT</span>
+          </div>
+          <h4 class="trust-title">Verified Public Platforms</h4>
+          <p class="trust-desc">Every specialist profile links directly to their authenticated accounts on Upwork, Fiverr, GitHub, Behance, and LinkedIn.</p>
+        </div>
+
+        <div class="footer-trust-card">
+          <div class="trust-card-header">
+            <span class="trust-stat">1:1</span>
+            <span class="trust-pill">VERIFIED</span>
+          </div>
+          <h4 class="trust-title">Device-Verified Feedback</h4>
+          <p class="trust-desc">One client review allowed per authenticated device session to eliminate manufactured or inflated ratings.</p>
+        </div>
+      </div>
+
+      <!-- 3. Main Directory Navigation Matrix (4 Columns) -->
+      <div class="footer-main-matrix">
+        <!-- Col 1: Brand & Charter Statement -->
+        <div class="footer-matrix-col footer-matrix-brand-col">
+          <h5 class="footer-col-heading">DIRECTORY LEDGER</h5>
+          <p class="footer-brand-summary">
+            FindWorker is an open portfolio-first talent index connecting forward-thinking teams with top independent engineers, designers, and strategists.
+          </p>
+          <div class="footer-action-suite">
+            <a href="index.html#signup" class="btn btn-primary btn-sm footer-action-primary" id="footer-signup-btn">
+              <span>Apply as Specialist</span>
+              <span class="btn-arrow">↗</span>
+            </a>
+            <a href="index.html#signin" class="btn btn-outline btn-sm footer-action-secondary" id="footer-login-btn">
+              <span>Sign In</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Col 2: Core Disciplines -->
+        <div class="footer-matrix-col">
+          <h5 class="footer-col-heading">DISCIPLINES</h5>
+          <ul class="footer-links-list">
+            <li><a href="index.html#roles">Web Engineering &amp; Systems</a></li>
+            <li><a href="index.html#roles">UI/UX &amp; Product Design</a></li>
+            <li><a href="index.html#roles">Brand Identity &amp; Type</a></li>
+            <li><a href="index.html#roles">Digital Marketing &amp; SEO</a></li>
+            <li><a href="index.html#roles">Technical Writing &amp; Content</a></li>
+            <li><a href="index.html#roles">Mobile App Engineering</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Direct Platforms -->
+        <div class="footer-matrix-col">
+          <h5 class="footer-col-heading">DIRECT WORK</h5>
+          <ul class="footer-links-list">
+            <li><a href="https://www.upwork.com" target="_blank" rel="noopener noreferrer"><span>Upwork Top Rated</span> <span class="ext-arrow">↗</span></a></li>
+            <li><a href="https://www.fiverr.com" target="_blank" rel="noopener noreferrer"><span>Fiverr Pro Verified</span> <span class="ext-arrow">↗</span></a></li>
+            <li><a href="https://github.com" target="_blank" rel="noopener noreferrer"><span>GitHub Open Source</span> <span class="ext-arrow">↗</span></a></li>
+            <li><a href="https://www.behance.net" target="_blank" rel="noopener noreferrer"><span>Behance Portfolios</span> <span class="ext-arrow">↗</span></a></li>
+            <li><a href="https://dribbble.com" target="_blank" rel="noopener noreferrer"><span>Dribbble Showcases</span> <span class="ext-arrow">↗</span></a></li>
+            <li><a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer"><span>LinkedIn Networks</span> <span class="ext-arrow">↗</span></a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Trust & Navigation -->
+        <div class="footer-matrix-col">
+          <h5 class="footer-col-heading">STANDARDS &amp; DISPATCH</h5>
+          <ul class="footer-links-list">
+            <li><a href="blog.html?id=article-1">Field Notes &amp; Journal</a></li>
+            <li><a href="index.html#how-it-works">Charter &amp; How It Works</a></li>
+            <li><a href="index.html#testimonials">Client Reviews Ledger</a></li>
+            <li><a href="index.html#faq">Frequently Asked Questions</a></li>
+            <li><a href="index.html#why-outlier">Direct Commerce Ethics</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 4. Footer Bottom Baseline Bar -->
+      <div class="footer-baseline-strip">
+        <div class="footer-baseline-copy">
+          &copy; 2026 FindWorker. Public Talent Directory. Built for direct human collaboration.
+        </div>
+        <div class="footer-baseline-center">
+          <span class="baseline-spec-tag">EST. 2026</span>
+          <span class="baseline-spec-sep">•</span>
+          <span class="baseline-spec-tag">0% TAKE RATE</span>
+          <span class="baseline-spec-sep">•</span>
+          <span class="baseline-spec-tag">17 ACTIVE TALENT SPECIMENS</span>
+        </div>
+        <div class="footer-baseline-nav">
+          <a href="index.html#why-outlier" class="baseline-nav-link">Privacy Manifesto</a>
+          <span class="baseline-nav-sep">•</span>
+          <a href="index.html#why-outlier" class="baseline-nav-link">Terms</a>
+          <span class="baseline-nav-sep">•</span>
+          <a href="index.html#why-outlier" class="baseline-nav-link">Security</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Shared Data & Page Controller Scripts -->
+  <script src="script/workers-data.js"></script>
+  <script src="script/blog-data.js"></script>
+  <script src="script/blog.js"></script>
+</body>
+</html>

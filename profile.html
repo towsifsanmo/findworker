@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Freelancer Profile — FindWorker</title>
-  <meta name="description" content="Explore verified portfolio case studies, where this specialist works on Upwork, Fiverr, GitHub, and client reviews on FindWorker.">
-  
+  <meta name="description"
+    content="Explore verified portfolio case studies, where this specialist works on Upwork, Fiverr, GitHub, and client reviews on FindWorker.">
+
   <!-- Google Fonts: Poppins (Hero Brand Font) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
-  
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap"
+    rel="stylesheet">
+
   <!-- Application Core Stylesheet (Exact same tokens as Home Page) -->
   <link rel="stylesheet" href="style/style.css">
   <!-- Dedicated Unique Profile Stylesheet -->
   <link rel="stylesheet" href="style/profile.css">
 </head>
+
 <body class="profile-page-body">
 
   <!-- =========================================================================
@@ -57,14 +62,16 @@
         <div class="header-actions">
           <a href="index.html#signin" class="btn btn-primary btn-sm nav-signup-btn" id="header-login-btn">
             <span>Sign In</span>
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
               <line x1="7" y1="17" x2="17" y2="7"></line>
               <polyline points="7 7 17 7 17 17"></polyline>
             </svg>
           </a>
 
           <!-- Mobile Hamburger Toggle -->
-          <button type="button" class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <button type="button" class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle navigation menu"
+            aria-expanded="false">
             <span class="hamburger-bar"></span>
             <span class="hamburger-bar"></span>
             <span class="hamburger-bar"></span>
@@ -91,8 +98,10 @@
         <a href="index.html#blog" class="mobile-nav-link">Field Notes &amp; Journal</a>
         <a href="index.html#why-outlier" class="mobile-nav-link">Why FindWorker</a>
         <div class="mobile-nav-actions">
-          <a href="index.html#signin" class="btn btn-outline" style="width: 100%; text-align: center;">Sign In to Workspace</a>
-          <a href="index.html#signup" class="btn btn-primary" style="width: 100%; text-align: center;">Create Account &amp; Sign Up ↗</a>
+          <a href="index.html#signin" class="btn btn-outline" style="width: 100%; text-align: center;">Sign In to
+            Workspace</a>
+          <a href="index.html#signup" class="btn btn-primary" style="width: 100%; text-align: center;">Create Account
+            &amp; Sign Up ↗</a>
         </div>
       </div>
     </div>
@@ -150,9 +159,9 @@
       <section class="profile-editorial-hero">
         <div class="container">
           <div class="editorial-hero-card">
-            
+
             <div class="editorial-hero-grid">
-              
+
               <!-- Avatar Column with Live Presence Aura -->
               <div class="editorial-avatar-column">
                 <div class="editorial-avatar-frame">
@@ -163,7 +172,7 @@
 
               <!-- Identity & Summary Column -->
               <div class="editorial-identity-column">
-                
+
                 <div class="editorial-meta-pills">
                   <span id="profile-badge" class="badge-tier-pro">✦ PRO INDEPENDENT</span>
                   <span id="profile-experience-pill" class="editorial-pill">16y Experience</span>
@@ -172,7 +181,8 @@
                 </div>
 
                 <h1 id="profile-name" class="editorial-freelancer-name">Julian Vance</h1>
-                <p id="profile-craft-title" class="editorial-craft-title">Master Joiner &amp; Architectural Woodcraft</p>
+                <p id="profile-craft-title" class="editorial-craft-title">Master Joiner &amp; Architectural Woodcraft
+                </p>
 
                 <!-- Professional Summary -->
                 <p id="profile-about-text" class="editorial-summary-bio"></p>
@@ -300,7 +310,7 @@
             <!-- 1. Quick Facts Dossier Card -->
             <div class="side-panel-card dossier-summary-card">
               <h3 class="side-panel-title">Overview</h3>
-              
+
               <div class="side-dossier-list">
                 <div class="side-dossier-row">
                   <span class="dossier-k">Direct Rate:</span>
@@ -339,7 +349,7 @@
 
             <!-- 2. REVIEWS & RATINGS SIDE HUB (Compact side placement) -->
             <div class="side-panel-card side-reviews-card" id="section-reviews">
-              
+
               <div class="side-reviews-header">
                 <div class="side-reviews-title-wrap">
                   <h3 class="side-panel-title" style="margin: 0; padding: 0; border: none;">Client Reviews</h3>
@@ -358,7 +368,7 @@
 
               <!-- Streamlined Client Review Form (Rating + Review Message + Name Only) -->
               <div class="side-review-form-wrap" id="review-compose-container">
-                
+
                 <!-- State 1: Active Submission Form -->
                 <div id="review-form-state" class="compact-review-form-box">
                   <div class="compact-form-top">
@@ -368,12 +378,14 @@
 
                   <form id="public-review-form" class="compact-review-form" novalidate>
                     <!-- Anti-Bot Honeypot -->
-                    <input type="text" id="hp_anti_bot_check" style="display:none !important;" tabindex="-1" autocomplete="off">
+                    <input type="text" id="hp_anti_bot_check" style="display:none !important;" tabindex="-1"
+                      autocomplete="off">
 
                     <!-- 1. Star Rating Picker -->
                     <div class="compact-form-group">
                       <label class="compact-form-label">Rating</label>
-                      <div class="compact-star-picker" id="star-picker-group" role="radiogroup" aria-label="Select star rating">
+                      <div class="compact-star-picker" id="star-picker-group" role="radiogroup"
+                        aria-label="Select star rating">
                         <button type="button" class="compact-star-btn" data-val="1">★</button>
                         <button type="button" class="compact-star-btn" data-val="2">★</button>
                         <button type="button" class="compact-star-btn" data-val="3">★</button>
@@ -386,13 +398,16 @@
                     <!-- 2. Client Name -->
                     <div class="compact-form-group">
                       <label class="compact-form-label" for="review-author-name">Your Name</label>
-                      <input type="text" id="review-author-name" class="compact-form-input" placeholder="e.g. Sarah Miller" required maxlength="60">
+                      <input type="text" id="review-author-name" class="compact-form-input"
+                        placeholder="e.g. Sarah Miller" required maxlength="60">
                     </div>
 
                     <!-- 3. Review Message -->
                     <div class="compact-form-group">
                       <label class="compact-form-label" for="review-post-comment">Review Message</label>
-                      <textarea id="review-post-comment" class="compact-form-textarea" rows="3" placeholder="Share your experience working with this freelancer..." required minlength="20" maxlength="800"></textarea>
+                      <textarea id="review-post-comment" class="compact-form-textarea" rows="3"
+                        placeholder="Share your experience working with this freelancer..." required minlength="20"
+                        maxlength="800"></textarea>
                     </div>
 
                     <div id="review-validation-alert" class="compact-review-error" style="display: none;"></div>
@@ -436,7 +451,8 @@
       <div class="footer-top-monument">
         <div class="footer-monument-left">
           <a href="index.html#home" class="footer-monument-brand" aria-label="FindWorker Home">
-            <span class="footer-brand-title">Find<span class="brand-accent">Worker</span><span class="brand-period">.</span></span>
+            <span class="footer-brand-title">Find<span class="brand-accent">Worker</span><span
+                class="brand-period">.</span></span>
           </a>
           <span class="footer-kicker-statement">THE INDEPENDENT COMMERCE DIRECTORY // ZERO PLATFORM COMMISSIONS</span>
         </div>
@@ -450,7 +466,8 @@
             <span class="take-number">0.00%</span>
             <span class="take-label">TAKE RATE</span>
           </div>
-          <a href="#profile-hero" class="footer-return-top-btn" id="footer-back-to-top" aria-label="Return to top of page">
+          <a href="#profile-hero" class="footer-return-top-btn" id="footer-back-to-top"
+            aria-label="Return to top of page">
             <span>Back to top</span>
             <span class="arrow-up">↑</span>
           </a>
@@ -465,7 +482,8 @@
             <span class="trust-pill">CHARTER</span>
           </div>
           <h4 class="trust-title">Zero Take-Rate Protocol</h4>
-          <p class="trust-desc">Specialists and clients trade directly. No 20% platform deductions, no pay-to-pitch credits, and no hidden billing surcharge.</p>
+          <p class="trust-desc">Specialists and clients trade directly. No 20% platform deductions, no pay-to-pitch
+            credits, and no hidden billing surcharge.</p>
         </div>
 
         <div class="footer-trust-card">
@@ -474,7 +492,8 @@
             <span class="trust-pill">DIRECT</span>
           </div>
           <h4 class="trust-title">Verified Public Platforms</h4>
-          <p class="trust-desc">Every specialist profile links directly to their authenticated accounts on Upwork, Fiverr, GitHub, Behance, and LinkedIn.</p>
+          <p class="trust-desc">Every specialist profile links directly to their authenticated accounts on Upwork,
+            Fiverr, GitHub, Behance, and LinkedIn.</p>
         </div>
 
         <div class="footer-trust-card">
@@ -483,7 +502,8 @@
             <span class="trust-pill">VERIFIED</span>
           </div>
           <h4 class="trust-title">Device-Verified Feedback</h4>
-          <p class="trust-desc">One client review allowed per authenticated device session to eliminate manufactured or inflated ratings.</p>
+          <p class="trust-desc">One client review allowed per authenticated device session to eliminate manufactured or
+            inflated ratings.</p>
         </div>
       </div>
 
@@ -493,7 +513,8 @@
         <div class="footer-matrix-col footer-matrix-brand-col">
           <h5 class="footer-col-heading">DIRECTORY LEDGER</h5>
           <p class="footer-brand-summary">
-            FindWorker is an open portfolio-first talent index connecting forward-thinking teams with top independent engineers, designers, and strategists.
+            FindWorker is an open portfolio-first talent index connecting forward-thinking teams with top independent
+            engineers, designers, and strategists.
           </p>
           <div class="footer-action-suite">
             <a href="index.html#signup" class="btn btn-primary btn-sm footer-action-primary" id="footer-signup-btn">
@@ -523,12 +544,18 @@
         <div class="footer-matrix-col">
           <h5 class="footer-col-heading">DIRECT WORK</h5>
           <ul class="footer-links-list">
-            <li><a href="https://www.upwork.com" target="_blank" rel="noopener noreferrer"><span>Upwork Top Rated</span> <span class="ext-arrow">↗</span></a></li>
-            <li><a href="https://www.fiverr.com" target="_blank" rel="noopener noreferrer"><span>Fiverr Pro Verified</span> <span class="ext-arrow">↗</span></a></li>
-            <li><a href="https://github.com" target="_blank" rel="noopener noreferrer"><span>GitHub Open Source</span> <span class="ext-arrow">↗</span></a></li>
-            <li><a href="https://www.behance.net" target="_blank" rel="noopener noreferrer"><span>Behance Portfolios</span> <span class="ext-arrow">↗</span></a></li>
-            <li><a href="https://dribbble.com" target="_blank" rel="noopener noreferrer"><span>Dribbble Showcases</span> <span class="ext-arrow">↗</span></a></li>
-            <li><a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer"><span>LinkedIn Networks</span> <span class="ext-arrow">↗</span></a></li>
+            <li><a href="https://www.upwork.com" target="_blank" rel="noopener noreferrer"><span>Upwork Top Rated</span>
+                <span class="ext-arrow">↗</span></a></li>
+            <li><a href="https://www.fiverr.com" target="_blank" rel="noopener noreferrer"><span>Fiverr Pro
+                  Verified</span> <span class="ext-arrow">↗</span></a></li>
+            <li><a href="https://github.com" target="_blank" rel="noopener noreferrer"><span>GitHub Open Source</span>
+                <span class="ext-arrow">↗</span></a></li>
+            <li><a href="https://www.behance.net" target="_blank" rel="noopener noreferrer"><span>Behance
+                  Portfolios</span> <span class="ext-arrow">↗</span></a></li>
+            <li><a href="https://dribbble.com" target="_blank" rel="noopener noreferrer"><span>Dribbble Showcases</span>
+                <span class="ext-arrow">↗</span></a></li>
+            <li><a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer"><span>LinkedIn
+                  Networks</span> <span class="ext-arrow">↗</span></a></li>
           </ul>
         </div>
 
@@ -576,4 +603,5 @@
   <script src="script/workers-data.js"></script>
   <script src="script/profile.js"></script>
 </body>
+
 </html>

@@ -1191,7 +1191,7 @@ document.addEventListener('DOMContentLoaded', () => {
       category: w.trade,
       image: w.image
     };
-    
+
 
     return `
       <article class="vip-independents-card" data-id="${w.id}">
@@ -1256,7 +1256,7 @@ document.addEventListener('DOMContentLoaded', () => {
               <span class="vip-card-rate-amount">$${w.hourlyRate}</span>
               <span class="vip-card-rate-period">/hr</span>
             </div>
-            <span class="vip-card-rate-note">Direct • 0% Cut</span>
+            
           </div>
           <button class="btn btn-primary btn-sm vip-card-action-btn card-profile-btn" data-id="${w.id}">
             <span>View Profile</span>
@@ -1345,11 +1345,11 @@ document.addEventListener('DOMContentLoaded', () => {
       if (searchQuery.trim() !== '') {
         const q = searchQuery.toLowerCase();
         const matches = worker.name.toLowerCase().includes(q) ||
-                        worker.craftTitle.toLowerCase().includes(q) ||
-                        worker.skills.some(s => s.toLowerCase().includes(q)) ||
-                        worker.location.toLowerCase().includes(q) ||
-                        worker.bio.toLowerCase().includes(q) ||
-                        (worker.portfolio && worker.portfolio.some(p => p.title.toLowerCase().includes(q)));
+          worker.craftTitle.toLowerCase().includes(q) ||
+          worker.skills.some(s => s.toLowerCase().includes(q)) ||
+          worker.location.toLowerCase().includes(q) ||
+          worker.bio.toLowerCase().includes(q) ||
+          (worker.portfolio && worker.portfolio.some(p => p.title.toLowerCase().includes(q)));
         if (!matches) return false;
       }
       return true;
@@ -1709,7 +1709,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Header info
     if (bookingAvatar) bookingAvatar.src = worker.image;
     if (bookingWorkerName) bookingWorkerName.textContent = worker.name;
-    if (bookingWorkerTrade)     bookingWorkerTrade.textContent = worker.craftTitle;
+    if (bookingWorkerTrade) bookingWorkerTrade.textContent = worker.craftTitle;
     if (bookingWorkerRate) bookingWorkerRate.textContent = `$${worker.hourlyRate}/hour`;
 
     if (bookingModalBadge) {
@@ -2057,7 +2057,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // =========================================================================
   // Dedicated Full-Page Sign In & Sign Up Form Engine
   // =========================================================================
-  
+
   // Return / Switcher Navigation Links
   const signinBackHomeLink = document.getElementById('signin-back-home-link');
   if (signinBackHomeLink) {

@@ -98,10 +98,10 @@
         const ctx = canvas.getContext('2d');
         if (ctx) {
           ctx.textBaseline = 'top';
-          ctx.font = "14px 'Instrument Sans', Arial";
-          ctx.fillStyle = '#D6441E';
+          ctx.font = "14px 'Poppins', Arial";
+          ctx.fillStyle = '#504CFF';
           ctx.fillRect(15, 5, 60, 20);
-          ctx.fillStyle = '#1B1A17';
+          ctx.fillStyle = '#0F0F0F';
           ctx.fillText('FindWorker_Sig_#984', 4, 17);
         }
         const canvasData = canvas.toDataURL();
@@ -462,7 +462,7 @@
       if (existingDisplay) {
         existingDisplay.innerHTML = `
           <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;">
-            <span style="font-size: 0.84rem; font-weight: 700; color: #1B1A17;">${escapeHtml(existing.author)}</span>
+            <span style="font-size: 0.84rem; font-weight: 700; color: #0F0F0F;">${escapeHtml(existing.author)}</span>
             <span style="color: #D97706; font-size: 0.85rem;">${'★'.repeat(Math.round(existing.rating))}</span>
           </div>
           <p style="font-size: 0.8rem; color: #4B5563; margin: 0; line-height: 1.45;">${escapeHtml(existing.comment)}</p>

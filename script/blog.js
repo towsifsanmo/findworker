@@ -272,12 +272,13 @@
     }
   }, { passive: true });
 
-  // 8. Mobile Menu Toggle
+  // 8. Mobile Menu Toggle & Navigation Actions
   const mobileToggle = document.getElementById('mobile-menu-toggle');
   const mobileDrawer = document.getElementById('mobile-nav-drawer');
 
   if (mobileToggle && mobileDrawer) {
-    mobileToggle.addEventListener('click', () => {
+    mobileToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
       const isOpen = mobileDrawer.classList.toggle('active');
       mobileToggle.classList.toggle('active', isOpen);
       mobileToggle.setAttribute('aria-expanded', String(isOpen));
@@ -290,7 +291,34 @@
         mobileToggle.setAttribute('aria-expanded', 'false');
       });
     });
+
+    document.addEventListener('click', (e) => {
+      if (mobileDrawer.classList.contains('active')) {
+        if (!mobileDrawer.contains(e.target) && !mobileToggle.contains(e.target)) {
+          mobileDrawer.classList.remove('active');
+          mobileToggle.classList.remove('active');
+          mobileToggle.setAttribute('aria-expanded', 'false');
+        }
+      }
+    });
   }
+
+  // Auth Button Routing (Sign In & Sign Up)
+  document.querySelectorAll('#header-login-btn, #footer-login-btn, #mobile-login-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      if (btn.tagName !== 'A' || !btn.getAttribute('href')) {
+        e.preventDefault();
+        window.location.href = 'index.html#signin';
+      }
+    });
+  });
+
+  document.querySelectorAll('#footer-signup-btn, #mobile-signup-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.location.href = 'index.html#signup';
+    });
+  });
 
   const footerBackToTop = document.getElementById('footer-back-to-top');
   if (footerBackToTop) {

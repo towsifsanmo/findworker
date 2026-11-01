@@ -8,11 +8,11 @@
   <meta name="description"
     content="Explore verified portfolio case studies, where this specialist works on Upwork, Fiverr, GitHub, and client reviews on FindWorker.">
 
-  <!-- Google Fonts: Poppins (Hero Brand Font) -->
+  <!-- Google Fonts: Poppins (Brand Typographic System) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700&display=swap"
     rel="stylesheet">
 
   <!-- Application Core Stylesheet (Exact same tokens as Home Page) -->
@@ -24,24 +24,28 @@
 <body class="profile-page-body">
 
   <!-- =========================================================================
-       1. Site Header (EXACT Same Navbar as Home Page)
+       Site Header
        ========================================================================= -->
   <header class="site-header" id="site-header">
     <div class="header-floating-island">
       <div class="container header-inner">
 
-        <!-- 1. Left: Brand Identity -->
+        <!-- 1. Left: Sculptural Monogram & Brand Identity -->
         <a href="index.html#home" class="brand-logo" id="brand-logo-link" aria-label="FindWorker Home">
+
           <div class="brand-text-block">
             <div class="brand-title">Find<span class="brand-title-accent">Worker</span></div>
+
           </div>
         </a>
 
-        <!-- 2. Center: Frosted Capsule Navigation Trench (Exact Same Nav Items) -->
+        <!-- 2. Center: Frosted Capsule Navigation Trench -->
         <nav class="main-nav" aria-label="Main Navigation">
           <div class="nav-capsule-trench">
             <a href="index.html#freelancers" class="nav-link" id="nav-link-freelancers">
+
               <span>Freelancers</span>
+
             </a>
             <a href="index.html#roles" class="nav-link" id="nav-link-roles">
               <span>Disciplines</span>
@@ -58,10 +62,12 @@
           </div>
         </nav>
 
-        <!-- 3. Right: Header Action Suite -->
+        <!-- 3. Right: Command Search, Shortlist Vault & Action Suite -->
         <div class="header-actions">
-          <a href="index.html#signin" class="btn btn-primary btn-sm nav-signup-btn" id="header-login-btn">
-            <span>Sign In</span>
+
+          <a href="index.html#signin" class="primary-btn no-min-width go-to-directory-link" id="header-login-btn">
+            <div class="btn-text">Sign In</div>
+            <div class="btn-dot"></div>
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
               stroke-linecap="round" stroke-linejoin="round">
               <line x1="7" y1="17" x2="17" y2="7"></line>
@@ -81,7 +87,7 @@
       </div>
     </div>
 
-    <!-- Mobile Slide-Down Navigation Drawer (Exact Same as Home Page) -->
+    <!-- Mobile Slide-Down Navigation Drawer -->
     <div class="mobile-nav-drawer" id="mobile-nav-drawer">
       <div class="mobile-nav-inner">
         <div class="mobile-drawer-header">
@@ -98,10 +104,10 @@
         <a href="index.html#blog" class="mobile-nav-link">Field Notes &amp; Journal</a>
         <a href="index.html#why-outlier" class="mobile-nav-link">Why FindWorker</a>
         <div class="mobile-nav-actions">
-          <a href="index.html#signin" class="btn btn-outline" style="width: 100%; text-align: center;">Sign In to
-            Workspace</a>
-          <a href="index.html#signup" class="btn btn-primary" style="width: 100%; text-align: center;">Create Account
-            &amp; Sign Up ↗</a>
+          <button type="button" class="btn btn-outline" id="mobile-login-btn" style="width: 100%;">Sign In to
+            Workspace</button>
+          <button type="button" class="btn btn-primary" id="mobile-signup-btn" style="width: 100%;">Create Account &amp;
+            Sign Up ↗</button>
         </div>
       </div>
     </div>
@@ -442,7 +448,7 @@
   </main>
 
   <!-- =========================================================================
-       Site Footer (EXACT Same Footer as Home Page)
+       Site Footer
        ========================================================================= -->
   <footer class="site-footer">
     <div class="container">
@@ -454,58 +460,19 @@
             <span class="footer-brand-title">Find<span class="brand-accent">Worker</span><span
                 class="brand-period">.</span></span>
           </a>
-          <span class="footer-kicker-statement">THE INDEPENDENT COMMERCE DIRECTORY // ZERO PLATFORM COMMISSIONS</span>
+          <span class="footer-kicker-statement">THE INDEPENDENT COMMERCE DIRECTORY</span>
         </div>
 
         <div class="footer-monument-right">
-          <div class="footer-live-badge">
-            <span class="footer-pulse-dot"></span>
-            <span class="footer-live-text">17 SPECIALISTS ONLINE</span>
-          </div>
-          <div class="footer-take-badge">
-            <span class="take-number">0.00%</span>
-            <span class="take-label">TAKE RATE</span>
-          </div>
-          <a href="#profile-hero" class="footer-return-top-btn" id="footer-back-to-top"
-            aria-label="Return to top of page">
+
+          <a href="#hero" class="footer-return-top-btn" id="footer-back-to-top" aria-label="Return to top of page">
             <span>Back to top</span>
             <span class="arrow-up">↑</span>
           </a>
         </div>
       </div>
 
-      <!-- 2. Unique 3-Card Trust Ledger Strip (Structured Architectural Grid) -->
-      <div class="footer-trust-grid">
-        <div class="footer-trust-card">
-          <div class="trust-card-header">
-            <span class="trust-stat">0%</span>
-            <span class="trust-pill">CHARTER</span>
-          </div>
-          <h4 class="trust-title">Zero Take-Rate Protocol</h4>
-          <p class="trust-desc">Specialists and clients trade directly. No 20% platform deductions, no pay-to-pitch
-            credits, and no hidden billing surcharge.</p>
-        </div>
 
-        <div class="footer-trust-card">
-          <div class="trust-card-header">
-            <span class="trust-stat">100%</span>
-            <span class="trust-pill">DIRECT</span>
-          </div>
-          <h4 class="trust-title">Verified Public Platforms</h4>
-          <p class="trust-desc">Every specialist profile links directly to their authenticated accounts on Upwork,
-            Fiverr, GitHub, Behance, and LinkedIn.</p>
-        </div>
-
-        <div class="footer-trust-card">
-          <div class="trust-card-header">
-            <span class="trust-stat">1:1</span>
-            <span class="trust-pill">VERIFIED</span>
-          </div>
-          <h4 class="trust-title">Device-Verified Feedback</h4>
-          <p class="trust-desc">One client review allowed per authenticated device session to eliminate manufactured or
-            inflated ratings.</p>
-        </div>
-      </div>
 
       <!-- 3. Main Directory Navigation Matrix (4 Columns) -->
       <div class="footer-main-matrix">
@@ -517,13 +484,13 @@
             engineers, designers, and strategists.
           </p>
           <div class="footer-action-suite">
-            <a href="index.html#signup" class="btn btn-primary btn-sm footer-action-primary" id="footer-signup-btn">
-              <span>Apply as Specialist</span>
+            <button type="button" class="btn btn-primary btn-sm footer-action-primary" id="footer-signup-btn">
+              <span>Apply as Freelancer</span>
               <span class="btn-arrow">↗</span>
-            </a>
-            <a href="index.html#signin" class="btn btn-outline btn-sm footer-action-secondary" id="footer-login-btn">
+            </button>
+            <button type="button" class="btn btn-outline btn-sm footer-action-secondary" id="footer-login-btn">
               <span>Sign In</span>
-            </a>
+            </button>
           </div>
         </div>
 
@@ -531,12 +498,12 @@
         <div class="footer-matrix-col">
           <h5 class="footer-col-heading">DISCIPLINES</h5>
           <ul class="footer-links-list">
-            <li><a href="index.html#roles">Web Engineering &amp; Systems</a></li>
-            <li><a href="index.html#roles">UI/UX &amp; Product Design</a></li>
-            <li><a href="index.html#roles">Brand Identity &amp; Type</a></li>
-            <li><a href="index.html#roles">Digital Marketing &amp; SEO</a></li>
-            <li><a href="index.html#roles">Technical Writing &amp; Content</a></li>
-            <li><a href="index.html#roles">Mobile App Engineering</a></li>
+            <li><a href="index.html#roles" class="go-to-directory-link">Web Engineering &amp; Systems</a></li>
+            <li><a href="index.html#roles" class="go-to-directory-link">UI/UX &amp; Product Design</a></li>
+            <li><a href="index.html#roles" class="go-to-directory-link">Brand Identity &amp; Type</a></li>
+            <li><a href="index.html#roles" class="go-to-directory-link">Digital Marketing &amp; SEO</a></li>
+            <li><a href="index.html#roles" class="go-to-directory-link">Technical Writing &amp; Content</a></li>
+            <li><a href="index.html#roles" class="go-to-directory-link">Mobile App Engineering</a></li>
           </ul>
         </div>
 
@@ -575,15 +542,9 @@
       <!-- 4. Footer Bottom Baseline Bar -->
       <div class="footer-baseline-strip">
         <div class="footer-baseline-copy">
-          &copy; 2026 FindWorker. Public Talent Directory. Built for direct human collaboration.
+          &copy; 2026 FindWorker. All rights reserved.
         </div>
-        <div class="footer-baseline-center">
-          <span class="baseline-spec-tag">EST. 2026</span>
-          <span class="baseline-spec-sep">•</span>
-          <span class="baseline-spec-tag">0% TAKE RATE</span>
-          <span class="baseline-spec-sep">•</span>
-          <span class="baseline-spec-tag">17 ACTIVE TALENT SPECIMENS</span>
-        </div>
+
         <div class="footer-baseline-nav">
           <a href="index.html#why-outlier" class="baseline-nav-link">Privacy Manifesto</a>
           <span class="baseline-nav-sep">•</span>

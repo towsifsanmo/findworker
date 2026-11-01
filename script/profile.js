@@ -197,6 +197,14 @@
         mobileMenuToggle.setAttribute('aria-expanded', String(!isOpen));
       });
 
+      mobileNavDrawer.querySelectorAll('.mobile-nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileNavDrawer.classList.remove('active');
+          mobileMenuToggle.classList.remove('active');
+          mobileMenuToggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+
       document.addEventListener('click', (e) => {
         if (!mobileNavDrawer.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
           mobileNavDrawer.classList.remove('active');
@@ -205,6 +213,23 @@
         }
       });
     }
+
+    // Auth Button Routing (Sign In & Sign Up)
+    document.querySelectorAll('#header-login-btn, #footer-login-btn, #mobile-login-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        if (btn.tagName !== 'A' || !btn.getAttribute('href')) {
+          e.preventDefault();
+          window.location.href = 'index.html#signin';
+        }
+      });
+    });
+
+    document.querySelectorAll('#footer-signup-btn, #mobile-signup-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.location.href = 'index.html#signup';
+      });
+    });
   }
 
   function showErrorScreen() {

@@ -80,7 +80,7 @@
 
 .editorial-kicker-tag .kicker-cat {
   color: var(--color-primary);
-  font-weight: 800;
+  font-weight: 700;
 }
 
 /* Masthead */
@@ -172,7 +172,7 @@
   background: var(--color-primary);
   color: #FFFFFF;
   font-size: 0.6rem;
-  font-weight: 800;
+  font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -524,7 +524,7 @@
 .takeaways-badge {
   font-family: var(--font-sans);
   font-size: 0.68rem;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: 0.08em;
   color: var(--color-primary);
   display: block;
@@ -560,7 +560,7 @@
 
 .takeaways-check {
   color: var(--color-primary);
-  font-weight: 800;
+  font-weight: 700;
   flex-shrink: 0;
 }
 
@@ -708,7 +708,7 @@
 .spotlight-kicker {
   font-family: var(--font-sans);
   font-size: 0.65rem;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: 0.08em;
   color: var(--color-primary);
   text-transform: uppercase;

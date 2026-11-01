@@ -2172,21 +2172,23 @@ img {
 
 /* Row Cards in Directory */
 .freelancer-row-card {
-  background-color: var(--color-background-pure);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-xl);
+  background-color: #FFFFFF;
+  border: 1px solid rgba(15, 15, 15, 0.08);
+  border-radius: 20px;
   padding: 24px;
   display: flex;
   gap: 22px;
   position: relative;
-  box-shadow: var(--shadow-sm);
-  transition: all var(--transition-normal);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03), 0 1px 2px rgba(0, 0, 0, 0.02);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.25s ease;
 }
 
 .freelancer-row-card:hover {
   transform: translateY(-4px);
-  border-color: var(--color-primary-border);
-  box-shadow: var(--shadow-md);
+  border-color: rgba(15, 15, 15, 0.2);
+  box-shadow: 0 20px 40px -10px rgba(15, 15, 15, 0.08), 0 2px 6px rgba(0, 0, 0, 0.02);
 }
 
 .freelancer-avatar-wrap {
@@ -2336,62 +2338,100 @@ img {
 }
 
 .rate-number {
-  font-family: var(--font-display);
-  font-size: 1.6rem;
-  font-weight: 800;
-  color: var(--color-primary);
+  font-family: 'Poppins', var(--font-display), sans-serif;
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #0F0F0F;
   line-height: 1;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
 }
 
 .rate-label {
   font-size: 0.72rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--color-secondary-muted);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: #71717A;
   margin-top: 4px;
   line-height: 1;
 }
 
 .bookmark-heart-btn {
-  width: 36px;
-  height: 36px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
-  border: 1px solid var(--color-border);
-  background-color: var(--color-background-pure);
+  border: 1px solid rgba(15, 15, 15, 0.08);
+  background-color: #FFFFFF;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-secondary-muted);
+  color: #0F0F0F;
   cursor: pointer;
   transition: all var(--transition-fast);
-  box-shadow: var(--shadow-xs);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
   flex-shrink: 0;
 }
 
 .bookmark-heart-btn:hover {
-  color: var(--color-primary);
-  border-color: var(--color-primary);
-  background-color: rgba(214, 68, 30, 0.06);
+  color: #504CFF;
+  border-color: #504CFF;
+  background-color: #FFFFFF;
   transform: scale(1.08);
-  box-shadow: 0 4px 12px rgba(214, 68, 30, 0.15);
+  box-shadow: 0 4px 12px rgba(80, 76, 255, 0.18);
 }
 
 .bookmark-heart-btn.active {
-  background-color: var(--color-primary);
+  background-color: #504CFF;
   color: #FFFFFF;
-  border-color: var(--color-primary);
-  box-shadow: 0 4px 12px rgba(214, 68, 30, 0.25);
+  border-color: #504CFF;
+  box-shadow: 0 4px 12px rgba(80, 76, 255, 0.28);
 }
 
-.freelancer-row-card .card-profile-btn {
+.freelancer-row-card .card-profile-btn.primary-btn {
   width: 100%;
   justify-content: center;
-  padding: 10px 14px;
-  font-size: 0.78rem;
-  font-weight: 600;
+  padding: 0.65rem 1.25rem !important;
+  font-size: 0.84rem !important;
+  font-weight: 500 !important;
+  font-family: 'Poppins', var(--font-sans), sans-serif !important;
+  border-radius: 9999px !important;
+  background: #0F0F0F !important;
+  color: #FFFFFF !important;
+  border: none !important;
   white-space: nowrap;
+  position: relative !important;
+  overflow: hidden !important;
+  cursor: pointer !important;
+  box-shadow: none !important;
+  transition: background-color .3s, transform .2s !important;
+}
+
+.freelancer-row-card .card-profile-btn.primary-btn:hover {
+  background: #262626 !important;
+  transform: translateY(-2px) !important;
+}
+
+.freelancer-row-card .card-profile-btn.primary-btn .btn-text {
+  position: relative;
+  z-index: 1;
+  color: #FFFFFF;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.freelancer-row-card .card-profile-btn.primary-btn .btn-dot {
+  z-index: 0;
+  background-image: linear-gradient(90deg, #504CFF, #854CFF);
+  border-radius: 50%;
+  width: 1rem;
+  height: 1rem;
+  position: absolute;
+  inset: auto auto 0% 0%;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s;
+}
+
+.freelancer-row-card .card-profile-btn.primary-btn:hover .btn-dot {
+  transform: scale(30);
 }
 
 /* Empty State Box */
@@ -9535,17 +9575,19 @@ textarea:focus-visible {
 }
 
 /* Spotlight Talent Card (Clean & Visual-First) */
+/* Spotlight Talent Card (Clean, Minimal & Premium) */
 .spotlight-talent-card {
+  box-sizing: border-box;
   background: #FFFFFF;
-  border: 1px solid rgba(27, 26, 23, 0.08);
+  border: 1px solid rgba(15, 15, 15, 0.08);
   border-radius: 20px;
   padding: 16px;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 2px 6px rgba(27, 26, 23, 0.03), 0 10px 24px -4px rgba(27, 26, 23, 0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03), 0 1px 2px rgba(0, 0, 0, 0.02);
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
     box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-    border-color 0.35s ease;
+    border-color 0.25s ease;
   overflow: hidden;
   cursor: pointer;
   position: relative;
@@ -9553,51 +9595,54 @@ textarea:focus-visible {
 
 .spotlight-talent-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 20px 48px -10px rgba(18, 58, 44, 0.12), 0 0 0 1px rgba(214, 68, 30, 0.25);
-  border-color: rgba(214, 68, 30, 0.3);
+  border-color: rgba(15, 15, 15, 0.2);
+  box-shadow: 0 20px 40px -10px rgba(15, 15, 15, 0.08), 0 2px 6px rgba(0, 0, 0, 0.02);
 }
 
 /* Flagship Media Cover */
 .spotlight-media-cover {
   position: relative;
-  height: 190px;
+  height: 200px;
   border-radius: 14px;
   overflow: hidden;
-  background-color: var(--color-secondary);
+  background-color: #F4F3F0;
+  margin: 0 0 16px 0;
 }
 
 .spotlight-media-cover img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .spotlight-talent-card:hover .spotlight-media-cover img {
-  transform: scale(1.06);
+  transform: scale(1.04);
 }
 
 .spotlight-cover-top {
   position: absolute;
-  top: 10px;
-  left: 10px;
-  right: 10px;
+  top: 12px;
+  left: 12px;
+  right: 12px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 2;
+  z-index: 3;
 }
 
 .spotlight-category-chip {
-  background: rgba(27, 26, 23, 0.72);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(15, 15, 15, 0.65);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   color: #FFFFFF;
   font-size: 0.7rem;
-  font-weight: 700;
-  padding: 4px 10px;
-  border-radius: var(--radius-full);
-  letter-spacing: 0.02em;
+  font-weight: 500;
+  padding: 4px 11px;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  letter-spacing: 0.01em;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
 
 .spotlight-cover-top .bookmark-heart-btn,
@@ -9605,28 +9650,30 @@ textarea:focus-visible {
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   display: flex;
   align-items: center;
   justify-content: center;
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.6);
   cursor: pointer;
-  color: var(--color-secondary);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
-  transition: all 0.2s ease;
+  color: #0F0F0F;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, color 0.2s ease;
 }
 
 .spotlight-cover-top .bookmark-heart-btn:hover,
 .card-preview-top .bookmark-heart-btn:hover {
   background: #FFFFFF;
-  transform: scale(1.08);
+  transform: scale(1.1);
+  color: #504CFF;
 }
 
 .spotlight-cover-top .bookmark-heart-btn.active,
 .card-preview-top .bookmark-heart-btn.active {
-  color: var(--color-primary);
+  color: #504CFF;
+  background: #FFFFFF;
 }
 
 .spotlight-cover-bottom {
@@ -9635,7 +9682,7 @@ textarea:focus-visible {
   left: 0;
   right: 0;
   padding: 24px 12px 10px;
-  background: linear-gradient(0deg, rgba(18, 58, 44, 0.92) 0%, rgba(18, 58, 44, 0.4) 60%, transparent 100%);
+  background: linear-gradient(0deg, rgba(15, 15, 15, 0.7) 0%, transparent 100%);
   z-index: 2;
 }
 
@@ -9656,19 +9703,18 @@ textarea:focus-visible {
 .card-creator-row {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   margin-top: 14px;
 }
 
 .spotlight-avatar-wrap,
 .card-creator-row .avatar-round-frame {
   position: relative;
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   flex-shrink: 0;
-  box-shadow: 0 0 0 2px #fff, 0 0 0 3px rgba(18, 58, 44, 0.12);
-  border: none;
+  border: 1px solid rgba(15, 15, 15, 0.08);
 }
 
 .spotlight-avatar-wrap img,
@@ -9699,24 +9745,41 @@ textarea:focus-visible {
   flex: 1;
 }
 
+.spotlight-name-line {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
+}
+
 .spotlight-creator-name,
 .card-creator-info .card-worker-name {
-  font-family: var(--font-display);
-  font-size: 1.12rem;
-  font-weight: 700;
-  color: var(--color-secondary);
-  line-height: 1.2;
+  font-family: 'Poppins', var(--font-sans), sans-serif;
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: #0F0F0F;
+  line-height: 1.25;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   margin: 0;
+  transition: color 0.2s ease;
+}
+
+.spotlight-talent-card:hover .spotlight-creator-name {
+  color: #504CFF;
+}
+
+.spotlight-verified-icon {
+  display: inline-flex;
+  flex-shrink: 0;
 }
 
 .spotlight-creator-craft,
 .card-creator-info .card-worker-craft {
-  font-size: 0.76rem;
+  font-size: 0.78rem;
   font-weight: 500;
-  color: var(--color-secondary-muted);
+  color: #71717A;
   margin-top: 2px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -9727,14 +9790,14 @@ textarea:focus-visible {
 .card-rating-badge {
   display: flex;
   align-items: center;
-  gap: 3px;
-  background: #FFFFFF;
-  border: 1px solid rgba(27, 26, 23, 0.08);
-  padding: 3px 8px;
-  border-radius: var(--radius-full);
-  font-size: 0.76rem;
-  font-weight: 700;
-  color: var(--color-secondary);
+  gap: 4px;
+  background: #F8F8F9;
+  border: 1px solid rgba(15, 15, 15, 0.05);
+  padding: 4px 9px;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #18181B;
   flex-shrink: 0;
   margin-left: auto;
 }
@@ -9742,7 +9805,7 @@ textarea:focus-visible {
 .spotlight-rating-badge .star-gold,
 .card-rating-badge .star-gold {
   color: #F59E0B;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
 }
 
 /* Skills */
@@ -9751,28 +9814,28 @@ textarea:focus-visible {
   display: flex;
   align-items: center;
   gap: 6px;
-  margin-top: 10px;
-  margin-bottom: 0;
-  justify-content: flex-start;
+  margin: 0 0 16px 0;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .spotlight-skill-pill,
 .freelancer-grid-card .skill-chip {
-  background: #FFFFFF;
-  border: 1px solid rgba(27, 26, 23, 0.06);
-  color: var(--color-secondary);
+  background: #F4F4F5;
+  border: none;
+  color: #3F3F46;
   font-size: 0.72rem;
-  font-weight: 600;
-  padding: 3px 8px;
-  border-radius: 6px;
-  transition: all var(--transition-fast);
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  white-space: nowrap;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .spotlight-talent-card:hover .spotlight-skill-pill,
 .freelancer-grid-card:hover .skill-chip {
-  border-color: rgba(214, 68, 30, 0.25);
-  background-color: var(--color-primary-light);
-  color: var(--color-primary);
+  background-color: #E4E4E7;
+  color: #0F0F0F;
 }
 
 /* Card Footer */
@@ -9781,67 +9844,83 @@ textarea:focus-visible {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 14px;
-  padding-top: 12px;
-  border-top: 1px solid rgba(27, 26, 23, 0.06);
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid #F2F2F2;
 }
 
 .spotlight-rate-block,
 .card-rate-wrap {
   display: flex;
   align-items: baseline;
-  gap: 1px;
+  gap: 3px;
 }
 
 .spotlight-rate-val,
 .card-rate-wrap .card-rate-val {
-  font-family: var(--font-display);
-  font-size: 1.25rem;
-  font-weight: 800;
-  color: var(--color-secondary);
+  font-family: 'Poppins', var(--font-sans), sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #0F0F0F;
   line-height: 1;
+  letter-spacing: -0.02em;
 }
 
 .spotlight-rate-unit,
 .card-rate-wrap .rate-per-hr {
-  font-size: 0.76rem;
-  font-weight: 500;
-  color: var(--color-secondary-muted);
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: #8E8E93;
   font-family: var(--font-sans);
 }
 
-.spotlight-cta-btn,
-.freelancer-grid-card .card-profile-btn {
-  padding: 8px 16px;
-  font-size: 0.82rem;
-  font-weight: 700;
-  border-radius: var(--radius-full);
-  background: var(--color-primary);
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  display: flex;
+.spotlight-cta-btn.primary-btn {
+  min-width: auto !important;
+  min-height: 2.3rem !important;
+  padding: 0.5rem 1.15rem !important;
+  font-size: 0.84rem !important;
+  font-weight: 500 !important;
+  border-radius: 9999px !important;
+  border: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: relative !important;
+  overflow: hidden !important;
+  cursor: pointer !important;
+  background-color: #0F0F0F !important;
+  color: #FFFFFF !important;
+  text-decoration: none !important;
+  transition: background-color .3s, transform .2s !important;
+}
+
+.spotlight-cta-btn.primary-btn:hover {
+  background-color: #262626 !important;
+  transform: translateY(-2px) !important;
+}
+
+.spotlight-cta-btn.primary-btn .btn-text {
+  position: relative;
+  z-index: 1;
+  color: #FFFFFF;
+  display: inline-flex;
   align-items: center;
-  gap: 5px;
-  transition: all 0.25s ease;
+  gap: 4px;
 }
 
-.spotlight-cta-btn:hover,
-.freelancer-grid-card .card-profile-btn:hover {
-  background: #BA3616;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(214, 68, 30, 0.3);
+.spotlight-cta-btn.primary-btn .btn-dot {
+  z-index: 0;
+  background-image: linear-gradient(90deg, #504CFF, #854CFF);
+  border-radius: 50%;
+  width: 1rem;
+  height: 1rem;
+  position: absolute;
+  inset: auto auto 0% 0%;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s;
 }
 
-.spotlight-cta-btn .arrow-up-right,
-.freelancer-grid-card .arrow-up-right {
-  transition: transform 0.2s ease;
-  font-size: 0.9rem;
-}
-
-.spotlight-talent-card:hover .spotlight-cta-btn .arrow-up-right,
-.freelancer-grid-card:hover .card-profile-btn .arrow-up-right {
-  transform: translateX(3px);
+.spotlight-cta-btn.primary-btn:hover .btn-dot {
+  transform: scale(25);
 }
 
 /* Card Project Preview in Grid Card */
@@ -9994,19 +10073,19 @@ textarea:focus-visible {
   z-index: 2;
 }
 
-/* VIP Card Isolated Design */
+/* VIP Card Isolated Design — Ultra-Premium Simplicity */
 .vip-independents-card {
   box-sizing: border-box;
   background: #FFFFFF;
-  border: 1.5px solid rgba(214, 68, 30, 0.18);
-  border-radius: 22px;
+  border: 1px solid rgba(15, 15, 15, 0.08);
+  border-radius: 20px;
   padding: 16px;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 4px 18px -2px rgba(27, 26, 23, 0.04), 0 16px 36px -8px rgba(18, 58, 44, 0.07);
-  transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 0.38s cubic-bezier(0.16, 1, 0.3, 1),
-    border-color 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03), 0 1px 2px rgba(0, 0, 0, 0.02);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.25s ease;
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -10017,36 +10096,19 @@ textarea:focus-visible {
 }
 
 .vip-independents-card:hover {
-  transform: translateY(-9px);
-  box-shadow: 0 28px 64px -12px rgba(18, 58, 44, 0.18), 0 0 0 1.5px rgba(214, 68, 30, 0.42);
-  border-color: rgba(214, 68, 30, 0.45);
+  transform: translateY(-6px);
+  border-color: rgba(15, 15, 15, 0.2);
+  box-shadow: 0 20px 40px -10px rgba(15, 15, 15, 0.08), 0 2px 6px rgba(0, 0, 0, 0.02);
 }
 
-/* Prismatic Metallic Top Strip */
-.vip-card-foil-strip {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3.5px;
-  background: linear-gradient(90deg, #504CFF 0%, #854CFF 40%, #10B981 75%, #0F0F0F 100%);
-  z-index: 10;
-  transition: height 0.3s ease;
-}
-
-.vip-independents-card:hover .vip-card-foil-strip {
-  height: 5px;
-  box-shadow: 0 2px 12px rgba(214, 68, 30, 0.4);
-}
-
-/* Media Stage */
+/* Media Stage / Portfolio Aperture */
 .vip-card-media-stage {
   position: relative;
   height: 200px;
-  border-radius: 16px;
+  border-radius: 14px;
   overflow: hidden;
-  background-color: var(--color-secondary);
-  margin: 0 0 14px 0;
+  background-color: #F4F3F0;
+  margin: 0 0 16px 0;
 }
 
 .vip-card-image {
@@ -10054,141 +10116,73 @@ textarea:focus-visible {
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .vip-independents-card:hover .vip-card-image {
-  transform: scale(1.08);
+  transform: scale(1.04);
 }
 
-.vip-card-media-scrim {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(18, 58, 44, 0.4) 0%, transparent 40%, rgba(18, 58, 44, 0.78) 100%);
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* Floating Crests Bar */
+/* Floating Badges Row */
 .vip-card-badge-row {
   position: absolute;
-  top: 10px;
-  left: 10px;
-  right: 10px;
+  top: 12px;
+  left: 12px;
+  right: 12px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   z-index: 3;
 }
 
-.vip-card-crests-group {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  flex-wrap: wrap;
-}
-
-.vip-card-rank-tag {
-  background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
-  color: #FFFFFF;
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 0.66rem;
-  letter-spacing: 0.05em;
-  padding: 3.5px 8px;
-  border-radius: var(--radius-full);
-  box-shadow: 0 2px 6px rgba(217, 119, 6, 0.4);
-}
-
-.vip-card-hallmark {
-  background: rgba(18, 58, 44, 0.9);
+.vip-card-category-pill {
+  background: rgba(15, 15, 15, 0.65);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(245, 158, 11, 0.45);
   color: #FFFFFF;
-  font-size: 0.66rem;
-  font-weight: 800;
-  letter-spacing: 0.04em;
-  padding: 3.5px 9px;
-  border-radius: var(--radius-full);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  padding: 4px 11px;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
 
-.vip-card-specialty-pill {
-  background: rgba(27, 26, 23, 0.72);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  color: #FFFFFF;
-  font-size: 0.66rem;
-  font-weight: 700;
-  padding: 3.5px 8px;
-  border-radius: var(--radius-full);
-}
-
-/* Bookmark Button in VIP Card */
 .vip-card-badge-row .bookmark-heart-btn {
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   display: flex;
   align-items: center;
   justify-content: center;
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.6);
   cursor: pointer;
-  color: var(--color-secondary);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.14);
-  transition: all 0.2s ease;
+  color: #0F0F0F;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, color 0.2s ease;
   flex-shrink: 0;
 }
 
 .vip-card-badge-row .bookmark-heart-btn:hover {
   background: #FFFFFF;
-  transform: scale(1.08);
+  transform: scale(1.1);
+  color: #504CFF;
 }
 
 .vip-card-badge-row .bookmark-heart-btn.active {
-  color: var(--color-primary);
-}
-
-/* Flagship Project Title Caption */
-.vip-card-project-caption {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 24px 12px 10px;
-  background: linear-gradient(0deg, rgba(18, 58, 44, 0.96) 0%, rgba(18, 58, 44, 0.5) 60%, transparent 100%);
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.vip-card-project-caption .caption-sparkle {
-  color: #F59E0B;
-  font-size: 0.75rem;
-  flex-shrink: 0;
-}
-
-.vip-card-project-caption .caption-text {
-  color: #FFFFFF;
-  font-size: 0.84rem;
-  font-weight: 700;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-family: var(--font-sans);
-  line-height: 1.25;
+  color: #504CFF;
+  background: #FFFFFF;
 }
 
 /* Creator Profile Deck */
 .vip-card-profile-deck {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   margin: 0 0 12px 0;
 }
 
@@ -10198,7 +10192,6 @@ textarea:focus-visible {
   height: 44px;
   border-radius: 50%;
   flex-shrink: 0;
-  box-shadow: 0 0 0 2px #fff, 0 0 0 4px rgba(214, 68, 30, 0.32), 0 4px 10px rgba(18, 58, 44, 0.12);
 }
 
 .vip-card-avatar-img {
@@ -10207,18 +10200,18 @@ textarea:focus-visible {
   border-radius: 50%;
   object-fit: cover;
   display: block;
+  box-shadow: 0 0 0 2px #FFFFFF, 0 1px 4px rgba(0, 0, 0, 0.08);
 }
 
 .vip-card-live-dot {
   position: absolute;
-  bottom: 1px;
-  right: 1px;
-  width: 11px;
-  height: 11px;
+  bottom: 0px;
+  right: 0px;
+  width: 10px;
+  height: 10px;
   background-color: #10B981;
   border: 2px solid #FFFFFF;
   border-radius: 50%;
-  box-shadow: 0 0 6px rgba(16, 185, 129, 0.6);
 }
 
 .vip-card-identity-block {
@@ -10231,25 +10224,26 @@ textarea:focus-visible {
 .vip-card-name-line {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
   min-width: 0;
 }
 
 .vip-card-name {
-  font-family: var(--font-display);
-  font-size: 1.15rem;
-  font-weight: 800;
-  color: var(--color-secondary);
-  line-height: 1.2;
+  font-family: 'Poppins', var(--font-sans), sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #0F0F0F;
+  line-height: 1.25;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   margin: 0;
   transition: color 0.2s ease;
+  letter-spacing: -0.01em;
 }
 
 .vip-independents-card:hover .vip-card-name {
-  color: var(--color-primary);
+  color: #504CFF;
 }
 
 .vip-card-verified-icon {
@@ -10258,9 +10252,9 @@ textarea:focus-visible {
 }
 
 .vip-card-role-title {
-  font-size: 0.77rem;
-  font-weight: 600;
-  color: var(--color-secondary-muted);
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: #71717A;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -10270,32 +10264,30 @@ textarea:focus-visible {
 .vip-card-rating-capsule {
   display: flex;
   align-items: center;
-  gap: 3px;
-  background: rgba(245, 158, 11, 0.1);
-  border: 1px solid rgba(245, 158, 11, 0.32);
-  padding: 3px 9px;
-  border-radius: var(--radius-full);
+  gap: 4px;
+  background: #F8F8F9;
+  border: 1px solid rgba(15, 15, 15, 0.05);
+  padding: 4px 9px;
+  border-radius: 9999px;
   flex-shrink: 0;
 }
 
 .vip-card-rating-capsule .star-icon {
   color: #F59E0B;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
 }
 
 .vip-card-rating-capsule .rating-val {
-  color: #B45309;
-  font-weight: 800;
-  font-size: 0.82rem;
+  color: #18181B;
+  font-weight: 600;
+  font-size: 0.8rem;
 }
 
-/* Skills & Performance Ribbon */
+/* Skills Highlight */
 .vip-card-spec-highlight {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  margin: 0 0 14px 0;
+  margin: 0 0 16px 0;
 }
 
 .vip-card-skills-row {
@@ -10307,41 +10299,19 @@ textarea:focus-visible {
 }
 
 .vip-card-skill-tag {
-  background: #FFFFFF;
-  border: 1px solid rgba(27, 26, 23, 0.08);
-  color: var(--color-secondary);
+  background: #F4F4F5;
+  color: #3F3F46;
   font-size: 0.72rem;
-  font-weight: 600;
-  padding: 3px 8px;
-  border-radius: 6px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 9999px;
   white-space: nowrap;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .vip-independents-card:hover .vip-card-skill-tag {
-  background: var(--color-primary-light);
-  border-color: rgba(214, 68, 30, 0.25);
-  color: var(--color-primary);
-}
-
-.vip-card-status-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: #10B981;
-  background: rgba(16, 185, 129, 0.1);
-  border: 1px solid rgba(16, 185, 129, 0.25);
-  padding: 2.5px 7px;
-  border-radius: 6px;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-
-.vip-card-status-badge .badge-bolt {
-  color: #F59E0B;
-  font-size: 0.75rem;
+  background: #E4E4E7;
+  color: #0F0F0F;
 }
 
 /* Bottom Action Dock */
@@ -10351,70 +10321,78 @@ textarea:focus-visible {
   justify-content: space-between;
   margin-top: auto;
   padding-top: 14px;
-  border-top: 1px solid rgba(27, 26, 23, 0.07);
+  border-top: 1px solid #F2F2F2;
 }
 
 .vip-card-rate-group {
   display: flex;
-  flex-direction: column;
-}
-
-.vip-card-rate-main {
-  display: flex;
   align-items: baseline;
-  gap: 2px;
+  gap: 3px;
 }
 
 .vip-card-rate-amount {
-  font-family: var(--font-display);
-  font-size: 1.35rem;
-  font-weight: 800;
-  color: var(--color-secondary);
+  font-family: 'Poppins', var(--font-sans), sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #0F0F0F;
   line-height: 1;
+  letter-spacing: -0.02em;
 }
 
 .vip-card-rate-period {
-  font-size: 0.76rem;
-  font-weight: 600;
-  color: var(--color-secondary-muted);
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: #8E8E93;
 }
 
-.vip-card-rate-note {
-  font-size: 0.67rem;
-  font-weight: 600;
-  color: #10B981;
-  letter-spacing: 0.02em;
-  margin-top: 2px;
-}
-
-.vip-card-action-btn {
-  background: linear-gradient(135deg, var(--color-primary) 0%, #BA3616 100%) !important;
-  color: #FFFFFF !important;
+/* Action button with Hero Button expanding gradient color animation */
+.vip-card-action-btn.primary-btn {
+  min-width: auto !important;
+  min-height: 2.3rem !important;
+  padding: 0.5rem 1.15rem !important;
+  font-size: 0.84rem !important;
+  font-weight: 500 !important;
+  border-radius: 9999px !important;
   border: none !important;
-  border-radius: var(--radius-full) !important;
-  padding: 8px 18px !important;
-  font-size: 0.82rem !important;
-  font-weight: 700 !important;
-  cursor: pointer !important;
   display: inline-flex !important;
   align-items: center !important;
-  gap: 6px !important;
-  box-shadow: 0 4px 14px rgba(214, 68, 30, 0.28) !important;
-  transition: all 0.25s ease !important;
+  justify-content: center !important;
+  position: relative !important;
+  overflow: hidden !important;
+  cursor: pointer !important;
+  background-color: #0F0F0F !important;
+  color: #FFFFFF !important;
+  text-decoration: none !important;
+  transition: background-color .3s, transform .2s !important;
 }
 
-.vip-card-action-btn:hover {
-  box-shadow: 0 8px 24px rgba(214, 68, 30, 0.42) !important;
-  transform: translateY(-1px) !important;
+.vip-card-action-btn.primary-btn:hover {
+  background-color: #262626 !important;
+  transform: translateY(-2px) !important;
 }
 
-.vip-card-action-btn .vip-btn-arrow {
-  transition: transform 0.2s ease;
-  font-size: 0.9rem;
+.vip-card-action-btn.primary-btn .btn-text {
+  position: relative;
+  z-index: 1;
+  color: #FFFFFF;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
 }
 
-.vip-independents-card:hover .vip-card-action-btn .vip-btn-arrow {
-  transform: translateX(3px);
+.vip-card-action-btn.primary-btn .btn-dot {
+  z-index: 0;
+  background-image: linear-gradient(90deg, #504CFF, #854CFF);
+  border-radius: 50%;
+  width: 1rem;
+  height: 1rem;
+  position: absolute;
+  inset: auto auto 0% 0%;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s;
+}
+
+.vip-card-action-btn.primary-btn:hover .btn-dot {
+  transform: scale(25);
 }
 
 /* Responsiveness */
@@ -10430,6 +10408,13 @@ textarea:focus-visible {
     flex-direction: column;
     align-items: flex-start;
     gap: 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .vip-independents-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
 }
 

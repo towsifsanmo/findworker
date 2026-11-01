@@ -1140,7 +1140,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="spotlight-cover-top">
             <span class="spotlight-category-chip">${featuredProject.category || w.trade}</span>
             <button class="bookmark-heart-btn ${isSaved ? 'active' : ''}" data-id="${w.id}" title="${isSaved ? 'Remove from shortlist' : 'Save to shortlist'}" aria-label="Save ${w.name}">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="${isSaved ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2.2">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="${isSaved ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2.2">
                 <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
               </svg>
             </button>
@@ -1154,7 +1154,14 @@ document.addEventListener('DOMContentLoaded', () => {
             <span class="online-indicator-dot" title="Available"></span>
           </div>
           <div class="spotlight-creator-info">
-            <h3 class="spotlight-creator-name">${w.name}</h3>
+            <div class="spotlight-name-line">
+              <h3 class="spotlight-creator-name">${w.name}</h3>
+              <span class="spotlight-verified-icon" title="Verified Professional">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#10B981">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+              </span>
+            </div>
             <span class="spotlight-creator-craft">${w.craftTitle || w.trade}</span>
           </div>
           <div class="spotlight-rating-badge">
@@ -1174,16 +1181,16 @@ document.addEventListener('DOMContentLoaded', () => {
             <span class="spotlight-rate-val">$${w.hourlyRate}</span>
             <span class="spotlight-rate-unit">/hr</span>
           </div>
-          <button class="btn btn-primary btn-sm card-profile-btn spotlight-cta-btn" data-id="${w.id}">
-            <span>View Profile</span>
-            <span class="arrow-up-right">→</span>
+          <button class="primary-btn no-min-width card-profile-btn spotlight-cta-btn" data-id="${w.id}">
+            <span class="btn-text">View Profile ↗</span>
+            <span class="btn-dot"></span>
           </button>
         </div>
       </article>
     `;
   }
 
-  // Top Freelancers Card Design (Meet the Independents - Standout VIP Elite Showcase)
+  // Top Freelancers Card Design (Meet the Independents - Standout Showcase)
   function renderGridCardHtml(w, rank) {
     const isSaved = savedWorkerIds.includes(w.id);
     const featuredProject = w.portfolio && w.portfolio[0] ? w.portfolio[0] : {
@@ -1192,41 +1199,34 @@ document.addEventListener('DOMContentLoaded', () => {
       image: w.image
     };
 
-
     return `
       <article class="vip-independents-card" data-id="${w.id}">
-        <!-- Top Prismatic Foil Accent -->
-        
-
-        <!-- Media Stage / Project Preview Aperture -->
+        <!-- Media / Project Preview Aperture -->
         <div class="vip-card-media-stage">
           <img src="${featuredProject.image}" alt="${featuredProject.title}" class="vip-card-image" loading="lazy">
-          <div class="vip-card-media-scrim" aria-hidden="true"></div>
-
-          <!-- Top Floating Crests -->
+          
+          <!-- Top Badges Row -->
           <div class="vip-card-badge-row">
-            <div class="vip-card-crests-group">
-              
-              <span class="vip-card-hallmark">★ TOP RATED</span>
-              
-            </div>
-        
+            <span class="vip-card-category-pill">${featuredProject.category || w.trade}</span>
+            <button class="bookmark-heart-btn ${isSaved ? 'active' : ''}" data-id="${w.id}" title="${isSaved ? 'Saved to shortlist' : 'Save to shortlist'}" aria-label="Save ${w.name}">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="${isSaved ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2.2">
+                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+              </svg>
+            </button>
           </div>
-
-         
         </div>
 
         <!-- Creator Profile Deck -->
         <div class="vip-card-profile-deck">
           <div class="vip-card-avatar-stage">
             <img src="${w.image}" alt="${w.name}" class="vip-card-avatar-img" loading="lazy">
-            <span class="vip-card-live-dot" title="Available for direct engagement"></span>
+            <span class="vip-card-live-dot" title="Available for work"></span>
           </div>
           <div class="vip-card-identity-block">
             <div class="vip-card-name-line">
               <h3 class="vip-card-name">${w.name}</h3>
-              <span class="vip-card-verified-icon" title="Verified Independent Pro">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="#10B981">
+              <span class="vip-card-verified-icon" title="Verified Professional">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#10B981">
                   <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                 </svg>
               </span>
@@ -1239,28 +1239,22 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         </div>
 
-        <!-- Signature Skills & Performance Ribbon -->
+        <!-- Signature Skills -->
         <div class="vip-card-spec-highlight">
           <div class="vip-card-skills-row">
             ${w.skills.slice(0, 2).map(s => `<span class="vip-card-skill-tag">${s}</span>`).join('')}
           </div>
-          <span class="vip-card-status-badge">
-            <span class="badge-bolt">⚡</span> 100% Success
-          </span>
         </div>
 
         <!-- Action & Rate Bottom Dock -->
         <div class="vip-card-bottom-dock">
           <div class="vip-card-rate-group">
-            <div class="vip-card-rate-main">
-              <span class="vip-card-rate-amount">$${w.hourlyRate}</span>
-              <span class="vip-card-rate-period">/hr</span>
-            </div>
-            
+            <span class="vip-card-rate-amount">$${w.hourlyRate}</span>
+            <span class="vip-card-rate-period">/hr</span>
           </div>
-          <button class="btn btn-primary btn-sm vip-card-action-btn card-profile-btn" data-id="${w.id}">
-            <span>View Profile</span>
-            <span class="vip-btn-arrow">→</span>
+          <button class="primary-btn no-min-width vip-card-action-btn card-profile-btn" data-id="${w.id}">
+            <span class="btn-text">View Profile ↗</span>
+            <span class="btn-dot"></span>
           </button>
         </div>
       </article>
@@ -1489,9 +1483,9 @@ document.addEventListener('DOMContentLoaded', () => {
               </button>
             </div>
 
-            <button class="btn btn-primary btn-sm card-profile-btn" data-id="${w.id}">
-              <span>View Profile &amp; Portfolio</span>
-              <span class="arrow-up-right">↗</span>
+            <button class="primary-btn no-min-width card-profile-btn" data-id="${w.id}">
+              <span class="btn-text">View Profile &amp; Portfolio ↗</span>
+              <span class="btn-dot"></span>
             </button>
           </div>
         </article>

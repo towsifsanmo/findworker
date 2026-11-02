@@ -1414,79 +1414,93 @@ document.addEventListener('DOMContentLoaded', () => {
       const isSaved = savedWorkerIds.includes(w.id);
       let badgeHtml = '';
       if (w.badge === 'PRO') {
-        badgeHtml = `<span class="badge-tier-pro">✦ Independent</span>`;
+        badgeHtml = `<span class="badge-tier-pro">✦ Pro</span>`;
       } else if (w.badge === 'L3') {
         badgeHtml = `<span class="badge-tier-l3">✦ Featured</span>`;
       } else if (w.badge === 'L2') {
-        badgeHtml = `<span class="badge-tier-l2">✦ Profile</span>`;
+        badgeHtml = `<span class="badge-tier-l2">✦ Verified</span>`;
       } else {
         badgeHtml = `<span class="badge-tier-l2">Independent</span>`;
       }
 
-      const projectsCount = w.portfolio ? w.portfolio.length : 3;
+      const featuredProject = w.portfolio && w.portfolio[0] ? w.portfolio[0] : {
+        title: `${w.name} Flagship Project`,
+        category: w.craftTitle || w.trade,
+        image: w.image
+      };
 
       return `
         <article class="freelancer-row-card" data-id="${w.id}">
-          <div class="freelancer-project-thumb">
-            <img src="${w.portfolio && w.portfolio[0] ? w.portfolio[0].image : w.image}" alt="${w.portfolio && w.portfolio[0] ? w.portfolio[0].title : `${w.name} selected work`}" loading="lazy">
-          </div>
-
-          <div class="freelancer-avatar-wrap">
-            <img src="${w.image}" alt="${w.name}" class="freelancer-avatar-img" loading="lazy">
-            <span class="online-dot-badge" title="Active & Ready to Connect"></span>
-          </div>
-
-          <div class="freelancer-main-info">
-            <div class="freelancer-header-line">
-              <div class="freelancer-name-title">
-                <h3 class="freelancer-name">${w.name}</h3>
-                ${badgeHtml}
-                <span class="freelancer-specialty">• ${w.craftTitle}</span>
+          <!-- Left/Primary: Specialist Identity & Credentials -->
+          <div class="freelancer-card-identity">
+            <div class="freelancer-avatar-cluster">
+              <div class="freelancer-avatar-frame">
+                <img src="${w.image}" alt="${w.name}" class="freelancer-avatar-img" loading="lazy">
+                <span class="freelancer-status-dot" title="Available for work"></span>
+              </div>
+              <div class="freelancer-title-deck">
+                <div class="freelancer-name-row">
+                  <h3 class="freelancer-name">${w.name}</h3>
+                  <span class="freelancer-verified-badge" title="Verified Specialist">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="#504CFF">
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                  </span>
+                  ${badgeHtml}
+                </div>
+                <div class="freelancer-sub-row">
+                  <span class="freelancer-role-label">${w.craftTitle}</span>
+                  <span class="freelancer-meta-dot">•</span>
+                  <span class="freelancer-loc-meta">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                      <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                    ${w.location}
+                  </span>
+                  <span class="freelancer-meta-dot">•</span>
+                  <span class="freelancer-exp-meta">${w.experienceYears}y exp</span>
+                </div>
               </div>
             </div>
 
-            <div class="freelancer-meta-row">
-              <span class="meta-item"><span class="meta-icon">📍</span> ${w.location}</span>
-              <span class="meta-divider">•</span>
-              <span class="meta-item"><strong>${w.experienceYears}y</strong> experience</span>
-              <span class="meta-divider">•</span>
-              <span class="meta-portfolio-count">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                  <circle cx="8.5" cy="8.5" r="1.5"></circle>
-                  <polyline points="21 15 16 10 5 21"></polyline>
-                </svg>
-                ${projectsCount} Projects
-              </span>
-              <span class="meta-divider">•</span>
-              <span class="availability-pill">Available for direct contact</span>
-            </div>
+            <p class="freelancer-bio-snippet">${w.bio}</p>
 
-            <p class="freelancer-bio-text">${w.bio}</p>
-
-            <div class="freelancer-skill-chips">
-              ${w.skills.map(s => `<span class="skill-chip">${s}</span>`).join('')}
+            <div class="freelancer-chips-dock">
+              ${w.skills.slice(0, 4).map(s => `<span class="freelancer-skill-pill">${s}</span>`).join('')}
+              ${w.skills.length > 4 ? `<span class="freelancer-skill-more">+${w.skills.length - 4}</span>` : ''}
             </div>
           </div>
 
-          <div class="freelancer-action-col">
-            <div class="freelancer-action-top">
-              <div class="freelancer-hourly-rate">
-                <div class="rate-number">$${w.hourlyRate}</div>
-                <div class="rate-label">USD / hour</div>
-              </div>
+          <!-- Center: Flagship Work Aperture (Framed 16:10 Preview) -->
+          <div class="freelancer-card-showcase">
+            <div class="showcase-frame">
+              <img src="${featuredProject.image}" alt="${featuredProject.title}" class="showcase-img" loading="lazy">
+              <span class="showcase-category-pill">${featuredProject.category || 'Featured Work'}</span>
+            </div>
+          </div>
 
+          <!-- Right: Action & Commercial Dock -->
+          <div class="freelancer-card-dock">
+            <div class="dock-header">
+              <div class="freelancer-rate-wrap">
+                <span class="rate-symbol">$</span>
+                <span class="rate-digits">${w.hourlyRate}</span>
+                <span class="rate-cadence">/hr</span>
+              </div>
               <button class="bookmark-heart-btn ${isSaved ? 'active' : ''}" data-id="${w.id}" title="${isSaved ? 'Saved to shortlist' : 'Save freelancer'}" aria-label="Save ${w.name}">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="${isSaved ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2.2">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="${isSaved ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2.2">
                   <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
                 </svg>
               </button>
             </div>
 
-            <button class="primary-btn no-min-width card-profile-btn" data-id="${w.id}">
-              <span class="btn-text">View Profile &amp; Portfolio ↗</span>
-              <span class="btn-dot"></span>
-            </button>
+            <div class="dock-action">
+              <button class="primary-btn no-min-width card-profile-btn" data-id="${w.id}">
+                <span class="btn-text">View Profile ↗</span>
+                <span class="btn-dot"></span>
+              </button>
+            </div>
           </div>
         </article>
       `;

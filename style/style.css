@@ -2459,69 +2459,76 @@ img {
 .dock-header {
   display: flex;
   align-items: flex-start;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 10px;
 }
 
-.freelancer-rate-wrap {
-  display: flex;
-  align-items: baseline;
-  gap: 2px;
+.dock-reputation-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background-color: #FAFAFA;
+  border: 1px solid rgba(15, 15, 15, 0.08);
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-family: 'Poppins', var(--font-sans), sans-serif;
 }
 
-.rate-symbol {
-  font-family: 'Poppins', var(--font-sans), sans-serif;
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #0F0F0F;
+.dock-reputation-pill .star-icon {
+  color: #F59E0B;
+  font-size: 0.85rem;
 }
 
-.rate-digits {
-  font-family: 'Poppins', var(--font-sans), sans-serif;
-  font-size: 1.45rem;
+.dock-reputation-pill .rating-val {
+  font-size: 0.88rem;
   font-weight: 700;
   color: #0F0F0F;
-  letter-spacing: -0.02em;
-  line-height: 1;
 }
 
-.rate-cadence {
-  font-family: 'Poppins', var(--font-sans), sans-serif;
-  font-size: 0.78rem;
-  font-weight: 400;
+.dock-reputation-pill .reviews-count {
+  font-size: 0.75rem;
   color: #71717A;
-  margin-left: 1px;
+  font-weight: 400;
+}
+
+.dock-status-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  color: #059669;
+  font-weight: 500;
+  font-family: 'Poppins', var(--font-sans), sans-serif;
+  margin-bottom: 2px;
+}
+
+.dock-live-pulse,
+.status-pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #10B981;
+  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6);
+  animation: pulse-green 2s infinite;
+}
+
+@keyframes pulse-green {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 5px rgba(16, 185, 129, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
 }
 
 .bookmark-heart-btn {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  border: 1px solid rgba(15, 15, 15, 0.08);
-  background-color: #FFFFFF;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: #0F0F0F;
-  cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-  flex-shrink: 0;
-}
-
-.bookmark-heart-btn:hover {
-  color: #504CFF;
-  border-color: #504CFF;
-  background-color: #FFFFFF;
-  transform: scale(1.08);
-  box-shadow: 0 4px 12px rgba(80, 76, 255, 0.18);
-}
-
-.bookmark-heart-btn.active {
-  background-color: #504CFF;
-  color: #FFFFFF;
-  border-color: #504CFF;
-  box-shadow: 0 4px 12px rgba(80, 76, 255, 0.28);
+  display: none !important;
 }
 
 .dock-action {
@@ -8937,18 +8944,15 @@ textarea:focus-visible {
   width: 100%;
 }
 
-.capsule-rate-badge {
+.capsule-rate-badge,
+.capsule-rating-badge {
   font-family: 'Poppins', var(--font-sans), sans-serif;
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   font-weight: 700;
-  color: #0F0F0F;
-}
-
-.capsule-rate-badge small {
-  font-size: 0.68rem;
-  font-weight: 500;
-  color: #6B7280;
-  margin-left: 1px;
+  color: #F59E0B;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
 }
 
 .capsule-action-trigger {
@@ -9827,29 +9831,27 @@ textarea:focus-visible {
   border-top: 1px solid #F2F2F2;
 }
 
-.spotlight-rate-block,
-.card-rate-wrap {
-  display: flex;
-  align-items: baseline;
-  gap: 3px;
-}
-
-.spotlight-rate-val,
-.card-rate-wrap .card-rate-val {
+.spotlight-availability-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 9999px;
+  background-color: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  font-size: 0.76rem;
+  font-weight: 500;
+  color: #059669;
   font-family: 'Poppins', var(--font-sans), sans-serif;
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: #0F0F0F;
-  line-height: 1;
-  letter-spacing: -0.02em;
 }
 
-.spotlight-rate-unit,
-.card-rate-wrap .rate-per-hr {
-  font-size: 0.8rem;
-  font-weight: 400;
-  color: #8E8E93;
-  font-family: var(--font-sans);
+.availability-status-pulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #10B981;
+  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6);
+  animation: pulse-green 2s infinite;
 }
 
 .spotlight-cta-btn.primary-btn {
@@ -10302,25 +10304,27 @@ textarea:focus-visible {
   border-top: 1px solid #F2F2F2;
 }
 
-.vip-card-rate-group {
-  display: flex;
-  align-items: baseline;
-  gap: 3px;
-}
-
-.vip-card-rate-amount {
-  font-family: 'Poppins', var(--font-sans), sans-serif;
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: #0F0F0F;
-  line-height: 1;
-  letter-spacing: -0.02em;
-}
-
-.vip-card-rate-period {
+.vip-card-meta-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-size: 0.8rem;
-  font-weight: 400;
-  color: #8E8E93;
+  font-weight: 500;
+  color: #52525B;
+  font-family: 'Poppins', var(--font-sans), sans-serif;
+}
+
+.vip-meta-exp {
+  color: #0F0F0F;
+  font-weight: 600;
+}
+
+.vip-meta-separator {
+  color: #D4D4D8;
+}
+
+.vip-meta-loc {
+  color: #71717A;
 }
 
 /* Action button with Hero Button expanding gradient color animation */
@@ -12952,4 +12956,56 @@ textarea:focus-visible {
     flex-direction: column;
     align-items: flex-start;
   }
+}
+
+/* --- Header Authenticated User Capsule --- */
+.header-user-capsule-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 6px 14px !important;
+  border-radius: var(--radius-full) !important;
+  background: #0F0F0F !important;
+  color: #FFFFFF !important;
+  text-decoration: none !important;
+  font-size: 0.82rem !important;
+  font-weight: 600 !important;
+  transition: all var(--transition-fast) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+}
+
+.header-user-capsule-btn:hover {
+  background: var(--color-primary) !important;
+  transform: translateY(-1px);
+}
+
+.user-capsule-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid #FFFFFF;
+}
+
+.user-capsule-role-badge {
+  font-size: 0.65rem;
+  font-weight: 800;
+  background: #854CFF;
+  color: #FFFFFF;
+  padding: 1px 6px;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.05em;
+}
+
+.user-capsule-name {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.user-capsule-pulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 6px #10B981;
 }

@@ -529,13 +529,13 @@
                       </polygon>
                     </svg>
                   </div>
-                  <span class="bento-meta-tag">04 // Transparent Pricing</span>
+                  <span class="bento-meta-tag">04 // Direct Connection</span>
                 </div>
-                <div class="bento-subheading">Your Own Terms &amp; Rates</div>
-                <h3 class="bento-title">No bidding wars. Transparent hourly rates.</h3>
+                <div class="bento-subheading">Direct Collaboration</div>
+                <h3 class="bento-title">No middlemen. Connect directly via external platforms.</h3>
                 <p class="bento-desc">
-                  Talent sets honest rates; clients know exactly what they pay. Work together under direct contracts
-                  without arbitrary platform restrictions.
+                  Talent showcases their central portfolio, verified profiles on Upwork, Fiverr, GitHub, and LinkedIn.
+                  Clients connect directly on their preferred platform.
                 </p>
               </div>
             </div>
@@ -547,17 +547,15 @@
       <section class="section-padding reveal-on-scroll" id="specializations"
         style="background-color: var(--color-background-soft);">
         <div class="container">
-          <div class="section-header">
+          <div class="section-header vip-independents-header">
             <div class="section-header-left">
-              <!-- <span class="badge badge-primary" style="margin-bottom: 8px;">CURATED INDEPENDENT INDEX</span> -->
-              <h2>Curated talent spotlight.</h2>
-              <p class="section-subtitle">Flagship portfolio case studies from verified independent specialists.</p>
+              <h2 class="vip-section-title">Curated talent spotlight.</h2>
+              <p class="vip-section-desc">Flagship portfolio case studies from verified independent specialists.</p>
             </div>
-            <div class="spotlight-carousel-controls">
-
+            <div class="top-header-actions-group">
               <div class="carousel-nav-arrows">
-                <button type="button" class="arrow-circle-btn" id="spec-carousel-prev" aria-label="Previous">←</button>
-                <button type="button" class="arrow-circle-btn" id="spec-carousel-next" aria-label="Next">→</button>
+                <button type="button" class="arrow-circle-btn elite-nav-arrow" id="spec-carousel-prev" aria-label="Previous talent cohort">←</button>
+                <button type="button" class="arrow-circle-btn elite-nav-arrow" id="spec-carousel-next" aria-label="Next talent cohort">→</button>
               </div>
               <a href="#freelancers" class="btn btn-outline btn-sm go-to-directory-link">
                 All Freelancers →
@@ -565,7 +563,7 @@
             </div>
           </div>
 
-          <div class="freelancers-cards-grid" id="specializations-container">
+          <div class="vip-independents-grid" id="specializations-container">
             <!-- Dynamically populated by script.js -->
           </div>
         </div>
@@ -590,7 +588,7 @@
               </div>
               <h3 style="font-size: 1.3rem;">Search &amp; explore.</h3>
               <p style="font-size: 0.92rem; color: var(--color-secondary-muted); line-height: 1.6;">
-                Filter by discipline, verified skills, or hourly rate, and discover independent specialists through real
+                Filter by discipline, verified skills, or availability, and discover independent specialists through real
                 work.
               </p>
               <ul class="step-bullet-list">
@@ -616,7 +614,7 @@
               </div>
               <h3 style="font-size: 1.3rem;">Inspect the Freelancer.</h3>
               <p style="font-size: 0.92rem; color: var(--color-secondary-muted); line-height: 1.6;">
-                Review full case studies, client reviews, verified experience, and transparent hourly rates.
+                Review full case studies, client reviews, verified experience, and professional portfolios.
               </p>
               <ul class="step-bullet-list">
                 <li>
@@ -842,7 +840,7 @@
               </button>
               <div class="faq-answer">
                 FindWorker is a portfolio-first directory for independent digital talent. Browse verified portfolios,
-                save favorites to your shortlist, and contact creators directly with zero middleman fees.
+                evaluate work quality, and contact creators directly with zero middleman fees.
               </div>
             </div>
 
@@ -852,8 +850,8 @@
                 <div class="faq-icon-rotator">↓</div>
               </button>
               <div class="faq-answer">
-                No. FindWorker charges 0% commission to both clients and freelancers. We do not hold money in escrow or
-                mark up rates—you pay talent directly on your own agreed terms.
+                No. FindWorker charges 0% commission. We do not intermediate payments or restrict communication—you
+                connect with talent directly on their external platforms or channels on your agreed terms.
               </div>
             </div>
 
@@ -881,12 +879,12 @@
 
             <div class="faq-item">
               <button class="faq-trigger" type="button" aria-expanded="false">
-                <span>Can I save freelancers to a shortlist?</span>
+                <span>Can I see external platform profiles like Upwork, GitHub, or LinkedIn?</span>
                 <div class="faq-icon-rotator">↓</div>
               </button>
               <div class="faq-answer">
-                Yes. Click the bookmark icon on any card to save it. You can access your curated shortlist anytime via
-                the "Shortlist" button in the header.
+                Yes. Freelancers can link all their verified professional platforms—including Upwork, Fiverr, GitHub,
+                LinkedIn, Behance, and personal websites—directly on their central profile.
               </div>
             </div>
           </div>
@@ -1037,20 +1035,7 @@
               </div>
             </div>
 
-            <!-- Max Hourly Rate Slider -->
-            <div class="filter-group">
-              <div class="filter-group-title">
-                <span>Max hourly rate</span>
-                <span id="rate-range-display" style="color: var(--color-primary); font-weight: 700;">$120/hr</span>
-              </div>
-              <div class="price-slider-wrap">
-                <input type="range" id="rate-range-input" min="40" max="120" step="5" value="120">
-                <div class="price-display-val">
-                  <span>$40</span>
-                  <span>$120+</span>
-                </div>
-              </div>
-            </div>
+
 
             <!-- Skills Filter Group -->
             <div class="filter-group">
@@ -1155,8 +1140,7 @@
                 <select id="directory-sort-select" class="directory-sort-dropdown">
                   <option value="rating-desc">Highest Rated ★</option>
                   <option value="experience-desc">Most Experienced</option>
-                  <option value="rate-asc">Rate: Low to High</option>
-                  <option value="rate-desc">Rate: High to Low</option>
+                  <option value="name-asc">Alphabetical (A—Z)</option>
                 </select>
               </div>
             </div>
@@ -1199,6 +1183,23 @@
               <p class="auth-subtitle">
                 Access your freelancer workspace, active inquiries, and client projects.
               </p>
+            </div>
+
+            <!-- 1-Click Role Access Helper -->
+            <div style="background: #FAFAFA; border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 14px 16px; margin-bottom: 20px;">
+              <span style="font-size: 0.74rem; font-weight: 700; color: var(--color-secondary-muted); text-transform: uppercase; letter-spacing: 0.06em; display: block; margin-bottom: 8px;">
+                ⚡ Instant 1-Click Demo Access:
+              </span>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                <button type="button" class="btn btn-outline btn-sm quick-demo-login-btn" data-role="freelancer"
+                  style="font-size: 0.8rem; padding: 6px 14px; background: #FFFFFF; border-color: var(--color-border);">
+                  👤 Freelancer (Julian Vance)
+                </button>
+                <button type="button" class="btn btn-outline btn-sm quick-demo-login-btn" data-role="admin"
+                  style="font-size: 0.8rem; padding: 6px 14px; background: #FFFFFF; border-color: var(--color-border);">
+                  🛡 Admin (Control Center)
+                </button>
+              </div>
             </div>
 
             <!-- Sign In Form -->
@@ -1486,8 +1487,8 @@
             <div id="booking-worker-trade" class="profile-trade-line">Independent Digital Professional</div>
             <div class="profile-quick-stats">
               <div class="profile-stat-item">
-                <span class="stat-label">Direct Rate:</span>
-                <span id="booking-worker-rate" class="stat-value">$75/hour</span>
+                <span class="stat-label">Status:</span>
+                <span id="booking-worker-rate" class="stat-value text-green">Available</span>
               </div>
               <span class="stat-sep">•</span>
               <div class="profile-stat-item">
@@ -1497,7 +1498,7 @@
               <span class="stat-sep">•</span>
               <div class="profile-stat-item">
                 <span class="stat-label">Platform Fee:</span>
-                <span class="stat-value text-green">0% (Direct Freelance)</span>
+                <span class="stat-value text-green">0% (Direct Discovery)</span>
               </div>
             </div>
           </div>
@@ -1691,28 +1692,24 @@
                 <!-- Transparent Estimate Calculator (Keeps all original IDs intact!) -->
                 <div class="price-calculator-box">
                   <div class="calculator-row">
-                    <span>Specialist Hourly Rate:</span>
-                    <strong id="calc-rate-per-hour">$75</strong>
+                    <span>Direct Engagement:</span>
+                    <strong id="calc-rate-per-hour" style="color: #10B981;">100% Direct Connection</strong>
                   </div>
                   <div class="calculator-row">
-                    <span>Estimated Duration:</span>
-                    <span id="calc-hours-count">4 hours</span>
-                  </div>
-                  <div class="calculator-row">
-                    <span>Labor Estimate:</span>
-                    <span id="calc-subtotal">$300</span>
+                    <span>Project Scope:</span>
+                    <span id="calc-hours-count">Agreed directly</span>
                   </div>
                   <div class="calculator-row">
                     <span>Platform Commission:</span>
-                    <span style="color: #10B981; font-weight: 700;">$0 (Free Direct Connection)</span>
+                    <span style="color: #10B981; font-weight: 700;">$0 (Free Discovery)</span>
                   </div>
                   <div class="calculator-row calculator-total">
-                    <span>Estimated Project Investment:</span>
-                    <span id="calc-total" style="color: var(--color-primary);">$300 USD</span>
+                    <span>Terms &amp; Rates:</span>
+                    <span id="calc-total" style="color: var(--color-primary);">Agreed directly with talent</span>
                   </div>
                   <div
                     style="font-size: 0.76rem; color: var(--color-secondary-muted); margin-top: 6px; display: flex; align-items: center; gap: 4px;">
-                    <span>✓ Direct negotiation. Final scope and terms agreed upon directly with the freelancer.</span>
+                    <span>✓ Connect directly through their professional platforms without platform cuts or escrow lock-in.</span>
                   </div>
                 </div>
 
@@ -1738,6 +1735,23 @@
         <p style="font-size: 0.88rem; color: var(--color-secondary-muted); margin-bottom: 24px;">
           Access your specialist profile, portfolio galleries, and direct client inquiries.
         </p>
+
+        <!-- 1-Click Demo Access Helper -->
+        <div style="background: #FAFAFA; border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 12px 14px; margin-bottom: 18px;">
+          <span style="font-size: 0.72rem; font-weight: 700; color: var(--color-secondary-muted); text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 6px;">
+            ⚡ Instant 1-Click Demo Login:
+          </span>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <button type="button" class="btn btn-outline btn-sm quick-demo-login-btn" data-role="freelancer"
+              style="font-size: 0.78rem; padding: 5px 10px; background: #FFFFFF;">
+              👤 Freelancer (Julian)
+            </button>
+            <button type="button" class="btn btn-outline btn-sm quick-demo-login-btn" data-role="admin"
+              style="font-size: 0.78rem; padding: 5px 10px; background: #FFFFFF;">
+              🛡 Admin (Center)
+            </button>
+          </div>
+        </div>
 
         <form id="login-form">
           <div class="form-group">
@@ -1804,11 +1818,6 @@
                   <option value="Brand Strategy">Brand strategy</option>
                 </select>
               </div>
-              <div class="form-group">
-                <label class="form-label" for="signup-rate">Hourly Rate ($ USD)</label>
-                <input type="number" id="signup-rate" class="form-input" placeholder="e.g. 75" min="20" max="250"
-                  value="75">
-              </div>
             </div>
 
             <div class="form-row-grid">
@@ -1849,29 +1858,6 @@
     </div>
   </div>
 
-  <!-- 4. Shortlist Drawer -->
-  <div class="drawer-backdrop" id="drawer-backdrop">
-    <div class="shortlist-drawer" id="shortlist-drawer">
-      <div class="drawer-header">
-        <div>
-          <h3 style="font-size: 1.25rem; font-weight: 700;">Saved Shortlist</h3>
-          <p style="font-size: 0.8rem; color: var(--color-secondary-muted);">Save the profiles that stay with you</p>
-        </div>
-        <button class="modal-close-btn" id="close-drawer-btn" style="position: static;"
-          aria-label="Close shortlist">&times;</button>
-      </div>
-
-      <div class="drawer-body" id="drawer-list">
-        <!-- Rendered by script.js -->
-      </div>
-
-      <div class="drawer-footer">
-        <button class="btn btn-outline btn-sm" id="clear-shortlist-btn" style="width: 100%;">
-          Clear Shortlist
-        </button>
-      </div>
-    </div>
-  </div>
 
   <!-- Floating Back to Top Button -->
   <button class="back-to-top-btn" id="back-to-top-btn" aria-label="Scroll back to top">
@@ -1886,6 +1872,7 @@
 
   <!-- Master Data & Shared Application Logic -->
   <script src="script/workers-data.js" defer></script>
+  <script src="script/auth.js" defer></script>
   <script src="script/blog-data.js" defer></script>
   <script src="script/script.js" defer></script>
 </body>

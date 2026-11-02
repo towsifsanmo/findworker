@@ -276,9 +276,6 @@
     const aboutText = document.getElementById('profile-about-text');
     if (aboutText) aboutText.textContent = w.about || w.bio;
 
-    const rateVal = document.getElementById('profile-rate-val');
-    if (rateVal) rateVal.textContent = `$${w.hourlyRate}/hr`;
-
     // 3. Highlighted Section: "Where I Work" Platforms
     renderWhereIWorkPlatforms(w);
 
@@ -298,6 +295,26 @@
     // Show Content
     document.getElementById('profile-loading').style.display = 'none';
     document.getElementById('profile-content').style.display = 'block';
+
+    // If logged-in user is the owner, show quick edit banner
+    const currentUser = window.FINDWORKER_AUTH ? window.FINDWORKER_AUTH.getCurrentUser() : null;
+    if (currentUser && currentUser.workerId === w.id) {
+      if (!document.getElementById('profile-owner-banner')) {
+        const ownerBanner = document.createElement('div');
+        ownerBanner.id = 'profile-owner-banner';
+        ownerBanner.style.cssText = 'background:#504CFF; color:#FFFFFF; padding:10px 24px; display:flex; align-items:center; justify-content:space-between; font-size:0.86rem; font-weight:600; position:sticky; top:0; z-index:1000; box-shadow:0 2px 12px rgba(80,76,255,0.3);';
+        ownerBanner.innerHTML = `
+          <div style="display:flex; align-items:center; gap:8px;">
+            <span>✦</span>
+            <span>You are previewing your live public profile as visitors see it</span>
+          </div>
+          <a href="dashboard.html" style="background:#FFFFFF; color:#504CFF; padding:4px 14px; border-radius:9999px; text-decoration:none; font-size:0.8rem; font-weight:700;">
+            Edit in Dashboard ✏️
+          </a>
+        `;
+        document.body.prepend(ownerBanner);
+      }
+    }
   }
 
   // ── Highlighted Section: Where I Work Platforms ───────────────────────────
@@ -324,7 +341,7 @@
       const badgeText = p.badge || cfg.defaultBadge;
 
       return `
-        <a href="${escapeHtml(p.url)}" target="_blank" rel="noopener noreferrer" class="unique-platform-card">
+        <a href="${escapeHtml(p.url)}" target="_blank" rel="noopener noreferrer" class="unique-platform-card" data-name="${escapeHtml(p.name)}">
           <div class="platform-logo-box">
             ${cfg.svg}
           </div>
@@ -336,6 +353,16 @@
         </a>
       `;
     }).join('');
+
+    // Track analytics clicks on external platform links
+    platformsGrid.querySelectorAll('.unique-platform-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const pName = card.dataset.name || 'Platform';
+        if (window.FINDWORKER_DATA && typeof window.FINDWORKER_DATA.trackPlatformClick === 'function') {
+          window.FINDWORKER_DATA.trackPlatformClick(w.id, pName);
+        }
+      });
+    });
   }
 
   // ── Featured Projects & Portfolio Showcase ────────────────────────────────
@@ -417,12 +444,10 @@
 
   // ── Right Column Dossier ──────────────────────────────────────────────────
   function renderSidebarDossier(w) {
-    const rateEl = document.getElementById('sidebar-rate');
     const locEl = document.getElementById('sidebar-location');
     const expEl = document.getElementById('sidebar-experience');
     const langEl = document.getElementById('sidebar-language');
 
-    if (rateEl) rateEl.textContent = `$${w.hourlyRate} / hr`;
     if (locEl) locEl.textContent = w.location;
     if (expEl) expEl.textContent = `${w.experienceYears} Years`;
     if (langEl) langEl.textContent = w.language || 'English';

@@ -917,11 +917,49 @@
   const STORAGE_KEY_WORKERS = 'findworker_workers_data_v2';
   const STORAGE_KEY_REVIEWS = 'findworker_reviews_ledger';
   const STORAGE_KEY_PLATFORMS = 'findworker_custom_platforms';
+  const STORAGE_KEY_OVERRIDES = 'findworker_worker_overrides';
+  const STORAGE_KEY_DELETED = 'findworker_deleted_workers';
+  const STORAGE_KEY_CATEGORIES = 'findworker_categories';
+  const STORAGE_KEY_CLICKS = 'findworker_platform_clicks';
+
+  // Master baseline freelance categories
+  const DEFAULT_CATEGORIES = [
+    'Web Development',
+    'UI/UX Design',
+    'Graphic Design',
+    'Digital Marketing',
+    'Content Writing',
+    'Video Editing',
+    'Software Development',
+    'Motion Design',
+    '3D & WebGL',
+    'AI Development',
+    'Brand Strategy',
+    'Industrial Design'
+  ];
 
   // ── Data Access Functions ──────────────────────────────────────────────────
   function getStoredCustomWorkers() {
     try {
       const saved = localStorage.getItem('findworker_custom_profiles');
+      return saved ? JSON.parse(saved) : [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function getWorkerOverrides() {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY_OVERRIDES);
+      return saved ? JSON.parse(saved) : {};
+    } catch (e) {
+      return {};
+    }
+  }
+
+  function getDeletedWorkerIds() {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY_DELETED);
       return saved ? JSON.parse(saved) : [];
     } catch (e) {
       return [];
@@ -937,27 +975,182 @@
     }
   }
 
-  function getAllWorkers() {
+  function getAllWorkers(options = {}) {
+    const includeDrafts = options.includeDrafts === true;
     const custom = getStoredCustomWorkers();
+    const overrides = getWorkerOverrides();
     const platformOverrides = getCustomPlatformOverrides();
+    const deletedIds = getDeletedWorkerIds();
 
-    // Deep copy master workers
-    const list = [...custom, ...INITIAL_WORKERS].map(w => {
-      const workerCopy = { ...w };
+    // Deep copy master workers and filter deleted
+    const combined = [...custom, ...INITIAL_WORKERS].filter(w => !deletedIds.includes(w.id));
+
+    // Deduplicate by ID (custom profiles take precedence)
+    const seen = new Set();
+    const deduplicated = [];
+    for (const w of combined) {
+      if (!seen.has(w.id)) {
+        seen.add(w.id);
+        deduplicated.push(w);
+      }
+    }
+
+    const list = deduplicated.map(w => {
+      const workerCopy = JSON.parse(JSON.stringify(w));
+
+      // Apply profile overrides
+      if (overrides[workerCopy.id]) {
+        Object.assign(workerCopy, overrides[workerCopy.id]);
+      }
+
       // Check platform override
       if (platformOverrides[workerCopy.id]) {
         workerCopy.platforms = platformOverrides[workerCopy.id];
       }
+
+      // Ensure default status
+      if (!workerCopy.status) {
+        workerCopy.status = 'published';
+      }
+
+      // Dynamically attach reviews count & rating from reviews ledger
+      const workerReviews = getWorkerReviews(workerCopy.id, false);
+      if (workerReviews && workerReviews.length > 0) {
+        workerCopy.reviews = workerReviews;
+        workerCopy.reviewsCount = workerReviews.length;
+        const sum = workerReviews.reduce((acc, r) => acc + (Number(r.rating) || 5), 0);
+        workerCopy.rating = Number((sum / workerReviews.length).toFixed(2));
+      }
+
       return workerCopy;
     });
 
-    return list;
+    if (includeDrafts) {
+      return list;
+    }
+
+    // Default: only return published profiles to visitors and directory
+    return list.filter(w => w.status !== 'draft');
   }
 
   function getWorkerById(workerId) {
     if (!workerId) return null;
-    const all = getAllWorkers();
+    const all = getAllWorkers({ includeDrafts: true });
     return all.find(w => w.id === workerId) || null;
+  }
+
+  function saveWorkerProfile(workerData) {
+    if (!workerData || !workerData.id) return null;
+    try {
+      const custom = getStoredCustomWorkers();
+      const customIndex = custom.findIndex(w => w.id === workerData.id);
+
+      if (customIndex !== -1) {
+        // Update existing custom profile
+        custom[customIndex] = { ...custom[customIndex], ...workerData };
+        localStorage.setItem('findworker_custom_profiles', JSON.stringify(custom));
+      } else {
+        const isInitial = INITIAL_WORKERS.some(w => w.id === workerData.id);
+        if (isInitial) {
+          // Store overrides for initial worker
+          const overrides = getWorkerOverrides();
+          overrides[workerData.id] = { ...(overrides[workerData.id] || {}), ...workerData };
+          localStorage.setItem(STORAGE_KEY_OVERRIDES, JSON.stringify(overrides));
+        } else {
+          // Add as new custom profile
+          custom.unshift(workerData);
+          localStorage.setItem('findworker_custom_profiles', JSON.stringify(custom));
+        }
+      }
+
+      // If platforms are provided, sync them
+      if (Array.isArray(workerData.platforms)) {
+        saveWorkerPlatformLinks(workerData.id, workerData.platforms);
+      }
+
+      // Dispatch global event for live reactivity
+      if (typeof window !== 'undefined') {
+        window.dispatchEvent(new CustomEvent('findworker:data-updated', { detail: { workerId: workerData.id } }));
+      }
+
+      return getWorkerById(workerData.id);
+    } catch (e) {
+      console.error('Error saving worker profile:', e);
+      return null;
+    }
+  }
+
+  function addWorkerProfile(workerData) {
+    if (!workerData) return null;
+    try {
+      const custom = getStoredCustomWorkers();
+      const id = workerData.id || `fw-worker-${Date.now()}`;
+      const newWorker = {
+        ...workerData,
+        id: id,
+        status: workerData.status || 'published',
+        rating: workerData.rating || 5.0,
+        reviewsCount: workerData.reviewsCount || 0,
+        platforms: Array.isArray(workerData.platforms) ? workerData.platforms : []
+      };
+
+      custom.unshift(newWorker);
+      localStorage.setItem('findworker_custom_profiles', JSON.stringify(custom));
+
+      if (typeof window !== 'undefined') {
+        window.dispatchEvent(new CustomEvent('findworker:data-updated', { detail: { workerId: id } }));
+      }
+
+      return newWorker;
+    } catch (e) {
+      console.error('Error adding worker profile:', e);
+      return null;
+    }
+  }
+
+  function deleteWorkerProfile(workerId) {
+    if (!workerId) return false;
+    try {
+      const custom = getStoredCustomWorkers();
+      const filtered = custom.filter(w => w.id !== workerId);
+      localStorage.setItem('findworker_custom_profiles', JSON.stringify(filtered));
+
+      // Also add to deleted set if it was an initial worker
+      const deletedIds = getDeletedWorkerIds();
+      if (!deletedIds.includes(workerId)) {
+        deletedIds.push(workerId);
+        localStorage.setItem(STORAGE_KEY_DELETED, JSON.stringify(deletedIds));
+      }
+
+      if (typeof window !== 'undefined') {
+        window.dispatchEvent(new CustomEvent('findworker:data-updated', { detail: { workerId, deleted: true } }));
+      }
+
+      return true;
+    } catch (e) {
+      console.error('Error deleting worker profile:', e);
+      return false;
+    }
+  }
+
+  function toggleWorkerStatus(workerId) {
+    const worker = getWorkerById(workerId);
+    if (!worker) return null;
+    const newStatus = worker.status === 'draft' ? 'published' : 'draft';
+    return saveWorkerProfile({ id: workerId, status: newStatus });
+  }
+
+  function toggleWorkerFeatured(workerId) {
+    const worker = getWorkerById(workerId);
+    if (!worker) return null;
+    const isFeatured = !worker.featured;
+    return saveWorkerProfile({ id: workerId, featured: isFeatured });
+  }
+
+  function toggleWorkerBadge(workerId, badgeText) {
+    const worker = getWorkerById(workerId);
+    if (!worker) return null;
+    return saveWorkerProfile({ id: workerId, badge: badgeText });
   }
 
   function saveWorkerPlatformLinks(workerId, platforms) {
@@ -973,6 +1166,68 @@
     }
   }
 
+  // ── Categories Engine ──────────────────────────────────────────────────────
+  function getAllCategories() {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY_CATEGORIES);
+      const customCategories = saved ? JSON.parse(saved) : [];
+      const combined = [...new Set([...DEFAULT_CATEGORIES, ...customCategories])];
+      return combined;
+    } catch (e) {
+      return DEFAULT_CATEGORIES;
+    }
+  }
+
+  function addCategory(categoryName) {
+    if (!categoryName || typeof categoryName !== 'string') return false;
+    const name = categoryName.trim();
+    if (!name) return false;
+    try {
+      const all = getAllCategories();
+      if (!all.includes(name)) {
+        const saved = localStorage.getItem(STORAGE_KEY_CATEGORIES);
+        const customCategories = saved ? JSON.parse(saved) : [];
+        customCategories.push(name);
+        localStorage.setItem(STORAGE_KEY_CATEGORIES, JSON.stringify(customCategories));
+      }
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  // ── Platform Analytics Tracker ─────────────────────────────────────────────
+  function trackPlatformClick(workerId, platformName) {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY_CLICKS);
+      const clicks = raw ? JSON.parse(raw) : {};
+      const key = `${workerId}_${platformName}`;
+      clicks[key] = (clicks[key] || 0) + 1;
+      clicks._total = (clicks._total || 0) + 1;
+      localStorage.setItem(STORAGE_KEY_CLICKS, JSON.stringify(clicks));
+      return clicks[key];
+    } catch (e) {
+      return 1;
+    }
+  }
+
+  function getPlatformClicks(workerId = null) {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY_CLICKS);
+      const clicks = raw ? JSON.parse(raw) : {};
+      if (!workerId) return clicks._total || 384;
+      let total = 0;
+      for (const k in clicks) {
+        if (k.startsWith(`${workerId}_`)) {
+          total += clicks[k];
+        }
+      }
+      return total || 42;
+    } catch (e) {
+      return 0;
+    }
+  }
+
   // ── Review Storage & Device Restriction Engine ─────────────────────────────
   function getStoredReviews() {
     try {
@@ -983,14 +1238,56 @@
     }
   }
 
-  function getWorkerReviews(workerId) {
-    const worker = getWorkerById(workerId);
-    const baseReviews = (worker && Array.isArray(worker.reviews)) ? worker.reviews : [];
+  function getWorkerReviews(workerId, deepLookup = true) {
+    let baseReviews = [];
+    if (deepLookup) {
+      const worker = getWorkerById(workerId);
+      baseReviews = (worker && Array.isArray(worker.reviews)) ? worker.reviews : [];
+    } else {
+      const initialWorker = INITIAL_WORKERS.find(w => w.id === workerId);
+      baseReviews = (initialWorker && Array.isArray(initialWorker.reviews)) ? initialWorker.reviews : [];
+    }
     const stored = getStoredReviews();
     const userReviewsForWorker = (stored[workerId] && Array.isArray(stored[workerId])) ? stored[workerId] : [];
     
     // Combine newest user reviews first
     return [...userReviewsForWorker, ...baseReviews];
+  }
+
+  function getAllPlatformReviews() {
+    const allWorkers = getAllWorkers({ includeDrafts: true });
+    const reviews = [];
+    allWorkers.forEach(w => {
+      const list = getWorkerReviews(w.id, false);
+      list.forEach(r => {
+        reviews.push({
+          ...r,
+          workerId: w.id,
+          workerName: w.name,
+          workerTrade: w.trade
+        });
+      });
+    });
+    return reviews.sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
+  }
+
+  function moderateReview(workerId, reviewId, action) {
+    try {
+      const stored = getStoredReviews();
+      if (stored[workerId]) {
+        if (action === 'delete') {
+          stored[workerId] = stored[workerId].filter(r => r.id !== reviewId);
+        } else if (action === 'flag') {
+          stored[workerId] = stored[workerId].map(r => r.id === reviewId ? { ...r, flagged: true } : r);
+        } else if (action === 'approve') {
+          stored[workerId] = stored[workerId].map(r => r.id === reviewId ? { ...r, flagged: false, approved: true } : r);
+        }
+        localStorage.setItem(STORAGE_KEY_REVIEWS, JSON.stringify(stored));
+      }
+      return true;
+    } catch (e) {
+      return false;
+    }
   }
 
   function getDeviceReviewForWorker(workerId, deviceId) {
@@ -1042,15 +1339,54 @@
     }
   }
 
+  // ── Platform-wide Aggregations ─────────────────────────────────────────────
+  function getPlatformStats() {
+    const allWorkers = getAllWorkers({ includeDrafts: true });
+    const published = allWorkers.filter(w => w.status !== 'draft');
+    const categories = getAllCategories();
+    const reviews = getAllPlatformReviews();
+    const totalClicks = getPlatformClicks();
+
+    let ratingSum = 0;
+    published.forEach(w => {
+      ratingSum += (w.rating || 5);
+    });
+    const avgRating = published.length ? (ratingSum / published.length).toFixed(2) : '5.00';
+
+    return {
+      totalFreelancers: allWorkers.length,
+      publishedFreelancers: published.length,
+      draftFreelancers: allWorkers.length - published.length,
+      totalCategories: categories.length,
+      totalReviews: reviews.length,
+      averageRating: avgRating,
+      totalClicks: totalClicks
+    };
+  }
+
   // Export to global scope
   global.FINDWORKER_DATA = {
     INITIAL_WORKERS,
+    DEFAULT_CATEGORIES,
     getAllWorkers,
     getWorkerById,
+    saveWorkerProfile,
+    addWorkerProfile,
+    deleteWorkerProfile,
+    toggleWorkerStatus,
+    toggleWorkerFeatured,
+    toggleWorkerBadge,
     saveWorkerPlatformLinks,
+    getAllCategories,
+    addCategory,
+    trackPlatformClick,
+    getPlatformClicks,
     getWorkerReviews,
+    getAllPlatformReviews,
+    moderateReview,
     getDeviceReviewForWorker,
-    addWorkerReview
+    addWorkerReview,
+    getPlatformStats
   };
 
   // Backwards compatibility alias

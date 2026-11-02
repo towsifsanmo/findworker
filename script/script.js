@@ -1101,20 +1101,20 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // Curated Talent Spotlight (#specializations - 8 items starting at specCarouselOffset)
+    // Curated Talent Spotlight (#specializations - 4 items starting at specCarouselOffset, identical card design)
     if (specializationsContainer) {
       const specWorkers = [];
-      for (let i = 0; i < 8; i++) {
+      for (let i = 0; i < 4; i++) {
         specWorkers.push(workersData[(specCarouselOffset + i) % workersData.length]);
       }
-      specializationsContainer.innerHTML = specWorkers.map(w => renderSpotlightCardHtml(w)).join('');
+      specializationsContainer.innerHTML = specWorkers.map((w, idx) => renderGridCardHtml(w, (specCarouselOffset + idx) % workersData.length + 1)).join('');
 
       // Update Cohort Tracker
       const trackerCurrent = document.getElementById('spec-tracker-current');
       const trackerTotal = document.getElementById('spec-tracker-total');
       if (trackerCurrent && trackerTotal) {
-        const totalCohorts = Math.ceil(workersData.length / 8);
-        const currentCohort = Math.floor(specCarouselOffset / 8) + 1;
+        const totalCohorts = Math.ceil(workersData.length / 4);
+        const currentCohort = Math.floor(specCarouselOffset / 4) + 1;
         trackerCurrent.textContent = String(currentCohort).padStart(2, '0');
         trackerTotal.textContent = String(totalCohorts).padStart(2, '0');
       }
@@ -1123,78 +1123,15 @@ document.addEventListener('DOMContentLoaded', () => {
     attachCardEventListeners();
   }
 
-  // Curated Talent Spotlight Card Design (Clean, Visual-First & Premium)
-  function renderSpotlightCardHtml(w) {
-    const isSaved = savedWorkerIds.includes(w.id);
-    const featuredProject = w.portfolio && w.portfolio[0] ? w.portfolio[0] : {
-      title: 'Flagship Digital Architecture',
-      category: w.trade,
-      image: w.image
-    };
-
-    return `
-      <article class="spotlight-talent-card" data-id="${w.id}">
-        <!-- Flagship Work Preview -->
-        <div class="spotlight-media-cover">
-          <img src="${featuredProject.image}" alt="${featuredProject.title}" loading="lazy">
-          <div class="spotlight-cover-top">
-            <span class="spotlight-category-chip">${featuredProject.category || w.trade}</span>
-            <button class="bookmark-heart-btn ${isSaved ? 'active' : ''}" data-id="${w.id}" title="${isSaved ? 'Remove from shortlist' : 'Save to shortlist'}" aria-label="Save ${w.name}">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="${isSaved ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2.2">
-                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
-              </svg>
-            </button>
-          </div>
-        </div>
-
-        <!-- Creator Identity & Rating -->
-        <div class="spotlight-creator-row">
-          <div class="spotlight-avatar-wrap">
-            <img src="${w.image}" alt="${w.name}" loading="lazy">
-            <span class="online-indicator-dot" title="Available"></span>
-          </div>
-          <div class="spotlight-creator-info">
-            <div class="spotlight-name-line">
-              <h3 class="spotlight-creator-name">${w.name}</h3>
-              <span class="spotlight-verified-icon" title="Verified Professional">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="#10B981">
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                </svg>
-              </span>
-            </div>
-            <span class="spotlight-creator-craft">${w.craftTitle || w.trade}</span>
-          </div>
-          <div class="spotlight-rating-badge">
-            <span class="star-gold">★</span>
-            <span class="rating-num">${w.rating}</span>
-          </div>
-        </div>
-
-        <!-- Core Skill Chips -->
-        <div class="spotlight-skills-list">
-          ${w.skills.slice(0, 2).map(s => `<span class="spotlight-skill-pill">${s}</span>`).join('')}
-        </div>
-
-        <!-- Rate & Action Footer -->
-        <div class="spotlight-card-footer">
-          <div class="spotlight-rate-block">
-            <span class="spotlight-rate-val">$${w.hourlyRate}</span>
-            <span class="spotlight-rate-unit">/hr</span>
-          </div>
-          <button class="primary-btn no-min-width card-profile-btn spotlight-cta-btn" data-id="${w.id}">
-            <span class="btn-text">View Profile ↗</span>
-            <span class="btn-dot"></span>
-          </button>
-        </div>
-      </article>
-    `;
+  // Curated Talent Spotlight Card Design (Unified identical design with Top Freelancers showcase)
+  function renderSpotlightCardHtml(w, rank) {
+    return renderGridCardHtml(w, rank);
   }
 
-  // Top Freelancers Card Design (Meet the Independents - Standout Showcase)
+  // Unified Freelancer Showcase Card Design (Used across all Home view freelancer sections)
   function renderGridCardHtml(w, rank) {
-    const isSaved = savedWorkerIds.includes(w.id);
     const featuredProject = w.portfolio && w.portfolio[0] ? w.portfolio[0] : {
-      title: 'Flagship Digital Architecture',
+      title: `${w.name} Flagship Project`,
       category: w.trade,
       image: w.image
     };
@@ -1208,11 +1145,6 @@ document.addEventListener('DOMContentLoaded', () => {
           <!-- Top Badges Row -->
           <div class="vip-card-badge-row">
             <span class="vip-card-category-pill">${featuredProject.category || w.trade}</span>
-            <button class="bookmark-heart-btn ${isSaved ? 'active' : ''}" data-id="${w.id}" title="${isSaved ? 'Saved to shortlist' : 'Save to shortlist'}" aria-label="Save ${w.name}">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="${isSaved ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2.2">
-                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
-              </svg>
-            </button>
           </div>
         </div>
 
@@ -1246,11 +1178,12 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         </div>
 
-        <!-- Action & Rate Bottom Dock -->
+        <!-- Action & Metadata Bottom Dock -->
         <div class="vip-card-bottom-dock">
-          <div class="vip-card-rate-group">
-            <span class="vip-card-rate-amount">$${w.hourlyRate}</span>
-            <span class="vip-card-rate-period">/hr</span>
+          <div class="vip-card-meta-pill">
+            
+            <span class="vip-meta-separator">•</span>
+            <span class="vip-meta-loc">${w.location ? w.location.split('&')[0].trim() : 'Remote'}</span>
           </div>
           <button class="primary-btn no-min-width vip-card-action-btn card-profile-btn" data-id="${w.id}">
             <span class="btn-text">View Profile ↗</span>
@@ -1284,7 +1217,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   if (specCarouselNext) {
     specCarouselNext.addEventListener('click', () => {
-      specCarouselOffset = (specCarouselOffset + 8) % workersData.length;
+      specCarouselOffset = (specCarouselOffset + 4) % workersData.length;
       if (specializationsContainer) {
         specializationsContainer.classList.add('carousel-sliding');
         setTimeout(() => specializationsContainer.classList.remove('carousel-sliding'), 380);
@@ -1294,7 +1227,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   if (specCarouselPrev) {
     specCarouselPrev.addEventListener('click', () => {
-      specCarouselOffset = (specCarouselOffset - 8 + workersData.length) % workersData.length;
+      specCarouselOffset = (specCarouselOffset - 4 + workersData.length) % workersData.length;
       if (specializationsContainer) {
         specializationsContainer.classList.add('carousel-sliding');
         setTimeout(() => specializationsContainer.classList.remove('carousel-sliding'), 380);
@@ -1331,10 +1264,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (selectedLanguages.length > 0 && !selectedLanguages.includes(worker.language)) {
         return false;
       }
-      // Price slider
-      if (worker.hourlyRate > maxRate) {
-        return false;
-      }
       // Text search
       if (searchQuery.trim() !== '') {
         const q = searchQuery.toLowerCase();
@@ -1353,8 +1282,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function getSortedWorkers(list) {
     const sorted = [...list];
     if (sortBy === 'rating-desc') sorted.sort((a, b) => b.rating - a.rating);
-    if (sortBy === 'rate-asc') sorted.sort((a, b) => a.hourlyRate - b.hourlyRate);
-    if (sortBy === 'rate-desc') sorted.sort((a, b) => b.hourlyRate - a.hourlyRate);
+    if (sortBy === 'name-asc') sorted.sort((a, b) => a.name.localeCompare(b.name));
     if (sortBy === 'experience-desc') sorted.sort((a, b) => b.experienceYears - a.experienceYears);
     return sorted;
   }
@@ -1366,7 +1294,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Active filters count
     let activeCount = selectedCategories.length + selectedBadges.length + selectedSkills.length + selectedLanguages.length;
-    if (maxRate < 120) activeCount++;
     if (searchQuery.trim() !== '') activeCount++;
 
     if (activeFiltersBadge) {
@@ -1480,15 +1407,19 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
           </div>
 
-          <!-- Right: Action & Commercial Dock -->
+          <!-- Right: Redesigned Action & Reputation Dock (No Rate) -->
           <div class="freelancer-card-dock">
             <div class="dock-header">
-              <div class="freelancer-rate-wrap">
-                <span class="rate-symbol">$</span>
-                <span class="rate-digits">${w.hourlyRate}</span>
-                <span class="rate-cadence">/hr</span>
+              <div class="dock-reputation-pill" title="Client satisfaction rating">
+                <span class="star-icon">★</span>
+                <span class="rating-val">${w.rating}</span>
+                <span class="reviews-count">(${w.reviewCount || w.reviewsCount || 16})</span>
               </div>
-             
+            </div>
+
+            <div class="dock-status-row" title="Availability status">
+              <span class="status-pulse-dot"></span>
+              <span class="status-text">${w.availability || 'Available for Projects'}</span>
             </div>
 
             <div class="dock-action">
@@ -1562,14 +1493,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // Attach Dynamic Card Listeners (Hearts, Profile Modals)
   // =========================================================================
   function attachCardEventListeners() {
-    // Bookmark buttons
-    document.querySelectorAll('.bookmark-heart-btn').forEach(btn => {
-      btn.onclick = (e) => {
-        e.stopPropagation();
-        toggleSaveWorker(btn.dataset.id);
-      };
-    });
-
     // Profile buttons — opens full profile on dedicated page
     document.querySelectorAll('.card-profile-btn').forEach(btn => {
       btn.onclick = (e) => {
@@ -1583,8 +1506,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Card whole-card click trigger for instant profile discovery
     document.querySelectorAll('.spotlight-talent-card, .freelancer-grid-card, .vip-independents-card, .freelancer-row-card').forEach(card => {
-      card.onclick = (e) => {
-        if (e.target.closest('.bookmark-heart-btn')) return;
+      card.onclick = () => {
         const workerId = card.dataset.id;
         if (workerId) {
           window.location.href = `profile.html?id=${encodeURIComponent(workerId)}`;
@@ -1592,7 +1514,6 @@ document.addEventListener('DOMContentLoaded', () => {
       };
       card.onkeydown = (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
-          if (e.target.closest('.bookmark-heart-btn')) return;
           e.preventDefault();
           const workerId = card.dataset.id;
           if (workerId) {
@@ -1646,7 +1567,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <img src="${w.image}" alt="${w.name}" class="shortlist-avatar">
           <div class="shortlist-info">
             <h4 class="shortlist-name">${w.name}</h4>
-            <div class="shortlist-trade">${w.trade} • $${w.hourlyRate}/hr</div>
+            <div class="shortlist-trade">${w.trade} • ★ ${w.rating}</div>
             <div class="shortlist-loc">${w.location.split('&')[0]}</div>
           </div>
           <div class="shortlist-actions">
@@ -1714,7 +1635,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (bookingAvatar) bookingAvatar.src = worker.image;
     if (bookingWorkerName) bookingWorkerName.textContent = worker.name;
     if (bookingWorkerTrade) bookingWorkerTrade.textContent = worker.craftTitle;
-    if (bookingWorkerRate) bookingWorkerRate.textContent = `$${worker.hourlyRate}/hour`;
+    if (bookingWorkerRate) bookingWorkerRate.textContent = worker.availability || 'Available';
 
     if (bookingModalBadge) {
       bookingModalBadge.textContent = 'Independent';
@@ -1804,7 +1725,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Calculator updates
-    if (calcRatePerHour) calcRatePerHour.textContent = `$${worker.hourlyRate}`;
+    if (calcRatePerHour) calcRatePerHour.textContent = 'Direct Engagement';
     updateBookingCalculation();
 
     // Default to Portfolio Tab
@@ -1870,14 +1791,10 @@ document.addEventListener('DOMContentLoaded', () => {
   function updateBookingCalculation() {
     if (!activeBookingWorker) return;
     const hours = parseInt(bookingHoursInput ? bookingHoursInput.value : 4, 10) || 4;
-    const rate = activeBookingWorker.hourlyRate;
-    const subtotal = hours * rate;
-    const platformFee = 0; // Direct platform, 0 middleman commission
-    const total = subtotal + platformFee;
 
-    if (calcHoursCount) calcHoursCount.textContent = `${hours} hours`;
-    if (calcSubtotal) calcSubtotal.textContent = `$${subtotal}`;
-    if (calcTotal) calcTotal.textContent = `$${total} USD`;
+    if (calcHoursCount) calcHoursCount.textContent = `${hours} hours (estimated)`;
+    if (calcSubtotal) calcSubtotal.textContent = `Direct Scope`;
+    if (calcTotal) calcTotal.textContent = `Agreed Directly with Talent`;
   }
 
   if (bookingHoursInput) bookingHoursInput.addEventListener('input', updateBookingCalculation);
@@ -1930,6 +1847,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Dedicated View Navigation
   function openDedicatedSignIn(e) {
+    if (window.FINDWORKER_AUTH && window.FINDWORKER_AUTH.isLoggedIn()) {
+      const user = window.FINDWORKER_AUTH.getCurrentUser();
+      window.location.href = (user && user.role === 'admin') ? 'admin.html' : 'dashboard.html';
+      return;
+    }
+    const target = e.currentTarget || e.target;
+    if (target) {
+      const href = target.getAttribute('href') || (target.closest('a') ? target.closest('a').getAttribute('href') : '');
+      if (href === 'dashboard.html' || href === 'admin.html') {
+        return; // Allow normal navigation to dashboards
+      }
+    }
     if (e && e.preventDefault) e.preventDefault();
     closeLoginModal();
     closeSignupModal();
@@ -1938,6 +1867,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function openDedicatedSignUp(e) {
+    const target = e.currentTarget || e.target;
+    if (target) {
+      const href = target.getAttribute('href') || (target.closest('a') ? target.closest('a').getAttribute('href') : '');
+      if (href === 'dashboard.html' || href === 'admin.html') {
+        return;
+      }
+    }
     if (e && e.preventDefault) e.preventDefault();
     closeLoginModal();
     closeSignupModal();
@@ -1954,9 +1890,56 @@ document.addEventListener('DOMContentLoaded', () => {
       if (e.target === loginModal) closeLoginModal();
     });
   }
+  // Quick Demo Role Access Buttons (1-click Instant Login)
+  document.querySelectorAll('.quick-demo-login-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const role = btn.dataset.role;
+      if (role === 'admin') {
+        const emailInput = document.getElementById('dedicated-signin-email') || document.getElementById('login-email');
+        const passInput = document.getElementById('dedicated-signin-password') || document.getElementById('login-password');
+        if (emailInput) emailInput.value = 'admin@findworker.io';
+        if (passInput) passInput.value = 'admin123';
+        if (window.FINDWORKER_AUTH) {
+          window.FINDWORKER_AUTH.login('admin@findworker.io', 'admin123');
+          showToast('✓ Logged in as Platform Administrator');
+          window.location.href = 'admin.html';
+        }
+      } else {
+        const emailInput = document.getElementById('dedicated-signin-email') || document.getElementById('login-email');
+        const passInput = document.getElementById('dedicated-signin-password') || document.getElementById('login-password');
+        if (emailInput) emailInput.value = 'julian@findworker.io';
+        if (passInput) passInput.value = 'freelancer123';
+        if (window.FINDWORKER_AUTH) {
+          window.FINDWORKER_AUTH.login('julian@findworker.io', 'freelancer123');
+          showToast('✓ Logged in as Julian Vance (Freelancer)');
+          window.location.href = 'dashboard.html';
+        }
+      }
+    });
+  });
+
   if (loginForm) {
     loginForm.addEventListener('submit', (e) => {
       e.preventDefault();
+      const email = document.getElementById('login-email')?.value?.trim() || '';
+      const pass = document.getElementById('login-password')?.value || '';
+      if (window.FINDWORKER_AUTH) {
+        const res = window.FINDWORKER_AUTH.login(email, pass);
+        if (res.success) {
+          closeLoginModal();
+          showToast(`✓ Welcome back, ${res.user.name}!`);
+          if (res.user.role === 'admin') {
+            window.location.href = 'admin.html';
+          } else {
+            window.location.href = 'dashboard.html';
+          }
+          return;
+        } else {
+          showToast(`⚠️ ${res.message}`);
+          return;
+        }
+      }
       closeLoginModal();
       showToast('✓ Successfully logged in to FindWorker Workspace');
       loginForm.reset();
@@ -1995,7 +1978,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const title = document.getElementById('signup-title') && document.getElementById('signup-title').value
         ? document.getElementById('signup-title').value
         : `Independent ${trade} professional`;
-      const rate = document.getElementById('signup-rate') ? parseInt(document.getElementById('signup-rate').value, 10) || 75 : 75;
       const exp = document.getElementById('signup-experience') ? parseInt(document.getElementById('signup-experience').value, 10) || 5 : 5;
       const skillsRaw = document.getElementById('signup-skills') ? document.getElementById('signup-skills').value : '';
       const skills = skillsRaw ? skillsRaw.split(',').map(s => s.trim()).filter(Boolean) : [trade, 'Creative direction', 'Digital strategy'];
@@ -2016,7 +1998,6 @@ document.addEventListener('DOMContentLoaded', () => {
         badgeLabel: 'Independent Professional',
         rating: 5.0,
         reviewsCount: 1,
-        hourlyRate: rate,
         location: loc,
         experienceYears: exp,
         availability: 'Available Today',
@@ -2113,16 +2094,28 @@ document.addEventListener('DOMContentLoaded', () => {
     dedicatedSigninForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const emailInput = document.getElementById('dedicated-signin-email');
+      const passInput = document.getElementById('dedicated-signin-password');
       const emailVal = emailInput ? emailInput.value.trim() : '';
-      let userName = 'Specialist';
-      if (emailVal && emailVal.includes('@')) {
-        const handle = emailVal.split('@')[0];
-        userName = handle.charAt(0).toUpperCase() + handle.slice(1);
+      const passVal = passInput ? passInput.value : '';
+
+      if (window.FINDWORKER_AUTH) {
+        const res = window.FINDWORKER_AUTH.login(emailVal, passVal);
+        if (res.success) {
+          showToast(`✓ Welcome back, ${res.user.name}!`);
+          dedicatedSigninForm.reset();
+          if (res.user.role === 'admin') {
+            window.location.href = 'admin.html';
+          } else {
+            window.location.href = 'dashboard.html';
+          }
+          return;
+        } else {
+          showToast(`⚠️ ${res.message}`);
+          return;
+        }
       }
-      showToast(`✓ Welcome back, ${userName}! Successfully signed in to FindWorker Workspace.`);
-      dedicatedSigninForm.reset();
-      window.location.hash = '#home';
-      switchView('home');
+
+      window.location.href = 'dashboard.html';
     });
   }
 
@@ -2149,64 +2142,30 @@ document.addEventListener('DOMContentLoaded', () => {
       const craftTitle = document.getElementById('dedicated-signup-craft-title')?.value?.trim() || `Senior ${trade} Architect`;
       const loc = document.getElementById('dedicated-signup-location')?.value?.trim() || 'Remote Available';
 
-      // High quality curated avatars for new freelancers
-      const avatarPool = [
-        'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=85',
-        'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=85',
-        'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=85',
-        'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=85'
-      ];
-      const randomAvatar = avatarPool[Math.floor(Math.random() * avatarPool.length)];
+      if (window.FINDWORKER_AUTH) {
+        const res = window.FINDWORKER_AUTH.signupFreelancer({
+          name: name,
+          email: email,
+          password: pass,
+          trade: trade,
+          rate: rate,
+          craftTitle: craftTitle,
+          location: loc
+        });
 
-      const newWorker = {
-        id: `custom-worker-${Date.now()}`,
-        name: name,
-        trade: trade,
-        craftTitle: craftTitle,
-        image: randomAvatar,
-        badge: 'PRO',
-        badgeLabel: 'Independent Professional',
-        rating: 5.0,
-        reviewsCount: 1,
-        hourlyRate: rate,
-        location: loc,
-        experienceYears: 6,
-        availability: 'Available Today',
-        instantBooking: true,
-        language: 'English',
-        email: email,
-        phone: '+1 (555) 720-4190',
-        website: `${name.toLowerCase().replace(/[^a-z0-9]/g, '')}.studio`,
-        bio: `Independent ${trade.toLowerCase()} specialist and verified craft member on FindWorker.`,
-        about: `Independent ${trade.toLowerCase()} specialist focused on high-craft execution, transparent pricing, and direct commissions with 0% intermediary markups.`,
-        skills: [trade, 'Creative Direction', 'System Architecture', 'Design Systems', 'Client Collaboration'],
-        certifications: ['Verified Independent Specialist', '0% Intermediary Charter Signatory'],
-        guarantee: 'Direct contact, 0% platform intermediary commission.',
-        portfolio: [
-          {
-            title: `${craftTitle} Showcase`,
-            category: trade,
-            year: '2025',
-            image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=85',
-            description: `Signature engagement exhibiting end-to-end craft rigor, bespoke execution, and verified impact.`,
-            tags: [trade, 'Direct Practice', 'Commission']
-          }
-        ]
-      };
+        if (res.success) {
+          showToast(`🎉 Welcome, ${name}! Your freelancer profile is published and ready to be discovered.`);
+          dedicatedSignupForm.reset();
+          // Directly direct new freelancer to their studio dashboard
+          window.location.href = 'dashboard.html';
+          return;
+        } else {
+          showToast(`⚠️ ${res.message}`);
+          return;
+        }
+      }
 
-      // Add to active dataset and localStorage
-      workersData.unshift(newWorker);
-      const currentCustom = JSON.parse(localStorage.getItem('findworker_custom_profiles') || '[]');
-      currentCustom.unshift(newWorker);
-      localStorage.setItem('findworker_custom_profiles', JSON.stringify(currentCustom));
-
-      // Re-render carousel and directory
-      renderHomeCarousels();
-      renderDirectory();
-
-      showToast(`🎉 Welcome, ${name}! Your freelancer profile is published and ready to be discovered.`);
-      dedicatedSignupForm.reset();
-      window.location.href = `profile.html?id=${encodeURIComponent(newWorker.id)}`;
+      window.location.href = 'dashboard.html';
     });
   }
 
@@ -2519,8 +2478,8 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
 
           <div class="capsule-footer-bar">
-            <span class="capsule-rate-badge">$${worker.hourlyRate}<small>/hr</small></span>
-            <span class="capsule-action-trigger">Dossier ↗</span>
+            <span class="capsule-rating-badge">★ ${worker.rating}</span>
+            <span class="capsule-action-trigger">Profile ↗</span>
           </div>
         </div>
       `;
@@ -2528,13 +2487,13 @@ document.addEventListener('DOMContentLoaded', () => {
       // Live Spotlight Ticker feedback on hover (if element present)
       card.addEventListener('mouseenter', () => {
         if (heroSpotlightDetails) {
-          heroSpotlightDetails.innerHTML = `<strong>№ ${specimenNumber} ${worker.name}</strong> • ${craftRole} • <span style="color:#FBBF24; font-weight:700;">$${worker.hourlyRate}/hr</span> • Click to inspect dossier &amp; book`;
+          heroSpotlightDetails.innerHTML = `<strong>№ ${specimenNumber} ${worker.name}</strong> • ${craftRole} • <span style="color:#10B981; font-weight:700;">★ ${worker.rating} (${worker.reviewsCount || 16} reviews)</span> • Click to view profile`;
         }
       });
 
       card.addEventListener('mouseleave', () => {
         if (heroSpotlightDetails) {
-          heroSpotlightDetails.textContent = 'Hover any specialist to preview dossier • Click to inspect & book';
+          heroSpotlightDetails.textContent = 'Hover any specialist to preview profile • Click to view portfolio';
         }
       });
 
@@ -3296,10 +3255,9 @@ document.addEventListener('DOMContentLoaded', () => {
       articleAuthorAvatar.alt = article.author.name;
     }
     if (articleAuthorName) articleAuthorName.textContent = article.author.name;
-    if (articleAuthorRate) articleAuthorRate.textContent = article.author.hourlyRate;
     if (articleAuthorRole) articleAuthorRole.textContent = article.author.role;
     if (articleAuthorLocation) articleAuthorLocation.textContent = article.author.location;
-    if (articleAuthorHireBtnText) articleAuthorHireBtnText.textContent = `Work with ${article.author.name.split(' ')[0]}`;
+    if (articleAuthorHireBtnText) articleAuthorHireBtnText.textContent = `View Profile of ${article.author.name.split(' ')[0]}`;
 
     // Featured Media
     if (articleFeaturedImage) {
@@ -3373,11 +3331,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     if (authorBioName) authorBioName.textContent = article.author.name;
     if (authorBioRole) authorBioRole.textContent = article.author.role;
-    if (authorBioRate) authorBioRate.textContent = article.author.hourlyRate.replace('/hr', '');
     if (authorBioDesc) authorBioDesc.textContent = article.author.bio;
     if (authorBioLocation) authorBioLocation.textContent = `📍 ${article.author.location}`;
     if (authorBioRating) authorBioRating.textContent = `★ ${article.author.rating} (${article.author.reviewsCount} reviews)`;
-    if (authorBioHireBtnText) authorBioHireBtnText.textContent = `View Full Profile & Hire ${article.author.name.split(' ')[0]}`;
+    if (authorBioHireBtnText) authorBioHireBtnText.textContent = `View Full Profile of ${article.author.name.split(' ')[0]}`;
 
     // Story Navigation (Prev / Next)
     const currentIndex = blogArticlesData.findIndex(a => a.id === article.id);

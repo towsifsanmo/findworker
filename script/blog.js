@@ -30,7 +30,6 @@
   // Byline Elements
   const bylineAvatar = document.getElementById('byline-avatar');
   const bylineAuthorName = document.getElementById('byline-author-name');
-  const bylineAuthorRate = document.getElementById('byline-author-rate');
   const bylineAuthorRole = document.getElementById('byline-author-role');
   const bylineDate = document.getElementById('byline-date');
   const bylineReadTime = document.getElementById('byline-read-time');
@@ -59,7 +58,6 @@
   // Author Spotlight
   const authorSpotlightAvatar = document.getElementById('author-spotlight-avatar');
   const authorSpotlightName = document.getElementById('author-spotlight-name');
-  const authorSpotlightRate = document.getElementById('author-spotlight-rate');
   const authorSpotlightCraft = document.getElementById('author-spotlight-craft');
   const authorSpotlightBio = document.getElementById('author-spotlight-bio');
   const authorSpotlightProfileBtn = document.getElementById('author-spotlight-profile-btn');
@@ -84,7 +82,6 @@
       bylineAvatar.alt = article.author.name;
     }
     if (bylineAuthorName) bylineAuthorName.textContent = article.author.name;
-    if (bylineAuthorRate) bylineAuthorRate.textContent = article.author.hourlyRate;
     if (bylineAuthorRole) bylineAuthorRole.textContent = article.author.role;
     if (bylineDate) bylineDate.textContent = article.date;
     if (bylineReadTime) bylineReadTime.textContent = article.readTime;
@@ -146,7 +143,6 @@
       authorSpotlightAvatar.alt = article.author.name;
     }
     if (authorSpotlightName) authorSpotlightName.textContent = article.author.name;
-    if (authorSpotlightRate) authorSpotlightRate.textContent = article.author.hourlyRate;
     if (authorSpotlightCraft) authorSpotlightCraft.textContent = `${article.author.role} • ${article.author.location}`;
     if (authorSpotlightBio) authorSpotlightBio.textContent = article.author.bio;
     if (authorSpotlightProfileBtn) {

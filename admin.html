@@ -4,9 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Dashboard — FindWorker Platform Control</title>
-  <meta name="description"
-    content="FindWorker Platform Administration: Supervise freelancers, directory categories, client reviews, and direct dispatch metrics.">
+  <title>Admin — FindWorker</title>
+  <meta name="robots" content="noindex, nofollow">
 
   <!-- Google Fonts: Poppins -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,65 +14,56 @@
     href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap"
     rel="stylesheet">
 
-  <!-- Application Core Stylesheet -->
   <link rel="stylesheet" href="style/style.css">
-  <!-- Dashboard Studio Core Stylesheet -->
   <link rel="stylesheet" href="style/dashboard.css">
-  <!-- Dedicated Admin Control Stylesheet -->
   <link rel="stylesheet" href="style/admin.css">
 </head>
 
 <body class="dash-body">
 
   <!-- =========================================================================
-       1. SITE HEADER & FLOATING ISLAND NAVIGATION
-       Harmonizes with FindWorker InoVis Design System
+       HEADER
        ========================================================================= -->
   <header class="site-header dash-site-header">
     <div class="container">
       <div class="header-inner header-floating-island">
 
-        <!-- 1. Left: Brand Logo & Super Admin Pill -->
+        <!-- Brand -->
         <a href="index.html#home" class="brand-logo" aria-label="FindWorker Home">
           <div class="brand-text-block">
             <span class="brand-title">Find<span>Worker</span></span>
           </div>
           <span class="admin-brand-badge">
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
             </svg>
-            Super Admin
+            Admin
           </span>
         </a>
 
-        <!-- 2. Center: Telemetry Status Capsule -->
-        <div class="admin-telemetry-capsule">
-          <span class="admin-telemetry-beacon"></span>
-          <span>Network Active • Zero-Fee Protocol</span>
-        </div>
+       
 
-        <!-- 3. Right: Live Directory Link, Admin Account Menu & Direct Sign Out -->
+        <!-- Right Actions -->
         <div class="header-actions dash-header-actions">
 
-          <!-- Live Directory Link with Expanding Dot -->
-          <a href="index.html#freelancers" target="_blank" class="primary-btn no-min-width dash-preview-btn">
-            <div class="btn-text">Live Directory ↗</div>
-            <div class="btn-dot"></div>
-          </a>
+       
 
-          <!-- Admin User Topbar Avatar with Dropdown Menu -->
+          <!-- Admin Avatar Dropdown -->
           <div class="dash-user-menu-wrap" id="admin-user-menu-wrap">
-            <button type="button" class="dash-user-avatar-trigger" id="admin-topbar-user-btn" aria-label="Admin Account Menu" title="Admin Account Menu" aria-expanded="false">
+            <button type="button" class="dash-user-avatar-trigger" id="admin-topbar-user-btn"
+              aria-label="Admin Account Menu" aria-expanded="false">
               <div class="admin-topbar-shield">🛡</div>
-              <svg class="dash-avatar-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              <svg class="dash-avatar-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
             </button>
 
-            <!-- Admin Profile Dropdown Menu -->
             <div class="dash-user-dropdown-menu" id="admin-user-dropdown-menu">
               <div class="dash-dropdown-identity">
                 <span class="dash-dropdown-name" id="admin-dropdown-name">Platform Admin</span>
                 <span class="dash-dropdown-email" id="admin-dropdown-email">admin@findworker.io</span>
-                <span class="admin-badge-pill" style="margin-top: 4px;">Root Super Admin</span>
+                <span class="admin-badge-pill" style="margin-top:4px;">Super Admin</span>
               </div>
               <div class="dash-dropdown-divider"></div>
               <button type="button" class="dash-dropdown-item" data-nav="overview">
@@ -83,21 +73,21 @@
                   <rect x="14" y="12" width="7" height="9" rx="1"></rect>
                   <rect x="3" y="16" width="7" height="5" rx="1"></rect>
                 </svg>
-                <span>Platform Overview</span>
+                <span>Overview</span>
               </button>
               <button type="button" class="dash-dropdown-item" data-nav="freelancers">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
                   <circle cx="9" cy="7" r="4"></circle>
                 </svg>
-                <span>Freelancers Roster</span>
+                <span>Freelancers</span>
               </button>
               <button type="button" class="dash-dropdown-item" data-nav="settings">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <circle cx="12" cy="12" r="3"></circle>
                   <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
                 </svg>
-                <span>Security Settings</span>
+                <span>Settings</span>
               </button>
               <a href="dashboard.html" class="dash-dropdown-item">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -106,7 +96,7 @@
                   <line x1="20" y1="8" x2="20" y2="14"></line>
                   <line x1="23" y1="11" x2="17" y2="11"></line>
                 </svg>
-                <span>Freelancer Studio View ↗</span>
+                <span>Freelancer View ↗</span>
               </a>
               <div class="dash-dropdown-divider"></div>
               <button type="button" class="dash-dropdown-item logout-btn" id="btn-dropdown-logout">
@@ -120,36 +110,26 @@
             </div>
           </div>
 
-          <!-- Direct Visible Sign Out Button for Desktop -->
-          <button type="button" class="dash-topbar-logout-btn logout-btn" id="btn-admin-logout" title="Sign out from Admin Center">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
-              <polyline points="16 17 21 12 16 7"></polyline>
-              <line x1="21" y1="12" x2="9" y2="12"></line>
-            </svg>
-            <span>Sign Out</span>
-          </button>
+     
 
-          <!-- Mobile Hamburger Toggle -->
+          <!-- Mobile Hamburger -->
           <button type="button" class="mobile-menu-toggle dash-menu-toggle" id="dash-menu-toggle"
-            aria-label="Toggle admin menu" aria-expanded="false">
+            aria-label="Toggle menu" aria-expanded="false">
             <span class="hamburger-bar"></span>
             <span class="hamburger-bar"></span>
             <span class="hamburger-bar"></span>
           </button>
 
         </div>
-
       </div>
     </div>
 
-    <!-- Mobile Slide-Down Drawer Navigation -->
+    <!-- Mobile Drawer -->
     <div class="mobile-nav-drawer dash-mobile-drawer" id="dash-sidebar">
       <div class="mobile-nav-inner">
 
-        <!-- Admin Identity Capsule -->
         <div class="dash-user-card" id="sidebar-user-card">
-          <div class="admin-topbar-shield" style="width: 44px; height: 44px; font-size: 1.2rem;">🛡</div>
+          <div class="admin-topbar-shield" style="width:44px;height:44px;font-size:1.2rem;">🛡</div>
           <div class="dash-user-meta">
             <div id="admin-user-name" class="dash-user-name">Platform Admin</div>
             <div class="dash-user-role">Super Administrator</div>
@@ -165,34 +145,29 @@
         </div>
 
         <button type="button" class="mobile-nav-link dash-nav-item active" data-tab="overview">
-          <span>Platform Overview</span>
-          <span class="mobile-link-badge">Telemetry</span>
+          <span>Overview</span>
+          <span class="mobile-link-badge">Live</span>
         </button>
         <button type="button" class="mobile-nav-link dash-nav-item" data-tab="freelancers">
-          <span>Freelancers Directory</span>
+          <span>Freelancers</span>
         </button>
         <button type="button" class="mobile-nav-link dash-nav-item" data-tab="categories">
-          <span>Categories &amp; Roles</span>
+          <span>Categories</span>
         </button>
         <button type="button" class="mobile-nav-link dash-nav-item" data-tab="reviews">
-          <span>Reviews Moderation</span>
+          <span>Reviews</span>
         </button>
         <button type="button" class="mobile-nav-link dash-nav-item" data-tab="settings">
-          <span>Platform Settings</span>
+          <span>Settings</span>
         </button>
 
         <div class="dash-drawer-actions">
           <a href="index.html#freelancers" target="_blank" class="btn btn-primary"
-            style="width: 100%; text-align: center; text-decoration: none;">
-            Browse Live Directory ↗
-          </a>
+            style="width:100%;text-align:center;text-decoration:none;">Live Directory ↗</a>
           <a href="index.html#home" class="btn btn-outline"
-            style="width: 100%; text-align: center; text-decoration: none;">
-            Return to Website
-          </a>
-          <button type="button" class="btn btn-outline logout-btn" id="btn-sidebar-logout" style="width: 100%; color: #DC2626;">
-            Sign Out
-          </button>
+            style="width:100%;text-align:center;text-decoration:none;">Return to Website</a>
+          <button type="button" class="btn btn-outline logout-btn" id="btn-sidebar-logout"
+            style="width:100%;color:#DC2626;">Sign Out</button>
         </div>
 
       </div>
@@ -200,30 +175,25 @@
   </header>
 
   <!-- =========================================================================
-       2. STUDIO WORKSPACE CANVAS & SUBBAR
+       MAIN WORKSPACE
        ========================================================================= -->
   <main class="dash-main">
     <div class="dash-canvas-container">
 
-      <!-- Breadcrumbs & Status Subbar -->
+      <!-- Subbar -->
       <div class="dash-subbar">
         <div class="dash-subbar-left">
           <div class="dash-breadcrumbs">
-            <span>Admin Center</span>
+            <span>Admin</span>
             <span class="dash-bc-sep">/</span>
-            <span class="dash-bc-current" id="admin-topbar-breadcrumb">Platform Overview</span>
+            <span class="dash-bc-current" id="admin-topbar-breadcrumb">Overview</span>
           </div>
-          <h1 class="dash-subbar-title" id="admin-topbar-title">Platform Overview</h1>
+          <h1 class="dash-subbar-title" id="admin-topbar-title">Overview</h1>
         </div>
-        <div class="dash-subbar-right">
-          <span class="admin-badge-pill">SUPER ADMIN</span>
-          <a href="index.html#freelancers" target="_blank" class="dash-hub-copy-pill" style="text-decoration: none;">
-            <span>Live Directory ↗</span>
-          </a>
-        </div>
+      
       </div>
 
-      <!-- Segmented Capsule Studio Dock -->
+      <!-- Navigation Dock -->
       <nav class="dash-studio-dock admin-studio-dock" aria-label="Admin Sections">
         <div class="dash-studio-dock-track">
           <button type="button" class="dash-nav-item active" data-tab="overview">
@@ -233,7 +203,7 @@
               <rect x="14" y="12" width="7" height="9" rx="1"></rect>
               <rect x="3" y="16" width="7" height="5" rx="1"></rect>
             </svg>
-            <span>Platform Overview</span>
+            <span>Overview</span>
           </button>
           <button type="button" class="dash-nav-item" data-tab="freelancers">
             <svg class="nav-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -242,7 +212,7 @@
               <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
               <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
             </svg>
-            <span>Freelancers Roster</span>
+            <span>Freelancers</span>
           </button>
           <button type="button" class="dash-nav-item" data-tab="categories">
             <svg class="nav-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -251,20 +221,20 @@
               <rect x="14" y="14" width="7" height="7"></rect>
               <rect x="3" y="14" width="7" height="7"></rect>
             </svg>
-            <span>Categories &amp; Roles</span>
+            <span>Categories</span>
           </button>
           <button type="button" class="dash-nav-item" data-tab="reviews">
             <svg class="nav-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
             </svg>
-            <span>Reviews Moderation</span>
+            <span>Reviews</span>
           </button>
           <button type="button" class="dash-nav-item" data-tab="settings">
             <svg class="nav-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <circle cx="12" cy="12" r="3"></circle>
               <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
             </svg>
-            <span>Platform Settings</span>
+            <span>Settings</span>
           </button>
         </div>
       </nav>
@@ -272,58 +242,32 @@
       <!-- View Containers -->
       <div class="dash-content-area">
 
-        <!-- ===================================================================
-             VIEW 1: ADMIN OVERVIEW (TELEMETRY & OPERATIONS)
-             =================================================================== -->
+        <!-- =================================================================
+             VIEW 1: OVERVIEW
+             ================================================================= -->
         <section class="dash-view-section active" id="view-overview">
 
-          <!-- 1. Minimalist Command Header -->
-          <div class="admin-overview-header">
-            <div>
-              <div class="admin-kicker-bar">
-                <span class="admin-kicker-text">Directory Telemetry</span>
-                <span class="admin-status-badge">
-                  <span class="admin-telemetry-beacon"></span>
-                  Network Active • 0% Intermediary Take
-                </span>
-              </div>
-              <h2 class="admin-overview-title">Platform Operations &amp; Intelligence</h2>
-              <p class="admin-overview-desc">
-                Real-time operational index of registered talent, curated category density, verified client testimonials, and outbound direct commission dispatches.
-              </p>
+          <!-- Page Header Row -->
+          <div class="admin-page-header">
+            <div class="admin-page-header-left">
+              <h2 class="admin-page-title">Platform Overview</h2>
+            
             </div>
-
-            <div class="admin-header-actions">
-              <button type="button" class="admin-btn-primary" id="btn-admin-overview-add-worker">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                  <line x1="12" y1="5" x2="12" y2="19"></line>
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                </svg>
-                <span>Add Freelancer</span>
-              </button>
-
-              <button type="button" class="admin-btn-subtle" data-nav="settings">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="12" cy="12" r="3"></circle>
-                  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-                </svg>
-                <span>Platform Settings</span>
-              </button>
-
-              <a href="index.html#freelancers" target="_blank" class="admin-btn-subtle">
-                <span>Live Directory</span>
-                <span style="font-size: 0.9em;">↗</span>
-              </a>
-            </div>
+            <button type="button" class="admin-btn-primary" id="btn-admin-overview-add-worker">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+              <span>Add Freelancer</span>
+            </button>
           </div>
 
-          <!-- 2. Minimalist Metric Tiles Grid -->
+          <!-- Stat Tiles -->
           <div class="admin-stat-tiles-grid">
-            <!-- Tile 1: Total Freelancers -->
             <div class="admin-tile">
               <div class="admin-tile-top">
-                <span class="admin-tile-label">Registered Talent</span>
-                <div class="admin-tile-icon" style="background: rgba(133, 76, 255, 0.08); color: #854CFF;">
+                <span class="admin-tile-label">Freelancers</span>
+                <div class="admin-tile-icon" style="background:rgba(133,76,255,0.08);color:#854CFF;">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
                     <circle cx="9" cy="7" r="4"></circle>
@@ -337,15 +281,13 @@
                 <span class="kpi-pill kpi-pill-success">
                   <span id="admin-stat-published-workers">18</span> Published
                 </span>
-                <span>• 100% active</span>
               </div>
             </div>
 
-            <!-- Tile 2: Active Categories -->
             <div class="admin-tile">
               <div class="admin-tile-top">
-                <span class="admin-tile-label">Curated Disciplines</span>
-                <div class="admin-tile-icon" style="background: rgba(14, 165, 233, 0.08); color: #0284C7;">
+                <span class="admin-tile-label">Categories</span>
+                <div class="admin-tile-icon" style="background:rgba(14,165,233,0.08);color:#0284C7;">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <rect x="3" y="3" width="7" height="7"></rect>
                     <rect x="14" y="3" width="7" height="7"></rect>
@@ -356,16 +298,14 @@
               </div>
               <div class="admin-tile-val" id="admin-stat-total-cats">12</div>
               <div class="admin-tile-foot">
-                <span class="kpi-pill kpi-pill-info">Taxonomy Verified</span>
-                <span>• Full coverage</span>
+                <span class="kpi-pill kpi-pill-info">Active</span>
               </div>
             </div>
 
-            <!-- Tile 3: Verified Client Reviews -->
             <div class="admin-tile">
               <div class="admin-tile-top">
-                <span class="admin-tile-label">Verified Testimonials</span>
-                <div class="admin-tile-icon" style="background: rgba(245, 158, 11, 0.08); color: #D97706;">
+                <span class="admin-tile-label">Reviews</span>
+                <div class="admin-tile-icon" style="background:rgba(245,158,11,0.08);color:#D97706;">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
                   </svg>
@@ -374,15 +314,13 @@
               <div class="admin-tile-val" id="admin-stat-total-reviews">340</div>
               <div class="admin-tile-foot">
                 <span class="kpi-pill kpi-pill-warning">★ 4.98 Avg</span>
-                <span>• Authenticated</span>
               </div>
             </div>
 
-            <!-- Tile 4: Discovery Outbound Clicks -->
             <div class="admin-tile">
               <div class="admin-tile-top">
-                <span class="admin-tile-label">Discovery Dispatches</span>
-                <div class="admin-tile-icon" style="background: rgba(16, 185, 129, 0.08); color: #059669;">
+                <span class="admin-tile-label">Dispatches</span>
+                <div class="admin-tile-icon" style="background:rgba(16,185,129,0.08);color:#059669;">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
                     <polyline points="15 3 21 3 21 9"></polyline>
@@ -392,33 +330,27 @@
               </div>
               <div class="admin-tile-val" id="admin-stat-total-clicks">384</div>
               <div class="admin-tile-foot">
-                <span class="kpi-pill kpi-pill-purple">Direct Referrals</span>
-                <span>• 0% fees</span>
+                <span class="kpi-pill kpi-pill-purple">Direct · 0% fees</span>
               </div>
             </div>
           </div>
 
-          <!-- 3. Minimalist 2-Column Command Grid -->
+          <!-- 2-Column Grid -->
           <div class="admin-overview-columns">
 
-            <!-- Left Stack: Operations & Activity -->
+            <!-- Left Column -->
             <div class="admin-col-stack">
 
-              <!-- Platform Operations Hub -->
-              <div class="dash-card" style="margin-bottom: 0;">
-                <div class="dash-card-header" style="margin-bottom: 16px; padding-bottom: 12px;">
-                  <div class="dash-card-title-group">
-                    <h3 class="dash-card-title">Directory Management Workflows</h3>
-                    <p class="dash-card-subtitle">Direct shortcuts to modify and supervise directory sections</p>
-                  </div>
-                  <span class="admin-badge-pill">4 Core Modules</span>
+              <!-- Operations Hub -->
+              <div class="dash-card" style="margin-bottom:0;">
+                <div class="admin-card-head">
+                  <h3 class="admin-card-title">Quick Actions</h3>
                 </div>
-
                 <div class="admin-ops-list">
-                  <!-- Row 1: Freelancers -->
+
                   <div class="admin-op-item" data-nav="freelancers">
                     <div class="admin-op-left">
-                      <div class="admin-op-icon" style="background: rgba(133, 76, 255, 0.1); color: #854CFF;">
+                      <div class="admin-op-icon" style="background:rgba(133,76,255,0.1);color:#854CFF;">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                           <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
                           <circle cx="9" cy="7" r="4"></circle>
@@ -426,21 +358,17 @@
                           <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                         </svg>
                       </div>
-                      <div class="admin-op-meta">
-                        <h4>Freelancers Directory Management</h4>
-                        <p>Review verified roster, feature craftsmen, and inspect platform links</p>
-                      </div>
+                      <span class="admin-op-name">Freelancers</span>
                     </div>
                     <div class="admin-op-right">
-                      <span class="admin-op-badge" id="admin-hub-workers-pill">18 Roster</span>
+                      <span class="admin-op-badge" id="admin-hub-workers-pill">18</span>
                       <span class="admin-op-arrow">→</span>
                     </div>
                   </div>
 
-                  <!-- Row 2: Categories -->
                   <div class="admin-op-item" data-nav="categories">
                     <div class="admin-op-left">
-                      <div class="admin-op-icon" style="background: rgba(14, 165, 233, 0.1); color: #0284C7;">
+                      <div class="admin-op-icon" style="background:rgba(14,165,233,0.1);color:#0284C7;">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                           <rect x="3" y="3" width="7" height="7"></rect>
                           <rect x="14" y="3" width="7" height="7"></rect>
@@ -448,123 +376,101 @@
                           <rect x="3" y="14" width="7" height="7"></rect>
                         </svg>
                       </div>
-                      <div class="admin-op-meta">
-                        <h4>Disciplines &amp; Categories</h4>
-                        <p>Curate market taxonomy, add crafts, and reorder navigation tags</p>
-                      </div>
+                      <span class="admin-op-name">Categories</span>
                     </div>
                     <div class="admin-op-right">
-                      <span class="admin-op-badge" id="admin-hub-cats-pill">12 Roles</span>
+                      <span class="admin-op-badge" id="admin-hub-cats-pill">12</span>
                       <span class="admin-op-arrow">→</span>
                     </div>
                   </div>
 
-                  <!-- Row 3: Reviews -->
                   <div class="admin-op-item" data-nav="reviews">
                     <div class="admin-op-left">
-                      <div class="admin-op-icon" style="background: rgba(245, 158, 11, 0.1); color: #D97706;">
+                      <div class="admin-op-icon" style="background:rgba(245,158,11,0.1);color:#D97706;">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                           <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
                         </svg>
                       </div>
-                      <div class="admin-op-meta">
-                        <h4>Reviews &amp; Trust Moderation</h4>
-                        <p>Audit client ratings, resolve disputes, and safeguard review integrity</p>
-                      </div>
+                      <span class="admin-op-name">Reviews</span>
                     </div>
                     <div class="admin-op-right">
-                      <span class="admin-op-badge" id="admin-hub-reviews-pill">340 Testimonials</span>
+                      <span class="admin-op-badge" id="admin-hub-reviews-pill">340</span>
                       <span class="admin-op-arrow">→</span>
                     </div>
                   </div>
 
-                  <!-- Row 4: Security -->
                   <div class="admin-op-item" data-nav="settings">
                     <div class="admin-op-left">
-                      <div class="admin-op-icon" style="background: rgba(16, 185, 129, 0.1); color: #059669;">
+                      <div class="admin-op-icon" style="background:rgba(16,185,129,0.1);color:#059669;">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                           <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                           <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                         </svg>
                       </div>
-                      <div class="admin-op-meta">
-                        <h4>Master Security &amp; Credentials</h4>
-                        <p>Update administrative email, master password, and maintenance state</p>
-                      </div>
+                      <span class="admin-op-name">Security</span>
                     </div>
                     <div class="admin-op-right">
-                      <span class="admin-op-badge" style="background: rgba(16, 185, 129, 0.08); color: #059669; font-weight: 600;">Root Protected</span>
+                      <span class="admin-op-badge" style="background:rgba(16,185,129,0.08);color:#059669;">Protected</span>
                       <span class="admin-op-arrow">→</span>
                     </div>
                   </div>
+
                 </div>
               </div>
 
-              <!-- Live Platform Activity Ledger -->
-              <div class="dash-card" style="margin-bottom: 0;">
-                <div class="dash-card-header" style="margin-bottom: 12px; padding-bottom: 12px;">
-                  <div class="dash-card-title-group">
-                    <h3 class="dash-card-title">Live Directory Activity</h3>
-                    <p class="dash-card-subtitle">Real-time platform signals, profile updates, and referral events</p>
-                  </div>
-                  <span style="font-size: 0.72rem; color: #10B981; font-weight: 600; display: inline-flex; align-items: center; gap: 4px;">
-                    <span style="width: 6px; height: 6px; border-radius: 50%; background: #10B981;"></span> Live Stream
+              <!-- Activity Stream -->
+              <div class="dash-card" style="margin-bottom:0;">
+                <div class="admin-card-head">
+                  <h3 class="admin-card-title">Activity</h3>
+                  <span class="admin-live-tag">
+                    <span style="width:6px;height:6px;border-radius:50%;background:#10B981;display:inline-block;"></span>
+                    Live
                   </span>
                 </div>
-
                 <div class="admin-stream-list">
                   <div class="admin-stream-item">
-                    <span class="admin-stream-bullet" style="background: #854CFF;"></span>
+                    <span class="admin-stream-bullet" style="background:#854CFF;"></span>
                     <div class="admin-stream-content">
                       <div class="admin-stream-top">
-                        <span class="admin-stream-title">Julian Vance (Master Joiner)</span>
-                        <span class="admin-stream-time">2m ago</span>
+                        <span class="admin-stream-title">Julian Vance · Portfolio Updated</span>
+                        <span class="admin-stream-time">2m</span>
                       </div>
-                      <p class="admin-stream-detail">Showcase portfolio updated • 4 verified platform links (Upwork, LinkedIn, Behance, Website) operational.</p>
                     </div>
                   </div>
-
                   <div class="admin-stream-item">
-                    <span class="admin-stream-bullet" style="background: #10B981;"></span>
+                    <span class="admin-stream-bullet" style="background:#10B981;"></span>
                     <div class="admin-stream-content">
                       <div class="admin-stream-top">
                         <span class="admin-stream-title">Outbound Referral Dispatch</span>
-                        <span class="admin-stream-time">18m ago</span>
+                        <span class="admin-stream-time">18m</span>
                       </div>
-                      <p class="admin-stream-detail">Direct client enquiry redirected to Upwork for bespoke architectural millwork commission.</p>
                     </div>
                   </div>
-
                   <div class="admin-stream-item">
-                    <span class="admin-stream-bullet" style="background: #F59E0B;"></span>
+                    <span class="admin-stream-bullet" style="background:#F59E0B;"></span>
                     <div class="admin-stream-content">
                       <div class="admin-stream-top">
-                        <span class="admin-stream-title">Verified 5.0★ Review Logged</span>
-                        <span class="admin-stream-time">45m ago</span>
+                        <span class="admin-stream-title">5.0★ Review · Marcus Thorne</span>
+                        <span class="admin-stream-time">45m</span>
                       </div>
-                      <p class="admin-stream-detail">Device-verified client testimonial confirmed for Marcus Thorne (Brand &amp; Identity Craft).</p>
                     </div>
                   </div>
-
                   <div class="admin-stream-item">
-                    <span class="admin-stream-bullet" style="background: #0EA5E9;"></span>
+                    <span class="admin-stream-bullet" style="background:#0EA5E9;"></span>
                     <div class="admin-stream-content">
                       <div class="admin-stream-top">
-                        <span class="admin-stream-title">Category Taxonomy Synchronized</span>
-                        <span class="admin-stream-time">2h ago</span>
+                        <span class="admin-stream-title">Category Taxonomy Synced</span>
+                        <span class="admin-stream-time">2h</span>
                       </div>
-                      <p class="admin-stream-detail">12 core freelance disciplines indexed with zero intermediary routing.</p>
                     </div>
                   </div>
-
                   <div class="admin-stream-item">
-                    <span class="admin-stream-bullet" style="background: #64748B;"></span>
+                    <span class="admin-stream-bullet" style="background:#64748B;"></span>
                     <div class="admin-stream-content">
                       <div class="admin-stream-top">
-                        <span class="admin-stream-title">Administrative Audit Passed</span>
-                        <span class="admin-stream-time">Today, 09:30</span>
+                        <span class="admin-stream-title">Security Audit Passed</span>
+                        <span class="admin-stream-time">09:30</span>
                       </div>
-                      <p class="admin-stream-detail">Platform security audit verified master credentials and authenticated root session.</p>
                     </div>
                   </div>
                 </div>
@@ -572,111 +478,97 @@
 
             </div>
 
-            <!-- Right Stack: Distribution & Network Health -->
+            <!-- Right Column -->
             <div class="admin-col-stack">
 
-              <!-- Discipline Distribution -->
-              <div class="dash-card" style="margin-bottom: 0;">
-                <div class="dash-card-header" style="margin-bottom: 16px; padding-bottom: 12px;">
-                  <div class="dash-card-title-group">
-                    <h3 class="dash-card-title">Talent Distribution</h3>
-                    <p class="dash-card-subtitle">Active talent density by specialty discipline</p>
-                  </div>
+              <!-- Talent Distribution -->
+              <div class="dash-card" style="margin-bottom:0;">
+                <div class="admin-card-head">
+                  <h3 class="admin-card-title">Talent Distribution</h3>
                 </div>
-
                 <div class="admin-dist-list">
                   <div class="admin-dist-item">
                     <div class="admin-dist-header">
                       <span class="admin-dist-name">
-                        <span style="width: 8px; height: 8px; border-radius: 50%; background: #854CFF;"></span>
-                        Web &amp; Software Architecture
+                        <span style="width:7px;height:7px;border-radius:50%;background:#854CFF;display:inline-block;"></span>
+                        Web &amp; Software
                       </span>
-                      <span class="admin-dist-stat" id="dist-stat-web">6 Specialists (33%)</span>
+                      <span class="admin-dist-stat" id="dist-stat-web">6 · 33%</span>
                     </div>
                     <div class="admin-dist-track">
-                      <div class="admin-dist-fill" id="dist-bar-web" style="width: 33%; background: #854CFF;"></div>
+                      <div class="admin-dist-fill" id="dist-bar-web" style="width:33%;background:#854CFF;"></div>
                     </div>
                   </div>
-
                   <div class="admin-dist-item">
                     <div class="admin-dist-header">
                       <span class="admin-dist-name">
-                        <span style="width: 8px; height: 8px; border-radius: 50%; background: #0284C7;"></span>
-                        UI/UX &amp; Product Design
+                        <span style="width:7px;height:7px;border-radius:50%;background:#0284C7;display:inline-block;"></span>
+                        UI/UX Design
                       </span>
-                      <span class="admin-dist-stat" id="dist-stat-design">4 Specialists (22%)</span>
+                      <span class="admin-dist-stat" id="dist-stat-design">4 · 22%</span>
                     </div>
                     <div class="admin-dist-track">
-                      <div class="admin-dist-fill" id="dist-bar-design" style="width: 22%; background: #0284C7;"></div>
+                      <div class="admin-dist-fill" id="dist-bar-design" style="width:22%;background:#0284C7;"></div>
                     </div>
                   </div>
-
                   <div class="admin-dist-item">
                     <div class="admin-dist-header">
                       <span class="admin-dist-name">
-                        <span style="width: 8px; height: 8px; border-radius: 50%; background: #059669;"></span>
-                        Craft, Joinery &amp; Physical
+                        <span style="width:7px;height:7px;border-radius:50%;background:#059669;display:inline-block;"></span>
+                        Craft &amp; Physical
                       </span>
-                      <span class="admin-dist-stat" id="dist-stat-craft">4 Specialists (22%)</span>
+                      <span class="admin-dist-stat" id="dist-stat-craft">4 · 22%</span>
                     </div>
                     <div class="admin-dist-track">
-                      <div class="admin-dist-fill" id="dist-bar-craft" style="width: 22%; background: #059669;"></div>
+                      <div class="admin-dist-fill" id="dist-bar-craft" style="width:22%;background:#059669;"></div>
                     </div>
                   </div>
-
                   <div class="admin-dist-item">
                     <div class="admin-dist-header">
                       <span class="admin-dist-name">
-                        <span style="width: 8px; height: 8px; border-radius: 50%; background: #D97706;"></span>
-                        Creative Direction &amp; Media
+                        <span style="width:7px;height:7px;border-radius:50%;background:#D97706;display:inline-block;"></span>
+                        Creative &amp; Media
                       </span>
-                      <span class="admin-dist-stat" id="dist-stat-creative">4 Specialists (23%)</span>
+                      <span class="admin-dist-stat" id="dist-stat-creative">4 · 23%</span>
                     </div>
                     <div class="admin-dist-track">
-                      <div class="admin-dist-fill" id="dist-bar-creative" style="width: 23%; background: #D97706;"></div>
+                      <div class="admin-dist-fill" id="dist-bar-creative" style="width:23%;background:#D97706;"></div>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <!-- Outbound Referral Channels -->
-              <div class="dash-card" style="margin-bottom: 0;">
-                <div class="dash-card-header" style="margin-bottom: 14px; padding-bottom: 12px;">
-                  <div class="dash-card-title-group">
-                    <h3 class="dash-card-title">Discovery Channels</h3>
-                    <p class="dash-card-subtitle">Outbound direct links chosen by clients</p>
-                  </div>
-                  <span class="admin-badge-pill" style="background: rgba(16, 185, 129, 0.12); color: #059669;">Direct Dispatch</span>
+              <!-- Discovery Channels -->
+              <div class="dash-card" style="margin-bottom:0;">
+                <div class="admin-card-head">
+                  <h3 class="admin-card-title">Discovery Channels</h3>
+                  <span class="admin-badge-pill" style="background:rgba(16,185,129,0.1);color:#059669;">0% fees</span>
                 </div>
-
                 <div class="admin-channel-grid">
                   <div class="admin-channel-chip">
                     <div class="admin-channel-left">
-                      <span style="width: 8px; height: 8px; border-radius: 50%; background: #14A800;"></span>
+                      <span style="width:7px;height:7px;border-radius:50%;background:#14A800;display:inline-block;"></span>
                       <span>Upwork</span>
                     </div>
                     <span class="admin-channel-pct">44%</span>
                   </div>
-
                   <div class="admin-channel-chip">
                     <div class="admin-channel-left">
-                      <span style="width: 8px; height: 8px; border-radius: 50%; background: #0A66C2;"></span>
+                      <span style="width:7px;height:7px;border-radius:50%;background:#0A66C2;display:inline-block;"></span>
                       <span>LinkedIn</span>
                     </div>
                     <span class="admin-channel-pct">22%</span>
                   </div>
-
                   <div class="admin-channel-chip">
                     <div class="admin-channel-left">
-                      <span style="width: 8px; height: 8px; border-radius: 50%; background: #059669;"></span>
+                      <span style="width:7px;height:7px;border-radius:50%;background:#059669;display:inline-block;"></span>
                       <span>Direct Web</span>
                     </div>
                     <span class="admin-channel-pct">24%</span>
                   </div>
-
                   <div class="admin-channel-chip">
                     <div class="admin-channel-left">
-                      <span style="width: 8px; height: 8px; border-radius: 50%; background: #854CFF;"></span>
+                      <span style="width:7px;height:7px;border-radius:50%;background:#854CFF;display:inline-block;"></span>
                       <span>Other Hubs</span>
                     </div>
                     <span class="admin-channel-pct">10%</span>
@@ -684,76 +576,41 @@
                 </div>
               </div>
 
-              <!-- Directory Protocol & Security Health -->
-              <div class="dash-card" style="margin-bottom: 0;">
-                <div class="dash-card-header" style="margin-bottom: 10px; padding-bottom: 10px;">
-                  <div class="dash-card-title-group">
-                    <h3 class="dash-card-title">Directory Network Protocol</h3>
-                    <p class="dash-card-subtitle">Active platform policies and guarantees</p>
-                  </div>
-                </div>
-
-                <div class="admin-integrity-list">
-                  <div class="admin-integrity-row">
-                    <span class="admin-integrity-label">
-                      <span style="color: #059669; font-weight: 700;">✓</span> Zero-Fee Protocol
-                    </span>
-                    <span class="admin-integrity-status">0% Commission</span>
-                  </div>
-                  <div class="admin-integrity-row">
-                    <span class="admin-integrity-label">
-                      <span style="color: #059669; font-weight: 700;">✓</span> Direct Client-Contractor
-                    </span>
-                    <span class="admin-integrity-status">Unrestricted</span>
-                  </div>
-                  <div class="admin-integrity-row">
-                    <span class="admin-integrity-label">
-                      <span style="color: #059669; font-weight: 700;">✓</span> Cryptographic Review Lock
-                    </span>
-                    <span class="admin-integrity-status">Enforced</span>
-                  </div>
-                </div>
-              </div>
-
             </div>
 
           </div>
-
         </section>
 
-        <!-- ===================================================================
-             VIEW 2: FREELANCERS DIRECTORY MANAGEMENT
-             =================================================================== -->
+        <!-- =================================================================
+             VIEW 2: FREELANCERS
+             ================================================================= -->
         <section class="dash-view-section" id="view-freelancers">
           <div class="dash-card">
-            <div class="dash-card-header">
-              <div class="dash-card-title-group">
-                <div class="dash-card-icon" style="background: rgba(133, 76, 255, 0.1); color: #854CFF;">👥</div>
-                <div>
-                  <h3 class="dash-card-title">Freelancers Management</h3>
-                  <p class="dash-card-subtitle">Supervise all active, featured, and draft freelancer profiles in the live directory</p>
-                </div>
-              </div>
-              <button type="button" class="dash-btn dash-btn-primary" id="btn-admin-add-worker" style="background: #854CFF; border-color: #854CFF;">
-                ＋ Add Freelancer Profile
+            <div class="admin-card-head">
+              <h3 class="admin-card-title">Freelancers</h3>
+              <button type="button" class="admin-btn-primary" id="btn-admin-add-worker">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+                Add Profile
               </button>
             </div>
 
-            <!-- Search and Filter Bar -->
             <div class="admin-search-bar">
               <div class="admin-search-wrap">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <circle cx="11" cy="11" r="8"></circle>
                   <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                 </svg>
-                <input type="text" id="admin-search-input" class="admin-search-input" placeholder="Search freelancers by name, craft, trade, or skills...">
+                <input type="text" id="admin-search-input" class="admin-search-input"
+                  placeholder="Search by name, skill, or trade…">
               </div>
-              <select id="admin-category-filter" class="dash-select" style="max-width: 240px; background-color: #fff;">
+              <select id="admin-category-filter" class="dash-select" style="max-width:220px;background:#fff;">
                 <option value="">All Categories</option>
               </select>
             </div>
 
-            <!-- Freelancers Table -->
             <div class="admin-table-container">
               <table class="admin-table">
                 <thead>
@@ -772,25 +629,22 @@
                 </tbody>
               </table>
             </div>
-
           </div>
         </section>
 
-        <!-- ===================================================================
-             VIEW 3: CATEGORIES & DISCIPLINES MANAGEMENT
-             =================================================================== -->
+        <!-- =================================================================
+             VIEW 3: CATEGORIES
+             ================================================================= -->
         <section class="dash-view-section" id="view-categories">
           <div class="dash-card">
-            <div class="dash-card-header">
-              <div class="dash-card-title-group">
-                <div class="dash-card-icon" style="background: rgba(14, 165, 233, 0.1); color: #0284C7;">🏷</div>
-                <div>
-                  <h3 class="dash-card-title">Freelance Categories &amp; Taxonomy</h3>
-                  <p class="dash-card-subtitle">Platform disciplines used for discovery, skill grouping, and search filters</p>
-                </div>
-              </div>
-              <button type="button" class="dash-btn dash-btn-primary" id="btn-admin-add-category" style="background: #854CFF; border-color: #854CFF;">
-                ＋ Add New Category
+            <div class="admin-card-head">
+              <h3 class="admin-card-title">Categories</h3>
+              <button type="button" class="admin-btn-primary" id="btn-admin-add-category">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+                Add Category
               </button>
             </div>
 
@@ -799,7 +653,7 @@
                 <thead>
                   <tr>
                     <th>Category Name</th>
-                    <th>Registered Freelancers</th>
+                    <th>Freelancers</th>
                     <th>Status</th>
                   </tr>
                 </thead>
@@ -808,23 +662,16 @@
                 </tbody>
               </table>
             </div>
-
           </div>
         </section>
 
-        <!-- ===================================================================
-             VIEW 4: REVIEWS MODERATION & TRUST LEDGER
-             =================================================================== -->
+        <!-- =================================================================
+             VIEW 4: REVIEWS
+             ================================================================= -->
         <section class="dash-view-section" id="view-reviews">
           <div class="dash-card">
-            <div class="dash-card-header">
-              <div class="dash-card-title-group">
-                <div class="dash-card-icon" style="background: rgba(245, 158, 11, 0.1); color: #D97706;">★</div>
-                <div>
-                  <h3 class="dash-card-title">Client Reviews Moderation</h3>
-                  <p class="dash-card-subtitle">Audit, inspect, or delete testimonials across all freelancer profiles to preserve network integrity</p>
-                </div>
-              </div>
+            <div class="admin-card-head">
+              <h3 class="admin-card-title">Reviews</h3>
             </div>
 
             <div class="admin-table-container">
@@ -832,7 +679,7 @@
                 <thead>
                   <tr>
                     <th>Freelancer</th>
-                    <th>Client Reviewer</th>
+                    <th>Reviewer</th>
                     <th>Rating</th>
                     <th>Feedback</th>
                     <th>Date</th>
@@ -844,125 +691,104 @@
                 </tbody>
               </table>
             </div>
-
           </div>
         </section>
 
-        <!-- ===================================================================
-             VIEW 5: PLATFORM SETTINGS & SECURITY CREDENTIALS
-             =================================================================== -->
+        <!-- =================================================================
+             VIEW 5: SETTINGS
+             ================================================================= -->
         <section class="dash-view-section" id="view-settings">
-          <!-- Administrator Credentials Management Card -->
-          <div class="dash-card" style="margin-bottom: 24px;">
-            <div class="dash-card-header">
-              <div class="dash-card-title-group">
-                <div class="dash-card-icon" style="background: rgba(133, 76, 255, 0.12); color: #854CFF;">🛡</div>
-                <div>
-                  <h3 class="dash-card-title">Administrator Security Credentials</h3>
-                  <p class="dash-card-subtitle">Update your administrative login email, display name, and master password</p>
-                </div>
-              </div>
+
+          <!-- Credentials Card -->
+          <div class="dash-card" style="margin-bottom:24px;">
+            <div class="admin-card-head">
+              <h3 class="admin-card-title">Admin Credentials</h3>
               <span class="admin-badge-pill" id="admin-current-email-badge">admin@findworker.io</span>
             </div>
 
-            <form id="form-admin-credentials" style="max-width: 680px;" autocomplete="off">
-              <div class="admin-advisory-box">
-                <span class="admin-advisory-icon">🔐</span>
-                <div class="admin-advisory-text">
-                  Changes made here update your root administrator account immediately across FindWorker. You will use these new credentials on the <a href="admin-login.html" target="_blank" style="color: #854CFF; font-weight: 600; text-decoration: underline;">Admin Sign-In Portal</a>.
-                </div>
-              </div>
+            <form id="form-admin-credentials" style="max-width:680px;" autocomplete="off">
 
-              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-bottom: 18px;">
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-bottom:18px;">
                 <div class="dash-form-group">
-                  <label class="dash-label" for="input-admin-name">Administrator Display Name *</label>
+                  <label class="dash-label" for="input-admin-name">Display Name *</label>
                   <input type="text" id="input-admin-name" class="dash-input" required placeholder="Platform Administrator">
                 </div>
                 <div class="dash-form-group">
-                  <label class="dash-label" for="input-admin-email">Administrator Login Email *</label>
+                  <label class="dash-label" for="input-admin-email">Login Email *</label>
                   <input type="email" id="input-admin-email" class="dash-input" required placeholder="admin@findworker.io">
                 </div>
               </div>
 
-              <div class="dash-form-group" style="margin-bottom: 18px;">
+              <div class="dash-form-group" style="margin-bottom:18px;">
                 <label class="dash-label" for="input-admin-current-pass">
-                  <span>Current Master Password *</span>
-                  <span class="dash-label-hint">Required to verify authorization</span>
+                  <span>Current Password *</span>
+                  <span class="dash-label-hint">Required to confirm changes</span>
                 </label>
-                <div style="position: relative;">
-                  <input type="password" id="input-admin-current-pass" class="dash-input" required placeholder="Enter current password (default: admin123)" style="padding-right: 44px;">
-                  <button type="button" id="btn-toggle-curr-pass" class="admin-pass-toggle" aria-label="Toggle password visibility">👁</button>
+                <div style="position:relative;">
+                  <input type="password" id="input-admin-current-pass" class="dash-input" required
+                    placeholder="Enter current password" style="padding-right:44px;">
+                  <button type="button" id="btn-toggle-curr-pass" class="admin-pass-toggle" aria-label="Toggle visibility">👁</button>
                 </div>
               </div>
 
-              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-bottom: 22px;">
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-bottom:22px;">
                 <div class="dash-form-group">
                   <label class="dash-label" for="input-admin-new-pass">
                     <span>New Password</span>
                     <span class="dash-label-hint">Leave blank to keep unchanged</span>
                   </label>
-                  <div style="position: relative;">
-                    <input type="password" id="input-admin-new-pass" class="dash-input" placeholder="Min. 6 characters" minlength="6" style="padding-right: 44px;">
-                    <button type="button" id="btn-toggle-new-pass" class="admin-pass-toggle" aria-label="Toggle password visibility">👁</button>
+                  <div style="position:relative;">
+                    <input type="password" id="input-admin-new-pass" class="dash-input"
+                      placeholder="Min. 6 characters" minlength="6" style="padding-right:44px;">
+                    <button type="button" id="btn-toggle-new-pass" class="admin-pass-toggle" aria-label="Toggle visibility">👁</button>
                   </div>
                 </div>
                 <div class="dash-form-group">
                   <label class="dash-label" for="input-admin-confirm-pass">
-                    <span>Confirm New Password</span>
+                    <span>Confirm Password</span>
                     <span class="dash-label-hint">Re-enter to confirm</span>
                   </label>
                   <input type="password" id="input-admin-confirm-pass" class="dash-input" placeholder="Re-type new password">
                 </div>
               </div>
 
-              <div id="admin-creds-feedback" style="display: none; padding: 12px 16px; border-radius: 8px; font-size: 0.84rem; margin-bottom: 16px;"></div>
+              <div id="admin-creds-feedback" style="display:none;padding:12px 16px;border-radius:8px;font-size:0.84rem;margin-bottom:16px;"></div>
 
-              <div style="display: flex; justify-content: flex-end; gap: 12px; align-items: center;">
-                <button type="submit" class="dash-btn dash-btn-primary" id="btn-save-admin-creds" style="background: #854CFF; border-color: #854CFF; font-weight: 600; padding: 0 22px; height: 42px;">
-                  ✓ Update Security Credentials
+              <div style="display:flex;justify-content:flex-end;">
+                <button type="submit" class="admin-btn-primary" id="btn-save-admin-creds">
+                  ✓ Save Changes
                 </button>
               </div>
             </form>
           </div>
 
-          <!-- Platform Maintenance Card -->
+          <!-- Maintenance Card -->
           <div class="dash-card">
-            <div class="dash-card-header">
-              <div class="dash-card-title-group">
-                <div class="dash-card-icon" style="background: #FEF2F2; color: #DC2626;">⚙</div>
-                <div>
-                  <h3 class="dash-card-title">Platform Maintenance</h3>
-                  <p class="dash-card-subtitle">Reset overrides and clear custom data for sandbox testing</p>
-                </div>
-              </div>
+            <div class="admin-card-head">
+              <h3 class="admin-card-title">Maintenance</h3>
             </div>
-
             <div>
-              <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; color: #0F172A;">Data Maintenance</h4>
-              <p style="font-size: 0.85rem; color: #64748B; margin-bottom: 16px; line-height: 1.5;">
-                Reset all custom profiles, category edits, and platform overrides to the clean master seed state.
+              <p style="font-size:0.84rem;color:#64748B;margin-bottom:16px;line-height:1.55;">
+                Reset all custom profiles, categories, and overrides to the factory seed state.
               </p>
               <button type="button" class="dash-btn dash-btn-danger" id="btn-admin-reset-data">
-                Reset Platform to Factory Defaults
+                Reset to Factory Defaults
               </button>
             </div>
-
           </div>
+
         </section>
 
       </div><!-- /dash-content-area -->
-
     </div><!-- /dash-canvas-container -->
   </main>
 
-  <!-- =========================================================================
-       MODAL: ADD FREELANCE CATEGORY
-       ========================================================================= -->
+  <!-- Modal: Add Category -->
   <div class="dash-modal-overlay" id="modal-add-category" role="dialog" aria-modal="true">
-    <div class="dash-modal-window" style="max-width: 440px;">
+    <div class="dash-modal-window" style="max-width:440px;">
       <div class="dash-modal-header">
-        <h3 class="dash-modal-title">Add Freelance Category</h3>
-        <button type="button" class="dash-modal-close-btn" id="modal-category-close" aria-label="Close dialog">&times;</button>
+        <h3 class="dash-modal-title">Add Category</h3>
+        <button type="button" class="dash-modal-close-btn" id="modal-category-close" aria-label="Close">&times;</button>
       </div>
       <form id="form-add-category">
         <div class="dash-modal-body">
@@ -973,16 +799,16 @@
         </div>
         <div class="dash-modal-footer">
           <button type="button" class="dash-btn dash-btn-outline" id="modal-category-cancel">Cancel</button>
-          <button type="submit" class="dash-btn dash-btn-primary" style="background: #854CFF; border-color: #854CFF;">Create Category</button>
+          <button type="submit" class="dash-btn dash-btn-primary" style="background:#854CFF;border-color:#854CFF;">Create</button>
         </div>
       </form>
     </div>
   </div>
 
-  <!-- Toast Notification Container -->
+  <!-- Toast -->
   <div class="toast-container" id="toast-container" aria-live="polite"></div>
 
-  <!-- Core Scripts -->
+  <!-- Scripts -->
   <script src="script/workers-data.js"></script>
   <script src="script/auth.js"></script>
   <script src="script/admin.js"></script>

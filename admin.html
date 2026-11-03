@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Dashboard — FindWorker</title>
+  <title>Admin Dashboard — FindWorker Platform Control</title>
   <meta name="description"
-    content="FindWorker Platform Administration: Manage freelancers, directory categories, client reviews, and discovery metrics.">
+    content="FindWorker Platform Administration: Supervise freelancers, directory categories, client reviews, and direct dispatch metrics.">
 
   <!-- Google Fonts: Poppins -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,698 +17,263 @@
 
   <!-- Application Core Stylesheet -->
   <link rel="stylesheet" href="style/style.css">
-  <!-- Dashboard Core Stylesheet -->
+  <!-- Dashboard Studio Core Stylesheet -->
   <link rel="stylesheet" href="style/dashboard.css">
-
-  <style>
-    .admin-badge-pill {
-      background: rgba(133, 76, 255, 0.15);
-      color: #854CFF;
-      font-weight: 700;
-      font-size: 0.68rem;
-      padding: 2px 8px;
-      border-radius: var(--radius-full);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-    .admin-table {
-      width: 100%;
-      border-collapse: collapse;
-      text-align: left;
-      font-size: 0.86rem;
-    }
-    .admin-table th {
-      background: #FAFAFA;
-      padding: 12px 16px;
-      font-weight: 600;
-      color: var(--color-secondary-muted);
-      border-bottom: 1px solid var(--color-border);
-      text-transform: uppercase;
-      font-size: 0.72rem;
-      letter-spacing: 0.05em;
-    }
-    .admin-table td {
-      padding: 14px 16px;
-      border-bottom: 1px solid var(--color-border-light);
-      vertical-align: middle;
-    }
-    .admin-table tr:hover td {
-      background: #FAFAFA;
-    }
-    .admin-search-bar {
-      display: flex;
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-
-    /* ==========================================================================
-       MINIMALIST PLATFORM OVERVIEW STYLES
-       ========================================================================== */
-    .admin-overview-header {
-      background: #FFFFFF;
-      border: 1px solid #E2E8F0;
-      border-radius: 14px;
-      padding: 22px 26px;
-      margin-bottom: 22px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
-      flex-wrap: wrap;
-    }
-
-    .admin-kicker-bar {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 4px;
-    }
-
-    .admin-kicker-text {
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #64748B;
-    }
-
-    .admin-status-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 3px 10px;
-      border-radius: 9999px;
-      background: rgba(16, 185, 129, 0.08);
-      color: #059669;
-      font-size: 0.7rem;
-      font-weight: 600;
-      border: 1px solid rgba(16, 185, 129, 0.2);
-    }
-
-    .admin-status-beacon {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #10B981;
-      box-shadow: 0 0 6px #10B981;
-    }
-
-    .admin-overview-title {
-      font-size: 1.35rem;
-      font-weight: 700;
-      color: #0F172A;
-      margin: 0 0 4px;
-      letter-spacing: -0.02em;
-    }
-
-    .admin-overview-desc {
-      font-size: 0.82rem;
-      color: #64748B;
-      margin: 0;
-      line-height: 1.45;
-    }
-
-    .admin-header-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .admin-btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: #854CFF;
-      color: #FFFFFF;
-      font-size: 0.78rem;
-      font-weight: 600;
-      padding: 8px 16px;
-      border-radius: 8px;
-      border: 1px solid #854CFF;
-      cursor: pointer;
-      text-decoration: none;
-      transition: all 0.15s ease;
-      box-shadow: 0 2px 6px rgba(133, 76, 255, 0.2);
-    }
-
-    .admin-btn-primary:hover {
-      background: #7337F5;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(133, 76, 255, 0.3);
-    }
-
-    .admin-btn-subtle {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: #FFFFFF;
-      color: #334155;
-      font-size: 0.78rem;
-      font-weight: 600;
-      padding: 8px 14px;
-      border-radius: 8px;
-      border: 1px solid #E2E8F0;
-      cursor: pointer;
-      text-decoration: none;
-      transition: all 0.15s ease;
-    }
-
-    .admin-btn-subtle:hover {
-      background: #F8FAFC;
-      border-color: #CBD5E1;
-      color: #0F172A;
-    }
-
-    /* Minimalist Stat Tiles Grid */
-    .admin-stat-tiles-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-      margin-bottom: 22px;
-    }
-
-    .admin-tile {
-      background: #FFFFFF;
-      border: 1px solid #E2E8F0;
-      border-radius: 12px;
-      padding: 18px 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
-      position: relative;
-    }
-
-    .admin-tile:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
-      border-color: #CBD5E1;
-    }
-
-    .admin-tile-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 10px;
-    }
-
-    .admin-tile-label {
-      font-size: 0.7rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: #64748B;
-    }
-
-    .admin-tile-icon {
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .admin-tile-icon svg {
-      width: 17px;
-      height: 17px;
-    }
-
-    .admin-tile-val {
-      font-size: 1.85rem;
-      font-weight: 800;
-      color: #0F172A;
-      letter-spacing: -0.03em;
-      line-height: 1.1;
-      margin-bottom: 8px;
-    }
-
-    .admin-tile-foot {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.74rem;
-      color: #64748B;
-      flex-wrap: wrap;
-    }
-
-    .kpi-pill {
-      font-weight: 600;
-      padding: 2px 7px;
-      border-radius: 5px;
-      font-size: 0.7rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 3px;
-    }
-
-    .kpi-pill-success {
-      background: rgba(16, 185, 129, 0.1);
-      color: #059669;
-    }
-
-    .kpi-pill-info {
-      background: rgba(14, 165, 233, 0.1);
-      color: #0284C7;
-    }
-
-    .kpi-pill-warning {
-      background: rgba(245, 158, 11, 0.1);
-      color: #D97706;
-    }
-
-    .kpi-pill-purple {
-      background: rgba(133, 76, 255, 0.1);
-      color: #854CFF;
-    }
-
-    /* 2-Column Command Layout */
-    .admin-overview-columns {
-      display: grid;
-      grid-template-columns: 1.3fr 1fr;
-      gap: 20px;
-      align-items: start;
-    }
-
-    .admin-col-stack {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    /* Minimalist Operation Rows */
-    .admin-op-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      padding: 13px 14px;
-      border-radius: 10px;
-      border: 1px solid #F1F5F9;
-      background: #FAFAFA;
-      margin-bottom: 10px;
-      cursor: pointer;
-      transition: all 0.15s ease;
-      text-decoration: none;
-    }
-
-    .admin-op-item:last-child {
-      margin-bottom: 0;
-    }
-
-    .admin-op-item:hover {
-      background: #FFFFFF;
-      border-color: #CBD5E1;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
-      transform: translateX(2px);
-    }
-
-    .admin-op-left {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      min-width: 0;
-    }
-
-    .admin-op-icon {
-      width: 38px;
-      height: 38px;
-      border-radius: 9px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .admin-op-icon svg {
-      width: 19px;
-      height: 19px;
-    }
-
-    .admin-op-meta h4 {
-      font-size: 0.86rem;
-      font-weight: 700;
-      color: #0F172A;
-      margin: 0 0 2px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .admin-op-meta p {
-      font-size: 0.74rem;
-      color: #64748B;
-      margin: 0;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .admin-op-right {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-shrink: 0;
-    }
-
-    .admin-op-badge {
-      font-size: 0.7rem;
-      font-weight: 600;
-      padding: 3px 9px;
-      border-radius: 9999px;
-      background: #E2E8F0;
-      color: #334155;
-    }
-
-    .admin-op-arrow {
-      color: #94A3B8;
-      font-size: 0.85rem;
-      font-weight: 600;
-      transition: transform 0.15s ease;
-    }
-
-    .admin-op-item:hover .admin-op-arrow {
-      color: #854CFF;
-      transform: translateX(3px);
-    }
-
-    /* Live Activity Stream */
-    .admin-stream-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      padding: 11px 0;
-      border-bottom: 1px solid #F1F5F9;
-      font-size: 0.78rem;
-    }
-
-    .admin-stream-item:last-child {
-      border-bottom: none;
-      padding-bottom: 0;
-    }
-
-    .admin-stream-bullet {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      margin-top: 6px;
-      flex-shrink: 0;
-    }
-
-    .admin-stream-content {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .admin-stream-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 2px;
-    }
-
-    .admin-stream-title {
-      font-weight: 600;
-      color: #1E293B;
-    }
-
-    .admin-stream-time {
-      font-size: 0.68rem;
-      color: #94A3B8;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .admin-stream-detail {
-      color: #64748B;
-      font-size: 0.74rem;
-      line-height: 1.4;
-      margin: 0;
-    }
-
-    /* Minimalist Distribution Bars */
-    .admin-dist-item {
-      margin-bottom: 14px;
-    }
-
-    .admin-dist-item:last-child {
-      margin-bottom: 0;
-    }
-
-    .admin-dist-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 0.76rem;
-      margin-bottom: 5px;
-    }
-
-    .admin-dist-name {
-      font-weight: 600;
-      color: #334155;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .admin-dist-stat {
-      font-weight: 700;
-      color: #0F172A;
-    }
-
-    .admin-dist-track {
-      height: 6px;
-      background: #F1F5F9;
-      border-radius: 9999px;
-      overflow: hidden;
-      display: flex;
-    }
-
-    .admin-dist-fill {
-      height: 100%;
-      border-radius: 9999px;
-      transition: width 0.4s ease;
-    }
-
-    /* Outbound Referral Chips */
-    .admin-channel-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-    }
-
-    .admin-channel-chip {
-      background: #F8FAFC;
-      border: 1px solid #E2E8F0;
-      border-radius: 9px;
-      padding: 10px 12px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .admin-channel-left {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.76rem;
-      font-weight: 600;
-      color: #334155;
-    }
-
-    .admin-channel-pct {
-      font-size: 0.76rem;
-      font-weight: 700;
-      color: #0F172A;
-    }
-
-    /* Integrity Protocol Row */
-    .admin-integrity-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 9px 0;
-      border-bottom: 1px solid #F1F5F9;
-      font-size: 0.76rem;
-    }
-
-    .admin-integrity-row:last-child {
-      border-bottom: none;
-      padding-bottom: 0;
-    }
-
-    .admin-integrity-label {
-      color: #475569;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .admin-integrity-status {
-      font-weight: 600;
-      font-size: 0.72rem;
-      color: #059669;
-      background: rgba(16, 185, 129, 0.08);
-      padding: 2px 7px;
-      border-radius: 4px;
-    }
-
-    @media (max-width: 1080px) {
-      .admin-stat-tiles-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .admin-overview-columns {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .admin-overview-header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .admin-stat-tiles-grid {
-        grid-template-columns: 1fr;
-      }
-      .admin-channel-grid {
-        grid-template-columns: 1fr;
-      }
-      .admin-op-meta p {
-        white-space: normal;
-      }
-    }
-  </style>
+  <!-- Dedicated Admin Control Stylesheet -->
+  <link rel="stylesheet" href="style/admin.css">
 </head>
 
 <body class="dash-body">
 
-  <div class="dash-container">
+  <!-- =========================================================================
+       1. SITE HEADER & FLOATING ISLAND NAVIGATION
+       Harmonizes with FindWorker InoVis Design System
+       ========================================================================= -->
+  <header class="site-header dash-site-header">
+    <div class="container">
+      <div class="header-inner header-floating-island">
 
-    <!-- =======================================================================
-         1. LEFT STICKY SIDEBAR
-         ======================================================================= -->
-    <aside class="dash-sidebar" id="dash-sidebar">
-      <div class="dash-sidebar-header">
-        <a href="index.html#home" class="dash-brand-block">
-          <div class="dash-brand-title">Find<span>Worker</span></div>
-          <span class="admin-badge-pill">Admin Center</span>
+        <!-- 1. Left: Brand Logo & Super Admin Pill -->
+        <a href="index.html#home" class="brand-logo" aria-label="FindWorker Home">
+          <div class="brand-text-block">
+            <span class="brand-title">Find<span>Worker</span></span>
+          </div>
+          <span class="admin-brand-badge">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+            Super Admin
+          </span>
         </a>
-      </div>
 
-      <!-- Admin User Identity Card -->
-      <div class="dash-user-card">
-        <div style="width: 44px; height: 44px; border-radius: 50%; background: #854CFF; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: 800;">
-          🛡
+        <!-- 2. Center: Telemetry Status Capsule -->
+        <div class="admin-telemetry-capsule">
+          <span class="admin-telemetry-beacon"></span>
+          <span>Network Active • Zero-Fee Protocol</span>
         </div>
-        <div class="dash-user-meta">
-          <div class="dash-user-name" id="admin-user-name">Platform Admin</div>
-          <div class="dash-user-role">Super Administrator</div>
-        </div>
-      </div>
 
-      <!-- Navigation Tabs -->
-      <nav class="dash-nav-scroll" aria-label="Admin Navigation">
-        <div class="dash-nav-group-label">Platform Control</div>
+        <!-- 3. Right: Live Directory Link, Admin Account Menu & Direct Sign Out -->
+        <div class="header-actions dash-header-actions">
 
-        <button type="button" class="dash-nav-item active" data-tab="overview">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <rect x="3" y="3" width="7" height="9" rx="1"></rect>
-            <rect x="14" y="3" width="7" height="5" rx="1"></rect>
-            <rect x="14" y="12" width="7" height="9" rx="1"></rect>
-            <rect x="3" y="16" width="7" height="5" rx="1"></rect>
-          </svg>
-          <span>Platform Overview</span>
-        </button>
+          <!-- Live Directory Link with Expanding Dot -->
+          <a href="index.html#freelancers" target="_blank" class="primary-btn no-min-width dash-preview-btn">
+            <div class="btn-text">Live Directory ↗</div>
+            <div class="btn-dot"></div>
+          </a>
 
-        <button type="button" class="dash-nav-item" data-tab="freelancers">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-            <circle cx="9" cy="7" r="4"></circle>
-            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-          </svg>
-          <span>Freelancers Directory</span>
-        </button>
+          <!-- Admin User Topbar Avatar with Dropdown Menu -->
+          <div class="dash-user-menu-wrap" id="admin-user-menu-wrap">
+            <button type="button" class="dash-user-avatar-trigger" id="admin-topbar-user-btn" aria-label="Admin Account Menu" title="Admin Account Menu" aria-expanded="false">
+              <div class="admin-topbar-shield">🛡</div>
+              <svg class="dash-avatar-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
 
-        <button type="button" class="dash-nav-item" data-tab="categories">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <rect x="3" y="3" width="7" height="7"></rect>
-            <rect x="14" y="3" width="7" height="7"></rect>
-            <rect x="14" y="14" width="7" height="7"></rect>
-            <rect x="3" y="14" width="7" height="7"></rect>
-          </svg>
-          <span>Categories &amp; Roles</span>
-        </button>
-
-        <button type="button" class="dash-nav-item" data-tab="reviews">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-          </svg>
-          <span>Reviews Moderation</span>
-        </button>
-
-        <button type="button" class="dash-nav-item" data-tab="settings">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <circle cx="12" cy="12" r="3"></circle>
-            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-          </svg>
-          <span>Platform Settings</span>
-        </button>
-      </nav>
-
-      <!-- Sidebar Footer -->
-      <div class="dash-sidebar-footer">
-        <a href="index.html#home" class="dash-footer-link">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="19" y1="12" x2="5" y2="12"></line>
-            <polyline points="12 19 5 12 12 5"></polyline>
-          </svg>
-          <span>Return to Website</span>
-        </a>
-        <button type="button" class="dash-footer-link logout-btn" id="btn-admin-logout">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
-            <polyline points="16 17 21 12 16 7"></polyline>
-            <line x1="21" y1="12" x2="9" y2="12"></line>
-          </svg>
-          <span>Sign Out</span>
-        </button>
-      </div>
-    </aside>
-
-    <!-- =======================================================================
-         2. MAIN ADMIN CONTENT
-         ======================================================================= -->
-    <main class="dash-main">
-
-      <!-- Topbar -->
-      <header class="dash-topbar">
-        <div class="dash-topbar-left">
-          <button type="button" class="dash-menu-toggle" id="dash-menu-toggle">☰</button>
-          <div class="dash-page-title-wrap">
-            <div class="dash-breadcrumbs">
-              Platform Administration / <span id="admin-topbar-breadcrumb">Overview</span>
+            <!-- Admin Profile Dropdown Menu -->
+            <div class="dash-user-dropdown-menu" id="admin-user-dropdown-menu">
+              <div class="dash-dropdown-identity">
+                <span class="dash-dropdown-name" id="admin-dropdown-name">Platform Admin</span>
+                <span class="dash-dropdown-email" id="admin-dropdown-email">admin@findworker.io</span>
+                <span class="admin-badge-pill" style="margin-top: 4px;">Root Super Admin</span>
+              </div>
+              <div class="dash-dropdown-divider"></div>
+              <button type="button" class="dash-dropdown-item" data-nav="overview">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="3" width="7" height="9" rx="1"></rect>
+                  <rect x="14" y="3" width="7" height="5" rx="1"></rect>
+                  <rect x="14" y="12" width="7" height="9" rx="1"></rect>
+                  <rect x="3" y="16" width="7" height="5" rx="1"></rect>
+                </svg>
+                <span>Platform Overview</span>
+              </button>
+              <button type="button" class="dash-dropdown-item" data-nav="freelancers">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                </svg>
+                <span>Freelancers Roster</span>
+              </button>
+              <button type="button" class="dash-dropdown-item" data-nav="settings">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="3"></circle>
+                  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                </svg>
+                <span>Security Settings</span>
+              </button>
+              <a href="dashboard.html" class="dash-dropdown-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="8.5" cy="7" r="4"></circle>
+                  <line x1="20" y1="8" x2="20" y2="14"></line>
+                  <line x1="23" y1="11" x2="17" y2="11"></line>
+                </svg>
+                <span>Freelancer Studio View ↗</span>
+              </a>
+              <div class="dash-dropdown-divider"></div>
+              <button type="button" class="dash-dropdown-item logout-btn" id="btn-dropdown-logout">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                  <polyline points="16 17 21 12 16 7"></polyline>
+                  <line x1="21" y1="12" x2="9" y2="12"></line>
+                </svg>
+                <span>Sign Out</span>
+              </button>
             </div>
-            <h2 class="dash-topbar-title" id="admin-topbar-title">Platform Overview</h2>
+          </div>
+
+          <!-- Direct Visible Sign Out Button for Desktop -->
+          <button type="button" class="dash-topbar-logout-btn logout-btn" id="btn-admin-logout" title="Sign out from Admin Center">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+              <polyline points="16 17 21 12 16 7"></polyline>
+              <line x1="21" y1="12" x2="9" y2="12"></line>
+            </svg>
+            <span>Sign Out</span>
+          </button>
+
+          <!-- Mobile Hamburger Toggle -->
+          <button type="button" class="mobile-menu-toggle dash-menu-toggle" id="dash-menu-toggle"
+            aria-label="Toggle admin menu" aria-expanded="false">
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+          </button>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Mobile Slide-Down Drawer Navigation -->
+    <div class="mobile-nav-drawer dash-mobile-drawer" id="dash-sidebar">
+      <div class="mobile-nav-inner">
+
+        <!-- Admin Identity Capsule -->
+        <div class="dash-user-card" id="sidebar-user-card">
+          <div class="admin-topbar-shield" style="width: 44px; height: 44px; font-size: 1.2rem;">🛡</div>
+          <div class="dash-user-meta">
+            <div id="admin-user-name" class="dash-user-name">Platform Admin</div>
+            <div class="dash-user-role">Super Administrator</div>
+            <div class="dash-user-status-pill status-live">
+              <span class="pulse-dot"></span>
+              <span>Root Authorized</span>
+            </div>
           </div>
         </div>
 
-        <div class="dash-topbar-actions">
+        <div class="mobile-drawer-header">
+          <span class="mobile-drawer-badge">ADMIN CONTROL</span>
+        </div>
+
+        <button type="button" class="mobile-nav-link dash-nav-item active" data-tab="overview">
+          <span>Platform Overview</span>
+          <span class="mobile-link-badge">Telemetry</span>
+        </button>
+        <button type="button" class="mobile-nav-link dash-nav-item" data-tab="freelancers">
+          <span>Freelancers Directory</span>
+        </button>
+        <button type="button" class="mobile-nav-link dash-nav-item" data-tab="categories">
+          <span>Categories &amp; Roles</span>
+        </button>
+        <button type="button" class="mobile-nav-link dash-nav-item" data-tab="reviews">
+          <span>Reviews Moderation</span>
+        </button>
+        <button type="button" class="mobile-nav-link dash-nav-item" data-tab="settings">
+          <span>Platform Settings</span>
+        </button>
+
+        <div class="dash-drawer-actions">
+          <a href="index.html#freelancers" target="_blank" class="btn btn-primary"
+            style="width: 100%; text-align: center; text-decoration: none;">
+            Browse Live Directory ↗
+          </a>
+          <a href="index.html#home" class="btn btn-outline"
+            style="width: 100%; text-align: center; text-decoration: none;">
+            Return to Website
+          </a>
+          <button type="button" class="btn btn-outline logout-btn" id="btn-sidebar-logout" style="width: 100%; color: #DC2626;">
+            Sign Out
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       2. STUDIO WORKSPACE CANVAS & SUBBAR
+       ========================================================================= -->
+  <main class="dash-main">
+    <div class="dash-canvas-container">
+
+      <!-- Breadcrumbs & Status Subbar -->
+      <div class="dash-subbar">
+        <div class="dash-subbar-left">
+          <div class="dash-breadcrumbs">
+            <span>Admin Center</span>
+            <span class="dash-bc-sep">/</span>
+            <span class="dash-bc-current" id="admin-topbar-breadcrumb">Platform Overview</span>
+          </div>
+          <h1 class="dash-subbar-title" id="admin-topbar-title">Platform Overview</h1>
+        </div>
+        <div class="dash-subbar-right">
           <span class="admin-badge-pill">SUPER ADMIN</span>
-          <a href="index.html#freelancers" target="_blank" class="dash-preview-btn">
-            <span>Browse Live Directory ↗</span>
+          <a href="index.html#freelancers" target="_blank" class="dash-hub-copy-pill" style="text-decoration: none;">
+            <span>Live Directory ↗</span>
           </a>
         </div>
-      </header>
+      </div>
 
-      <!-- Content Area -->
+      <!-- Segmented Capsule Studio Dock -->
+      <nav class="dash-studio-dock admin-studio-dock" aria-label="Admin Sections">
+        <div class="dash-studio-dock-track">
+          <button type="button" class="dash-nav-item active" data-tab="overview">
+            <svg class="nav-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="7" height="9" rx="1"></rect>
+              <rect x="14" y="3" width="7" height="5" rx="1"></rect>
+              <rect x="14" y="12" width="7" height="9" rx="1"></rect>
+              <rect x="3" y="16" width="7" height="5" rx="1"></rect>
+            </svg>
+            <span>Platform Overview</span>
+          </button>
+          <button type="button" class="dash-nav-item" data-tab="freelancers">
+            <svg class="nav-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+            <span>Freelancers Roster</span>
+          </button>
+          <button type="button" class="dash-nav-item" data-tab="categories">
+            <svg class="nav-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="7" height="7"></rect>
+              <rect x="14" y="3" width="7" height="7"></rect>
+              <rect x="14" y="14" width="7" height="7"></rect>
+              <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+            <span>Categories &amp; Roles</span>
+          </button>
+          <button type="button" class="dash-nav-item" data-tab="reviews">
+            <svg class="nav-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+            <span>Reviews Moderation</span>
+          </button>
+          <button type="button" class="dash-nav-item" data-tab="settings">
+            <svg class="nav-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+            </svg>
+            <span>Platform Settings</span>
+          </button>
+        </div>
+      </nav>
+
+      <!-- View Containers -->
       <div class="dash-content-area">
 
         <!-- ===================================================================
-             VIEW 1: ADMIN OVERVIEW
+             VIEW 1: ADMIN OVERVIEW (TELEMETRY & OPERATIONS)
              =================================================================== -->
         <section class="dash-view-section active" id="view-overview">
 
@@ -718,13 +283,13 @@
               <div class="admin-kicker-bar">
                 <span class="admin-kicker-text">Directory Telemetry</span>
                 <span class="admin-status-badge">
-                  <span class="admin-status-beacon"></span>
+                  <span class="admin-telemetry-beacon"></span>
                   Network Active • 0% Intermediary Take
                 </span>
               </div>
-              <h1 class="admin-overview-title">Platform Overview</h1>
+              <h2 class="admin-overview-title">Platform Operations &amp; Intelligence</h2>
               <p class="admin-overview-desc">
-                High-level operational index of registered talent, category distribution, client reviews, and direct dispatch metrics.
+                Real-time operational index of registered talent, curated category density, verified client testimonials, and outbound direct commission dispatches.
               </p>
             </div>
 
@@ -966,7 +531,7 @@
                         <span class="admin-stream-title">Outbound Referral Dispatch</span>
                         <span class="admin-stream-time">18m ago</span>
                       </div>
-                      <p class="admin-stream-detail">Direct client enquiry redirected to Upwork for architectural millwork commission.</p>
+                      <p class="admin-stream-detail">Direct client enquiry redirected to Upwork for bespoke architectural millwork commission.</p>
                     </div>
                   </div>
 
@@ -977,7 +542,7 @@
                         <span class="admin-stream-title">Verified 5.0★ Review Logged</span>
                         <span class="admin-stream-time">45m ago</span>
                       </div>
-                      <p class="admin-stream-detail">Device-verified testimonial confirmed for Marcus Thorne (Brand &amp; Identity Craft).</p>
+                      <p class="admin-stream-detail">Device-verified client testimonial confirmed for Marcus Thorne (Brand &amp; Identity Craft).</p>
                     </div>
                   </div>
 
@@ -1131,19 +696,19 @@
                 <div class="admin-integrity-list">
                   <div class="admin-integrity-row">
                     <span class="admin-integrity-label">
-                      <span style="color: #059669;">✓</span> Zero-Fee Protocol
+                      <span style="color: #059669; font-weight: 700;">✓</span> Zero-Fee Protocol
                     </span>
                     <span class="admin-integrity-status">0% Commission</span>
                   </div>
                   <div class="admin-integrity-row">
                     <span class="admin-integrity-label">
-                      <span style="color: #059669;">✓</span> Direct Client-Contractor
+                      <span style="color: #059669; font-weight: 700;">✓</span> Direct Client-Contractor
                     </span>
                     <span class="admin-integrity-status">Unrestricted</span>
                   </div>
                   <div class="admin-integrity-row">
                     <span class="admin-integrity-label">
-                      <span style="color: #059669;">✓</span> Cryptographic Review Lock
+                      <span style="color: #059669; font-weight: 700;">✓</span> Cryptographic Review Lock
                     </span>
                     <span class="admin-integrity-status">Enforced</span>
                   </div>
@@ -1163,27 +728,33 @@
           <div class="dash-card">
             <div class="dash-card-header">
               <div class="dash-card-title-group">
-                <div class="dash-card-icon">👥</div>
+                <div class="dash-card-icon" style="background: rgba(133, 76, 255, 0.1); color: #854CFF;">👥</div>
                 <div>
                   <h3 class="dash-card-title">Freelancers Management</h3>
-                  <p class="dash-card-subtitle">Manage all active and draft freelancer profiles on the platform</p>
+                  <p class="dash-card-subtitle">Supervise all active, featured, and draft freelancer profiles in the live directory</p>
                 </div>
               </div>
-              <button type="button" class="dash-btn dash-btn-primary" id="btn-admin-add-worker">
+              <button type="button" class="dash-btn dash-btn-primary" id="btn-admin-add-worker" style="background: #854CFF; border-color: #854CFF;">
                 ＋ Add Freelancer Profile
               </button>
             </div>
 
             <!-- Search and Filter Bar -->
             <div class="admin-search-bar">
-              <input type="text" id="admin-search-input" class="dash-input" placeholder="Search freelancers by name, title, or skills..." style="flex: 1;">
-              <select id="admin-category-filter" class="dash-select" style="max-width: 240px;">
+              <div class="admin-search-wrap">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input type="text" id="admin-search-input" class="admin-search-input" placeholder="Search freelancers by name, craft, trade, or skills...">
+              </div>
+              <select id="admin-category-filter" class="dash-select" style="max-width: 240px; background-color: #fff;">
                 <option value="">All Categories</option>
               </select>
             </div>
 
             <!-- Freelancers Table -->
-            <div style="overflow-x: auto;">
+            <div class="admin-table-container">
               <table class="admin-table">
                 <thead>
                   <tr>
@@ -1206,24 +777,24 @@
         </section>
 
         <!-- ===================================================================
-             VIEW 3: CATEGORIES MANAGEMENT
+             VIEW 3: CATEGORIES & DISCIPLINES MANAGEMENT
              =================================================================== -->
         <section class="dash-view-section" id="view-categories">
           <div class="dash-card">
             <div class="dash-card-header">
               <div class="dash-card-title-group">
-                <div class="dash-card-icon">🏷</div>
+                <div class="dash-card-icon" style="background: rgba(14, 165, 233, 0.1); color: #0284C7;">🏷</div>
                 <div>
-                  <h3 class="dash-card-title">Freelance Categories</h3>
-                  <p class="dash-card-subtitle">Platform disciplines used for discovery and search filters</p>
+                  <h3 class="dash-card-title">Freelance Categories &amp; Taxonomy</h3>
+                  <p class="dash-card-subtitle">Platform disciplines used for discovery, skill grouping, and search filters</p>
                 </div>
               </div>
-              <button type="button" class="dash-btn dash-btn-primary" id="btn-admin-add-category">
+              <button type="button" class="dash-btn dash-btn-primary" id="btn-admin-add-category" style="background: #854CFF; border-color: #854CFF;">
                 ＋ Add New Category
               </button>
             </div>
 
-            <div style="overflow-x: auto;">
+            <div class="admin-table-container">
               <table class="admin-table">
                 <thead>
                   <tr>
@@ -1242,21 +813,21 @@
         </section>
 
         <!-- ===================================================================
-             VIEW 4: REVIEWS MODERATION
+             VIEW 4: REVIEWS MODERATION & TRUST LEDGER
              =================================================================== -->
         <section class="dash-view-section" id="view-reviews">
           <div class="dash-card">
             <div class="dash-card-header">
               <div class="dash-card-title-group">
-                <div class="dash-card-icon">★</div>
+                <div class="dash-card-icon" style="background: rgba(245, 158, 11, 0.1); color: #D97706;">★</div>
                 <div>
                   <h3 class="dash-card-title">Client Reviews Moderation</h3>
-                  <p class="dash-card-subtitle">Audit, approve, or delete reviews across all freelancer profiles</p>
+                  <p class="dash-card-subtitle">Audit, inspect, or delete testimonials across all freelancer profiles to preserve network integrity</p>
                 </div>
               </div>
             </div>
 
-            <div style="overflow-x: auto;">
+            <div class="admin-table-container">
               <table class="admin-table">
                 <thead>
                   <tr>
@@ -1278,7 +849,7 @@
         </section>
 
         <!-- ===================================================================
-             VIEW 5: PLATFORM SETTINGS
+             VIEW 5: PLATFORM SETTINGS & SECURITY CREDENTIALS
              =================================================================== -->
         <section class="dash-view-section" id="view-settings">
           <!-- Administrator Credentials Management Card -->
@@ -1295,9 +866,9 @@
             </div>
 
             <form id="form-admin-credentials" style="max-width: 680px;" autocomplete="off">
-              <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; padding: 14px 18px; margin-bottom: 20px; display: flex; align-items: center; gap: 12px;">
-                <span style="font-size: 1.3rem;">🔐</span>
-                <div style="font-size: 0.82rem; color: #475569; line-height: 1.45;">
+              <div class="admin-advisory-box">
+                <span class="admin-advisory-icon">🔐</span>
+                <div class="admin-advisory-text">
                   Changes made here update your root administrator account immediately across FindWorker. You will use these new credentials on the <a href="admin-login.html" target="_blank" style="color: #854CFF; font-weight: 600; text-decoration: underline;">Admin Sign-In Portal</a>.
                 </div>
               </div>
@@ -1320,7 +891,7 @@
                 </label>
                 <div style="position: relative;">
                   <input type="password" id="input-admin-current-pass" class="dash-input" required placeholder="Enter current password (default: admin123)" style="padding-right: 44px;">
-                  <button type="button" id="btn-toggle-curr-pass" aria-label="Toggle password visibility" style="position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background: transparent; border: none; cursor: pointer; color: #64748B; font-size: 1rem; padding: 4px;">👁</button>
+                  <button type="button" id="btn-toggle-curr-pass" class="admin-pass-toggle" aria-label="Toggle password visibility">👁</button>
                 </div>
               </div>
 
@@ -1332,7 +903,7 @@
                   </label>
                   <div style="position: relative;">
                     <input type="password" id="input-admin-new-pass" class="dash-input" placeholder="Min. 6 characters" minlength="6" style="padding-right: 44px;">
-                    <button type="button" id="btn-toggle-new-pass" aria-label="Toggle password visibility" style="position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background: transparent; border: none; cursor: pointer; color: #64748B; font-size: 1rem; padding: 4px;">👁</button>
+                    <button type="button" id="btn-toggle-new-pass" class="admin-pass-toggle" aria-label="Toggle password visibility">👁</button>
                   </div>
                 </div>
                 <div class="dash-form-group">
@@ -1358,7 +929,7 @@
           <div class="dash-card">
             <div class="dash-card-header">
               <div class="dash-card-title-group">
-                <div class="dash-card-icon">⚙</div>
+                <div class="dash-card-icon" style="background: #FEF2F2; color: #DC2626;">⚙</div>
                 <div>
                   <h3 class="dash-card-title">Platform Maintenance</h3>
                   <p class="dash-card-subtitle">Reset overrides and clear custom data for sandbox testing</p>
@@ -1367,8 +938,8 @@
             </div>
 
             <div>
-              <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 6px;">Data Maintenance</h4>
-              <p style="font-size: 0.85rem; color: var(--color-secondary-muted); margin-bottom: 16px;">
+              <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; color: #0F172A;">Data Maintenance</h4>
+              <p style="font-size: 0.85rem; color: #64748B; margin-bottom: 16px; line-height: 1.5;">
                 Reset all custom profiles, category edits, and platform overrides to the clean master seed state.
               </p>
               <button type="button" class="dash-btn dash-btn-danger" id="btn-admin-reset-data">
@@ -1381,15 +952,17 @@
 
       </div><!-- /dash-content-area -->
 
-    </main>
-  </div>
+    </div><!-- /dash-canvas-container -->
+  </main>
 
-  <!-- Modal: Add Category -->
+  <!-- =========================================================================
+       MODAL: ADD FREELANCE CATEGORY
+       ========================================================================= -->
   <div class="dash-modal-overlay" id="modal-add-category" role="dialog" aria-modal="true">
     <div class="dash-modal-window" style="max-width: 440px;">
       <div class="dash-modal-header">
         <h3 class="dash-modal-title">Add Freelance Category</h3>
-        <button type="button" class="dash-modal-close-btn" id="modal-category-close">&times;</button>
+        <button type="button" class="dash-modal-close-btn" id="modal-category-close" aria-label="Close dialog">&times;</button>
       </div>
       <form id="form-add-category">
         <div class="dash-modal-body">
@@ -1400,7 +973,7 @@
         </div>
         <div class="dash-modal-footer">
           <button type="button" class="dash-btn dash-btn-outline" id="modal-category-cancel">Cancel</button>
-          <button type="submit" class="dash-btn dash-btn-primary">Create Category</button>
+          <button type="submit" class="dash-btn dash-btn-primary" style="background: #854CFF; border-color: #854CFF;">Create Category</button>
         </div>
       </form>
     </div>
@@ -1409,7 +982,7 @@
   <!-- Toast Notification Container -->
   <div class="toast-container" id="toast-container" aria-live="polite"></div>
 
-  <!-- Scripts -->
+  <!-- Core Scripts -->
   <script src="script/workers-data.js"></script>
   <script src="script/auth.js"></script>
   <script src="script/admin.js"></script>

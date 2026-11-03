@@ -6,229 +6,304 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Freelancer Studio — FindWorker</title>
   <meta name="description"
-    content="Minimalist showcase dashboard for independent digital talent. Manage your profile, portfolio, external platforms, and client discovery.">
+    content="Minimalist creative workspace for independent digital talent. Manage your verified showcase, external platform links, portfolio, and direct client discovery.">
 
-  <!-- Google Fonts: Poppins -->
+  <!-- Google Fonts: Poppins (Brand Typographic System) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700&display=swap"
     rel="stylesheet">
 
   <!-- Core Application Stylesheet -->
   <link rel="stylesheet" href="style/style.css">
-  <!-- Minimalist Dashboard Stylesheet -->
+  <!-- Redesigned Minimalist Studio Stylesheet -->
   <link rel="stylesheet" href="style/dashboard.css">
 </head>
 
 <body class="dash-body">
 
-  <div class="dash-container">
+  <!-- =========================================================================
+       1. ICONIC FINDWORKER FLOATING ISLAND HEADER
+       Unified with index.html, profile.html, and blog.html
+       ========================================================================= -->
+  <header class="site-header dash-site-header" id="site-header">
+    <div class="header-floating-island">
+      <div class="container header-inner dash-header-inner">
 
-    <!-- =======================================================================
-         1. ULTRA-MINIMAL STICKY SIDEBAR
-         ======================================================================= -->
-    <aside class="dash-sidebar" id="dash-sidebar">
-
-      <div class="dash-sidebar-header">
-        <a href="index.html#home" class="dash-brand-block" aria-label="FindWorker Home">
-          <div class="dash-brand-title">Find<span>Worker</span></div>
+        <!-- 1. Left: Sculptural Monogram & Brand Identity -->
+        <a href="index.html#home" class="brand-logo" id="brand-logo-link" aria-label="FindWorker Home">
+          <div class="brand-text-block">
+            <div class="brand-title">Find<span class="brand-title-accent">Worker</span></div>
+          </div>
           <span class="dash-brand-badge">Studio</span>
         </a>
-      </div>
 
-      <!-- Freelancer Identity Capsule -->
-      <div class="dash-user-card" id="sidebar-user-card">
-        <img id="sidebar-user-avatar" src="assets/images/hero_craftsman.jpg" alt="Freelancer Avatar"
-          class="dash-user-avatar">
-        <div class="dash-user-meta">
-          <div id="sidebar-user-name" class="dash-user-name">Julian Vance</div>
-          <div id="sidebar-user-role" class="dash-user-role">Master Joiner</div>
- 
+
+        <!-- 3. Right: Visibility Status, Preview CTA & User Avatar -->
+        <div class="header-actions dash-header-actions">
+
+          
+
+         
+
+          <!-- User Topbar Avatar with Dropdown Menu -->
+          <div class="dash-user-menu-wrap" id="dash-user-menu-wrap">
+            <button type="button" class="dash-user-avatar-trigger" id="dash-topbar-user-btn" aria-label="Account Menu" title="Account Menu" aria-expanded="false">
+              <img id="topbar-avatar" src="assets/images/hero_craftsman.jpg" alt="Julian Vance" class="dash-topbar-avatar">
+              <svg class="dash-avatar-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+
+            <!-- User Profile Dropdown Menu -->
+            <div class="dash-user-dropdown-menu" id="dash-user-dropdown-menu">
+              <div class="dash-dropdown-identity">
+                <span class="dash-dropdown-name" id="dropdown-user-name">Julian Vance</span>
+                <span class="dash-dropdown-email" id="dropdown-user-email">julian@findworker.io</span>
+                <span class="dash-dropdown-badge">Verified Freelancer</span>
+              </div>
+              <div class="dash-dropdown-divider"></div>
+              <button type="button" class="dash-dropdown-item" data-nav="profile">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <span>Edit Profile</span>
+              </button>
+              <button type="button" class="dash-dropdown-item" data-nav="settings">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="3"></circle>
+                  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                </svg>
+                <span>Account Settings</span>
+              </button>
+              <a href="profile.html" target="_blank" class="dash-dropdown-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+                <span>View Public Profile ↗</span>
+              </a>
+              <div class="dash-dropdown-divider"></div>
+              <button type="button" class="dash-dropdown-item logout-btn" id="btn-dropdown-logout">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                  <polyline points="16 17 21 12 16 7"></polyline>
+                  <line x1="21" y1="12" x2="9" y2="12"></line>
+                </svg>
+                <span>Sign Out</span>
+              </button>
+            </div>
+          </div>
+
+       
+
+          <!-- Mobile Hamburger Toggle -->
+          <button type="button" class="mobile-menu-toggle dash-menu-toggle" id="dash-menu-toggle"
+            aria-label="Toggle studio menu" aria-expanded="false">
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+          </button>
+
         </div>
+
       </div>
+    </div>
 
-      <!-- Essential Navigation Tabs -->
-      <nav class="dash-nav-scroll" aria-label="Studio Navigation">
-        <div class="dash-nav-group-label">Workspace</div>
+    <!-- Mobile Slide-Down Drawer Navigation (matches index.html style) -->
+    <div class="mobile-nav-drawer dash-mobile-drawer" id="dash-sidebar">
+      <div class="mobile-nav-inner">
 
-        <button type="button" class="dash-nav-item active" data-tab="overview">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-            <rect x="3" y="3" width="7" height="9" rx="1.5"></rect>
-            <rect x="14" y="3" width="7" height="5" rx="1.5"></rect>
-            <rect x="14" y="12" width="7" height="9" rx="1.5"></rect>
-            <rect x="3" y="16" width="7" height="5" rx="1.5"></rect>
-          </svg>
+        <!-- Freelancer Identity Capsule -->
+        <div class="dash-user-card" id="sidebar-user-card">
+          <img id="sidebar-user-avatar" src="assets/images/hero_craftsman.jpg" alt="Freelancer Avatar"
+            class="dash-user-avatar">
+          <div class="dash-user-meta">
+            <div id="sidebar-user-name" class="dash-user-name">Julian Vance</div>
+            <div id="sidebar-user-role" class="dash-user-role">Master Joiner</div>
+            <div id="sidebar-user-status" class="dash-user-status-pill status-live">
+              <span class="pulse-dot"></span>
+              <span id="sidebar-status-text">Published</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mobile-drawer-header">
+          <span class="mobile-drawer-badge">STUDIO WORKSPACES</span>
+        </div>
+
+        <button type="button" class="mobile-nav-link dash-nav-item active" data-tab="overview">
           <span>Overview</span>
+          <span class="mobile-link-badge">Studio</span>
         </button>
-
-        <button type="button" class="dash-nav-item" data-tab="profile">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-            <circle cx="12" cy="7" r="4"></circle>
-          </svg>
-          <span>Profile &amp; Bio</span>
+        <button type="button" class="mobile-nav-link dash-nav-item" data-tab="profile">
+          <span>Profile &amp; Biography</span>
         </button>
-
-        <button type="button" class="dash-nav-item" data-tab="platforms">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-            <polyline points="15 3 21 3 21 9"></polyline>
-            <line x1="10" y1="14" x2="21" y2="3"></line>
-          </svg>
-          <span>Platform Links</span>
-          <span class="dash-nav-badge dash-nav-badge-key">Core</span>
+        <button type="button" class="mobile-nav-link dash-nav-item" data-tab="platforms">
+          <span>Where I Work (Platforms)</span>
+          <span class="mobile-link-badge">0% Fee</span>
         </button>
-
-        <button type="button" class="dash-nav-item" data-tab="portfolio">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-          </svg>
+        <button type="button" class="mobile-nav-link dash-nav-item" data-tab="portfolio">
           <span>Portfolio &amp; Projects</span>
         </button>
-
-        <button type="button" class="dash-nav-item" data-tab="skills">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-          </svg>
+        <button type="button" class="mobile-nav-link dash-nav-item" data-tab="skills">
           <span>Skills &amp; Capabilities</span>
         </button>
-
-        <button type="button" class="dash-nav-item" data-tab="experience">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-          </svg>
+        <button type="button" class="mobile-nav-link dash-nav-item" data-tab="experience">
           <span>Work Experience</span>
         </button>
-
-        <div class="dash-nav-group-label">Reputation &amp; Account</div>
-
-        <button type="button" class="dash-nav-item" data-tab="reviews">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-            <polygon
-              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-          </svg>
+        <button type="button" class="mobile-nav-link dash-nav-item" data-tab="reviews">
           <span>Client Reviews</span>
         </button>
-
-        <button type="button" class="dash-nav-item" data-tab="settings">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-            <circle cx="12" cy="12" r="3"></circle>
-            <path
-              d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-          </svg>
+        <button type="button" class="mobile-nav-link dash-nav-item" data-tab="settings">
           <span>Account Settings</span>
         </button>
-      </nav>
 
-      <!-- Sidebar Footer -->
-      <div class="dash-sidebar-footer">
-        <a id="btn-view-public-profile-side" href="profile.html" target="_blank" class="dash-footer-link">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-            <polyline points="15 3 21 3 21 9"></polyline>
-            <line x1="10" y1="14" x2="21" y2="3"></line>
-          </svg>
-          <span>Public Profile ↗</span>
-        </a>
-        <a href="index.html#freelancers" class="dash-footer-link">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="19" y1="12" x2="5" y2="12"></line>
-            <polyline points="12 19 5 12 12 5"></polyline>
-          </svg>
-          <span>Directory</span>
-        </a>
-        <button type="button" class="dash-footer-link logout-btn" id="btn-sidebar-logout">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
-            <polyline points="16 17 21 12 16 7"></polyline>
-            <line x1="21" y1="12" x2="9" y2="12"></line>
-          </svg>
-          <span>Sign Out</span>
-        </button>
-      </div>
-
-    </aside>
-
-    <!-- =======================================================================
-         2. MAIN WORKSPACE AREA
-         ======================================================================= -->
-    <main class="dash-main" id="dash-main">
-
-      <!-- Minimal Topbar Header -->
-      <header class="dash-topbar" id="dash-topbar">
-        <div class="dash-topbar-left">
-          <button type="button" class="dash-menu-toggle" id="dash-menu-toggle" aria-label="Toggle navigation menu">
-            ☰
-          </button>
-          <div class="dash-page-title-wrap">
-            <div class="dash-breadcrumbs">
-              Studio / <span id="topbar-breadcrumb-title">Overview</span>
-            </div>
-            <h2 class="dash-topbar-title" id="topbar-page-heading">Dashboard Overview</h2>
-          </div>
-        </div>
-
-        <div class="dash-topbar-actions">
-          <!-- Profile Publication Status Toggle -->
-          <div class="dash-status-toggle-wrap" title="Toggle directory visibility">
-            <span id="topbar-status-text">Profile Published</span>
-            <label class="dash-toggle-switch">
-              <input type="checkbox" id="profile-published-toggle" checked>
-              <span class="dash-toggle-slider"></span>
-            </label>
-          </div>
-
-          <!-- Direct Link to Public Profile -->
-          <a id="btn-topbar-preview" href="profile.html" target="_blank" class="dash-preview-btn">
-            <span>View Public Profile ↗</span>
+        <div class="dash-drawer-actions">
+          <a id="btn-view-public-profile-side" href="profile.html" target="_blank" class="btn btn-primary"
+            style="width: 100%; text-align: center; text-decoration: none;">
+            View Public Profile ↗
           </a>
-
-          <!-- User Topbar Avatar -->
-          <button type="button" class="dash-user-dropdown-btn" id="dash-topbar-user-btn" aria-label="Account Menu">
-            <img id="topbar-avatar" src="assets/images/hero_craftsman.jpg" alt="Avatar" class="dash-topbar-avatar">
+          <a href="index.html#freelancers" class="btn btn-outline"
+            style="width: 100%; text-align: center; text-decoration: none;">
+            Explore Directory
+          </a>
+          <button type="button" class="btn btn-outline logout-btn" id="btn-sidebar-logout" style="width: 100%; color: #DC2626;">
+            Sign Out
           </button>
         </div>
-      </header>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       2. STUDIO WORKSPACE CANVAS
+       Spacious, minimalist, modern layout
+       ========================================================================= -->
+  <main class="dash-main" id="dash-main">
+    <div class="dash-canvas-container">
+
+      <!-- Minimalist Breadcrumb & Control Bar -->
+      <section class="dash-subbar" aria-label="Studio Subnavigation">
+        <div class="dash-subbar-left">
+          <div class="dash-breadcrumbs">
+            <span>Studio</span>
+            <span class="dash-bc-sep">/</span>
+            <span id="topbar-breadcrumb-title" class="dash-bc-current">Overview</span>
+          </div>
+          <h1 class="dash-subbar-title" id="topbar-page-heading">Dashboard Overview</h1>
+        </div>
+
+    
+      </section>
+
+      <!-- Distinctive Studio Navigation Capsule Dock (Fast, Horizontal Segment Control) -->
+      <nav class="dash-studio-dock" aria-label="Studio Workspaces">
+        <div class="dash-studio-dock-track">
+          <button type="button" class="dash-nav-item active" data-tab="overview">
+            <svg class="nav-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="7" height="9" rx="1.5"></rect>
+              <rect x="14" y="3" width="7" height="5" rx="1.5"></rect>
+              <rect x="14" y="12" width="7" height="9" rx="1.5"></rect>
+              <rect x="3" y="16" width="7" height="5" rx="1.5"></rect>
+            </svg>
+            <span>Overview</span>
+          </button>
+
+          <button type="button" class="dash-nav-item" data-tab="profile">
+            <svg class="nav-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <span>Profile &amp; Bio</span>
+          </button>
+
+          <button type="button" class="dash-nav-item" data-tab="platforms">
+            <svg class="nav-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+            <span>Platform Links</span>
+            
+          </button>
+
+          <button type="button" class="dash-nav-item" data-tab="portfolio">
+            <svg class="nav-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+            </svg>
+            <span>Portfolio</span>
+          </button>
+
+          <button type="button" class="dash-nav-item" data-tab="skills">
+            <svg class="nav-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+            <span>Skills</span>
+          </button>
+
+          <button type="button" class="dash-nav-item" data-tab="experience">
+            <svg class="nav-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+            </svg>
+            <span>Experience</span>
+          </button>
+
+          <button type="button" class="dash-nav-item" data-tab="reviews">
+            <svg class="nav-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon
+                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+              </polygon>
+            </svg>
+            <span>Reviews</span>
+          </button>
+
+          <button type="button" class="dash-nav-item" data-tab="settings">
+            <svg class="nav-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path
+                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+              </path>
+            </svg>
+            <span>Settings</span>
+          </button>
+        </div>
+      </nav>
 
       <!-- Content Views Wrapper -->
       <div class="dash-content-area">
 
         <!-- ===================================================================
-             VIEW 1: EXECUTIVE OVERVIEW (High-Impact Discovery Performance)
+             VIEW 1: EXECUTIVE OVERVIEW (Creator Showcase & Performance)
              =================================================================== -->
         <section class="dash-view-section active" id="view-overview">
 
-          <!-- Executive Discovery Command Banner -->
+          <!-- Creator Hero Spotlight Banner -->
           <div class="dash-overview-hero-card">
+            <div class="dash-overview-hero-glow"></div>
+
             <div class="dash-overview-hero-left">
               <div class="dash-overview-avatar-wrap">
                 <img id="overview-hero-avatar" src="assets/images/hero_craftsman.jpg" alt="Freelancer Avatar"
                   class="dash-overview-hero-avatar">
-                
+                <span class="dash-overview-avatar-badge" title="Verified Guild Craftsman">✦</span>
               </div>
+
               <div class="dash-overview-hero-meta">
-                <h1>Welcome back, <span id="banner-user-name">Julian</span></h1>
-                <p>
+                
+                <h2>Welcome back, <span id="banner-user-name">Julian</span></h2>
+                <p class="dash-overview-headline">
                   <span id="overview-hero-role">Master Joiner &amp; Architectural Woodcraft</span>
-                  <span>•</span>
+                  <span class="dash-hero-dot">•</span>
                   <span id="overview-hero-location">Central District</span>
                 </p>
-                
               </div>
             </div>
 
-            <div class="dash-overview-hero-right">
-              <div class="dash-overview-link-capsule">
-                <span style="font-size: 0.72rem; color: #94A3B8;">Public Hub:</span>
-                <span id="overview-public-url-short" class="dash-overview-link-url">findworker.io/profile?id=worker-1</span>
-                <button type="button" class="dash-overview-copy-btn" id="btn-overview-copy-url">
-                  Copy Link
-                </button>
-              </div>
-              
-            </div>
+      
           </div>
 
           <!-- 4 Critical Discovery Performance KPIs -->
@@ -236,44 +311,59 @@
             <div class="dash-stat-card">
               <div class="dash-stat-top">
                 <span class="dash-stat-label">Client Impressions</span>
-                <div class="dash-stat-icon-tile">👁</div>
+                <div class="dash-stat-icon-tile">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                  </svg>
+                </div>
               </div>
               <div class="dash-stat-val" id="stat-profile-impressions">1,420</div>
               <div class="dash-stat-foot">
-                <span class="dash-stat-trend">↑ +18.4%</span> this month
+                <span class="dash-stat-trend">↑ +18.4%</span>
+                <span class="dash-stat-muted">profile views this month</span>
               </div>
             </div>
 
             <div class="dash-stat-card">
               <div class="dash-stat-top">
                 <span class="dash-stat-label">Platform Handoffs</span>
-                <div class="dash-stat-icon-tile">💼</div>
+                <div class="dash-stat-icon-tile">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                  </svg>
+                </div>
               </div>
               <div class="dash-stat-val" id="stat-link-clicks">384</div>
               <div class="dash-stat-foot">
-                <span>Direct clicks to your channels</span>
+                <span class="dash-stat-muted">Direct clicks to your external channels</span>
               </div>
             </div>
 
             <div class="dash-stat-card">
               <div class="dash-stat-top">
                 <span class="dash-stat-label">Discovery Rate</span>
-                <div class="dash-stat-icon-tile">⚡</div>
+                <div class="dash-stat-icon-tile">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                  </svg>
+                </div>
               </div>
               <div class="dash-stat-val" id="stat-conversion-rate">27.0%</div>
               <div class="dash-stat-foot">
-                <span>Client handoff efficiency</span>
+                <span class="dash-stat-muted">Visitor-to-handoff efficiency</span>
               </div>
             </div>
 
-            <div class="dash-stat-card">
+            <div class="dash-stat-card highlight">
               <div class="dash-stat-top">
                 <span class="dash-stat-label">Direct Advantage</span>
-                <div class="dash-stat-icon-tile">✦</div>
+                <div class="dash-stat-icon-tile emerald">✦</div>
               </div>
-              <div class="dash-stat-val" style="color: #10B981;">0% Fee</div>
+              <div class="dash-stat-val" style="color: var(--color-emerald, #10B981);">0% Fee</div>
               <div class="dash-stat-foot">
-                <span>100% direct client retainers</span>
+                <span class="dash-stat-muted">100% direct client retainers kept</span>
               </div>
             </div>
           </div>
@@ -281,126 +371,84 @@
           <!-- 2-Column High-Impact Split -->
           <div class="dash-overview-split">
 
-            <!-- Left Column: Showcase Health & Traffic Breakdown -->
-            <div>
-
-             
-
-              <!-- Platform Discovery Traffic Breakdown -->
-              <div class="dash-card">
-                <div class="dash-card-header">
-                  <div class="dash-card-title-group">
-                    <h3 class="dash-card-title">External Platform Discovery Distribution</h3>
-                    <p class="dash-card-subtitle">Where prospective clients are clicking to view your credentials</p>
-                  </div>
-                  <button type="button" class="dash-btn dash-btn-outline dash-btn-sm" data-nav="platforms">
-                    Manage Links ↗
-                  </button>
+            <!-- Left: Platform Discovery Traffic Breakdown -->
+            <div class="dash-card">
+              <div class="dash-card-header">
+                <div class="dash-card-title-group">
+                  <span class="dash-card-tag">ENGAGEMENT CHANNELS</span>
+                  <h3 class="dash-card-title">External Platform Discovery Distribution</h3>
+                  <p class="dash-card-subtitle">Where prospective clients click to view and hire you directly</p>
                 </div>
-
-                <div class="dash-traffic-bars" id="overview-traffic-bars">
-                  <!-- Populated dynamically by dashboard.js -->
-                </div>
+                <button type="button" class="dash-btn dash-btn-outline dash-btn-sm" data-nav="platforms">
+                  <span>Manage Links ↗</span>
+                </button>
               </div>
 
-            </div>
-
-            <!-- Right Column: Real-time Activity Feed & Quick Share Studio -->
-            <div>
-
-             
-
-              <!-- Share & Promote Profile Studio -->
-              <div class="dash-card">
-                <div class="dash-card-header">
-                  <div class="dash-card-title-group">
-                    <h3 class="dash-card-title">Share Your Public Hub</h3>
-                    <p class="dash-card-subtitle">Send your verified link to clients or social platforms</p>
-                  </div>
-                </div>
-
-                <p style="font-size: 0.8rem; color: #52525B; margin: 0 0 12px; line-height: 1.45;">
-                  Use your FindWorker link as a consolidated bio link. Clients can explore your work and connect directly on your preferred platforms with 0% commission.
-                </p>
-
-                <div class="dash-share-row">
-                  <button type="button" class="dash-share-btn" id="btn-share-linkedin">
-                    <span>LinkedIn</span>
-                  </button>
-                  <button type="button" class="dash-share-btn" id="btn-share-twitter">
-                    <span>X / Twitter</span>
-                  </button>
-                  <button type="button" class="dash-share-btn" id="btn-share-whatsapp">
-                    <span>WhatsApp</span>
-                  </button>
-                </div>
+              <div class="dash-traffic-bars" id="overview-traffic-bars">
+                <!-- Populated dynamically by dashboard.js -->
               </div>
-
             </div>
+
+            <!-- Right: Quick Share Hub Studio -->
+            
 
           </div>
 
         </section>
 
         <!-- ===================================================================
-             VIEW 2: PROFILE & BIO (Complete Profile Details, Image-Only Upload)
+             VIEW 2: PROFILE & BIO (Complete Profile Details & Photo Studio)
              =================================================================== -->
         <section class="dash-view-section" id="view-profile">
           <div class="dash-card">
+
             <div class="dash-card-header">
               <div class="dash-card-title-group">
+                
                 <h3 class="dash-card-title">Profile &amp; Biography Details</h3>
-                <p class="dash-card-subtitle">Manage your complete freelancer profile details, credentials, and narrative</p>
+                <p class="dash-card-subtitle">Manage your verified public showcase, disciplines, and narrative</p>
               </div>
-              <button type="submit" form="form-personal-info" class="dash-btn dash-btn-primary">
-                Save Profile
-              </button>
+              <!-- <button type="submit" form="form-personal-info" class="primary-btn no-min-width dash-save-btn">
+                <div class="btn-text">Save Changes</div>
+                <div class="btn-dot"></div>
+              </button> -->
             </div>
 
-            <!-- Profile URL & Status Bar -->
-            <div class="dash-profile-meta-bar">
-              <div class="dash-url-block">
-                <span class="dash-meta-label">Public Profile Link</span>
-                <div id="profile-public-url-display" class="dash-url-text">
-                  https://findworker.io/profile.html?id=worker-1
-                </div>
-              </div>
-              <div class="dash-meta-actions">
-                <button type="button" class="dash-btn dash-btn-outline dash-btn-sm" id="btn-copy-public-link">
-                  Copy Link
-                </button>
-                <button type="button" class="dash-btn dash-btn-outline dash-btn-sm" id="btn-toggle-publication">
-                  Toggle Visibility
-                </button>
-              </div>
-            </div>
-
-            <div style="display: none;" id="profile-status-heading">Profile is Live</div>
+          
 
             <!-- Profile Form (Complete Details, Image-Only Upload) -->
-            <form id="form-personal-info">
+            <form id="form-personal-info" class="dash-editor-form">
 
-              <!-- Avatar Manager (Direct Photo Upload ONLY) -->
-              <div class="dash-avatar-picker-wrap">
-                <div class="dash-avatar-upload-trigger" id="avatar-drop-zone" title="Click or drag & drop to upload profile photo">
+              <!-- Avatar Photo Studio (Direct File Upload & Drop Zone) -->
+              <div class="dash-avatar-studio-box">
+                <div class="dash-avatar-upload-trigger" id="avatar-drop-zone"
+                  title="Click or drag and drop to upload your profile photo">
                   <img id="form-avatar-preview" src="assets/images/hero_craftsman.jpg" alt="Avatar preview"
                     class="dash-avatar-preview-lg">
                   <div class="dash-avatar-upload-overlay">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                      stroke-linecap="round" stroke-linejoin="round">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                       <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
                       <circle cx="12" cy="13" r="4"></circle>
                     </svg>
-                    <span>Upload</span>
+                    <span>Update</span>
                   </div>
                 </div>
-                <input type="file" id="input-avatar-file" accept="image/png, image/jpeg, image/webp, image/gif" style="display: none;">
+
+                <input type="file" id="input-avatar-file" accept="image/png, image/jpeg, image/webp, image/gif"
+                  style="display: none;">
                 <input type="hidden" id="input-avatar-url">
 
                 <div class="dash-avatar-options">
+                  <div class="dash-avatar-header-row">
+                    <h4 class="dash-avatar-title">Profile Photo</h4>
+                    <span class="dash-avatar-file-name" id="avatar-file-name-hint">Direct file upload (PNG, JPG, WebP)</span>
+                  </div>
+                  <p class="dash-avatar-note">
+                    High-resolution portrait representing your craft. Maximum size: 5MB.
+                  </p>
                   <div class="dash-avatar-action-row">
                     <button type="button" class="dash-btn dash-btn-primary dash-btn-sm" id="btn-trigger-avatar-file">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                         <polyline points="17 8 12 3 7 8"></polyline>
                         <line x1="12" y1="3" x2="12" y2="15"></line>
@@ -410,18 +458,14 @@
                     <button type="button" class="dash-btn dash-btn-outline dash-btn-sm" id="btn-remove-avatar-photo">
                       Reset
                     </button>
-                    <span class="dash-avatar-file-name" id="avatar-file-name-hint">Direct file upload only (PNG, JPG, WebP)</span>
                   </div>
-                  <p style="font-size: 0.74rem; color: #71717A; margin: 4px 0 0; line-height: 1.4;">
-                    Click the photo or drag and drop an image file from your device. Max file size: 5MB.
-                  </p>
                 </div>
               </div>
 
               <!-- Fieldset 1: Core Professional Identity -->
               <div class="dash-form-section-title">
                 <h4>Core Identity &amp; Discipline</h4>
-                <p>Fundamental details that identify your practice in search and discovery</p>
+                <p>Fundamental credentials that identify your practice in search and directory filters</p>
               </div>
 
               <div class="dash-form-grid">
@@ -445,25 +489,28 @@
 
                 <div class="dash-form-group">
                   <label class="dash-label" for="input-experience-years">Years of Professional Experience</label>
-                  <input type="number" id="input-experience-years" class="dash-input" min="1" max="60" placeholder="e.g. 16">
+                  <input type="number" id="input-experience-years" class="dash-input" min="1" max="60"
+                    placeholder="e.g. 16">
                 </div>
               </div>
 
               <!-- Fieldset 2: Location, Working Preferences & Availability -->
-              <div class="dash-form-section-title" style="margin-top: 24px;">
+              <div class="dash-form-section-title">
                 <h4>Location, Availability &amp; Engagement</h4>
-                <p>How and where clients can collaborate with you</p>
+                <p>Working terms and how prospective clients can retain your services</p>
               </div>
 
               <div class="dash-form-grid">
                 <div class="dash-form-group">
                   <label class="dash-label" for="input-location">Location &amp; Timezone</label>
-                  <input type="text" id="input-location" class="dash-input" placeholder="e.g. San Francisco, CA · Remote Worldwide">
+                  <input type="text" id="input-location" class="dash-input"
+                    placeholder="e.g. San Francisco, CA · Remote Worldwide">
                 </div>
 
                 <div class="dash-form-group">
                   <label class="dash-label" for="input-languages">Spoken Languages</label>
-                  <input type="text" id="input-languages" class="dash-input" placeholder="e.g. English (Fluent), Spanish, German">
+                  <input type="text" id="input-languages" class="dash-input"
+                    placeholder="e.g. English (Fluent), Spanish">
                 </div>
 
                 <div class="dash-form-group">
@@ -496,8 +543,8 @@
                 </div>
               </div>
 
-              <!-- Fieldset 3: Direct Contact & Web Presence -->
-              <div class="dash-form-section-title" style="margin-top: 24px;">
+              <!-- Fieldset 3: Direct Client Contact & Web Presence -->
+              <div class="dash-form-section-title">
                 <h4>Direct Client Contact &amp; Web Presence</h4>
                 <p>Direct communication channels for clients (FindWorker charges 0% commission)</p>
               </div>
@@ -515,14 +562,15 @@
 
                 <div class="dash-form-group">
                   <label class="dash-label" for="input-website">Personal Website / Studio URL</label>
-                  <input type="text" id="input-website" class="dash-input" placeholder="e.g. julianvancewoodcraft.com">
+                  <input type="text" id="input-website" class="dash-input"
+                    placeholder="e.g. julianvancewoodcraft.com">
                 </div>
               </div>
 
               <!-- Fieldset 4: Narrative, Biography & Guarantees -->
-              <div class="dash-form-section-title" style="margin-top: 24px;">
+              <div class="dash-form-section-title">
                 <h4>Editorial Biography &amp; Professional Philosophy</h4>
-                <p>Tell your story and communicate your craft quality to prospective clients</p>
+                <p>Communicate your standard of craft to prospective clients</p>
               </div>
 
               <div class="dash-narrative-group">
@@ -554,9 +602,11 @@
                 </div>
               </div>
 
-              <div style="display: flex; justify-content: flex-end; margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(0, 0, 0, 0.06);">
-                <button type="submit" class="dash-btn dash-btn-primary" style="padding: 10px 24px; font-size: 0.9rem;">
-                  ✓ Save Complete Profile Details
+              <!-- Form Submit Action Bar -->
+              <div class="dash-form-submit-row">
+                <button type="submit" class="primary-btn no-min-width">
+                  <div class="btn-text">✓ Save Complete Profile Details</div>
+                  <div class="btn-dot"></div>
                 </button>
               </div>
 
@@ -569,34 +619,23 @@
              =================================================================== -->
         <section class="dash-view-section" id="view-platforms">
           <div class="dash-card">
+
             <div class="dash-card-header">
               <div class="dash-card-title-group">
+                
                 <h3 class="dash-card-title">Where I Work — External Platform Links</h3>
-                <p class="dash-card-subtitle">Showcase your existing profiles on Upwork, Fiverr, GitHub, LinkedIn, Behance, and more</p>
+                <p class="dash-card-subtitle">Showcase your existing verified profiles on Upwork, Fiverr, GitHub, LinkedIn, Behance, and more</p>
               </div>
-              <button type="button" class="dash-btn dash-btn-primary" id="btn-open-add-platform-modal">
-                ＋ Add Platform Link
+              <button type="button" class="primary-btn no-min-width" id="btn-open-add-platform-modal">
+                <div class="btn-text">＋ Add Platform Link</div>
+                <div class="btn-dot"></div>
               </button>
             </div>
 
             <!-- Unique Platform Discovery Banner -->
-            <div class="dash-platforms-banner">
-              <div class="dash-platforms-banner-left">
-                <div class="dash-platforms-banner-icon">💼</div>
-                <div class="dash-platforms-banner-text">
-                  <h4>Where I Work — Direct Client Discovery</h4>
-                  <p>
-                    FindWorker takes 0% commission. Showcase all your external freelance channels so prospective clients can review your verified credentials and contact or hire you directly on your terms.
-                  </p>
-                </div>
-              </div>
-              <div class="dash-platforms-banner-stat-pill">
-                <span>●</span>
-                <span>0% Commission • 100% Direct</span>
-              </div>
-            </div>
+            
 
-            <!-- Quick Connect Preset Bar -->
+            <!-- Quick Connect Preset Strip -->
             <div class="dash-quick-connect-bar">
               <div class="dash-quick-connect-title">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -632,7 +671,7 @@
 
             <!-- Platforms List Grid (Unique Badge Cards) -->
             <div class="dash-platforms-grid" id="platforms-grid-container">
-              <!-- Rendered dynamically -->
+              <!-- Rendered dynamically by dashboard.js -->
             </div>
 
             <!-- Live Public Profile Preview Widget -->
@@ -664,16 +703,18 @@
           <div class="dash-card">
             <div class="dash-card-header">
               <div class="dash-card-title-group">
+                
                 <h3 class="dash-card-title">Portfolio &amp; Projects</h3>
                 <p class="dash-card-subtitle">Showcase your best production work, case studies, and imagery</p>
               </div>
-              <button type="button" class="dash-btn dash-btn-primary" id="btn-open-add-project-modal">
-                ＋ Add Project
+              <button type="button" class="primary-btn no-min-width" id="btn-open-add-project-modal">
+                <div class="btn-text">＋ Add Project</div>
+                <div class="btn-dot"></div>
               </button>
             </div>
 
             <div class="dash-projects-grid" id="projects-grid-container">
-              <!-- Rendered dynamically -->
+              <!-- Rendered dynamically by dashboard.js -->
             </div>
           </div>
         </section>
@@ -685,34 +726,32 @@
           <div class="dash-card">
             <div class="dash-card-header">
               <div class="dash-card-title-group">
+                
                 <h3 class="dash-card-title">Skills &amp; Capabilities</h3>
                 <p class="dash-card-subtitle">Manage the tags and capabilities clients search for in directory filters</p>
               </div>
-              <button type="button" class="dash-btn dash-btn-primary" id="btn-save-skills">
-                Save Skills
+              <button type="button" class="primary-btn no-min-width" id="btn-save-skills">
+                <div class="btn-text">Save Skills</div>
+                <div class="btn-dot"></div>
               </button>
             </div>
 
-            <!-- Current Skills Tag Cloud -->
-            <label class="dash-label">
-              <span>Active Skills (<span id="skills-count-badge">0</span>)</span>
-              <span class="dash-label-hint">Click the × button on any tag to remove it</span>
-            </label>
+          
             <div class="dash-tag-cloud" id="skills-tag-cloud">
               <!-- Rendered dynamically -->
             </div>
 
             <!-- Add New Skill Input -->
-            <div style="display: flex; gap: 10px; margin-bottom: 24px;">
+            <div class="dash-add-skill-bar">
               <input type="text" id="input-new-skill" class="dash-input" style="flex: 1;"
-                placeholder="Type a skill and press Enter (e.g. Custom Cabinetry, React, Figma)...">
+                placeholder="Type a skill and press Enter (e.g. Dovetail Joinery, Custom Cabinetry, React)...">
               <button type="button" class="dash-btn dash-btn-primary" id="btn-add-skill">
                 Add Skill
               </button>
             </div>
 
             <!-- Quick Add Recommended Skills -->
-            <div style="border-top: 1px solid var(--color-border-light); padding-top: 18px;">
+            <div class="dash-suggested-wrap">
               <span class="dash-label">Quick Add Popular Capabilities:</span>
               <div class="dash-suggested-tags" id="suggested-skills-pills">
                 <!-- Rendered dynamically -->
@@ -729,11 +768,13 @@
           <div class="dash-card">
             <div class="dash-card-header">
               <div class="dash-card-title-group">
+                <span class="dash-card-tag">CAREER HISTORY</span>
                 <h3 class="dash-card-title">Work Experience</h3>
-                <p class="dash-card-subtitle">Career history, previous studios, and professional milestones</p>
+                <p class="dash-card-subtitle">Career history, studios, ateliers, and professional milestones</p>
               </div>
-              <button type="button" class="dash-btn dash-btn-primary" id="btn-open-add-exp-modal">
-                ＋ Add Experience
+              <button type="button" class="primary-btn no-min-width" id="btn-open-add-exp-modal">
+                <div class="btn-text">＋ Add Experience</div>
+                <div class="btn-dot"></div>
               </button>
             </div>
 
@@ -750,7 +791,8 @@
           <div class="dash-card">
             <div class="dash-card-header">
               <div class="dash-card-title-group">
-                <h3 class="dash-card-title">Client Reviews &amp; Reputation</h3>
+                <span class="dash-card-tag">REPUTATION &amp; TRUST</span>
+                <h3 class="dash-card-title">Client Reviews &amp; Testimonials</h3>
                 <p class="dash-card-subtitle">Verified feedback received from clients on your public profile</p>
               </div>
             </div>
@@ -769,7 +811,7 @@
               </div>
             </div>
 
-            <h4 style="font-size: 0.95rem; font-weight: 700; margin: 24px 0 16px;">Client Feedback Ledger</h4>
+            <h4 class="dash-section-subhead">Client Feedback Ledger</h4>
             <div class="dash-reviews-feed" id="full-reviews-feed-container">
               <!-- Rendered dynamically -->
             </div>
@@ -784,31 +826,32 @@
           <div class="dash-card">
             <div class="dash-card-header">
               <div class="dash-card-title-group">
+                <span class="dash-card-tag">SECURITY &amp; ACCESS</span>
                 <h3 class="dash-card-title">Account Settings</h3>
-                <p class="dash-card-subtitle">Manage credentials, password, and session preferences</p>
+                <p class="dash-card-subtitle">Manage credentials, password security, and active session preferences</p>
               </div>
             </div>
 
             <!-- Account Details -->
-            <div style="margin-bottom: 24px;">
-              <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 12px;">Credentials</h4>
+            <div class="dash-settings-group">
+              <h4 class="dash-settings-group-title">Credentials</h4>
               <div class="dash-form-grid">
                 <div class="dash-form-group">
                   <label class="dash-label" for="settings-account-email">Registered Email</label>
                   <input type="email" id="settings-account-email" class="dash-input" readonly
-                    style="background: #F9FAFB; cursor: not-allowed;">
+                    style="background: #FAFAFA; cursor: not-allowed;">
                 </div>
                 <div class="dash-form-group">
                   <label class="dash-label" for="settings-account-role">Account Type</label>
                   <input type="text" id="settings-account-role" class="dash-input" value="Verified Freelancer" readonly
-                    style="background: #F9FAFB; cursor: not-allowed;">
+                    style="background: #FAFAFA; cursor: not-allowed;">
                 </div>
               </div>
             </div>
 
             <!-- Password Form -->
-            <div style="border-top: 1px solid var(--color-border-light); padding-top: 24px; margin-bottom: 24px;">
-              <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 12px;">Change Password</h4>
+            <div class="dash-settings-group" style="border-top: 1px solid var(--color-border-light); padding-top: 24px;">
+              <h4 class="dash-settings-group-title">Change Password</h4>
               <form id="form-change-password">
                 <div class="dash-form-grid">
                   <div class="dash-form-group">
@@ -827,16 +870,16 @@
             </div>
 
             <!-- Danger Zone -->
-            <div style="border-top: 1px solid #FEE2E2; background: #FFF5F5; border-radius: var(--radius-md); padding: 18px; margin-top: 20px;">
-              <h4 style="font-size: 0.92rem; font-weight: 700; color: #DC2626; margin-bottom: 4px;">Danger Zone</h4>
-              <p style="font-size: 0.8rem; color: #991B1B; margin-bottom: 14px;">
+            <div class="dash-danger-card">
+              <h4 class="dash-danger-title">Danger Zone</h4>
+              <p class="dash-danger-desc">
                 Reset your profile data to the master baseline or sign out of active devices.
               </p>
-              <div style="display: flex; gap: 12px;">
+              <div class="dash-danger-actions">
                 <button type="button" class="dash-btn dash-btn-outline" id="btn-reset-demo-profile">
                   Reset Profile to Default
                 </button>
-                <button type="button" class="dash-btn dash-btn-danger" id="btn-danger-logout">
+                <button type="button" class="dash-btn dash-btn-danger logout-btn" id="btn-danger-logout">
                   Sign Out from Studio
                 </button>
               </div>
@@ -847,9 +890,8 @@
 
       </div><!-- /dash-content-area -->
 
-    </main>
-
-  </div><!-- /dash-container -->
+    </div><!-- /dash-canvas-container -->
+  </main>
 
   <!-- =========================================================================
        MODAL 1: ADD / EDIT PROJECT MODAL
@@ -858,7 +900,7 @@
     <div class="dash-modal-window">
       <div class="dash-modal-header">
         <h3 class="dash-modal-title" id="modal-project-title">Add New Project</h3>
-        <button type="button" class="dash-modal-close-btn" id="modal-project-close">&times;</button>
+        <button type="button" class="dash-modal-close-btn" id="modal-project-close" aria-label="Close dialog">&times;</button>
       </div>
       <form id="form-project-modal">
         <input type="hidden" id="modal-project-index" value="-1">
@@ -894,13 +936,13 @@
             </div>
             <input type="file" id="input-project-image-file" accept="image/*" style="display: none;">
             <input type="url" id="modal-project-image" class="dash-input" required
-              placeholder="https://images.unsplash.com/photo-... or upload from device">
+              placeholder="https://images.unsplash.com/... or upload from device">
           </div>
 
           <div class="dash-form-group">
             <label class="dash-label" for="modal-project-desc">Project Description</label>
             <textarea id="modal-project-desc" class="dash-textarea" style="min-height: 80px;"
-              placeholder="Describe the materials, architecture, technologies, or process..."></textarea>
+              placeholder="Describe the materials, architecture, technologies, or craftsmanship..."></textarea>
           </div>
 
           <div class="dash-form-group">
@@ -924,7 +966,7 @@
     <div class="dash-modal-window">
       <div class="dash-modal-header">
         <h3 class="dash-modal-title" id="modal-exp-title">Add Work Experience</h3>
-        <button type="button" class="dash-modal-close-btn" id="modal-exp-close">&times;</button>
+        <button type="button" class="dash-modal-close-btn" id="modal-exp-close" aria-label="Close dialog">&times;</button>
       </div>
       <form id="form-exp-modal">
         <input type="hidden" id="modal-exp-index" value="-1">
@@ -969,7 +1011,7 @@
     <div class="dash-modal-window">
       <div class="dash-modal-header">
         <h3 class="dash-modal-title" id="modal-platform-title">Add External Profile</h3>
-        <button type="button" class="dash-modal-close-btn" id="modal-platform-close">&times;</button>
+        <button type="button" class="dash-modal-close-btn" id="modal-platform-close" aria-label="Close dialog">&times;</button>
       </div>
       <form id="form-platform-modal">
         <input type="hidden" id="modal-platform-index" value="-1">

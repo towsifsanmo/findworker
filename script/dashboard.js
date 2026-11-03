@@ -231,6 +231,18 @@
     if (tToggle) tToggle.checked = isLive;
     if (tStatusText) tStatusText.textContent = isLive ? 'Profile Published' : 'Draft (Unlisted)';
 
+    const liveDot = document.getElementById('header-live-dot');
+    if (liveDot) {
+      liveDot.style.background = isLive ? '#10B981' : '#F59E0B';
+      liveDot.style.boxShadow = isLive ? '0 0 0 2px rgba(16, 185, 129, 0.2)' : '0 0 0 2px rgba(245, 158, 11, 0.2)';
+    }
+
+    // Dropdown Identity Sync
+    const dropName = document.getElementById('dropdown-user-name');
+    const dropEmail = document.getElementById('dropdown-user-email');
+    if (dropName) dropName.textContent = activeWorker.name;
+    if (dropEmail) dropEmail.textContent = currentUser?.email || activeWorker.contact?.email || 'freelancer@findworker.io';
+
     // Links to Public Profile
     const previewBtn = document.getElementById('btn-topbar-preview');
     const sidePreviewBtn = document.getElementById('btn-view-public-profile-side');
@@ -671,14 +683,9 @@
               <div>
                 <div class="dash-platform-card-title-row">
                   <h4 class="dash-platform-card-name">${escapeHtml(p.name)}</h4>
-                  <span class="dash-platform-status-badge">
-                    <span class="pulse-dot" style="background: ${cfg.color};"></span>
-                    Verified Link
-                  </span>
+                
                 </div>
-                <span class="dash-platform-card-badge" style="background: ${cfg.color}12; color: ${cfg.color}; border: 1px solid ${cfg.color}22;">
-                  ✓ ${escapeHtml(p.badge || cfg.defaultBadge)}
-                </span>
+               
               </div>
             </div>
           </div>
@@ -697,10 +704,7 @@
 
           <div class="dash-platform-card-footer">
             <div class="dash-platform-direct-perk">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5">
-                <polyline points="20 6 9 17 4 12"></polyline>
-              </svg>
-              <span>0% Commission • Direct Discovery</span>
+              
             </div>
 
             <div class="dash-platform-card-actions">
@@ -1484,32 +1488,70 @@
       });
     }
 
-    // 14. Sign Out Buttons
-    const sideLogout = document.getElementById('btn-sidebar-logout');
-    const dangerLogout = document.getElementById('btn-danger-logout');
+    // 14. User Dropdown Menu & Navigation
+    const userMenuWrap = document.getElementById('dash-user-menu-wrap');
     const topbarUserBtn = document.getElementById('dash-topbar-user-btn');
+    const userDropdown = document.getElementById('dash-user-dropdown-menu');
 
-    if (sideLogout) {
-      sideLogout.addEventListener('click', () => {
-        if (confirm('Are you sure you want to sign out?')) {
-          window.FINDWORKER_AUTH.logout('index.html#home');
+    if (topbarUserBtn && userDropdown) {
+      topbarUserBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = userDropdown.classList.toggle('active');
+        topbarUserBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+
+      // Close dropdown when selecting any navigation item within it
+      userDropdown.querySelectorAll('.dash-dropdown-item').forEach(item => {
+        item.addEventListener('click', () => {
+          userDropdown.classList.remove('active');
+          topbarUserBtn.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+
+    // Close dropdown on click outside
+    document.addEventListener('click', (e) => {
+      if (userDropdown && userDropdown.classList.contains('active')) {
+        if (!userMenuWrap || !userMenuWrap.contains(e.target)) {
+          userDropdown.classList.remove('active');
+          if (topbarUserBtn) topbarUserBtn.setAttribute('aria-expanded', 'false');
         }
-      });
+      }
+    });
+
+    // 15. Sign Out Handlers (Desktop Topbar, Dropdown, Mobile Drawer, Danger Zone)
+    function handleUserSignOut() {
+      if (confirm('Are you sure you want to sign out of FindWorker?')) {
+        if (window.FINDWORKER_AUTH && typeof window.FINDWORKER_AUTH.logout === 'function') {
+          window.FINDWORKER_AUTH.logout('index.html#home');
+        } else {
+          localStorage.removeItem('findworker_auth_session');
+          window.location.href = 'index.html#home';
+        }
+      }
     }
 
-    if (dangerLogout) {
-      dangerLogout.addEventListener('click', () => {
-        window.FINDWORKER_AUTH.logout('index.html#home');
+    // Bind all buttons with .logout-btn
+    document.querySelectorAll('.logout-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        handleUserSignOut();
       });
-    }
+    });
 
-    if (topbarUserBtn) {
-      topbarUserBtn.addEventListener('click', () => {
-        switchDashboardTab('settings');
-      });
-    }
+    // Explicit fallback bindings for all logout button IDs
+    ['btn-topbar-logout', 'btn-dropdown-logout', 'btn-sidebar-logout', 'btn-danger-logout'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el && !el.dataset.logoutBound) {
+        el.dataset.logoutBound = 'true';
+        el.addEventListener('click', (e) => {
+          e.preventDefault();
+          handleUserSignOut();
+        });
+      }
+    });
 
-    // 15. Reset Demo Profile
+    // 16. Reset Demo Profile
     const resetDemoBtn = document.getElementById('btn-reset-demo-profile');
     if (resetDemoBtn) {
       resetDemoBtn.addEventListener('click', () => {
@@ -1525,11 +1567,45 @@
       });
     }
 
-    // 16. Window Hash Change Listener
+    // 17. Window Hash Change Listener
     window.addEventListener('hashchange', () => {
       const hash = window.location.hash.replace('#', '');
       if (hash && hash !== currentActiveTab) {
         switchDashboardTab(hash);
+      }
+    });
+
+    // 18. Modal Backdrop & Escape Key Closing
+    document.querySelectorAll('.dash-modal-overlay').forEach(overlay => {
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {
+          overlay.classList.remove('active');
+        }
+      });
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.dash-modal-overlay.active').forEach(overlay => {
+          overlay.classList.remove('active');
+        });
+        const sidebar = document.getElementById('dash-sidebar');
+        if (sidebar) sidebar.classList.remove('open');
+        if (userDropdown) {
+          userDropdown.classList.remove('active');
+          if (topbarUserBtn) topbarUserBtn.setAttribute('aria-expanded', 'false');
+        }
+      }
+    });
+
+    // 19. Click Outside Mobile Drawer to Close
+    document.addEventListener('click', (e) => {
+      const sidebar = document.getElementById('dash-sidebar');
+      const toggle = document.getElementById('dash-menu-toggle');
+      if (sidebar && sidebar.classList.contains('open')) {
+        if (!sidebar.contains(e.target) && !toggle.contains(e.target)) {
+          sidebar.classList.remove('open');
+        }
       }
     });
   }

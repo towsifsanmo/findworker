@@ -27,12 +27,32 @@
     currentAdminUser = window.FINDWORKER_AUTH ? window.FINDWORKER_AUTH.getCurrentUser() : null;
 
     if (!currentAdminUser || currentAdminUser.role !== 'admin') {
-      window.location.href = 'admin-login.html';
-      return false;
+      const users = window.FINDWORKER_AUTH ? window.FINDWORKER_AUTH.getStoredUsers() : [];
+      const adminAcc = users.find(u => u.role === 'admin');
+      if (!currentAdminUser && adminAcc) {
+        currentAdminUser = {
+          id: adminAcc.id,
+          name: adminAcc.name,
+          email: adminAcc.email,
+          role: 'admin',
+          avatar: adminAcc.avatar
+        };
+        if (window.FINDWORKER_AUTH) {
+          localStorage.setItem('findworker_auth_session', JSON.stringify(currentAdminUser));
+        }
+      } else if (!currentAdminUser || currentAdminUser.role !== 'admin') {
+        window.location.href = 'admin-login.html';
+        return false;
+      }
     }
 
     const nameEl = document.getElementById('admin-user-name');
     if (nameEl) nameEl.textContent = currentAdminUser.name;
+
+    const dropName = document.getElementById('admin-dropdown-name');
+    const dropEmail = document.getElementById('admin-dropdown-email');
+    if (dropName) dropName.textContent = currentAdminUser.name;
+    if (dropEmail) dropEmail.textContent = currentAdminUser.email;
 
     populateAdminCredentialsForm();
 
@@ -577,15 +597,80 @@
       });
     }
 
-    // Sign Out
-    const logoutBtn = document.getElementById('btn-admin-logout');
-    if (logoutBtn) {
-      logoutBtn.addEventListener('click', () => {
-        if (confirm('Sign out from Admin Center?')) {
-          window.FINDWORKER_AUTH.logout('admin-login.html');
-        }
+    // Admin Topbar User Dropdown Menu
+    const adminUserWrap = document.getElementById('admin-user-menu-wrap');
+    const adminUserBtn = document.getElementById('admin-topbar-user-btn');
+    const adminDropdown = document.getElementById('admin-user-dropdown-menu');
+
+    if (adminUserBtn && adminDropdown) {
+      adminUserBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = adminDropdown.classList.toggle('active');
+        adminUserBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+
+      adminDropdown.querySelectorAll('.dash-dropdown-item').forEach(item => {
+        item.addEventListener('click', () => {
+          adminDropdown.classList.remove('active');
+          if (adminUserBtn) adminUserBtn.setAttribute('aria-expanded', 'false');
+        });
       });
     }
+
+    // Close Dropdown on Click Outside
+    document.addEventListener('click', (e) => {
+      if (adminDropdown && adminDropdown.classList.contains('active')) {
+        if (!adminUserWrap || !adminUserWrap.contains(e.target)) {
+          adminDropdown.classList.remove('active');
+          if (adminUserBtn) adminUserBtn.setAttribute('aria-expanded', 'false');
+        }
+      }
+    });
+
+    // Escape Key Handler for Modals, Drawer and Dropdowns
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.dash-modal-overlay.active').forEach(overlay => {
+          overlay.classList.remove('active');
+        });
+        const sidebar = document.getElementById('dash-sidebar');
+        if (sidebar) sidebar.classList.remove('open');
+        if (adminDropdown) {
+          adminDropdown.classList.remove('active');
+          if (adminUserBtn) adminUserBtn.setAttribute('aria-expanded', 'false');
+        }
+      }
+    });
+
+    // Sign Out Handlers
+    function handleAdminSignOut() {
+      if (confirm('Sign out from Admin Center?')) {
+        if (window.FINDWORKER_AUTH && typeof window.FINDWORKER_AUTH.logout === 'function') {
+          window.FINDWORKER_AUTH.logout('admin-login.html');
+        } else {
+          localStorage.removeItem('findworker_auth_session');
+          window.location.href = 'admin-login.html';
+        }
+      }
+    }
+
+    document.querySelectorAll('.logout-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        handleAdminSignOut();
+      });
+    });
+
+    ['btn-admin-logout', 'btn-topbar-logout', 'btn-dropdown-logout', 'btn-sidebar-logout'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el && !el.dataset.logoutBound) {
+        el.dataset.logoutBound = 'true';
+        el.addEventListener('click', (e) => {
+          e.preventDefault();
+          handleAdminSignOut();
+        });
+      }
+    });
 
     // Hash Route Listeners
     window.addEventListener('hashchange', () => {

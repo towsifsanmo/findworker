@@ -27,22 +27,43 @@
     currentAdminUser = window.FINDWORKER_AUTH ? window.FINDWORKER_AUTH.getCurrentUser() : null;
 
     if (!currentAdminUser || currentAdminUser.role !== 'admin') {
-      // Auto-fallback for direct admin testing if opened directly
-      currentAdminUser = {
-        id: 'user-admin-1',
-        name: 'Platform Administrator',
-        email: 'admin@findworker.io',
-        role: 'admin'
-      };
-      if (window.FINDWORKER_AUTH) {
-        localStorage.setItem('findworker_auth_session', JSON.stringify(currentAdminUser));
-      }
+      window.location.href = 'admin-login.html';
+      return false;
     }
 
     const nameEl = document.getElementById('admin-user-name');
     if (nameEl) nameEl.textContent = currentAdminUser.name;
 
+    populateAdminCredentialsForm();
+
     return true;
+  }
+
+  function populateAdminCredentialsForm() {
+    const adminAccount = (window.FINDWORKER_AUTH && window.FINDWORKER_AUTH.getAdminAccount)
+      ? window.FINDWORKER_AUTH.getAdminAccount()
+      : currentAdminUser;
+
+    if (!adminAccount) return;
+
+    const nameInput = document.getElementById('input-admin-name');
+    const emailInput = document.getElementById('input-admin-email');
+    const badgeEl = document.getElementById('admin-current-email-badge');
+    const currentPassInput = document.getElementById('input-admin-current-pass');
+    const newPassInput = document.getElementById('input-admin-new-pass');
+    const confirmPassInput = document.getElementById('input-admin-confirm-pass');
+    const feedbackEl = document.getElementById('admin-creds-feedback');
+
+    if (nameInput) nameInput.value = adminAccount.name || '';
+    if (emailInput) emailInput.value = adminAccount.email || '';
+    if (badgeEl) badgeEl.textContent = adminAccount.email || 'admin@findworker.io';
+    if (currentPassInput) currentPassInput.value = '';
+    if (newPassInput) newPassInput.value = '';
+    if (confirmPassInput) confirmPassInput.value = '';
+    if (feedbackEl) {
+      feedbackEl.style.display = 'none';
+      feedbackEl.textContent = '';
+    }
   }
 
   function switchAdminTab(tabId) {
@@ -73,6 +94,10 @@
     const sidebar = document.getElementById('dash-sidebar');
     if (sidebar) sidebar.classList.remove('open');
 
+    if (tabId === 'settings') {
+      populateAdminCredentialsForm();
+    }
+
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
@@ -100,6 +125,60 @@
     if (cTotal) cTotal.textContent = stats.totalCategories;
     if (rTotal) rTotal.textContent = stats.totalReviews;
     if (clTotal) clTotal.textContent = stats.totalClicks;
+
+    // Minimalist Hub Pills
+    const hubWorkersPill = document.getElementById('admin-hub-workers-pill');
+    const hubCatsPill = document.getElementById('admin-hub-cats-pill');
+    const hubReviewsPill = document.getElementById('admin-hub-reviews-pill');
+
+    if (hubWorkersPill) hubWorkersPill.textContent = `${stats.totalFreelancers} Roster`;
+    if (hubCatsPill) hubCatsPill.textContent = `${stats.totalCategories} Roles`;
+    if (hubReviewsPill) hubReviewsPill.textContent = `${stats.totalReviews} Testimonials`;
+
+    // Dynamic Talent Distribution Breakdown
+    const totalCount = allWorkers.length || 1;
+    let webCount = 0;
+    let designCount = 0;
+    let craftCount = 0;
+    let creativeCount = 0;
+
+    allWorkers.forEach(w => {
+      const trade = (w.trade || '').toLowerCase();
+      if (trade.includes('web') || trade.includes('software') || trade.includes('developer') || trade.includes('cloud') || trade.includes('cyber') || trade.includes('mobile')) {
+        webCount++;
+      } else if (trade.includes('design') || trade.includes('ui') || trade.includes('product') || trade.includes('ux') || trade.includes('brand')) {
+        designCount++;
+      } else if (trade.includes('carpentry') || trade.includes('joiner') || trade.includes('electric') || trade.includes('plumb') || trade.includes('mason') || trade.includes('metal')) {
+        craftCount++;
+      } else {
+        creativeCount++;
+      }
+    });
+
+    const webPct = Math.round((webCount / totalCount) * 100);
+    const designPct = Math.round((designCount / totalCount) * 100);
+    const craftPct = Math.round((craftCount / totalCount) * 100);
+    const creativePct = Math.max(0, 100 - (webPct + designPct + craftPct));
+
+    const elWebStat = document.getElementById('dist-stat-web');
+    const elWebBar = document.getElementById('dist-bar-web');
+    if (elWebStat) elWebStat.textContent = `${webCount} Specialists (${webPct}%)`;
+    if (elWebBar) elWebBar.style.width = `${webPct}%`;
+
+    const elDesignStat = document.getElementById('dist-stat-design');
+    const elDesignBar = document.getElementById('dist-bar-design');
+    if (elDesignStat) elDesignStat.textContent = `${designCount} Specialists (${designPct}%)`;
+    if (elDesignBar) elDesignBar.style.width = `${designPct}%`;
+
+    const elCraftStat = document.getElementById('dist-stat-craft');
+    const elCraftBar = document.getElementById('dist-bar-craft');
+    if (elCraftStat) elCraftStat.textContent = `${craftCount} Specialists (${craftPct}%)`;
+    if (elCraftBar) elCraftBar.style.width = `${craftPct}%`;
+
+    const elCreativeStat = document.getElementById('dist-stat-creative');
+    const elCreativeBar = document.getElementById('dist-bar-creative');
+    if (elCreativeStat) elCreativeStat.textContent = `${creativeCount} Specialists (${creativePct}%)`;
+    if (elCreativeBar) elCreativeBar.style.width = `${creativePct}%`;
   }
 
   // 2. Freelancers Management Table
@@ -384,6 +463,14 @@
       });
     }
 
+    // Overview Header Add Worker Shortcut
+    const overviewAddWorkerBtn = document.getElementById('btn-admin-overview-add-worker');
+    if (overviewAddWorkerBtn && addWorkerBtn) {
+      overviewAddWorkerBtn.addEventListener('click', () => {
+        addWorkerBtn.click();
+      });
+    }
+
     // Reset Platform to Factory
     const resetDataBtn = document.getElementById('btn-admin-reset-data');
     if (resetDataBtn) {
@@ -399,12 +486,103 @@
       });
     }
 
+    // Admin Credentials Form Submit
+    const formCreds = document.getElementById('form-admin-credentials');
+    if (formCreds) {
+      formCreds.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const nameInput = document.getElementById('input-admin-name');
+        const emailInput = document.getElementById('input-admin-email');
+        const currentPassInput = document.getElementById('input-admin-current-pass');
+        const newPassInput = document.getElementById('input-admin-new-pass');
+        const confirmPassInput = document.getElementById('input-admin-confirm-pass');
+        const feedbackEl = document.getElementById('admin-creds-feedback');
+
+        const newName = nameInput ? nameInput.value.trim() : '';
+        const newEmail = emailInput ? emailInput.value.trim() : '';
+        const currentPassword = currentPassInput ? currentPassInput.value : '';
+        const newPassword = newPassInput ? newPassInput.value : '';
+        const confirmPassword = confirmPassInput ? confirmPassInput.value : '';
+
+        function setFeedback(msg, isSuccess) {
+          if (!feedbackEl) return;
+          feedbackEl.style.display = 'block';
+          feedbackEl.style.background = isSuccess ? 'rgba(34, 197, 94, 0.12)' : 'rgba(239, 68, 68, 0.12)';
+          feedbackEl.style.border = `1px solid ${isSuccess ? '#22C55E' : '#EF4444'}`;
+          feedbackEl.style.color = isSuccess ? '#15803D' : '#B91C1C';
+          feedbackEl.innerHTML = (isSuccess ? '✓ ' : '⚠ ') + escapeHtml(msg);
+        }
+
+        if (newPassword && newPassword !== confirmPassword) {
+          setFeedback('New passwords do not match. Please re-enter carefully.', false);
+          if (confirmPassInput) confirmPassInput.focus();
+          return;
+        }
+
+        if (!window.FINDWORKER_AUTH || !window.FINDWORKER_AUTH.updateAdminCredentials) {
+          setFeedback('Authentication service is not loaded.', false);
+          return;
+        }
+
+        const result = window.FINDWORKER_AUTH.updateAdminCredentials({
+          currentPassword,
+          newEmail,
+          newPassword,
+          newName
+        });
+
+        if (!result.success) {
+          setFeedback(result.message || 'Failed to update administrative credentials.', false);
+          if (result.message && result.message.toLowerCase().includes('current password') && currentPassInput) {
+            currentPassInput.focus();
+            currentPassInput.select();
+          }
+          return;
+        }
+
+        // Success
+        currentAdminUser = result.user;
+        const nameEl = document.getElementById('admin-user-name');
+        if (nameEl) nameEl.textContent = result.user.name;
+
+        populateAdminCredentialsForm();
+        setFeedback(result.message || 'Security credentials successfully updated!', true);
+        showToast('✓ Administrator credentials updated successfully');
+      });
+    }
+
+    // Toggle password inputs
+    const btnToggleCurr = document.getElementById('btn-toggle-curr-pass');
+    if (btnToggleCurr) {
+      btnToggleCurr.addEventListener('click', () => {
+        const input = document.getElementById('input-admin-current-pass');
+        if (input) {
+          const isPass = input.type === 'password';
+          input.type = isPass ? 'text' : 'password';
+          btnToggleCurr.textContent = isPass ? '🔒' : '👁';
+        }
+      });
+    }
+
+    const btnToggleNew = document.getElementById('btn-toggle-new-pass');
+    if (btnToggleNew) {
+      btnToggleNew.addEventListener('click', () => {
+        const input = document.getElementById('input-admin-new-pass');
+        if (input) {
+          const isPass = input.type === 'password';
+          input.type = isPass ? 'text' : 'password';
+          btnToggleNew.textContent = isPass ? '🔒' : '👁';
+        }
+      });
+    }
+
     // Sign Out
     const logoutBtn = document.getElementById('btn-admin-logout');
     if (logoutBtn) {
       logoutBtn.addEventListener('click', () => {
         if (confirm('Sign out from Admin Center?')) {
-          window.FINDWORKER_AUTH.logout('index.html#home');
+          window.FINDWORKER_AUTH.logout('admin-login.html');
         }
       });
     }

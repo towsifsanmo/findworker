@@ -1896,15 +1896,8 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       const role = btn.dataset.role;
       if (role === 'admin') {
-        const emailInput = document.getElementById('dedicated-signin-email') || document.getElementById('login-email');
-        const passInput = document.getElementById('dedicated-signin-password') || document.getElementById('login-password');
-        if (emailInput) emailInput.value = 'admin@findworker.io';
-        if (passInput) passInput.value = 'admin123';
-        if (window.FINDWORKER_AUTH) {
-          window.FINDWORKER_AUTH.login('admin@findworker.io', 'admin123');
-          showToast('✓ Logged in as Platform Administrator');
-          window.location.href = 'admin.html';
-        }
+        window.location.href = 'admin-login.html';
+        return;
       } else {
         const emailInput = document.getElementById('dedicated-signin-email') || document.getElementById('login-email');
         const passInput = document.getElementById('dedicated-signin-password') || document.getElementById('login-password');

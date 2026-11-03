@@ -40,10 +40,10 @@
         return DEFAULT_USERS;
       }
       const users = JSON.parse(raw);
-      // Ensure default users always exist
+      // Ensure default users always exist (matched by ID so email/password changes persist)
       let modified = false;
       DEFAULT_USERS.forEach(def => {
-        if (!users.some(u => u.email.toLowerCase() === def.email.toLowerCase())) {
+        if (!users.some(u => u.id === def.id)) {
           users.push(def);
           modified = true;
         }
@@ -321,14 +321,89 @@
     return user;
   }
 
-  function requireAdmin(redirectUrl = 'index.html#signin') {
+  function getAdminAccount() {
+    const users = getStoredUsers();
+    return users.find(u => u.role === 'admin') || DEFAULT_USERS[0];
+  }
+
+  function updateAdminCredentials({ currentPassword, newEmail, newPassword, newName }) {
+    const session = getCurrentUser();
+    if (!session || session.role !== 'admin') {
+      return { success: false, message: 'Administrator session required to modify credentials.' };
+    }
+
+    const users = getStoredUsers();
+    const adminIndex = users.findIndex(u => u.id === session.id && u.role === 'admin');
+    if (adminIndex === -1) {
+      return { success: false, message: 'Admin account record not found.' };
+    }
+
+    const adminUser = users[adminIndex];
+
+    // Verify current password
+    if (!currentPassword || adminUser.password !== currentPassword.trim()) {
+      return { success: false, message: 'Current administrator password is incorrect.' };
+    }
+
+    const updates = {};
+
+    // Validate new email if provided
+    if (newEmail && newEmail.trim().toLowerCase() !== adminUser.email.toLowerCase()) {
+      const cleanEmail = newEmail.trim().toLowerCase();
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(cleanEmail)) {
+        return { success: false, message: 'Please provide a valid email address.' };
+      }
+      const emailExists = users.some((u, idx) => idx !== adminIndex && u.email.toLowerCase() === cleanEmail);
+      if (emailExists) {
+        return { success: false, message: 'An account with this email address already exists.' };
+      }
+      updates.email = cleanEmail;
+    }
+
+    // Validate new password if provided
+    if (newPassword && newPassword.trim()) {
+      const cleanPass = newPassword.trim();
+      if (cleanPass.length < 6) {
+        return { success: false, message: 'New password must be at least 6 characters.' };
+      }
+      updates.password = cleanPass;
+    }
+
+    // Validate new name if provided
+    if (newName && newName.trim()) {
+      updates.name = newName.trim();
+    }
+
+    if (Object.keys(updates).length === 0) {
+      return { success: false, message: 'No credential changes specified.' };
+    }
+
+    // Apply updates
+    users[adminIndex] = { ...adminUser, ...updates };
+    saveStoredUsers(users);
+
+    // Update active session
+    const updatedSession = { ...session };
+    if (updates.email) updatedSession.email = updates.email;
+    if (updates.name) updatedSession.name = updates.name;
+    setCurrentSession(updatedSession);
+
+    return {
+      success: true,
+      message: 'Admin credentials updated successfully. Please use these new credentials for future logins.',
+      user: updatedSession
+    };
+  }
+
+  function requireAdmin(redirectUrl = 'admin-login.html') {
     const user = getCurrentUser();
     if (!user) {
       window.location.href = redirectUrl;
       return null;
     }
     if (user.role !== 'admin') {
-      window.location.href = 'dashboard.html';
+      window.location.href = redirectUrl;
       return null;
     }
     return user;
@@ -428,6 +503,8 @@
     isFreelancer,
     requireFreelancer,
     requireAdmin,
+    updateAdminCredentials,
+    getAdminAccount,
     initHeaderAuth,
     getStoredUsers
   };

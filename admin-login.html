@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Portal Sign In — FindWorker</title>
+  <meta name="description"
+    content="Secure administrative sign-in portal for FindWorker Platform Control. Authorized personnel only.">
+
+  <!-- Google Fonts: Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="style/style.css">
+
+  <style>
+    :root {
+      --admin-bg: #090A0F;
+      --admin-surface: #11131B;
+      --admin-border: rgba(255, 255, 255, 0.08);
+      --admin-accent: #854CFF;
+      --admin-accent-glow: rgba(133, 76, 255, 0.25);
+    }
+
+    body.admin-login-body {
+      background: var(--admin-bg);
+      color: #E2E8F0;
+      font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+      margin: 0;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Ambient Security Backdrop */
+    .admin-login-backdrop {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background: 
+        radial-gradient(circle at 50% 15%, rgba(133, 76, 255, 0.18) 0%, transparent 60%),
+        radial-gradient(circle at 80% 85%, rgba(80, 76, 255, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 15% 75%, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
+      z-index: 0;
+    }
+
+    .admin-login-card {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 460px;
+      background: var(--admin-surface);
+      border: 1px solid var(--admin-border);
+      border-radius: 18px;
+      padding: 36px 32px 32px;
+      box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(20px);
+    }
+
+    .admin-brand-header {
+      text-align: center;
+      margin-bottom: 26px;
+    }
+
+    .admin-security-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(133, 76, 255, 0.14);
+      color: #A78BFA;
+      border: 1px solid rgba(133, 76, 255, 0.3);
+      padding: 4px 12px;
+      border-radius: 9999px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .admin-security-pill .pulse-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #A78BFA;
+      box-shadow: 0 0 8px #A78BFA;
+    }
+
+    .admin-login-title {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      letter-spacing: -0.02em;
+      margin: 0 0 6px;
+    }
+
+    .admin-login-subtitle {
+      font-size: 0.82rem;
+      color: #94A3B8;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .admin-security-advisory {
+      background: rgba(255, 255, 255, 0.03);
+      border-left: 3px solid var(--admin-accent);
+      border-radius: 0 8px 8px 0;
+      padding: 10px 14px;
+      margin-bottom: 22px;
+      font-size: 0.76rem;
+      color: #94A3B8;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .admin-login-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .admin-form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .admin-form-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #CBD5E1;
+      letter-spacing: 0.02em;
+    }
+
+    .admin-input-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .admin-input-icon {
+      position: absolute;
+      left: 14px;
+      color: #64748B;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+    }
+
+    .admin-form-input {
+      width: 100%;
+      background: #0B0D14;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 12px 14px 12px 42px;
+      color: #FFFFFF;
+      font-family: inherit;
+      font-size: 0.88rem;
+      transition: all 0.2s ease;
+      outline: none;
+      box-sizing: border-box;
+    }
+
+    .admin-form-input:focus {
+      border-color: var(--admin-accent);
+      box-shadow: 0 0 0 3px var(--admin-accent-glow);
+    }
+
+    .admin-pass-toggle-btn {
+      position: absolute;
+      right: 12px;
+      background: none;
+      border: none;
+      color: #64748B;
+      cursor: pointer;
+      padding: 4px;
+      font-size: 0.8rem;
+      transition: color 0.15s ease;
+    }
+
+    .admin-pass-toggle-btn:hover {
+      color: #CBD5E1;
+    }
+
+    .admin-submit-btn {
+      background: var(--admin-accent);
+      color: #FFFFFF;
+      border: 1px solid var(--admin-accent);
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 14px var(--admin-accent-glow);
+      margin-top: 6px;
+    }
+
+    .admin-submit-btn:hover {
+      background: #7337F5;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(133, 76, 255, 0.4);
+    }
+
+    .admin-submit-btn:active {
+      transform: translateY(0);
+    }
+
+    .admin-error-box {
+      display: none;
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #FCA5A5;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 0.78rem;
+      align-items: center;
+      gap: 8px;
+      animation: shakeError 0.3s ease;
+    }
+
+    @keyframes shakeError {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-4px); }
+      75% { transform: translateX(4px); }
+    }
+
+    /* 1-Click Demo Section */
+    .admin-demo-box {
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid var(--admin-border);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .admin-demo-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.74rem;
+      color: #94A3B8;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .admin-demo-btn {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px dashed rgba(255, 255, 255, 0.14);
+      color: #CBD5E1;
+      border-radius: 8px;
+      padding: 9px 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.15s ease;
+    }
+
+    .admin-demo-btn:hover {
+      background: rgba(133, 76, 255, 0.1);
+      border-color: var(--admin-accent);
+      color: #FFFFFF;
+    }
+
+    .admin-login-footer {
+      margin-top: 24px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .admin-back-link {
+      color: #64748B;
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 500;
+      transition: color 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .admin-back-link:hover {
+      color: #E2E8F0;
+    }
+  </style>
+</head>
+
+<body class="admin-login-body">
+
+  <div class="admin-login-backdrop"></div>
+
+  <main class="admin-login-card">
+
+    <div class="admin-brand-header">
+      <div class="admin-security-pill">
+        <span class="pulse-dot"></span>
+        <span>Platform Security Console</span>
+      </div>
+      <h1 class="admin-login-title">Administrator Sign In</h1>
+      <p class="admin-login-subtitle">
+        Enter authorized administrator credentials to manage platform talent, categories, and system settings.
+      </p>
+    </div>
+
+    <div class="admin-security-advisory">
+      <span>🛡</span>
+      <span>Restricted Access: Administrative activity is logged and monitored.</span>
+    </div>
+
+    <!-- Error Alert Box -->
+    <div id="admin-login-error" class="admin-error-box" role="alert">
+      <span>✕</span>
+      <span id="admin-login-error-text">Incorrect email or password.</span>
+    </div>
+
+    <form id="admin-login-form" class="admin-login-form" novalidate>
+      <div class="admin-form-group">
+        <label class="admin-form-label" for="admin-email">Admin Email Address</label>
+        <div class="admin-input-wrap">
+          <span class="admin-input-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+          </span>
+          <input type="email" id="admin-email" class="admin-form-input" placeholder="admin@findworker.io" required autofocus>
+        </div>
+      </div>
+
+      <div class="admin-form-group">
+        <label class="admin-form-label" for="admin-password">Master Password</label>
+        <div class="admin-input-wrap">
+          <span class="admin-input-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+          </span>
+          <input type="password" id="admin-password" class="admin-form-input" placeholder="••••••••" required>
+          <button type="button" class="admin-pass-toggle-btn" id="btn-toggle-admin-pass" aria-label="Toggle password visibility">
+            👁
+          </button>
+        </div>
+      </div>
+
+      <button type="submit" class="admin-submit-btn" id="btn-admin-submit">
+        <span>Verify &amp; Enter Admin Center</span>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </button>
+    </form>
+
+    <!-- 1-Click Demo Shortcut for Instant Testing -->
+    <div class="admin-demo-box">
+      <div class="admin-demo-header">
+        <span>⚡ Quick Testing &amp; Development Access</span>
+      </div>
+      <button type="button" class="admin-demo-btn" id="btn-demo-admin-fill">
+        <span>Sign In as Super Admin (<span id="demo-admin-email-tag">admin@findworker.io</span>)</span>
+        <span style="font-size: 0.72rem; opacity: 0.8;">Instant ↗</span>
+      </button>
+    </div>
+
+  </main>
+
+  <footer class="admin-login-footer">
+    <a href="index.html#home" class="admin-back-link">
+      <span>← Return to FindWorker Public Directory</span>
+    </a>
+  </footer>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <!-- Shared Auth & Data Scripts -->
+  <script src="script/workers-data.js"></script>
+  <script src="script/auth.js"></script>
+
+  <script>
+    (function () {
+      'use strict';
+
+      // 1. If already logged in as admin, redirect directly to admin.html
+      if (window.FINDWORKER_AUTH && window.FINDWORKER_AUTH.isAdmin()) {
+        window.location.href = 'admin.html';
+        return;
+      }
+
+      const form = document.getElementById('admin-login-form');
+      const emailInput = document.getElementById('admin-email');
+      const passInput = document.getElementById('admin-password');
+      const errorBox = document.getElementById('admin-login-error');
+      const errorText = document.getElementById('admin-login-error-text');
+      const togglePassBtn = document.getElementById('btn-toggle-admin-pass');
+      const demoFillBtn = document.getElementById('btn-demo-admin-fill');
+      const demoEmailTag = document.getElementById('demo-admin-email-tag');
+
+      // Update demo button label to show current active admin email
+      if (window.FINDWORKER_AUTH && demoEmailTag) {
+        const adminAcc = window.FINDWORKER_AUTH.getAdminAccount();
+        if (adminAcc && adminAcc.email) {
+          demoEmailTag.textContent = adminAcc.email;
+        }
+      }
+
+      // Password visibility toggle
+      if (togglePassBtn && passInput) {
+        togglePassBtn.addEventListener('click', () => {
+          const isPass = passInput.type === 'password';
+          passInput.type = isPass ? 'text' : 'password';
+          togglePassBtn.textContent = isPass ? '🙈' : '👁';
+        });
+      }
+
+      function showError(msg) {
+        if (!errorBox || !errorText) return;
+        errorText.textContent = msg;
+        errorBox.style.display = 'flex';
+      }
+
+      function hideError() {
+        if (!errorBox) return;
+        errorBox.style.display = 'none';
+      }
+
+      // 1-Click Demo Login
+      if (demoFillBtn) {
+        demoFillBtn.addEventListener('click', () => {
+          const adminAcc = window.FINDWORKER_AUTH.getAdminAccount();
+          const email = adminAcc ? adminAcc.email : 'admin@findworker.io';
+          const pass = adminAcc ? adminAcc.password : 'admin123';
+
+          emailInput.value = email;
+          passInput.value = pass;
+          hideError();
+
+          const res = window.FINDWORKER_AUTH.login(email, pass);
+          if (res.success && res.user.role === 'admin') {
+            demoFillBtn.innerHTML = `<span>✓ Verified! Redirecting...</span>`;
+            setTimeout(() => {
+              window.location.href = 'admin.html';
+            }, 500);
+          } else {
+            showError(res.message || 'Unable to authenticate as admin.');
+          }
+        });
+      }
+
+      // Manual Login Submit
+      if (form) {
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          hideError();
+
+          const email = emailInput.value.trim();
+          const pass = passInput.value;
+
+          if (!email || !pass) {
+            showError('Please enter both administrative email and password.');
+            return;
+          }
+
+          if (!window.FINDWORKER_AUTH) {
+            showError('Authentication service unavailable.');
+            return;
+          }
+
+          const res = window.FINDWORKER_AUTH.login(email, pass);
+          if (!res.success) {
+            showError(res.message || 'Invalid administrative credentials.');
+            return;
+          }
+
+          if (res.user.role !== 'admin') {
+            showError('Access denied: this portal is restricted to Platform Administrators.');
+            // Log out session to avoid role leakage
+            window.FINDWORKER_AUTH.logout(null);
+            return;
+          }
+
+          // Success: Launch admin center
+          const submitBtn = document.getElementById('btn-admin-submit');
+          if (submitBtn) {
+            submitBtn.innerHTML = `<span>✓ Verified! Launching Admin Center...</span>`;
+            submitBtn.style.background = '#10B981';
+            submitBtn.style.borderColor = '#10B981';
+          }
+
+          setTimeout(() => {
+            window.location.href = 'admin.html';
+          }, 600);
+        });
+      }
+
+    })();
+  </script>
+</body>
+
+</html>
